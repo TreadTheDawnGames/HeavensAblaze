@@ -103,6 +103,11 @@ public class PredictionMotor : NetworkBehaviour
     private float spaceStablizeSpeed = 0.15f;
     private float stablizeBrake = 0.75f;
 
+   /// <summary>
+   ///[SerializeField]
+   /// </summary>
+    //private AnimationCurve shipCurve;
+   // float shipSensitivityValue;
     
     private float _nextShootTime = 0;
 
@@ -157,6 +162,7 @@ public class PredictionMotor : NetworkBehaviour
         {
             inputManager = FindObjectOfType<InputManager>();
             
+           
         }
         /* Both the server and owner must have a reference to the rigidbody.
          * Forces are applied to both the owner and server so that the objects
@@ -165,6 +171,7 @@ public class PredictionMotor : NetworkBehaviour
         //ChangeColor(this,PlayerPrefs.GetString("LaserColor"));
         //Debug.Log(PlayerPrefs.GetString("LaserColor"));
 
+        //shipCurve = inputManager.curve;
         rebindButtons = FindObjectsOfType<RebindUI>().ToList();
 
         _rigidbody = GetComponent<Rigidbody>();
@@ -208,6 +215,8 @@ public class PredictionMotor : NetworkBehaviour
     bool aimpointChanged = true;
     private void Update()
     {
+        //shipSensitivityValue = inputManager.sensitivityValue;
+
 
         blastersUseAimpoint = inputManager.blastersUsesAimpoint;
 
@@ -357,7 +366,7 @@ public class PredictionMotor : NetworkBehaviour
         if (!base.IsOwner)
         {
             gameObject.GetComponent<PredictionMotor>().enabled = false;
-
+            
         }
 
         if (IsOwner)
@@ -611,6 +620,19 @@ public class PredictionMotor : NetworkBehaviour
             brake = playerShip.Mouse.Brake.IsInProgress();
             fire = playerShip.Mouse.Fire.IsInProgress();
         }
+        else if (inputType == InputType.Gamepad)
+        {
+            thrust = playerShip.Gamepad.Thrust.ReadValue<float>();
+            lift = playerShip.Gamepad.Lift.ReadValue<float>();
+            lateral = playerShip.Gamepad.Lateral.ReadValue<float>();
+            pitch = playerShip.Gamepad.Pitch.ReadValue<float>();
+            roll = -playerShip.Gamepad.Roll.ReadValue<float>();
+            yaw = playerShip.Gamepad.Yaw.ReadValue<float>();
+            brake = playerShip.Gamepad.Brake.IsInProgress();
+            fire = playerShip.Gamepad.Fire.IsInProgress();
+        }
+
+        float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
 
         //Debug.Log(thrust);
 
@@ -619,7 +641,14 @@ public class PredictionMotor : NetworkBehaviour
         //   return;
 
         //If there is input then populate data.
-        data = new MoveData(thrust * invertThrust, lift * invertLift, lateral*invertLateral, pitch*-invertPitch, roll*invertRoll, yaw*invertYaw, brake);
+        //data = new MoveData(thrust * invertThrust, lift * invertLift, lateral*invertLateral, pitch*-invertPitch, roll*invertRoll, yaw*invertYaw, brake);
+        
+        data = new MoveData(thrust * invertThrust, 
+            lift * invertLift, lateral * invertLateral * sensitivityVal, 
+            -inputManager.curve.Evaluate(pitch) * invertPitch * sensitivityVal,
+            inputManager.curve.Evaluate(roll)  * invertRoll  * sensitivityVal,
+            inputManager.curve.Evaluate(yaw)   * invertYaw   * sensitivityVal ,
+            brake);
 
     }
 
@@ -676,9 +705,11 @@ public class PredictionMotor : NetworkBehaviour
 
 
 
-        Vector3 torque = new Vector3(inputManager.curve.Evaluate(data.Pitch), inputManager.curve.Evaluate(data.Yaw), inputManager.curve.Evaluate(data.Roll)) * rotSpeed;
+        Vector3 torque = new Vector3(data.Pitch, data.Yaw, data.Roll) * rotSpeed;
         //Debug.Log(inputManager.sensitivityValue / 100f);
-        _rigidbody.AddRelativeTorque(torque * ((float)inputManager.sensitivityValue / 100) , ForceMode.VelocityChange); ;
+
+        _rigidbody.AddRelativeTorque(torque, ForceMode.VelocityChange); ;
+
         StableizeAll(StableizeX() * stablizeBrake, StableizeY() * stablizeBrake, StableizeZ() * stablizeBrake, gameObject);
         if (data.Brake)
         {
