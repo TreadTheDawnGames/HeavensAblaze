@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa54a90cb3d6d8848b15c7ea6f849f38
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _addedNetworkObject: {instanceID: 0}
+  - _networkObjectCache: {instanceID: 0}
+  - laser: {fileID: 5537961559287403275, guid: 0d6694b74b1a713478e07337c61a4182, type: 3}
+  - aimPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
