@@ -160,7 +160,7 @@ public class ShipPart : NetworkBehaviour
 
     }
 
-    [ObserversRpc]
+    [ObserversRpc(ExcludeServer =false,RunLocally =true)]
     public void TransferCamera(GameObject spawn)
     {
         if (spawn.TryGetComponent<Cockpit>(out Cockpit cockpit) && transform.root.GetComponentInChildren<CameraDampener>())
@@ -172,7 +172,7 @@ public class ShipPart : NetworkBehaviour
         }
     }
 
-    private void SpawnChildren(GameObject spawn)
+    public void SpawnChildren(GameObject spawn)
     {
         if (IsServer)
 
@@ -195,7 +195,7 @@ public class ShipPart : NetworkBehaviour
             }
     }
 
-    private void InstantiateChildDebris(GameObject GO, Transform parent)
+    public void InstantiateChildDebris(GameObject GO, Transform parent)
     {
         if (IsServer)
         {
