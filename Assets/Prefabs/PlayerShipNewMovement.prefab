@@ -487,6 +487,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 5625079233873163944}
+  - {fileID: 6421230819222282558}
   <ParentNetworkObject>k__BackingField: {fileID: 1108100127182144343}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -556,6 +557,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 2179317181517415770, guid: 18c35432e21141843b05f1c5729fb990, type: 3}
   root: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &593972849467792051
 GameObject:
   m_ObjectHideFlags: 0
@@ -7906,9 +7908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb186a14ba727841a5e8adafbbc01e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 8535732708594832469}
-  _networkObjectCache: {fileID: 8535732708594832469}
+  _networkObjectCache: {fileID: 5240576307168568331}
   targetPosition: {x: 0, y: 9, z: -6}
   targetRotation: {x: 45, y: 0, z: 0}
   transitionSpeed: 2
@@ -8457,7 +8459,6 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 2546984118244357431}
   - {fileID: 7859034845989005786}
-  - {fileID: 6421230819222282558}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField:
   - {fileID: 1108100127182144343}
@@ -8547,9 +8548,9 @@ MonoBehaviour:
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 8535732708594832469}
-  MoveRate: 30
+  MoveRate: 10
   inputType: 0
-  moveSpeed: 40
+  moveSpeed: 30
   thrustMultiplier: 2
   spaceBrakeSpeed: 0.25
   blasters:
