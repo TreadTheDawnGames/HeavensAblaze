@@ -172,7 +172,7 @@ public class ShipPart : NetworkBehaviour
         }
     }
 
-    public void SpawnChildren(GameObject spawn)
+    private void SpawnChildren(GameObject spawn)
     {
         if (IsServer)
 
@@ -195,7 +195,7 @@ public class ShipPart : NetworkBehaviour
             }
     }
 
-    public void InstantiateChildDebris(GameObject GO, Transform parent)
+    private void InstantiateChildDebris(GameObject GO, Transform parent)
     {
         if (IsServer)
         {
