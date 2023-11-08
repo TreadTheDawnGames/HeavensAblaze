@@ -11,11 +11,12 @@ using System.Collections;
 using FishNet.Component.Prediction;
 using UnityEngine.InputSystem;
 using System.Data;
+using FishNet.Managing.Timing;
 
 public class PredictionMotor : NetworkBehaviour
 {
 
-
+    
 
     #region Types.
     /* It's strongly recommended to use structures for your data.
@@ -122,7 +123,7 @@ public class PredictionMotor : NetworkBehaviour
 
     
 
-    public List<BlasterV2> blasters = new List<BlasterV2>();
+    public List<BlasterV3> blasters = new List<BlasterV3>();
     public float _thrust;
 
     public bool blastersUseAimpoint = true;
@@ -155,6 +156,8 @@ public class PredictionMotor : NetworkBehaviour
 
     private void Awake()
     {
+        
+
         //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
 
         colorPicker = FindObjectOfType<ColorPicker>();
@@ -175,8 +178,8 @@ public class PredictionMotor : NetworkBehaviour
         rebindButtons = FindObjectsOfType<RebindUI>().ToList();
 
         _rigidbody = GetComponent<Rigidbody>();
-        blasters = GetComponentsInChildren<BlasterV2>().ToList<BlasterV2>();
-        foreach (BlasterV2 blaster in blasters)
+        blasters = GetComponentsInChildren<BlasterV3>().ToList<BlasterV3>();
+        foreach (BlasterV3 blaster in blasters)
         {
             blaster.myShip = this;
             blaster.Setup();
@@ -238,16 +241,16 @@ public class PredictionMotor : NetworkBehaviour
 
             if (blastersUseAimpoint)
             {
-                foreach (BlasterV2 blaster in blasters)
+                foreach (BlasterV3 blaster in blasters)
                 {
-                    blaster.isUsingAimPoint = true;
+                    blaster.isUsingAimpoint = true;
                 }
             }
             else
             {
-                foreach (BlasterV2 blaster in blasters)
+                foreach (BlasterV3 blaster in blasters)
                 {
-                    blaster.isUsingAimPoint = false;
+                    blaster.isUsingAimpoint = false;
                 }
             }
 
@@ -681,11 +684,11 @@ public class PredictionMotor : NetworkBehaviour
                 {
                     _nextShootTime = TimeManager.ClientUptime + 0.25f;
 
-                    foreach (BlasterV2 blaster in blasters)
+                    foreach (BlasterV3 blaster in blasters)
                     {
                         if (blaster != null)
                         {
-                            blaster.DoClientFire();
+                            blaster.ClientFire();
                         }
                     }
                 }
