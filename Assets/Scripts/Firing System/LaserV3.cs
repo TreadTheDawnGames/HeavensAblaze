@@ -45,7 +45,7 @@ public class LaserV3 : MonoBehaviour
     private void Update()
     {
         Move();
-        Debug.DrawRay(gameObject.transform.position, transform.forward, Color.green, 5);
+        Debug.DrawLine (  raycastPoint.transform.position,transform.position, Color.green, 5);
 
     }
 
@@ -93,6 +93,7 @@ public class LaserV3 : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider collision)
     {
+
         
         /* These projectiles are instantiated locally, as in,
          * they are not networked. Because of this there is a very
@@ -103,7 +104,7 @@ public class LaserV3 : MonoBehaviour
         //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
-            if (Physics.Raycast(gameObject.transform.position, raycastPoint.transform.forward * 2.5f, out RaycastHit hit))
+            if (Physics.Linecast(raycastPoint.transform.position, transform.position, out RaycastHit hit))
             {
 
 
@@ -111,7 +112,7 @@ public class LaserV3 : MonoBehaviour
 
                 Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Vector3 pos = hit.point;
-                //Instantiate(hitSparks, pos, rot);
+                Instantiate(hitSparks, pos, rot);
 
 
 
@@ -128,7 +129,7 @@ public class LaserV3 : MonoBehaviour
 
                 ps.hitPoints -= 12;
 
-                ps.DestroyIfDead();
+                //ps.DestroyIfDead();
 
             }
         }

@@ -21,7 +21,7 @@ public class BlasterV3 : NetworkBehaviour
 
     Color laserColor;
 
-    Vector3 originalPos;
+    public Vector3 originalPos;
 
     public void Setup()
     {

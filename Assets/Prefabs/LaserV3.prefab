@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSparks: {fileID: 6192109592651388364, guid: 5a3c7b43536da0648875302eefb1bffb, type: 3}
   raycastPoint: {fileID: 919237596129755523}
-  MOVE_RATE: 100
+  MOVE_RATE: 60
 --- !u!54 &5621161247874429538
 Rigidbody:
   m_ObjectHideFlags: 0
