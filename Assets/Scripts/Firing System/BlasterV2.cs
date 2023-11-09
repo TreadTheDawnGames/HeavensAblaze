@@ -18,7 +18,7 @@ public class BlasterV2 : NetworkBehaviour
     public int framesBetweenShots = 10;
     private Transform originalRoot;
 
-    public bool isUsingAimPoint = true;
+    public bool isUsingAimpoint = true;
 
     public AudioSource laserPew;
 
@@ -46,7 +46,7 @@ public class BlasterV2 : NetworkBehaviour
 
     public void Setup()
     {
-        
+         
         if (!base.IsOwner)
         {
             gameObject.GetComponent<BlasterV2>().enabled = false;
@@ -126,7 +126,7 @@ public class BlasterV2 : NetworkBehaviour
 
         Vector3 instantiationPosition = transform.localPosition;
         Vector3 direction;
-        if (isUsingAimPoint)
+        if (isUsingAimpoint)
         {
             direction = aimPoint.transform.position - transform.position;
         }
@@ -161,7 +161,7 @@ public class BlasterV2 : NetworkBehaviour
         laserColor = myShip.syncedLaserColor;
 
         Quaternion rotationQ;
-        if (isUsingAimPoint)
+        if (isUsingAimpoint)
         {
             //find in direction of aimpoint
             Vector3 relativePos = aimPoint.transform.position - transform.position;
@@ -170,10 +170,9 @@ public class BlasterV2 : NetworkBehaviour
         }
         else
         {
-            rotationQ = transform.rotation * Quaternion.Euler(90, 0, 0); 
+            rotationQ = transform.rotation ; 
         }
 
-       
 
 
         transform.localPosition = new Vector3(originalPos.x, originalPos.y, originalPos.z);
@@ -189,7 +188,7 @@ public class BlasterV2 : NetworkBehaviour
 
         
 
-        Vector3 straight = new Vector3(0f, 100f, 0f);
+        Vector3 straight = new Vector3(0f, 70f, 0f);
 
         pp.GetComponent<Rigidbody>().AddRelativeForce(straight, ForceMode.VelocityChange);
         

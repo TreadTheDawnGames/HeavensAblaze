@@ -224,12 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9228b9901897d40b24f645d2e41d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 2204128287715840632}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 2204128287715840632}
   numFramesBetweenShots: 0
   framesBetweenShots: 10
-  isUsingAimPoint: 1
+  isUsingAimpoint: 1
   laserPew: {fileID: 0}
   laserColor: {r: 0, g: 0, b: 0, a: 0}
   myShip: {fileID: 0}
@@ -2283,7 +2283,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 4197694443606761902}
-  - {fileID: 6741929319726849116}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 5399910879307005185}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -3308,7 +3308,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2521481955775224455}
-  - {fileID: 0}
+  - {fileID: 5056731814227658679}
   <ParentNetworkObject>k__BackingField: {fileID: 7222148593307531868}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -5057,7 +5057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4619083588757931138}
   - component: {fileID: 4995312708538590157}
-  - component: {fileID: 6741929319726849116}
+  - component: {fileID: 3592933404304027257}
   m_Layer: 10
   m_Name: LaserSpawner
   m_TagString: Untagged
@@ -5072,14 +5072,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5898322047467325396}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.04, z: 2.076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6665126716017235103}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4995312708538590157
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5176,7 +5176,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6741929319726849116
+--- !u!114 &3592933404304027257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5188,11 +5188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11fff1fded909243a843725ae00b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 3272608215638426253}
-  _networkObjectCache: {fileID: 3272608215638426253}
+  _networkObjectCache: {fileID: 0}
   myShip: {fileID: 0}
   isUsingAimpoint: 0
+  velocityDivider: 0.05
   _projectile: {fileID: 8295591559545628645, guid: fa9fbbac0a40aee45ba5d97604068549, type: 3}
 --- !u!1 &5909708584043835236
 GameObject:

@@ -316,7 +316,7 @@ public class PredictionMotor : NetworkBehaviour
             fire = true;
     }
 
-    //reorder the code so that the script can be active on another client. this and BlasterV2
+    //reorder the code so that the script can be active on another client. this and BlasterV3
 
 
     #region Managing
@@ -646,8 +646,10 @@ public class PredictionMotor : NetworkBehaviour
         //If there is input then populate data.
         //data = new MoveData(thrust * invertThrust, lift * invertLift, lateral*invertLateral, pitch*-invertPitch, roll*invertRoll, yaw*invertYaw, brake);
         
-        data = new MoveData(thrust * invertThrust, 
-            lift * invertLift, lateral * invertLateral * sensitivityVal, 
+        data = new MoveData(
+            thrust * invertThrust   * moveSpeed * thrustMultiplier, 
+            lift    * invertLift    * moveSpeed,
+            lateral * invertLateral * moveSpeed, 
             -inputManager.curve.Evaluate(pitch) * invertPitch * sensitivityVal,
             inputManager.curve.Evaluate(roll)  * invertRoll  * sensitivityVal,
             inputManager.curve.Evaluate(yaw)   * invertYaw   * sensitivityVal ,
@@ -675,31 +677,10 @@ public class PredictionMotor : NetworkBehaviour
          * input may be called multiple times, but replaying will be true. You can filter
          * out playing the audio/vfx multiple times by not running the logic if replaying
          * is true. */
-        if (fire)
-        {
-            fire = false;
-            //if (IsClient)
-            {
-                if (TimeManager.ClientUptime > _nextShootTime)
-                {
-                    _nextShootTime = TimeManager.ClientUptime + 0.25f;
-
-                    foreach (BlasterV3 blaster in blasters)
-                    {
-                        if (blaster != null)
-                        {
-                            blaster.ClientFire();
-                        }
-                    }
-                }
-                //StartServerCooldown();
-
-            }
-        }
 
         
 
-        Vector3 force = new Vector3(data.Lateral, data.Lift, data.Thrust * thrustMultiplier) * moveSpeed;
+        Vector3 force = new Vector3(data.Lateral, data.Lift, data.Thrust);
         //Make Ship Go
         _rigidbody.AddRelativeForce(force, ForceMode.Force);
 
@@ -720,6 +701,27 @@ public class PredictionMotor : NetworkBehaviour
         }
 
 
+        if (fire)
+        {
+            fire = false;
+            //if (IsClient)
+            {
+                if (TimeManager.ClientUptime > _nextShootTime)
+                {
+                    _nextShootTime = TimeManager.ClientUptime + 0.25f;
+
+                    foreach (BlasterV3 blaster in blasters)
+                    {
+                        if (blaster != null)
+                        {
+                            blaster.ClientFire(_rigidbody, data);
+                        }
+                    }
+                }
+                //StartServerCooldown();
+
+            }
+        }
 
     }
 

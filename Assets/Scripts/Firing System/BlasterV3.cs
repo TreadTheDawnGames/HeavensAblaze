@@ -7,6 +7,7 @@ using FishNet;
 using FishNet.Connection;
 using FishNet.Component.Prediction;
 using UnityEngine.InputSystem;
+using System.ComponentModel;
 
 public class BlasterV3 : NetworkBehaviour
 {
@@ -15,8 +16,12 @@ public class BlasterV3 : NetworkBehaviour
     public PredictionMotor myShip;
     public bool isUsingAimpoint;
 
+    //[Range(0.0f, 1.0f)]
+    public float velocityDivider = 0.05f;
+
     Color laserColor;
 
+    Vector3 originalPos;
 
     public void Setup()
     {
@@ -31,6 +36,7 @@ public class BlasterV3 : NetworkBehaviour
 
         }
 
+        originalPos = transform.localPosition;
         originalRoot = transform.root;
     }
 
@@ -51,13 +57,24 @@ public class BlasterV3 : NetworkBehaviour
     /// <summary>
     /// Local client fires weapon.
     /// </summary>
-    public void ClientFire()
+    public void ClientFire(Rigidbody rb, PredictionMotor.MoveData data)
     {
+;       //y = m * x + b;
+;
+        float extraSpaceZ = Mathf.Clamp(velocityDivider * transform.InverseTransformDirection(rb.velocity).z, 0f, 10f);
+
+        transform.localPosition = new Vector3(originalPos.x, originalPos.y, originalPos.z + extraSpaceZ);
 
 
+        //Vector3 predictedPoint = transform.position + rb.velocity * Time.fixedDeltaTime;
+
+//        Debug.Log(transform.position + " / " + predictedPoint);
+
+        //need to make lasers not destroy firing ship lasers
+        //maybe try moving spawn point using animation curve
 
         Vector3 position = transform.position;
-        Vector3 direction = isUsingAimpoint ? (aimPoint.transform.position - transform.position).normalized : transform.up;
+        Vector3 direction = isUsingAimpoint ? (aimPoint.transform.position - transform.position).normalized : transform.forward;
 
         /* Spawn locally with 0f passed time.
          * Since this is the firing client

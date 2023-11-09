@@ -45,7 +45,7 @@ public class LaserV3 : MonoBehaviour
     private void Update()
     {
         Move();
-        Debug.DrawRay(gameObject.transform.position, transform.up, Color.green, 5);
+        Debug.DrawRay(gameObject.transform.position, transform.forward, Color.green, 5);
 
     }
 
@@ -103,7 +103,7 @@ public class LaserV3 : MonoBehaviour
         //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
-            if (Physics.Raycast(gameObject.transform.position, raycastPoint.transform.up * 2.5f, out RaycastHit hit))
+            if (Physics.Raycast(gameObject.transform.position, raycastPoint.transform.forward * 2.5f, out RaycastHit hit))
             {
 
 
@@ -111,7 +111,7 @@ public class LaserV3 : MonoBehaviour
 
                 Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Vector3 pos = hit.point;
-                Instantiate(hitSparks, pos, rot);
+                //Instantiate(hitSparks, pos, rot);
 
 
 
