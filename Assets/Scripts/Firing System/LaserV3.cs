@@ -72,7 +72,7 @@ public class LaserV3 : MonoBehaviour
 
             /* Apply 8% of the step per frame. You can adjust
              * this number to whatever feels good. */
-            float step = (_passedTime * 0.08f);
+            float step = (_passedTime * 1.0f);
             _passedTime -= step;
 
             /* If the remaining time is less than half a delta then
@@ -129,7 +129,7 @@ public class LaserV3 : MonoBehaviour
 
                 ps.hitPoints -= 12;
 
-                //ps.DestroyIfDead();
+               ps.DestroyIfDead();
 
             }
         }
