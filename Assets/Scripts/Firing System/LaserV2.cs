@@ -38,7 +38,7 @@ public class LaserV2 : NetworkBehaviour
 
 
 
-        Debug.DrawRay(gameObject.transform.position, raycastPoint.transform.up * 2.5f, Color.green, 5, false);
+        Debug.DrawLine(raycastPoint.transform.position, transform.position, Color.green, 5);
     }
 
 
@@ -54,6 +54,7 @@ public class LaserV2 : NetworkBehaviour
              * small chance the occasional projectile may not align with
              * 100% accuracy. But, the differences are generally
              * insignifcant and will not affect gameplay. */
+                //transform.position-=GetComponent<Rigidbody>().velocity/2f;
 
             //If client show visual effects, play impact audio.
             if (InstanceFinder.IsClient)
@@ -61,14 +62,14 @@ public class LaserV2 : NetworkBehaviour
                 //Debug.Log("Visuals and audio");
                 //Show VFX.
 
-
-                if (Physics.Raycast(gameObject.transform.position, raycastPoint.transform.up * 2.5f, out RaycastHit hit))
+                if (Physics.Linecast(raycastPoint.transform.position, transform.position, out RaycastHit hit))
                 {
 
+                    Debug.DrawLine(raycastPoint.transform.position, transform.position, Color.red, 5);
 
 
 
-                    Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                    Quaternion rot = Quaternion.FromToRotation(Vector3.up, -hit.normal);
                     Vector3 pos = hit.point;
                     Instantiate(hitSparks, pos, rot);
 

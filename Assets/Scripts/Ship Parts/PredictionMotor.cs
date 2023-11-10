@@ -714,7 +714,7 @@ public class PredictionMotor : NetworkBehaviour
                     {
                         if (blaster != null)
                         {
-                            blaster.ClientFire(_rigidbody, data);
+                            blaster.ClientFire(_rigidbody);
                         }
                     }
                 }

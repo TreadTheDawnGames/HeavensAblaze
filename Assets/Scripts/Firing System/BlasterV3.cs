@@ -57,7 +57,7 @@ public class BlasterV3 : NetworkBehaviour
     /// <summary>
     /// Local client fires weapon.
     /// </summary>
-    public void ClientFire(Rigidbody rb, PredictionMotor.MoveData data)
+    public void ClientFire(Rigidbody rb)
     {
 ;       //y = m * x + b;
 ;
@@ -92,15 +92,21 @@ public class BlasterV3 : NetworkBehaviour
     /// <summary>
     /// Spawns a projectile locally.
     /// </summary>
+    
     private void SpawnProjectile(Vector3 position, Vector3 direction, float passedTime)
     {
         
 
         laserColor = myShip.syncedLaserColor;
 
+        float extraLagSpaceZ = Mathf.Clamp(velocityDivider * passedTime, 0f, 10f);
+
+
+        
 
         LaserV3 pp = Instantiate(_projectile, position, transform.rotation);
         pp.Initialize(direction, passedTime, laserColor);
+        
 
     }
 
@@ -128,6 +134,8 @@ public class BlasterV3 : NetworkBehaviour
          * mean the client would have roughly a 300ms ping; we do not want
          * to punish other players because a laggy client is firing. */
         passedTime = Mathf.Min(MAX_PASSED_TIME / 2f, passedTime);
+
+        
 
         //Spawn on the server.
         SpawnProjectile(position, direction, passedTime);

@@ -141,7 +141,7 @@ public class BlasterV2 : NetworkBehaviour
          * they do not need to accelerate/catch up
          * the projectile. */
 
-        if (IsClientOnly)
+        if (IsClient)
         {
             SpawnProjectile(instantiationPosition, direction, 0f);
         }
