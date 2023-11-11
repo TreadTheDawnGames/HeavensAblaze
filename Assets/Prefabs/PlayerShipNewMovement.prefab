@@ -2281,7 +2281,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 4197694443606761902}
-  - {fileID: 0}
+  - {fileID: 4680584552697365120}
   <ParentNetworkObject>k__BackingField: {fileID: 5399910879307005185}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -5055,7 +5055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4619083588757931138}
   - component: {fileID: 4995312708538590157}
-  - component: {fileID: 8119497707832749472}
+  - component: {fileID: 4680584552697365120}
   m_Layer: 10
   m_Name: LaserSpawner
   m_TagString: Untagged
@@ -5174,7 +5174,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8119497707832749472
+--- !u!114 &4680584552697365120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5183,19 +5183,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5898322047467325396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9228b9901897d40b24f645d2e41d31, type: 3}
+  m_Script: {fileID: 11500000, guid: d11fff1fded909243a843725ae00b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 3272608215638426253}
-  _networkObjectCache: {fileID: 0}
-  numFramesBetweenShots: 0
-  framesBetweenShots: 10
-  isUsingAimpoint: 1
-  laserPew: {fileID: 0}
-  laserColor: {r: 0, g: 0, b: 0, a: 0}
+  _networkObjectCache: {fileID: 3272608215638426253}
   myShip: {fileID: 0}
-  _projectile: {fileID: 8404467978872566648, guid: 49a6e5f69eb92a140848f5fb8d7bf3c9, type: 3}
+  isUsingAimpoint: 1
+  velocityDivider: 0.15
+  originalPos: {x: 0, y: 0, z: 0}
+  _projectile: {fileID: 8295591559545628645, guid: fa9fbbac0a40aee45ba5d97604068549, type: 3}
 --- !u!1 &5909708584043835236
 GameObject:
   m_ObjectHideFlags: 0

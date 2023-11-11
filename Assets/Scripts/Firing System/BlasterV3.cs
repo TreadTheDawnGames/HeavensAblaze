@@ -12,12 +12,11 @@ using System.ComponentModel;
 public class BlasterV3 : NetworkBehaviour
 {
     AimPoint aimPoint;
-    Transform originalRoot;
     public PredictionMotor myShip;
     public bool isUsingAimpoint;
 
     //[Range(0.0f, 1.0f)]
-    public float velocityDivider = 0.05f;
+    public float velocityDivider = 0.15f;
 
     Color laserColor;
 
@@ -37,7 +36,6 @@ public class BlasterV3 : NetworkBehaviour
         }
 
         originalPos = transform.localPosition;
-        originalRoot = transform.root;
     }
 
     /// <summary>
@@ -99,12 +97,31 @@ public class BlasterV3 : NetworkBehaviour
 
         laserColor = myShip.syncedLaserColor;
 
-        float extraLagSpaceZ = Mathf.Clamp(velocityDivider * passedTime, 0f, 10f);
-
+        Debug.Log(passedTime);
 
         
 
-        LaserV3 pp = Instantiate(_projectile, position, transform.rotation);
+        position += direction.normalized * 30f * passedTime ;
+
+        Quaternion rotationQ;
+        if (isUsingAimpoint)
+        {
+            //find in direction of aimpoint
+            Vector3 relativePos = aimPoint.transform.position - transform.position;
+            //find rotation relative to aimpoint and rotate 90 deg
+            rotationQ = Quaternion.LookRotation(relativePos, new Vector3(0, 1, 0)) ;
+        }
+        else
+        {
+            rotationQ = transform.rotation;
+        }
+
+        LaserV3 pp = Instantiate(_projectile, position, rotationQ);
+
+        Debug.DrawLine(position, pp.transform.TransformPoint(pp.transform.forward), Color.magenta, 5f, false) ;
+
+        pp.GetComponent<NetworkObject>().SetLocalOwnership(LocalConnection);
+
         pp.Initialize(direction, passedTime, laserColor);
         
 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9124598458761901390}
   - component: {fileID: 5638665441792087982}
   - component: {fileID: 3930784922941479381}
+  - component: {fileID: -7367557717656904217}
   m_Layer: 0
   m_Name: DEBRISStarboardEngine
   m_TagString: ship body
@@ -142,7 +143,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 47
+  <PrefabId>k__BackingField: 20
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -204,3 +205,19 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!54 &-7367557717656904217
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3790386061770104960}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

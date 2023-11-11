@@ -1,7 +1,11 @@
 using FishNet;
+using FishNet.Object;
+using FishNet.Transporting;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class LaserV3 : MonoBehaviour
 {
@@ -94,7 +98,19 @@ public class LaserV3 : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        
+        if (collision.GetComponentInParent<LaserV3>()!=null)
+        {
+            return;
+        }
+        else if (collision.TryGetComponent<NetworkObject>(out NetworkObject nob))
+        {
+            if (nob.Owner == GetComponent<NetworkObject>().Owner)
+            {
+                return;
+            }
+        }
+
+
         /* These projectiles are instantiated locally, as in,
          * they are not networked. Because of this there is a very
          * small chance the occasional projectile may not align with
@@ -104,22 +120,12 @@ public class LaserV3 : MonoBehaviour
         //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
-            if (Physics.Linecast(raycastPoint.transform.position, transform.position, out RaycastHit hit))
+            if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))
             {
-
-
-
-
                 Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Vector3 pos = hit.point;
                 Instantiate(hitSparks, pos, rot);
-
-
-
-                //Play Hit Sound Audio.
-
             }
-            //Play Audio.
         }
         //If server check to damage hit objects.
         if (InstanceFinder.IsServer)
