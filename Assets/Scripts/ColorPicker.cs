@@ -23,6 +23,8 @@ public class ColorPicker : MonoBehaviour
 
     bool pickingCustomColor1 = false;
 
+    public PredictionMotor ship;
+
     public void OnClickPickColor()
     {
         SetColor();
@@ -53,37 +55,52 @@ public class ColorPicker : MonoBehaviour
 
             customColor1.ChangeColor();
         }
+        ship.ChangeColor(ship, laserColor);
 
 
     }
     public void OnClickPickRed()
     {
         laserColor = Color.red;
+        ship.ChangeColor(ship, laserColor);
+
 
     }
     public void OnClickPickOrange()
     {
         laserColor = orange;
+        ship.ChangeColor(ship, laserColor);
+
     }
     public void OnClickPickYellow()
     {
         laserColor = Color.yellow;
+        ship.ChangeColor(ship, laserColor);
+
     }
     public void OnClickPickGreen()
     {
         laserColor = Color.green;
+        ship.ChangeColor(ship, laserColor);
+
     }
     public void OnClickPickBlue()
     {
         laserColor = Color.blue;
+        ship.ChangeColor(ship, laserColor);
+
     }
     public void OnClickPickCyan()
     {
         laserColor = Color.cyan;
+        ship.ChangeColor(ship, laserColor);
+
     }
     public void OnClickPickMagenta()
     {
         laserColor = Color.magenta;
+        ship.ChangeColor(ship, laserColor);
+
     }
     private void Awake()
     {
@@ -116,6 +133,8 @@ public class ColorPicker : MonoBehaviour
         {
             laserColor = customColor1.custom1;
         }
+
+        ship.ChangeColor(ship, laserColor);
     }
 
 }

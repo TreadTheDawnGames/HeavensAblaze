@@ -16,15 +16,7 @@ public class CameraDampener : NetworkBehaviour
 
     public bool cockpitDied = false;
 
-    private void Update()
-    {
-        /*if (cockpitDied)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, transitionSpeed*Time.deltaTime);
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, qTargetRot, transitionSpeed*Time.deltaTime);
-            
-        }*/
-    }
+    
 
     public void Transition()
     {

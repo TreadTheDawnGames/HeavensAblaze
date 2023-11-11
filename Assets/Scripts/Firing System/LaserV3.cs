@@ -2,8 +2,6 @@ using FishNet;
 using FishNet.Object;
 using FishNet.Transporting;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -100,14 +98,26 @@ public class LaserV3 : MonoBehaviour
 
         if (collision.GetComponentInParent<LaserV3>()!=null)
         {
+            Debug.Log("Not continuing: hit laser");
             return;
         }
         else if (collision.TryGetComponent<NetworkObject>(out NetworkObject nob))
         {
             if (nob.Owner == GetComponent<NetworkObject>().Owner)
             {
+            Debug.Log("Not continuing: owner of target");
                 return;
             }
+            else
+            {
+            Debug.Log("Continuing: Not owner");
+
+            }
+        }
+        else
+        {
+            Debug.Log("Continuing: good target");
+
         }
 
 

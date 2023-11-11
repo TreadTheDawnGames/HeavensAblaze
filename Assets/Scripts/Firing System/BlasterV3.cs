@@ -24,6 +24,7 @@ public class BlasterV3 : NetworkBehaviour
 
     public void Setup()
     {
+        isUsingAimpoint = PlayerPrefs.GetInt("useAimpoint", 1) == 1 ? true : false;
 
         if (!base.IsOwner)
         {
@@ -175,8 +176,8 @@ public class BlasterV3 : NetworkBehaviour
         SpawnProjectile(position, direction, passedTime);
     }
 
-
     
+
 
 
 }

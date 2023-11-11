@@ -10,10 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject controlsHud;
     public GameObject personalizationHud;
 
-
-    private void Awake()
-    {
-    }
+    public PredictionMotor ship;
 
     private void Update()
     {
@@ -33,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public void ToggleMenu(GameObject menu)
     {
-
+        
         if (menu == settingsHud)
         {
 
@@ -51,6 +48,10 @@ public class MainMenu : MonoBehaviour
             if (menu != settingsHud)
             {
                 anotherMenuUp = !anotherMenuUp;
+            
+
+
+
                 settingsHud.SetActive(!settingsHud.activeInHierarchy);
             }
         

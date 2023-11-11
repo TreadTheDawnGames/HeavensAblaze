@@ -2,24 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class AimPoint : MonoBehaviour
 {
-    public bool active;
-    PersonalizationManager pManager;
 
     private void Awake()
     {
-        pManager = FindAnyObjectByType<PersonalizationManager>();
+
+        UpdatePosition(PlayerPrefs.GetInt("distance"));
+
+        UpdateViewability(PlayerPrefs.GetInt("showAimpoint") == 1 ? true : false);
     }
 
-    private void Update()
+   
+
+    public void UpdatePosition(int distance)
     {
-        active = pManager.aimpointActive;
+        
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, distance);
+    }
+
+    public void UpdateViewability(bool active)
+    {
         transform.gameObject.GetComponent<MeshRenderer>().enabled = active;
 
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, pManager.distance);
     }
 
-    
 }

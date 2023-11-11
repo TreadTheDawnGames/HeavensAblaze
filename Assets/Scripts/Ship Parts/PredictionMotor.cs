@@ -119,7 +119,7 @@ public class PredictionMotor : NetworkBehaviour
 
     private float clampVelocityMagnitude = 50f;
 
-    private PlayerShip playerShip;
+    public PlayerShip playerShip;
 
     
 
@@ -147,8 +147,9 @@ public class PredictionMotor : NetworkBehaviour
 
     [SerializeField]
     InputManager inputManager;
+    [SerializeField]
+    PersonalizationManager personalizationManager;
 
-    List<RebindUI> rebindButtons = new List<RebindUI>();
 
 
     #endregion
@@ -158,25 +159,47 @@ public class PredictionMotor : NetworkBehaviour
     {
         
 
+        /*invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? -1 : 1;
+        invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? -1 : 1;
+        invertLateral = PlayerPrefs.GetInt("invertLateral") == 1 ? -1 : 1;
+        invertRoll = PlayerPrefs.GetInt("invertRoll") == 1 ? -1 : 1;
+        invertPitch = PlayerPrefs.GetInt("invertPitch") == 1 ? -1 : 1;
+        invertYaw = PlayerPrefs.GetInt("invertYaw") == 1 ? -1 : 1;
+
         //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
 
         colorPicker = FindObjectOfType<ColorPicker>();
         if (inputManager == null)
         {
             inputManager = FindObjectOfType<InputManager>();
-            
-           
+
+
         }
-        /* Both the server and owner must have a reference to the rigidbody.
+        if (personalizationManager == null)
+        {
+            personalizationManager = FindObjectOfType<PersonalizationManager>();
+
+
+        }
+        personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
+        personalizationManager.ship = this;
+        inputManager.ship = this;
+
+        if (playerShip == null)
+        {
+            playerShip = new PlayerShip();
+        }
+        inputManager.ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
+
+        *//* Both the server and owner must have a reference to the rigidbody.
          * Forces are applied to both the owner and server so that the objects
          * move the same. This value could be set in OnStartServer and OnStartClient
-         * but to keep it simple I'm using Awake. */
+         * but to keep it simple I'm using Awake. *//*
         //ChangeColor(this,PlayerPrefs.GetString("LaserColor"));
         //Debug.Log(PlayerPrefs.GetString("LaserColor"));
 
         //shipCurve = inputManager.curve;
-        rebindButtons = FindObjectsOfType<RebindUI>().ToList();
-
+        */
         _rigidbody = GetComponent<Rigidbody>();
         blasters = GetComponentsInChildren<BlasterV3>().ToList<BlasterV3>();
         foreach (BlasterV3 blaster in blasters)
@@ -184,6 +207,7 @@ public class PredictionMotor : NetworkBehaviour
             blaster.myShip = this;
             blaster.Setup();
         }
+        /*
         foreach (IdleCamera cam in FindObjectsOfType<IdleCamera>().ToList<IdleCamera>())
         {
             if (cam.name == "Idle Camera")
@@ -200,7 +224,7 @@ public class PredictionMotor : NetworkBehaviour
             {
                 camera.gameObject.SetActive(false);
             }
-        }
+        }*/
 
     }
 
@@ -208,108 +232,39 @@ public class PredictionMotor : NetworkBehaviour
             
 
     [ServerRpc(RequireOwnership=true)]
-    private void ChangeColor(PredictionMotor script, Color changeToColor)
+    public void ChangeColor(PredictionMotor script, Color changeToColor)
     {
         script.syncedLaserColor = changeToColor;
     }
-    
 
-    InputType newInput;
-    bool aimpointChanged = true;
+    public void ChangeBlastersUseAimpoint(bool useAimpoint)
+    {
+        foreach (BlasterV3 blaster in blasters)
+        {
+            blaster.isUsingAimpoint = useAimpoint;
+        }
+    }
+        
+
+
+
+
+
+
+
+
+
+
+
+
     private void Update()
     {
-        //shipSensitivityValue = inputManager.sensitivityValue;
+        
+
+      //  if(IsOwner)
+            //ChangeColor(this, colorPicker.laserColor);
 
 
-        blastersUseAimpoint = inputManager.blastersUsesAimpoint;
-
-        invertThrust = inputManager.invertThrust ? -1 : 1;
-        invertLift = inputManager.invertLift ? -1 : 1;
-        invertLateral= inputManager.invertLateral ? -1 : 1;
-        invertRoll = inputManager.invertRoll ? -1 : 1;
-        invertPitch = inputManager.invertPitch ? -1 : 1;
-        invertYaw = inputManager.invertYaw ? -1 : 1;
-
-        if(IsOwner)
-        ChangeColor(this, colorPicker.laserColor);
-
-
-
-        if (aimpointChanged != blastersUseAimpoint)
-        {
-            aimpointChanged = blastersUseAimpoint;
-
-            if (blastersUseAimpoint)
-            {
-                foreach (BlasterV3 blaster in blasters)
-                {
-                    blaster.isUsingAimpoint = true;
-                }
-            }
-            else
-            {
-                foreach (BlasterV3 blaster in blasters)
-                {
-                    blaster.isUsingAimpoint = false;
-                }
-            }
-
-        }
-
-        if (inputType != InputType.Disabled)
-            inputType = (InputType)inputManager.inputType;
-
-
-
-
-        if (inputType != newInput)
-        {
-            if (playerShip == null)
-            {
-                playerShip = inputManager.inputActions;
-            }
-            playerShip.Disable();
-
-            switch (inputType)
-            {
-                case InputType.Keyboard:
-                    playerShip.Keyboard.Enable();
-                    newInput = inputType;
-
-                    break;
-
-                case InputType.Joystick:
-                    playerShip.Joystick.Enable();
-                    newInput = inputType;
-                    break;
-
-                case InputType.Gamepad:
-                    playerShip.Gamepad.Enable();
-                    newInput = inputType;
-                    break;
-
-                case InputType.Mouse:
-                    playerShip.Mouse.Enable();
-                    newInput = inputType;
-                    break;
-
-                case InputType.Disabled:
-                    newInput = inputType;
-                    //playerShip.Disable();
-                    break;
-
-                default:
-                    Debug.Log("Input type does not exist");
-                    break;
-
-                    //UpdateUI
-
-            }
-
-            foreach (RebindUI button in rebindButtons)
-                button.UpdateUI();
-
-        }
 
         if (playerShip != null)
         if(playerShip.Joystick.enabled && playerShip.Joystick.Fire.IsInProgress() || playerShip.Gamepad.enabled && playerShip.Gamepad.Fire.IsInProgress() || playerShip.Keyboard.enabled && playerShip.Keyboard.Fire.IsInProgress() || playerShip.Mouse.enabled && playerShip.Mouse.Fire.IsInProgress())
@@ -374,21 +329,82 @@ public class PredictionMotor : NetworkBehaviour
 
         if (IsOwner)
         {
-            if(inputManager.inputActions == null)
-            {
-                inputManager.inputActions = new PlayerShip();
-            }
-            if(playerShip == null)
-                playerShip = inputManager.inputActions;
 
-            playerShip.Joystick.Enable();
-            inputType = (InputType)inputManager.inputType;
+
+
+
+
+
+            invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? -1 : 1;
+            invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? -1 : 1;
+            invertLateral = PlayerPrefs.GetInt("invertLateral") == 1 ? -1 : 1;
+            invertRoll = PlayerPrefs.GetInt("invertRoll") == 1 ? -1 : 1;
+            invertPitch = PlayerPrefs.GetInt("invertPitch") == 1 ? -1 : 1;
+            invertYaw = PlayerPrefs.GetInt("invertYaw") == 1 ? -1 : 1;
+
+            //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
+
+            colorPicker = FindObjectOfType<ColorPicker>();
+            if (inputManager == null)
+            {
+                inputManager = FindObjectOfType<InputManager>();
+
+
+            }
+            if (personalizationManager == null)
+            {
+                personalizationManager = FindObjectOfType<PersonalizationManager>();
+
+
+            }
+            personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
+            personalizationManager.ship = this;
+            inputManager.ship = this;
+            colorPicker.ship = this;
+
+            if (playerShip == null)
+            {
+                playerShip = new PlayerShip();
+            }
+            inputManager.ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
+
+            /* Both the server and owner must have a reference to the rigidbody.
+             * Forces are applied to both the owner and server so that the objects
+             * move the same. This value could be set in OnStartServer and OnStartClient
+             * but to keep it simple I'm using Awake. */
+            //ChangeColor(this,PlayerPrefs.GetString("LaserColor"));
+            //Debug.Log(PlayerPrefs.GetString("LaserColor"));
+
+            //shipCurve = inputManager.curve;
 
             
+            foreach (IdleCamera cam in FindObjectsOfType<IdleCamera>().ToList<IdleCamera>())
+            {
+                if (cam.name == "Idle Camera")
+                {
+                    activeIdleCam = cam;
+                    //                break;
+                }
 
-            //gets camera in children and sets it active
 
-            //mainCam.gameObject.SetActive(true);
+            }
+            foreach (Camera camera in FindObjectsOfType<Camera>().ToList<Camera>())
+            {
+                if (camera.transform.root.name.StartsWith("DEBRIS"))
+                {
+                    camera.gameObject.SetActive(false);
+                }
+            }
+
+
+
+
+
+
+
+
+
+
 
             mainCam = GetCamInChildren(transform).gameObject;
             mainCam.SetActive(true);
