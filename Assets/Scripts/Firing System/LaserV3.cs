@@ -1,11 +1,12 @@
 using FishNet;
+using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Transporting;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LaserV3 : MonoBehaviour
+public class LaserV3 : NetworkBehaviour
 {
     [SerializeField]
     ParticleSystem hitSparks;
@@ -31,12 +32,14 @@ public class LaserV3 : MonoBehaviour
     /// </summary>
     /// <param name="direction">Direction to travel.</param>
     /// <param name="passedTime">How far in time this projectile is behind te prediction.</param>
-    public void Initialize(Vector3 direction, float passedTime, Color laserColor)
+    public void Initialize(Vector3 direction, float passedTime, Color laserColor, NetworkConnection LocalConnection)
     {
         GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", laserColor * 80);
 
         _direction = direction;
         _passedTime = passedTime;
+        GetComponent<NetworkObject>().SetLocalOwnership(LocalConnection);
+
     }
 
     private void Awake()

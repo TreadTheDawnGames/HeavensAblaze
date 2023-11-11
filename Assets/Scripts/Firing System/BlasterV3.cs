@@ -8,6 +8,7 @@ using FishNet.Connection;
 using FishNet.Component.Prediction;
 using UnityEngine.InputSystem;
 using System.ComponentModel;
+using FishNet.Transporting;
 
 public class BlasterV3 : NetworkBehaviour
 {
@@ -81,18 +82,18 @@ public class BlasterV3 : NetworkBehaviour
          * the projectile. */
         if (IsClientOnly)
         {
-            SpawnProjectile(position, direction, 0f);
+            SpawnProjectile(position, direction, 0f, LocalConnection);
 
         }
         //Ask server to also fire passing in current Tick.
-        ServerFire(position, direction, base.TimeManager.Tick);
+        ServerFire(position, direction, base.TimeManager.Tick, LocalConnection);
     }
 
     /// <summary>
     /// Spawns a projectile locally.
     /// </summary>
     
-    private void SpawnProjectile(Vector3 position, Vector3 direction, float passedTime)
+    private void SpawnProjectile(Vector3 position, Vector3 direction, float passedTime, NetworkConnection connection)
     {
         
 
@@ -123,7 +124,7 @@ public class BlasterV3 : NetworkBehaviour
 
         pp.GetComponent<NetworkObject>().SetLocalOwnership(LocalConnection);
 
-        pp.Initialize(direction, passedTime, laserColor);
+        pp.Initialize(direction, passedTime, laserColor, connection);
         
 
     }
@@ -136,7 +137,7 @@ public class BlasterV3 : NetworkBehaviour
     /// <param name="direction">Direction to move projectile.</param>
     /// <param name="tick">Tick when projectile was spawned on client.</param>
     [ServerRpc]
-    private void ServerFire(Vector3 position, Vector3 direction, uint tick)
+    private void ServerFire(Vector3 position, Vector3 direction, uint tick, NetworkConnection connection)
     {
         /* You may want to validate position and direction here.
          * How this is done depends largely upon your game so it
@@ -156,9 +157,9 @@ public class BlasterV3 : NetworkBehaviour
         
 
         //Spawn on the server.
-        SpawnProjectile(position, direction, passedTime);
+        SpawnProjectile(position, direction, passedTime, connection);
         //Tell other clients to spawn the projectile.
-        ObserversFire(position, direction, tick);
+        ObserversFire(position, direction, tick, connection);
     }
 
 
@@ -166,14 +167,14 @@ public class BlasterV3 : NetworkBehaviour
     /// Fires on all clients but owner.
     /// </summary>
     [ObserversRpc(ExcludeOwner = true, ExcludeServer = true)]
-    private void ObserversFire(Vector3 position, Vector3 direction, uint tick)
+    private void ObserversFire(Vector3 position, Vector3 direction, uint tick, NetworkConnection connection)
     {
         //Like on server get the time passed and cap it. Note the false for allow negative values.
         float passedTime = (float)base.TimeManager.TimePassed(tick, false);
         passedTime = Mathf.Min(MAX_PASSED_TIME, passedTime);
 
         //Spawn the projectile locally.
-        SpawnProjectile(position, direction, passedTime);
+        SpawnProjectile(position, direction, passedTime, connection);
     }
 
     
