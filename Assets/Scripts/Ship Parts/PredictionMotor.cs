@@ -35,8 +35,9 @@ public class PredictionMotor : NetworkBehaviour
         public float Roll;
         public float Yaw;
         public bool Brake;
+        public bool Fire;
 
-        public MoveData(float thrust, float lift, float lateral, float pitch, float roll, float yaw, bool brake)
+        public MoveData(float thrust, float lift, float lateral, float pitch, float roll, float yaw, bool brake, bool fire)
         {
             Thrust = thrust;
             Lift = lift;
@@ -45,6 +46,7 @@ public class PredictionMotor : NetworkBehaviour
             Roll = roll;
             Yaw = yaw;
             Brake = brake;
+            Fire = fire;
             _tick = 0;
         }
         private uint _tick;
@@ -244,35 +246,7 @@ public class PredictionMotor : NetworkBehaviour
             blaster.isUsingAimpoint = useAimpoint;
         }
     }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-    private void Update()
-    {
-        
-
-      //  if(IsOwner)
-            //ChangeColor(this, colorPicker.laserColor);
-
-
-
-        if (playerShip != null)
-        if(playerShip.Joystick.enabled && playerShip.Joystick.Fire.IsInProgress() || playerShip.Gamepad.enabled && playerShip.Gamepad.Fire.IsInProgress() || playerShip.Keyboard.enabled && playerShip.Keyboard.Fire.IsInProgress() || playerShip.Mouse.enabled && playerShip.Mouse.Fire.IsInProgress())
-            fire = true;
-    }
-
-    //reorder the code so that the script can be active on another client. this and BlasterV3
-
+       
 
     #region Managing
     /// <summary>
@@ -656,20 +630,22 @@ public class PredictionMotor : NetworkBehaviour
         //Debug.Log(thrust);
 
         //Be sure to add new control to this. control == off
-        // if (thrust == 0f && lift == 0f && lateral == 0f && pitch == 0f && roll == 0f && yaw == 0f && !brake && !fire)
-        //   return;
+         if (thrust == 0f && lift == 0f && lateral == 0f && pitch == 0f && roll == 0f && yaw == 0f && !brake && !fire)
+           return;
 
         //If there is input then populate data.
         //data = new MoveData(thrust * invertThrust, lift * invertLift, lateral*invertLateral, pitch*-invertPitch, roll*invertRoll, yaw*invertYaw, brake);
-        
+
+        this.fire = fire;
+
         data = new MoveData(
-            thrust * invertThrust   * moveSpeed * thrustMultiplier, 
+            thrust  * invertThrust  * moveSpeed * thrustMultiplier, 
             lift    * invertLift    * moveSpeed,
             lateral * invertLateral * moveSpeed, 
             -inputManager.curve.Evaluate(pitch) * invertPitch * sensitivityVal,
-            inputManager.curve.Evaluate(roll)  * invertRoll  * sensitivityVal,
-            inputManager.curve.Evaluate(yaw)   * invertYaw   * sensitivityVal ,
-            brake);
+            inputManager.curve.Evaluate(roll)   * invertRoll  * sensitivityVal,
+            inputManager.curve.Evaluate(yaw)    * invertYaw   * sensitivityVal ,
+            brake, fire);
 
     }
 

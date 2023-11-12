@@ -12,6 +12,12 @@ public class MainMenu : MonoBehaviour
 
     public PredictionMotor ship;
 
+
+
+#if UNITY_EDITOR
+
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
@@ -27,7 +33,23 @@ public class MainMenu : MonoBehaviour
         
 
     }
+#else
+private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            
 
+            if (!anotherMenuUp)
+            {
+                ToggleMenu(settingsHud);
+            }
+            
+        }
+        
+
+    }
+#endif
     public void ToggleMenu(GameObject menu)
     {
         
