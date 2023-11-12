@@ -16,7 +16,7 @@ using FishNet.Managing.Timing;
 public class PredictionMotor : NetworkBehaviour
 {
 
-    
+
 
     #region Types.
     /* It's strongly recommended to use structures for your data.
@@ -91,7 +91,7 @@ public class PredictionMotor : NetworkBehaviour
     /// Rigidbody on this object.
     /// </summary>
     private Rigidbody _rigidbody;
-    public enum InputType { Joystick, Keyboard, Gamepad, Mouse, Disabled}
+    public enum InputType { Joystick, Keyboard, Gamepad, Mouse, Disabled }
     public InputType inputType = InputType.Joystick;
     /// <summary>
     /// True if subscribed to the TimeManager.
@@ -106,12 +106,12 @@ public class PredictionMotor : NetworkBehaviour
     private float spaceStablizeSpeed = 0.15f;
     private float stablizeBrake = 0.75f;
 
-   /// <summary>
-   ///[SerializeField]
-   /// </summary>
+    /// <summary>
+    ///[SerializeField]
+    /// </summary>
     //private AnimationCurve shipCurve;
-   // float shipSensitivityValue;
-    
+    // float shipSensitivityValue;
+
     private float _nextShootTime = 0;
 
     private bool fire = false;
@@ -123,7 +123,7 @@ public class PredictionMotor : NetworkBehaviour
 
     public PlayerShip playerShip;
 
-    
+
 
     public List<BlasterV3> blasters = new List<BlasterV3>();
     public float _thrust;
@@ -148,9 +148,11 @@ public class PredictionMotor : NetworkBehaviour
     public ColorPicker colorPicker;
 
     [SerializeField]
-    InputManager inputManager;
+    public InputManager inputManager;
     [SerializeField]
     PersonalizationManager personalizationManager;
+    [SerializeField]
+    public MainMenu mainMenu;
 
 
 
@@ -161,47 +163,7 @@ public class PredictionMotor : NetworkBehaviour
     {
         
 
-        /*invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? -1 : 1;
-        invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? -1 : 1;
-        invertLateral = PlayerPrefs.GetInt("invertLateral") == 1 ? -1 : 1;
-        invertRoll = PlayerPrefs.GetInt("invertRoll") == 1 ? -1 : 1;
-        invertPitch = PlayerPrefs.GetInt("invertPitch") == 1 ? -1 : 1;
-        invertYaw = PlayerPrefs.GetInt("invertYaw") == 1 ? -1 : 1;
-
-        //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
-
-        colorPicker = FindObjectOfType<ColorPicker>();
-        if (inputManager == null)
-        {
-            inputManager = FindObjectOfType<InputManager>();
-
-
-        }
-        if (personalizationManager == null)
-        {
-            personalizationManager = FindObjectOfType<PersonalizationManager>();
-
-
-        }
-        personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
-        personalizationManager.ship = this;
-        inputManager.ship = this;
-
-        if (playerShip == null)
-        {
-            playerShip = new PlayerShip();
-        }
-        inputManager.ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
-
-        *//* Both the server and owner must have a reference to the rigidbody.
-         * Forces are applied to both the owner and server so that the objects
-         * move the same. This value could be set in OnStartServer and OnStartClient
-         * but to keep it simple I'm using Awake. *//*
-        //ChangeColor(this,PlayerPrefs.GetString("LaserColor"));
-        //Debug.Log(PlayerPrefs.GetString("LaserColor"));
-
-        //shipCurve = inputManager.curve;
-        */
+        
         _rigidbody = GetComponent<Rigidbody>();
         blasters = GetComponentsInChildren<BlasterV3>().ToList<BlasterV3>();
         foreach (BlasterV3 blaster in blasters)
@@ -209,24 +171,7 @@ public class PredictionMotor : NetworkBehaviour
             blaster.myShip = this;
             blaster.Setup();
         }
-        /*
-        foreach (IdleCamera cam in FindObjectsOfType<IdleCamera>().ToList<IdleCamera>())
-        {
-            if (cam.name == "Idle Camera")
-            {
-                activeIdleCam = cam;
-                //                break;
-            }
-
-
-        }
-        foreach (Camera camera in FindObjectsOfType<Camera>().ToList<Camera>())
-        {
-            if (camera.transform.root.name.StartsWith("DEBRIS"))
-            {
-                camera.gameObject.SetActive(false);
-            }
-        }*/
+       
 
     }
 
@@ -332,15 +277,24 @@ public class PredictionMotor : NetworkBehaviour
 
             }
             personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
+            if (mainMenu == null)
+            {
+                mainMenu = FindObjectOfType<MainMenu>();
+
+
+            }
+
             personalizationManager.ship = this;
             inputManager.ship = this;
             colorPicker.ship = this;
+            mainMenu.ship = this;
 
             if (playerShip == null)
             {
                 playerShip = new PlayerShip();
             }
-            inputManager.ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
+            inputManager.eChangeInputTypeAndActivat
+                (PlayerPrefs.GetInt("inputType", 0));
 
             /* Both the server and owner must have a reference to the rigidbody.
              * Forces are applied to both the owner and server so that the objects

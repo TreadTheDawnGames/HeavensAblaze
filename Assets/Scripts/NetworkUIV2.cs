@@ -22,7 +22,7 @@ public class NetworkUIV2 : MonoBehaviour
     FishyUnityTransport utp;
 
     bool serverStarted = false;
-    bool clientStarted = false;
+    public bool clientStarted { get; private set; } = false;
 
     [SerializeField]
     TMP_Text serverButtonText;
@@ -33,7 +33,6 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     TMP_InputField joinCodeBox;
 
-    
     
     private async void Start()
     {

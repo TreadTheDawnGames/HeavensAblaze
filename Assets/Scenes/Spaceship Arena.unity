@@ -13963,6 +13963,7 @@ MonoBehaviour:
   controlsHud: {fileID: 1810011514}
   personalizationHud: {fileID: 1111342400}
   ship: {fileID: 0}
+  networkUIV2: {fileID: 1202873142}
 --- !u!114 &1470237120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17990,6 +17991,7 @@ MonoBehaviour:
   _RefSprite: {fileID: 2800000, guid: df0f280f1449b614da22b200244a0d6a, type: 3}
   customColor1: {fileID: 48627522}
   laserColor: {r: 1, g: 0, b: 0, a: 1}
+  ship: {fileID: 0}
 --- !u!114 &2079349581
 MonoBehaviour:
   m_ObjectHideFlags: 0

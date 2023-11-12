@@ -12,7 +12,8 @@ public class MainMenu : MonoBehaviour
 
     public PredictionMotor ship;
 
-
+    [SerializeField]
+    NetworkUIV2 networkUIV2;
 
 #if UNITY_EDITOR
 
@@ -55,18 +56,28 @@ private void Update()
         
         if (menu == settingsHud)
         {
+            if (networkUIV2.clientStarted)
+            {
 
-            Cursor.visible = !Cursor.visible;
+                Cursor.visible = !Cursor.visible;
 
+                Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+            }
 
-            if (Cursor.visible)
-                Cursor.lockState = CursorLockMode.None;
-            else Cursor.lockState = CursorLockMode.Locked;
+            
 
         } 
         
+        if(ship != null)
+        {
+            if (Cursor.visible)
+                ship.playerShip.Disable();
+            else
+                ship.inputManager.eChangeInputTypeAndActivat(PlayerPrefs.GetInt("inputType", 0));
+        }
 
         menu.SetActive(!menu.activeInHierarchy);
+
             if (menu != settingsHud)
             {
                 anotherMenuUp = !anotherMenuUp;

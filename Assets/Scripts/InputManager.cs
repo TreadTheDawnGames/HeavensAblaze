@@ -110,14 +110,86 @@ public class InputManager : MonoBehaviour
     #endregion
 
 
-    
+
 
     //prediction motor input actions need to be set to this input manager's input actions
 
     public void ChangeInputType(int num)
     {
-        
-        
+
+
+
+        switch (num)
+        {
+            case 0:
+                if (ship != null)
+                {
+                    ship.playerShip.Disable();
+                    ship.inputType = PredictionMotor.InputType.Joystick;
+                    //ship.playerShip.Joystick.Enable();
+                }
+                PlayerPrefs.SetInt("inputType", 0);
+                myDrop.value = 0;
+                break;
+
+            case 1:
+                if (ship != null)
+                {
+                    ship.playerShip.Disable();
+                    ship.inputType = PredictionMotor.InputType.Keyboard;
+                    //     ship.playerShip.Keyboard.Enable();
+                }
+                PlayerPrefs.SetInt("inputType", 1);
+                myDrop.value = 1;
+                break;
+
+            case 2:
+                if (ship != null)
+                {
+                    ship.playerShip.Disable();
+                    ship.inputType = PredictionMotor.InputType.Gamepad;
+                    //      ship.playerShip.Gamepad.Enable();
+                }
+                PlayerPrefs.SetInt("inputType", 2);
+                myDrop.value = 2;
+                break;
+
+            case 3:
+                if (ship != null)
+                {
+                    ship.playerShip.Disable();
+                    ship.inputType = PredictionMotor.InputType.Mouse;
+                    //      ship.playerShip.Mouse.Enable();
+                }
+                PlayerPrefs.SetInt("inputType", 3);
+                myDrop.value = 3;
+                break;
+
+            case 4:
+                if (ship != null)
+                    ship.playerShip.Disable();
+                break;
+
+            default:
+                Debug.LogError("Input type does not exist");
+                break;
+
+                //UpdateUI
+
+        }
+
+
+        if (ship != null)
+            RebindUI.excludeMouse = ship.playerShip.Mouse.enabled;
+
+
+        foreach (RebindUI button in rebindButtons)
+            button.UpdateUI();
+    }
+    public void eChangeInputTypeAndActivat(int num)
+    {
+
+
 
         switch (num)
         {
@@ -179,15 +251,15 @@ public class InputManager : MonoBehaviour
         }
 
 
-                if (ship != null)
+        if (ship != null)
             RebindUI.excludeMouse = ship.playerShip.Mouse.enabled;
-        
+
 
         foreach (RebindUI button in rebindButtons)
             button.UpdateUI();
     }
 
-    
+
 
     private void Start()
     {
