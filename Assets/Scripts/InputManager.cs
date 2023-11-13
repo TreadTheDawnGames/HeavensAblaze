@@ -112,22 +112,21 @@ public class InputManager : MonoBehaviour
 
 
 
-    //prediction motor input actions need to be set to this input manager's input actions
 
     public void ChangeInputType(int num)
     {
 
 
+        inputActions.Disable();
 
         switch (num)
         {
             case 0:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Joystick;
-                    //ship.playerShip.Joystick.Enable();
                 }
+                    inputActions.Joystick.Enable();
                 PlayerPrefs.SetInt("inputType", 0);
                 myDrop.value = 0;
                 break;
@@ -135,10 +134,9 @@ public class InputManager : MonoBehaviour
             case 1:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Keyboard;
-                    //     ship.playerShip.Keyboard.Enable();
                 }
+                    inputActions.Keyboard.Enable();
                 PlayerPrefs.SetInt("inputType", 1);
                 myDrop.value = 1;
                 break;
@@ -146,10 +144,9 @@ public class InputManager : MonoBehaviour
             case 2:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Gamepad;
-                    //      ship.playerShip.Gamepad.Enable();
                 }
+                    inputActions.Gamepad.Enable();
                 PlayerPrefs.SetInt("inputType", 2);
                 myDrop.value = 2;
                 break;
@@ -157,10 +154,9 @@ public class InputManager : MonoBehaviour
             case 3:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Mouse;
-                    //      ship.playerShip.Mouse.Enable();
                 }
+                    inputActions.Mouse.Enable();
                 PlayerPrefs.SetInt("inputType", 3);
                 myDrop.value = 3;
                 break;
@@ -179,24 +175,23 @@ public class InputManager : MonoBehaviour
         }
 
 
-        if (ship != null)
-            RebindUI.excludeMouse = ship.playerShip.Mouse.enabled;
-
 
         foreach (RebindUI button in rebindButtons)
+        {
             button.UpdateUI();
+            Debug.Log("Updated " + button.name);
+        }
     }
-    public void eChangeInputTypeAndActivat(int num)
+    public void ChangeInputTypeAndActivateShip(int num)
     {
-
-
+        ship.playerShip.Disable();
+        ship.playerShip = inputActions;
 
         switch (num)
         {
             case 0:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Joystick;
                     ship.playerShip.Joystick.Enable();
                 }
@@ -207,7 +202,6 @@ public class InputManager : MonoBehaviour
             case 1:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Keyboard;
                     ship.playerShip.Keyboard.Enable();
                 }
@@ -218,7 +212,6 @@ public class InputManager : MonoBehaviour
             case 2:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Gamepad;
                     ship.playerShip.Gamepad.Enable();
                 }
@@ -229,7 +222,6 @@ public class InputManager : MonoBehaviour
             case 3:
                 if (ship != null)
                 {
-                    ship.playerShip.Disable();
                     ship.inputType = PredictionMotor.InputType.Mouse;
                     ship.playerShip.Mouse.Enable();
                 }
@@ -255,8 +247,8 @@ public class InputManager : MonoBehaviour
             RebindUI.excludeMouse = ship.playerShip.Mouse.enabled;
 
 
-        foreach (RebindUI button in rebindButtons)
-            button.UpdateUI();
+        ChangeInputType(num);
+        
     }
 
 
@@ -277,7 +269,9 @@ public class InputManager : MonoBehaviour
         invYawTick.SetActive(invertYaw);
 
 
-        rebindButtons = FindObjectsOfType<RebindUI>().ToList();
+        rebindButtons = FindObjectsOfType<RebindUI>(true).ToList();
+
+        
 
         ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
 
@@ -455,6 +449,8 @@ public class InputManager : MonoBehaviour
             Debug.LogError("Invalid value");
         }
     }
+
+    
 
     
 

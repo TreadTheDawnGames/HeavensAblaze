@@ -293,8 +293,7 @@ public class PredictionMotor : NetworkBehaviour
             {
                 playerShip = new PlayerShip();
             }
-            inputManager.eChangeInputTypeAndActivat
-                (PlayerPrefs.GetInt("inputType", 0));
+            inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
 
             /* Both the server and owner must have a reference to the rigidbody.
              * Forces are applied to both the owner and server so that the objects

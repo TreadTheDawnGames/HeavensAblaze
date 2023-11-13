@@ -23,15 +23,15 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            
+
 
             if (!anotherMenuUp)
             {
                 ToggleMenu(settingsHud);
             }
-            
+
         }
-        
+
 
     }
 #else
@@ -53,7 +53,7 @@ private void Update()
 #endif
     public void ToggleMenu(GameObject menu)
     {
-        
+
         if (menu == settingsHud)
         {
             if (networkUIV2.clientStarted)
@@ -64,31 +64,31 @@ private void Update()
                 Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
             }
 
-            
 
-        } 
-        
-        if(ship != null)
+
+        }
+
+        if (ship != null)
         {
             if (Cursor.visible)
                 ship.playerShip.Disable();
             else
-                ship.inputManager.eChangeInputTypeAndActivat(PlayerPrefs.GetInt("inputType", 0));
+                ship.inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
         }
 
         menu.SetActive(!menu.activeInHierarchy);
 
-            if (menu != settingsHud)
-            {
-                anotherMenuUp = !anotherMenuUp;
-            
+        if (menu != settingsHud)
+        {
+            anotherMenuUp = !anotherMenuUp;
 
 
 
-                settingsHud.SetActive(!settingsHud.activeInHierarchy);
-            }
-        
+
+            settingsHud.SetActive(!settingsHud.activeInHierarchy);
+        }
+
     }
 
-    
+
 }
