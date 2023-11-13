@@ -393,26 +393,33 @@ public class InputManager : MonoBehaviour
 
     public void ResetBinding(string actionName, int bindingIndex)
     {
+
         InputAction action = inputActions.asset.FindAction(actionName);
 
         if(action==null||action.bindings.Count<=bindingIndex)
         {
-            Debug.Log("Could not find action or binding");
+            Debug.LogError("Could not find action or binding");
             return;
         }
 
+
+
         if (action.bindings[bindingIndex].isComposite)
         {
-            for (int i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
+            for (int i = bindingIndex; i < action.bindings.Count /*&& action.bindings[i].isComposite*/; i++)
             {
-                Debug.Log(action.GetBindingDisplayString(bindingIndex));
+                Debug.Log(action.GetBindingDisplayString(i));
                 action.RemoveBindingOverride(i);
-                Debug.Log(action.GetBindingDisplayString(bindingIndex));
+                Debug.Log(action.GetBindingDisplayString(i));
                 
             }
         }
         else
+        {
+
             action.RemoveBindingOverride(bindingIndex);
+        }
+
 
         SaveBindingOverride(action);
     }
