@@ -116,6 +116,10 @@ public class InputManager : MonoBehaviour
     public void ChangeInputType(int num)
     {
 
+        if(ship != null)
+        {
+            ship.playerShip.Disable();
+        }
 
         inputActions.Disable();
 
@@ -126,7 +130,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Joystick;
                 }
-                    inputActions.Joystick.Enable();
+                    //inputActions.Joystick.Enable();
                 PlayerPrefs.SetInt("inputType", 0);
                 myDrop.value = 0;
                 break;
@@ -136,7 +140,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Keyboard;
                 }
-                    inputActions.Keyboard.Enable();
+                   // inputActions.Keyboard.Enable();
                 PlayerPrefs.SetInt("inputType", 1);
                 myDrop.value = 1;
                 break;
@@ -146,7 +150,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Gamepad;
                 }
-                    inputActions.Gamepad.Enable();
+                   // inputActions.Gamepad.Enable();
                 PlayerPrefs.SetInt("inputType", 2);
                 myDrop.value = 2;
                 break;
@@ -156,7 +160,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Mouse;
                 }
-                    inputActions.Mouse.Enable();
+                   // inputActions.Mouse.Enable();
                 PlayerPrefs.SetInt("inputType", 3);
                 myDrop.value = 3;
                 break;
@@ -187,6 +191,7 @@ public class InputManager : MonoBehaviour
         ship.playerShip.Disable();
         ship.playerShip = inputActions;
 
+        ChangeInputType(num);
         switch (num)
         {
             case 0:
@@ -247,8 +252,6 @@ public class InputManager : MonoBehaviour
             RebindUI.excludeMouse = ship.playerShip.Mouse.enabled;
 
 
-        ChangeInputType(num);
-        
     }
 
 
@@ -312,6 +315,7 @@ public class InputManager : MonoBehaviour
         else
             DoRebind(action, bindingIndex, statusText, false, excludeMouse);
 
+        
     }
 
     private void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText, bool allCompositeParts, bool excludeMouse)
@@ -327,7 +331,7 @@ public class InputManager : MonoBehaviour
 
         rebind.OnComplete(operation =>
         {
-            actionToRebind.Enable();
+            actionToRebind.Disable();
             operation.Dispose();
 
             if (allCompositeParts)
@@ -391,6 +395,8 @@ public class InputManager : MonoBehaviour
         }
     }
 
+
+    
     public void ResetBinding(string actionName, int bindingIndex)
     {
 
@@ -406,18 +412,17 @@ public class InputManager : MonoBehaviour
 
         if (action.bindings[bindingIndex].isComposite)
         {
-            for (int i = bindingIndex; i < action.bindings.Count /*&& action.bindings[i].isComposite*/; i++)
+            for (int i = bindingIndex; i < action.bindings.Count; i++)
             {
-                Debug.Log(action.GetBindingDisplayString(i));
                 action.RemoveBindingOverride(i);
-                Debug.Log(action.GetBindingDisplayString(i));
-                
+                action.Disable();
             }
         }
         else
         {
 
             action.RemoveBindingOverride(bindingIndex);
+            action.Disable();
         }
 
 

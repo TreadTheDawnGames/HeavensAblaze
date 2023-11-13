@@ -96,13 +96,21 @@ public class RebindUI : MonoBehaviour
                 rebindText.text = inputManager.GetBindingName(actionName, bindingIndex);
             }
             else
+            {
                 rebindText.text = inputActionReference.action.GetBindingDisplayString(bindingIndex);
-        }    
+
+            }
+
+
+        }
+
+
     }
 
     private void DoRebind()
     {
         inputManager.StartRebind(actionName, bindingIndex, rebindText, excludeMouse);
+
     }
 
     private void ResetBinding()
