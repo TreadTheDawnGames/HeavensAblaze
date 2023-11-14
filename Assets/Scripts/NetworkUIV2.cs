@@ -33,6 +33,8 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     TMP_InputField joinCodeBox;
 
+    public InputManager inputManager;
+
     
     private async void Start()
     {
@@ -96,7 +98,7 @@ public class NetworkUIV2 : MonoBehaviour
 
         serverStarted = !serverStarted;
         clientStarted = !clientStarted;
-        if (serverStarted)
+        if (serverStarted && !inputManager.menuUp)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -132,9 +134,11 @@ public class NetworkUIV2 : MonoBehaviour
             {
                 Debug.LogError(e);
             }
-
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (!inputManager.menuUp)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
             _networkManager.ClientManager.StartConnection();
 

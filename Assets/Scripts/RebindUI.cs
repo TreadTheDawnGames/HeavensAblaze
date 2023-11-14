@@ -44,6 +44,8 @@ public class RebindUI : MonoBehaviour
         rebindButton.onClick.AddListener(() => DoRebind());
         resetButton.onClick.AddListener(()=>ResetBinding());
 
+        inputManager.ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
+
         if (inputActionReference != null)
         {
             GetBindingInfo();
@@ -57,6 +59,7 @@ public class RebindUI : MonoBehaviour
 
     private void OnDisable()
     {
+
         InputManager.rebindComplete -= UpdateUI;        
         InputManager.rebindCanceled -= UpdateUI;
     }
@@ -113,7 +116,7 @@ public class RebindUI : MonoBehaviour
 
     }
 
-    private void ResetBinding()
+    public void ResetBinding()
     {
         inputManager.ResetBinding(actionName, bindingIndex);
         UpdateUI();

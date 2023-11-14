@@ -98,6 +98,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapUseAimpoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""c66f0495-079b-408b-a80e-b36f2be22c3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -320,6 +329,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56950272-9338-4149-91c9-0a8e667c50aa"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapUseAimpoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -403,6 +423,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""fc5fc78b-245a-4305-9282-05ca8034cbcf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapUseAimpoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""30eee94d-7aec-4ad0-a117-2841c34e8b4f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -552,6 +581,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""Yaw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7ea8226-7b25-4ad4-b845-0d2d3399a13d"",
+                    ""path"": ""<HID::Thrustmaster T.Flight Stick X>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapUseAimpoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -635,6 +675,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""f9745506-3566-4a8a-9367-c18a3fb7416e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapUseAimpoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""cea317db-af1d-4320-aa58-7a26d888f88a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -773,6 +822,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""Yaw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13546fd8-1805-4eab-94ab-2398b5b01676"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapUseAimpoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -847,6 +907,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""f017ada1-572e-4874-8be0-888563fece83"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapUseAimpoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b7b513f-f8de-40c6-9bf8-f847e6ebf7dc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1071,6 +1140,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a0a79a4-b41b-42da-9376-6c5840290384"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapUseAimpoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1819,6 +1899,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Keyboard_Pitch = m_Keyboard.FindAction("Pitch", throwIfNotFound: true);
         m_Keyboard_Brake = m_Keyboard.FindAction("Brake", throwIfNotFound: true);
         m_Keyboard_Fire = m_Keyboard.FindAction("Fire", throwIfNotFound: true);
+        m_Keyboard_SwapUseAimpoint = m_Keyboard.FindAction("SwapUseAimpoint", throwIfNotFound: true);
         // Joystick
         m_Joystick = asset.FindActionMap("Joystick", throwIfNotFound: true);
         m_Joystick_Lift = m_Joystick.FindAction("Lift", throwIfNotFound: true);
@@ -1830,6 +1911,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Joystick_Brake = m_Joystick.FindAction("Brake", throwIfNotFound: true);
         m_Joystick_RotBrake = m_Joystick.FindAction("RotBrake", throwIfNotFound: true);
         m_Joystick_Fire = m_Joystick.FindAction("Fire", throwIfNotFound: true);
+        m_Joystick_SwapUseAimpoint = m_Joystick.FindAction("SwapUseAimpoint", throwIfNotFound: true);
         // Gamepad
         m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
         m_Gamepad_Lift = m_Gamepad.FindAction("Lift", throwIfNotFound: true);
@@ -1841,6 +1923,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Gamepad_Brake = m_Gamepad.FindAction("Brake", throwIfNotFound: true);
         m_Gamepad_RotBrake = m_Gamepad.FindAction("RotBrake", throwIfNotFound: true);
         m_Gamepad_Fire = m_Gamepad.FindAction("Fire", throwIfNotFound: true);
+        m_Gamepad_SwapUseAimpoint = m_Gamepad.FindAction("SwapUseAimpoint", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Lift = m_Mouse.FindAction("Lift", throwIfNotFound: true);
@@ -1851,6 +1934,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Mouse_Pitch = m_Mouse.FindAction("Pitch", throwIfNotFound: true);
         m_Mouse_Brake = m_Mouse.FindAction("Brake", throwIfNotFound: true);
         m_Mouse_Fire = m_Mouse.FindAction("Fire", throwIfNotFound: true);
+        m_Mouse_SwapUseAimpoint = m_Mouse.FindAction("SwapUseAimpoint", throwIfNotFound: true);
         // CombinedControls
         m_CombinedControls = asset.FindActionMap("CombinedControls", throwIfNotFound: true);
         m_CombinedControls_Lift = m_CombinedControls.FindAction("Lift", throwIfNotFound: true);
@@ -1930,6 +2014,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Pitch;
     private readonly InputAction m_Keyboard_Brake;
     private readonly InputAction m_Keyboard_Fire;
+    private readonly InputAction m_Keyboard_SwapUseAimpoint;
     public struct KeyboardActions
     {
         private @PlayerShip m_Wrapper;
@@ -1942,6 +2027,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Pitch => m_Wrapper.m_Keyboard_Pitch;
         public InputAction @Brake => m_Wrapper.m_Keyboard_Brake;
         public InputAction @Fire => m_Wrapper.m_Keyboard_Fire;
+        public InputAction @SwapUseAimpoint => m_Wrapper.m_Keyboard_SwapUseAimpoint;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1975,6 +2061,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -2003,6 +2092,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -2033,6 +2125,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Joystick_Brake;
     private readonly InputAction m_Joystick_RotBrake;
     private readonly InputAction m_Joystick_Fire;
+    private readonly InputAction m_Joystick_SwapUseAimpoint;
     public struct JoystickActions
     {
         private @PlayerShip m_Wrapper;
@@ -2046,6 +2139,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Brake => m_Wrapper.m_Joystick_Brake;
         public InputAction @RotBrake => m_Wrapper.m_Joystick_RotBrake;
         public InputAction @Fire => m_Wrapper.m_Joystick_Fire;
+        public InputAction @SwapUseAimpoint => m_Wrapper.m_Joystick_SwapUseAimpoint;
         public InputActionMap Get() { return m_Wrapper.m_Joystick; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2082,6 +2176,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
         }
 
         private void UnregisterCallbacks(IJoystickActions instance)
@@ -2113,6 +2210,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
         }
 
         public void RemoveCallbacks(IJoystickActions instance)
@@ -2143,6 +2243,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gamepad_Brake;
     private readonly InputAction m_Gamepad_RotBrake;
     private readonly InputAction m_Gamepad_Fire;
+    private readonly InputAction m_Gamepad_SwapUseAimpoint;
     public struct GamepadActions
     {
         private @PlayerShip m_Wrapper;
@@ -2156,6 +2257,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Brake => m_Wrapper.m_Gamepad_Brake;
         public InputAction @RotBrake => m_Wrapper.m_Gamepad_RotBrake;
         public InputAction @Fire => m_Wrapper.m_Gamepad_Fire;
+        public InputAction @SwapUseAimpoint => m_Wrapper.m_Gamepad_SwapUseAimpoint;
         public InputActionMap Get() { return m_Wrapper.m_Gamepad; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2192,6 +2294,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
         }
 
         private void UnregisterCallbacks(IGamepadActions instance)
@@ -2223,6 +2328,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
         }
 
         public void RemoveCallbacks(IGamepadActions instance)
@@ -2252,6 +2360,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Mouse_Pitch;
     private readonly InputAction m_Mouse_Brake;
     private readonly InputAction m_Mouse_Fire;
+    private readonly InputAction m_Mouse_SwapUseAimpoint;
     public struct MouseActions
     {
         private @PlayerShip m_Wrapper;
@@ -2264,6 +2373,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Pitch => m_Wrapper.m_Mouse_Pitch;
         public InputAction @Brake => m_Wrapper.m_Mouse_Brake;
         public InputAction @Fire => m_Wrapper.m_Mouse_Fire;
+        public InputAction @SwapUseAimpoint => m_Wrapper.m_Mouse_SwapUseAimpoint;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2297,6 +2407,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
         }
 
         private void UnregisterCallbacks(IMouseActions instance)
@@ -2325,6 +2438,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
+            @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
         }
 
         public void RemoveCallbacks(IMouseActions instance)
@@ -2481,6 +2597,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnPitch(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnSwapUseAimpoint(InputAction.CallbackContext context);
     }
     public interface IJoystickActions
     {
@@ -2493,6 +2610,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnRotBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnSwapUseAimpoint(InputAction.CallbackContext context);
     }
     public interface IGamepadActions
     {
@@ -2505,6 +2623,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnRotBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnSwapUseAimpoint(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {
@@ -2516,6 +2635,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnPitch(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnSwapUseAimpoint(InputAction.CallbackContext context);
     }
     public interface ICombinedControlsActions
     {

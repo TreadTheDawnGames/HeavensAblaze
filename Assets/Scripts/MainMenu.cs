@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject personalizationHud;
 
     public PredictionMotor ship;
+    public InputManager inputManager;
 
     [SerializeField]
     NetworkUIV2 networkUIV2;
@@ -28,6 +29,7 @@ public class MainMenu : MonoBehaviour
             if (!anotherMenuUp)
             {
                 ToggleMenu(settingsHud);
+                inputManager.menuUp = !inputManager.menuUp;
             }
 
         }

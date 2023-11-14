@@ -31,14 +31,16 @@ public class InputManager : MonoBehaviour
     public GameObject invYawTick;
 
     public PredictionMotor ship;
+    public bool menuUp = false;
 
     List<RebindUI> rebindButtons = new List<RebindUI>();
 
     #region inversions
-    public void InvThrust(GameObject text)
+    public void InvThrust(bool toDefault = false)
     {
-        invertThrust = !invertThrust;
-        text.SetActive(!text.activeInHierarchy);
+        invertThrust = toDefault ? false : !invertThrust;
+
+        invThrTick.SetActive(invertThrust);
 
         if (ship != null)
         {
@@ -48,11 +50,10 @@ public class InputManager : MonoBehaviour
 
         PlayerPrefs.SetInt("invertThrust", invertThrust == true ? 1 : 0);
     }
-    public void InvLift(GameObject text)
+    public void InvLift(bool toDefault = false)
     {
-    
-        invertLift = !invertLift;
-        text.SetActive(!text.activeInHierarchy);
+        invertLift = toDefault ? false : !invertLift;
+        invLifTick.SetActive(invertLift);
         if (ship != null)
         {
             ship.invertLift = invertLift ? -1 : 1;
@@ -61,10 +62,10 @@ public class InputManager : MonoBehaviour
         PlayerPrefs.SetInt("invertLift", invertLift == true ? 1 : 0);
 
     }
-    public void InvLateral(GameObject text)
+    public void InvLateral(bool toDefault = false)
     {
-        invertLateral = !invertLateral;
-        text.SetActive(!text.activeInHierarchy); 
+        invertLateral = toDefault ? false : !invertLateral;
+        invLatTick.SetActive(invertLateral);
         if (ship != null)
         {
             ship.invertLateral = invertLateral ? -1 : 1;
@@ -73,10 +74,10 @@ public class InputManager : MonoBehaviour
         PlayerPrefs.SetInt("invertLateral", invertLateral == true ? 1 : 0);
 
     }
-    public void InvRoll(GameObject text)
+    public void InvRoll(bool toDefault = false)
     {
-        invertRoll = !invertRoll;
-        text.SetActive(!text.activeInHierarchy);
+        invertRoll = toDefault ? false : !invertRoll;
+        invRollTick.SetActive(invertRoll);
         if (ship != null)
         {
             ship.invertRoll = invertRoll ? -1 : 1;
@@ -85,10 +86,10 @@ public class InputManager : MonoBehaviour
         PlayerPrefs.SetInt("invertRoll", invertRoll == true ? 1 : 0);
 
     }
-    public void InvPitch(GameObject text)
+    public void InvPitch(bool toDefault = false)
     {
-        invertPitch = !invertPitch;
-        text.SetActive(!text.activeInHierarchy);
+        invertPitch = toDefault ? false : !invertPitch;
+        invPitTick.SetActive(invertPitch);
         if (ship != null)
         {
             ship.invertPitch = invertPitch ? -1 : 1;
@@ -96,10 +97,10 @@ public class InputManager : MonoBehaviour
         }
         PlayerPrefs.SetInt("invertPitch", invertPitch == true ? 1 : 0);
     }
-    public void InvYaw(GameObject text)
+    public void InvYaw(bool toDefault = false)
     {
-        invertYaw = !invertYaw;
-        text.SetActive(!text.activeInHierarchy);
+        invertYaw = toDefault ? false : !invertYaw;
+        invYawTick.SetActive(invertYaw);
         if (ship != null)
         {
             ship.invertYaw = invertYaw ? -1 : 1;
@@ -130,7 +131,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Joystick;
                 }
-                    //inputActions.Joystick.Enable();
+                    inputActions.Joystick.Enable();
                 PlayerPrefs.SetInt("inputType", 0);
                 myDrop.value = 0;
                 break;
@@ -140,7 +141,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Keyboard;
                 }
-                   // inputActions.Keyboard.Enable();
+                    inputActions.Keyboard.Enable();
                 PlayerPrefs.SetInt("inputType", 1);
                 myDrop.value = 1;
                 break;
@@ -150,7 +151,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Gamepad;
                 }
-                   // inputActions.Gamepad.Enable();
+                    inputActions.Gamepad.Enable();
                 PlayerPrefs.SetInt("inputType", 2);
                 myDrop.value = 2;
                 break;
@@ -160,7 +161,7 @@ public class InputManager : MonoBehaviour
                 {
                     ship.inputType = PredictionMotor.InputType.Mouse;
                 }
-                   // inputActions.Mouse.Enable();
+                    inputActions.Mouse.Enable();
                 PlayerPrefs.SetInt("inputType", 3);
                 myDrop.value = 3;
                 break;
@@ -185,13 +186,19 @@ public class InputManager : MonoBehaviour
             button.UpdateUI();
             Debug.Log("Updated " + button.name);
         }
+        if (ship != null)
+        {
+            inputActions=ship.playerShip;
+
+            //ship.playerShip.Disable();
+        }
+        //-inputActions.Disable();
     }
     public void ChangeInputTypeAndActivateShip(int num)
     {
         ship.playerShip.Disable();
         ship.playerShip = inputActions;
 
-        ChangeInputType(num);
         switch (num)
         {
             case 0:
@@ -247,17 +254,26 @@ public class InputManager : MonoBehaviour
 
         }
 
+        ChangeInputType(num);
+       // if (ship != null)
+            RebindUI.excludeMouse = inputActions.Mouse.enabled;
 
-        if (ship != null)
-            RebindUI.excludeMouse = ship.playerShip.Mouse.enabled;
-
-
+        foreach (RebindUI button in rebindButtons)
+        {
+            button.UpdateUI();
+            Debug.Log("Updated " + button.name);
+        }
     }
 
 
 
     private void Start()
     {
+        if (inputActions == null)
+        {
+            inputActions = new PlayerShip();
+        }
+
         invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? true : false;
         invThrTick.SetActive(invertThrust);
         invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? true : false;
@@ -278,10 +294,6 @@ public class InputManager : MonoBehaviour
 
         ChangeInputType(PlayerPrefs.GetInt("inputType", 0));
 
-        if (inputActions == null)
-        {
-            inputActions = new PlayerShip();
-        }
 
         //Come back to this and make the control types save between sessions.
 
@@ -331,7 +343,7 @@ public class InputManager : MonoBehaviour
 
         rebind.OnComplete(operation =>
         {
-            actionToRebind.Disable();
+            actionToRebind.Enable();
             operation.Dispose();
 
             if (allCompositeParts)
@@ -382,8 +394,8 @@ public class InputManager : MonoBehaviour
 
     public void LoadBindingOverride(string actionName)
     {
-        if (inputActions == null)
-            inputActions = new PlayerShip();
+     //   if (inputActions == null)
+           // inputActions = new PlayerShip();
 
         InputAction action = inputActions.asset.FindAction(actionName);
 
@@ -415,14 +427,14 @@ public class InputManager : MonoBehaviour
             for (int i = bindingIndex; i < action.bindings.Count; i++)
             {
                 action.RemoveBindingOverride(i);
-                action.Disable();
+                //action.Disable();
             }
         }
         else
         {
 
             action.RemoveBindingOverride(bindingIndex);
-            action.Disable();
+            //action.Disable();
         }
 
 
@@ -463,8 +475,53 @@ public class InputManager : MonoBehaviour
     }
 
     
+    public void RestoreDefaultControls()
+    {
+       
+        for(int i = 3; i>=0; i--)
+        {
 
+        ChangeInputType(i);
+        foreach(RebindUI button in rebindButtons)
+        {
+            button.ResetBinding();
+        }
+        }
+        
+        UpdateSensitivityValue(100);
+        InvThrust(true);
+        InvLift(true);
+        InvLateral(true);
+        InvRoll(true);
+        InvPitch(true);
+        InvYaw(true);
+
+        if(ship != null)
+        {
+       //     ship.playerShip.Disable();
+        }
+       // inputActions.Disable();
+    }
+
+
+    public bool debugUpdateUI = false;
+    public bool debugRunOnce = false;
+    private void Update()
+    {
+        if (debugUpdateUI)
+        {
+            debugUpdateUI = false;
+           
+                //inputActions.Mouse.Enable();
+            
+            foreach (RebindUI button in rebindButtons)
+            {
+                button.UpdateUI();
+            }
+        }
+    }
     
 
+    
 
 }

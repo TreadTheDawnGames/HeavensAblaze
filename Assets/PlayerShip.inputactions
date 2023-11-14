@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwapUseAimpoint",
+                    "type": "Button",
+                    "id": "c66f0495-079b-408b-a80e-b36f2be22c3a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -298,6 +307,17 @@
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56950272-9338-4149-91c9-0a8e667c50aa",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapUseAimpoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -381,6 +401,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "fc5fc78b-245a-4305-9282-05ca8034cbcf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwapUseAimpoint",
+                    "type": "Button",
+                    "id": "30eee94d-7aec-4ad0-a117-2841c34e8b4f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -530,6 +559,17 @@
                     "action": "Yaw",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7ea8226-7b25-4ad4-b845-0d2d3399a13d",
+                    "path": "<HID::Thrustmaster T.Flight Stick X>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapUseAimpoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -613,6 +653,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "f9745506-3566-4a8a-9367-c18a3fb7416e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwapUseAimpoint",
+                    "type": "Button",
+                    "id": "cea317db-af1d-4320-aa58-7a26d888f88a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -751,6 +800,17 @@
                     "action": "Yaw",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13546fd8-1805-4eab-94ab-2398b5b01676",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapUseAimpoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -825,6 +885,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "f017ada1-572e-4874-8be0-888563fece83",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwapUseAimpoint",
+                    "type": "Button",
+                    "id": "1b7b513f-f8de-40c6-9bf8-f847e6ebf7dc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1049,6 +1118,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a0a79a4-b41b-42da-9376-6c5840290384",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapUseAimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
