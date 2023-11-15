@@ -20,6 +20,8 @@ public class MainBody : ShipPart
     //[ServerRpc(RequireOwnership = false)]
     public override void DestroyIfDead()
     {
+        ChangeCounterpartColor(damageHudCounterpart);
+
         if (hitPoints <= 0f)
         {
             if (!hasRun)

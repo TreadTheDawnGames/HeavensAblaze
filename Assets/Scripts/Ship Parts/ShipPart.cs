@@ -6,6 +6,7 @@ using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Transporting;
 using System.Linq;
 using FishNet.Component.Transforming;
 using FishNet.Object.Prediction;
@@ -17,6 +18,7 @@ public class ShipPart : NetworkBehaviour
 {
     [SyncVar]
     public float hitPoints = 50f;
+    public float maxHitPoints = 50f;
 
     //[SyncVar] public Transform parent;
     //[SyncVar] public NetworkObject netParent;
@@ -67,14 +69,14 @@ public class ShipPart : NetworkBehaviour
     }
 #endif
 
-    private void Awake()
-    {
-    }
+    
 
 
     //[ServerRpc]
     public virtual void DestroyIfDead()
     {
+        ChangeCounterpartColor(damageHudCounterpart);
+
         if (hitPoints <= 0f)
         {
             if (!hasRun)
@@ -249,6 +251,53 @@ public class ShipPart : NetworkBehaviour
         if (GetComponent<Rigidbody>().velocity.magnitude > 2)
             childPart.hitPoints -= GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
         childPart.DestroyIfDead();
+    }
+
+    [SerializeField]
+    public GameObject damageHudCounterpart;
+    //put this anywhere the ship may take damage
+    //also link up the damageHudCounterpart vars
+
+    private void Update()
+    {
+        if (damageHudCounterpart != null)
+        {
+            //ChangeCounterpartColor(damageHudCounterpart);
+        }
+
+    }
+
+    public void ChangeCounterpartColor(GameObject hudPart)
+    {
+        if (IsOwner)
+        {
+
+            
+            if (hitPoints > (maxHitPoints / 3f) && hitPoints < 2f * (maxHitPoints / 3f))
+            {
+                hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.yellow);
+
+
+            }
+            else if (hitPoints < (maxHitPoints / 3) && hitPoints > 0f)
+            {
+                hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.red);
+
+            }
+            else if (hitPoints <= 0)
+            {
+                hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.green * 0f);
+
+            }
+
+            if(hudPart.transform.childCount > 0)
+            {
+                for(int i= 0; i< hudPart.transform.childCount; i++)
+                {
+                    hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.green * 0f);
+                }
+            }
+        }
     }
 
     

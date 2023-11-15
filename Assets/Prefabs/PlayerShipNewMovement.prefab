@@ -499,7 +499,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &1694508134687994413
@@ -544,6 +544,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 5240576307168568331}
   _networkObjectCache: {fileID: 5240576307168568331}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -554,6 +555,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 2179317181517415770, guid: 18c35432e21141843b05f1c5729fb990, type: 3}
+  damageHudCounterpart: {fileID: 4315713298605378643}
   root: {fileID: 0}
   cam: {fileID: 0}
 --- !u!1 &593972849467792051
@@ -658,6 +660,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 4458997867012844273}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -668,6 +671,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 811012160001688720, guid: 11f96e1a8ad8d0148b4273cef3eea7c9, type: 3}
+  damageHudCounterpart: {fileID: 7073714463806532087}
 --- !u!114 &4458997867012844273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,8 +692,8 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 5310433346382501726}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: -4.585003, y: -2.1470003, z: 1.210999}
-    Rotation: {x: -0, y: -0, z: 0.13052616, w: 0.9914449}
+    Position: {x: -0.38813388, y: -0.34738052, z: -0.28200054}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
   _isGlobal: 0
@@ -698,7 +702,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &1321040789733921048
@@ -809,7 +813,7 @@ GameObject:
   - component: {fileID: 673196356095441367}
   - component: {fileID: 680987439256795853}
   m_Layer: 0
-  m_Name: MainBody2
+  m_Name: MainBody
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,9 +830,14 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.475, z: -3.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9006522777577781718}
+  - {fileID: 3242763320669599637}
+  - {fileID: 5120298152373878609}
+  - {fileID: 6938844996961845519}
+  - {fileID: 6491917219484061260}
   m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 17
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &673196356095441367
 MeshFilter:
@@ -1058,7 +1067,7 @@ GameObject:
   - component: {fileID: 920538796100835986}
   - component: {fileID: 929319186959317088}
   m_Layer: 10
-  m_Name: Blaster
+  m_Name: StarboardBlaster
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,13 +1080,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916421166786005216}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 2.8429985, y: -1.126, z: 2.933999}
+  m_LocalRotation: {x: -0, y: -3.5527128e-15, z: 0.7071067, w: 0.70710677}
+  m_LocalPosition: {x: 0.5429055, y: -0.71008795, z: 3.2450027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 11
+  m_Father: {fileID: 8038862203502901937}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &920538796100835986
 MeshFilter:
@@ -1141,7 +1150,7 @@ GameObject:
   - component: {fileID: 921762633276993467}
   - component: {fileID: 932152315300463105}
   m_Layer: 0
-  m_Name: MainBody13
+  m_Name: PortBody
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1154,13 +1163,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917271927635654313}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2999992, y: -0.416, z: -0.31100082}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.00000008940696, y: 0.000000059604638, z: -0, w: 1}
+  m_LocalPosition: {x: -0.87487566, y: -0.60761184, z: 2.8774967}
+  m_LocalScale: {x: 1.2500001, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 8
+  m_Children:
+  - {fileID: 4946218655883255460}
+  - {fileID: 4088869351227556479}
+  - {fileID: 1622011402421012236}
+  m_Father: {fileID: 6938844996961845519}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &921762633276993467
 MeshFilter:
@@ -1639,7 +1651,7 @@ GameObject:
   - component: {fileID: 1649791476021338820}
   - component: {fileID: 1639454483377834848}
   m_Layer: 0
-  m_Name: Wing6
+  m_Name: PortLargeWing
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,13 +1664,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627854481311530850}
-  m_LocalRotation: {x: -0, y: 3.5527137e-15, z: 0.13052616, w: 0.9914449}
-  m_LocalPosition: {x: -4.299999, y: -1.236, z: -2.4870005}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13052617, w: 0.99144495}
+  m_LocalPosition: {x: -2.0000763, y: -0.82005274, z: -2.176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 6
+  m_Children:
+  - {fileID: 7070935513382646473}
+  m_Father: {fileID: 915106820414513497}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1649791476021338820
 MeshFilter:
@@ -1738,24 +1751,9 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4946218655883255460}
-  - {fileID: 9171579176364895326}
-  - {fileID: 4950452740762470364}
   - {fileID: 4319432659364821129}
-  - {fileID: 5120298152373878609}
-  - {fileID: 7070935513382646473}
-  - {fileID: 1622011402421012236}
-  - {fileID: 4088869351227556479}
-  - {fileID: 915106820414513497}
-  - {fileID: 6938844996961845519}
-  - {fileID: 9006522777577781718}
-  - {fileID: 909950848516540460}
-  - {fileID: 7732986682997378577}
-  - {fileID: 2408458524719972688}
-  - {fileID: 8038862203502901937}
-  - {fileID: 6491917219484061260}
-  - {fileID: 3242763320669599637}
   - {fileID: 661811475082577751}
+  - {fileID: 4950452740762470364}
   m_Father: {fileID: 7216740580467273708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: -39.1, z: -6.1}
@@ -1861,6 +1859,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 9054018023451953807}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -1871,6 +1870,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 5966448011966313755, guid: cccf8407675eea84db47644cbd6c1013, type: 3}
+  damageHudCounterpart: {fileID: 3245404445211909863}
 --- !u!114 &9054018023451953807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,7 +1901,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &1857894922026605869
@@ -2212,7 +2212,7 @@ GameObject:
   - component: {fileID: 2381038717104694424}
   - component: {fileID: 2391017402434997564}
   m_Layer: 0
-  m_Name: Wing6_Mirrored
+  m_Name: StarboardLargeWing
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2225,13 +2225,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2412055304047687998}
-  m_LocalRotation: {x: -0, y: -0, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: 4.299999, y: -1.236, z: -2.4870005}
+  m_LocalRotation: {x: -0, y: -0, z: -0.13052623, w: 0.9914449}
+  m_LocalPosition: {x: 1.9999605, y: -0.81997836, z: -2.1759999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 13
+  m_Children:
+  - {fileID: 7732986682997378577}
+  m_Father: {fileID: 8038862203502901937}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2381038717104694424
 MeshFilter:
@@ -2718,6 +2719,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 3272608215638426253}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -2728,6 +2730,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 995413602997119175, guid: a3d1374467ca7a84d8690037f59a7586, type: 3}
+  damageHudCounterpart: {fileID: 916421166786005216}
 --- !u!114 &3272608215638426253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,7 +2752,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 5399910879307005185}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 2.8430023, y: -1.6010001, z: 6.913999}
+    Position: {x: 0.54299927, y: -0.71000004, z: 3.245}
     Rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -2759,7 +2762,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &3562278869492974074
@@ -2964,6 +2967,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 7222148593307531868}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -2974,6 +2978,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 4106634755171536676, guid: 4db4928ed2d7ba643a7793b5a61ee89a, type: 3}
+  damageHudCounterpart: {fileID: 917271927635654313}
 --- !u!114 &7222148593307531868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,9 +3002,9 @@ MonoBehaviour:
   - {fileID: 5310433346382501726}
   - {fileID: 2204128287715840632}
   SerializedTransformProperties:
-    Position: {x: -2.300003, y: -0.89100015, z: 3.6689992}
-    Rotation: {x: -0, y: -0, z: -0, w: 1}
-    LocalScale: {x: 1, y: 1, z: 1}
+    Position: {x: -0.8750007, y: -0.6074998, z: 2.8774989}
+    Rotation: {x: -0.00000008146034, y: 0.00000004371139, z: -3.560745e-15, w: 1}
+    LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
@@ -3007,7 +3012,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &1705971202834007458
@@ -3221,6 +3226,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 3557753721484384471}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -3231,6 +3237,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 854212674681976713, guid: aa37f8dac44362b4a90df87aef77c720, type: 3}
+  damageHudCounterpart: {fileID: 4952526517578542766}
 --- !u!114 &3557753721484384471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3253,7 +3260,7 @@ MonoBehaviour:
   SerializedTransformProperties:
     Position: {x: 0.9939995, y: 0.5849999, z: -2.124}
     Rotation: {x: -0.04920511, y: 0.08522575, z: 0.26225984, w: 0.95996624}
-    LocalScale: {x: 0.8000002, y: 0.80000013, z: 0.79999995}
+    LocalScale: {x: 0.8000003, y: 0.8000002, z: 0.79999995}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
@@ -3261,7 +3268,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &1198386528956311104
@@ -3290,7 +3297,7 @@ GameObject:
   - component: {fileID: 3276135923711262965}
   - component: {fileID: 3268441917814098815}
   m_Layer: 0
-  m_Name: Wing2_Mirrored
+  m_Name: StarboardUpperWing
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3303,13 +3310,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3245404445211909863}
-  m_LocalRotation: {x: 0.00000008146034, y: -0.00000004371139, z: 3.560745e-15, w: 1}
-  m_LocalPosition: {x: 1.5999985, y: 0.71300006, z: -2.8500004}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.79999995}
+  m_LocalRotation: {x: 0.00000008940696, y: -0.000000059604638, z: -0, w: 1}
+  m_LocalPosition: {x: 1.6000545, y: 0.23805967, z: 1.1299975}
+  m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.79999995}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 16
+  m_Children:
+  - {fileID: 8038862203502901937}
+  m_Father: {fileID: 661811475082577751}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3276135923711262965
 MeshFilter:
@@ -3547,6 +3555,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 3530265000433356627}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -3557,6 +3566,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 6495566703491081548, guid: c0f19cddce682b64b87164f0c0439c78, type: 3}
+  damageHudCounterpart: {fileID: 6936344867401459837}
   alternateSupport: {fileID: 7933884648759838941}
   hasChild: 1
 --- !u!114 &3530265000433356627
@@ -3590,7 +3600,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &93269840197402896
@@ -3826,6 +3836,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 2204128287715840632}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -3836,6 +3847,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 4633965018164895638, guid: 0d15080cced52dc4eab4ae23e1435d4f, type: 3}
+  damageHudCounterpart: {fileID: 4082959777514095283}
 --- !u!114 &2204128287715840632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3867,7 +3879,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &2204128287715840633
@@ -4144,7 +4156,7 @@ GameObject:
   - component: {fileID: 4096084692788056257}
   - component: {fileID: 4106091657049961011}
   m_Layer: 10
-  m_Name: Blaster
+  m_Name: PortBlaster
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4157,13 +4169,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4082959777514095283}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -2.8429985, y: -1.126, z: 2.933999}
+  m_LocalRotation: {x: -0, y: -0.000000014901158, z: -0.70710677, w: 0.7071067}
+  m_LocalPosition: {x: -0.5430472, y: -0.7100377, z: 3.2450016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 7
+  m_Father: {fileID: 915106820414513497}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4096084692788056257
 MeshFilter:
@@ -4360,6 +4372,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 2609810771120417631}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -4370,6 +4383,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 1435303954191780476, guid: b2c541b4f97441744817af62b2906508, type: 3}
+  damageHudCounterpart: {fileID: 9004097075771986084}
 --- !u!114 &2609810771120417631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4400,7 +4414,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &1073555096248969694
@@ -4512,7 +4526,7 @@ GameObject:
   - component: {fileID: 4293978372025566139}
   - component: {fileID: 4301524140612613443}
   m_Layer: 0
-  m_Name: Cockpit3_Body
+  m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4532,7 +4546,7 @@ Transform:
   m_Children:
   - {fileID: 4318583442218763947}
   m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4293978372025566139
 MeshFilter:
@@ -4769,6 +4783,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 2666647688940424582}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -4779,6 +4794,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 8166672600586179698, guid: 6bfe29d766de7ea4eb43db00b1a6991c, type: 3}
+  damageHudCounterpart: {fileID: 4948530844344400474}
 --- !u!114 &2666647688940424582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4809,7 +4825,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &1285306390072589849
@@ -5003,7 +5019,7 @@ GameObject:
   - component: {fileID: 4962024680469925436}
   - component: {fileID: 4969907484235300432}
   m_Layer: 0
-  m_Name: Engine1
+  m_Name: PortEngine
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5016,12 +5032,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4948530844344400474}
-  m_LocalRotation: {x: 0, y: 0, z: -0.29237175, w: 0.9563048}
-  m_LocalPosition: {x: -3.37, y: 0.6, z: -3.565}
+  m_LocalRotation: {x: -0, y: 3.5527133e-15, z: -0.29237172, w: 0.9563047}
+  m_LocalPosition: {x: -1.070172, y: 1.0159551, z: -3.2539983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
+  m_Father: {fileID: 915106820414513497}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4962024680469925436
@@ -5086,7 +5102,7 @@ GameObject:
   - component: {fileID: 4955150116271435964}
   - component: {fileID: 4965429825631337270}
   m_Layer: 0
-  m_Name: Wing2_Mirrored
+  m_Name: StarboardTail
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5202,7 +5218,7 @@ GameObject:
   - component: {fileID: 5150222718457399345}
   - component: {fileID: 5140224139138057147}
   m_Layer: 0
-  m_Name: Wing2
+  m_Name: PortTail
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5215,13 +5231,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5118224566957397539}
-  m_LocalRotation: {x: -0.049205117, y: -0.08522575, z: -0.26225975, w: 0.9599663}
-  m_LocalPosition: {x: -0.9939995, y: 1.06, z: -6.104}
-  m_LocalScale: {x: 0.8000001, y: 0.80000013, z: 0.8}
+  m_LocalRotation: {x: -0.049205083, y: -0.08522575, z: -0.26225972, w: 0.95996624}
+  m_LocalPosition: {x: -0.9939119, y: 0.58506405, z: -2.124002}
+  m_LocalScale: {x: 0.8, y: 0.8000002, z: 0.79999995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 4
+  m_Father: {fileID: 661811475082577751}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5150222718457399345
 MeshFilter:
@@ -5508,6 +5524,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 4598649451210763521}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -5518,6 +5535,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 762981041287403669, guid: bde3a02ba0d8c2b429b137e782faf160, type: 3}
+  damageHudCounterpart: {fileID: 7735765633954239791}
 --- !u!114 &4598649451210763521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5538,8 +5556,8 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 7130604413930889920}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 4.585003, y: -2.147, z: 1.210999}
-    Rotation: {x: -0, y: -0, z: -0.13052624, w: 0.9914449}
+    Position: {x: 0.38813388, y: -0.3473803, z: -0.28200054}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
   _isGlobal: 0
@@ -5548,7 +5566,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &1514982423147241833
@@ -5701,6 +5719,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 7130604413930889920}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -5711,6 +5730,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 5664024148753422706, guid: 2d16a0c14f5387d4aabae38d2c13e2ac, type: 3}
+  damageHudCounterpart: {fileID: 2412055304047687998}
 --- !u!114 &7130604413930889920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5732,7 +5752,7 @@ MonoBehaviour:
   <ChildNetworkObjects>k__BackingField:
   - {fileID: 4598649451210763521}
   SerializedTransformProperties:
-    Position: {x: 4.300003, y: -1.711, z: 1.4929996}
+    Position: {x: 2, y: -0.81999993, z: -2.1759996}
     Rotation: {x: -0, y: -0, z: -0.13052624, w: 0.9914449}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -5742,7 +5762,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &3575602308188727080
@@ -6713,6 +6733,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 5399910879307005185}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -6723,6 +6744,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 1395894264075563107, guid: b39833114c62b9640ad37e2a07e1c44e, type: 3}
+  damageHudCounterpart: {fileID: 8036136622345661761}
 --- !u!114 &5399910879307005185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6746,9 +6768,9 @@ MonoBehaviour:
   - {fileID: 7130604413930889920}
   - {fileID: 3272608215638426253}
   SerializedTransformProperties:
-    Position: {x: 2.300003, y: -0.89100003, z: 3.6689992}
-    Rotation: {x: -0, y: -0, z: -0, w: 1}
-    LocalScale: {x: 1, y: 1, z: 1}
+    Position: {x: 0.8750012, y: -0.6074996, z: 2.877499}
+    Rotation: {x: -0.00000008146034, y: 0.00000004371139, z: -3.560745e-15, w: 1}
+    LocalScale: {x: 1.25, y: 1.25, z: 1.2500001}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
@@ -6756,7 +6778,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &267071918001611269
@@ -7046,7 +7068,7 @@ GameObject:
   - component: {fileID: 6512306337463892268}
   - component: {fileID: 6506758924836139686}
   m_Layer: 0
-  m_Name: Wing2_Mirrored
+  m_Name: StarboardLowerWing
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7059,13 +7081,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6493784367569037118}
-  m_LocalRotation: {x: 0.00000008146034, y: -0.00000004371139, z: 3.560745e-15, w: 1}
-  m_LocalPosition: {x: 1.5999985, y: 0.07000005, z: -2.613}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.79999995}
+  m_LocalRotation: {x: 0.00000008940696, y: -0.000000059604638, z: -0, w: 1}
+  m_LocalPosition: {x: 1.6000737, y: -0.4049366, z: 1.3670006}
+  m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.79999995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 15
+  m_Father: {fileID: 661811475082577751}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6512306337463892268
 MeshFilter:
@@ -7302,6 +7324,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 3564129775933450657}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -7312,6 +7335,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 784535784555587574, guid: 897cc3796ff9b8d4484ea54d60ef067b, type: 3}
+  damageHudCounterpart: {fileID: 5118224566957397539}
 --- !u!114 &3564129775933450657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7342,7 +7366,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &592439495097026838
@@ -7371,7 +7395,7 @@ GameObject:
   - component: {fileID: 6934429131798083183}
   - component: {fileID: 6922296881708760549}
   m_Layer: 0
-  m_Name: Wing2
+  m_Name: PortLowerWing
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7384,13 +7408,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6936344867401459837}
-  m_LocalRotation: {x: 0.00000008146034, y: -0.00000004371139, z: 3.560745e-15, w: 1}
-  m_LocalPosition: {x: -1.5999985, y: 0.07000005, z: -2.613}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalRotation: {x: 0.00000008940696, y: -0.000000059604638, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6000046, y: -0.40491277, z: 1.3670008}
+  m_LocalScale: {x: 0.7999999, y: 0.79999995, z: 0.79999995}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 9
+  m_Children:
+  - {fileID: 915106820414513497}
+  m_Father: {fileID: 661811475082577751}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6934429131798083183
 MeshFilter:
@@ -7544,6 +7569,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 3082780588136901237}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -7554,6 +7580,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 3790386061770104960, guid: 0519907b4f3f9314686cc6a50203180c, type: 3}
+  damageHudCounterpart: {fileID: 9173612083780749472}
 --- !u!114 &3082780588136901237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7574,7 +7601,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 5399910879307005185}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 3.3700027, y: 0.12499988, z: 0.41499853}
+    Position: {x: 1.0699997, y: 1.0159999, z: -3.2540007}
     Rotation: {x: -0, y: -0, z: 0.29237175, w: 0.9563048}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -7584,7 +7611,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &1885241537013680277
@@ -7811,7 +7838,7 @@ GameObject:
   - component: {fileID: 7086713044534172497}
   - component: {fileID: 7096084204371246973}
   m_Layer: 0
-  m_Name: Big_Launcher
+  m_Name: PortLauncher
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7824,13 +7851,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7073714463806532087}
-  m_LocalRotation: {x: -0, y: 3.5527137e-15, z: 0.13052616, w: 0.9914449}
-  m_LocalPosition: {x: -4.584999, y: -1.6720002, z: -2.769001}
+  m_LocalRotation: {x: -0, y: -0, z: -0.000000014901159, w: 1}
+  m_LocalPosition: {x: -0.38798478, y: -0.34730124, z: -0.2820015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 5
+  m_Father: {fileID: 1622011402421012236}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7086713044534172497
 MeshFilter:
@@ -7985,6 +8012,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 167196983904861311}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -7995,6 +8023,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 1138686896202132161, guid: 873c43e3c8fab944ba3585d4bcf08593, type: 3}
+  damageHudCounterpart: {fileID: 6493784367569037118}
   alternateSupport: {fileID: 5269781142277030034}
   hasChild: 1
 --- !u!114 &167196983904861311
@@ -8028,7 +8057,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &1506968248875949834
@@ -8314,6 +8343,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 5310433346382501726}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -8324,6 +8354,7 @@ MonoBehaviour:
   partId: 0
   _parent: {fileID: 0}
   debris: {fileID: 4262579675015811570, guid: 8c75a12847c2866458c9a653cef2b068, type: 3}
+  damageHudCounterpart: {fileID: 1627854481311530850}
 --- !u!114 &5310433346382501726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8355,7 +8386,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!64 &5310433346382501727
@@ -8467,7 +8498,7 @@ GameObject:
   - component: {fileID: 7721733820695275401}
   - component: {fileID: 7713064124622668709}
   m_Layer: 0
-  m_Name: Big_Launcher
+  m_Name: StarboardLauncher
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8480,13 +8511,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735765633954239791}
-  m_LocalRotation: {x: -0, y: -0, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: 4.584999, y: -1.672, z: -2.769001}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.38805506, y: -0.34752786, z: -0.2820015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 12
+  m_Father: {fileID: 2408458524719972688}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7721733820695275401
 MeshFilter:
@@ -8750,7 +8781,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!1 &7945728599996854910
@@ -9014,7 +9045,7 @@ GameObject:
   - component: {fileID: 8067662583747228755}
   - component: {fileID: 8057909281871649257}
   m_Layer: 0
-  m_Name: MainBody13_Mirrored
+  m_Name: StarboardBody
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9027,13 +9058,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8036136622345661761}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2999992, y: -0.416, z: -0.31100082}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.00000008146034, y: 0.00000004371139, z: -3.560745e-15, w: 1}
+  m_LocalPosition: {x: 0.8750817, y: -1.4111595, z: 3.1737483}
+  m_LocalScale: {x: 1.2500001, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 14
+  m_Children:
+  - {fileID: 2408458524719972688}
+  - {fileID: 909950848516540460}
+  - {fileID: 9171579176364895326}
+  m_Father: {fileID: 3242763320669599637}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8067662583747228755
 MeshFilter:
@@ -9137,7 +9171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8212157703595107913
 Transform:
   m_ObjectHideFlags: 0
@@ -9472,7 +9506,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!65 &3222849227476541952
@@ -9517,6 +9551,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1108100127182144343}
   _networkObjectCache: {fileID: 1108100127182144343}
   hitPoints: 50
+  maxHitPoints: 50
   hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
@@ -9526,7 +9561,8 @@ MonoBehaviour:
   childCount: 0
   partId: 0
   _parent: {fileID: 0}
-  debris: {fileID: 0}
+  debris: {fileID: 7618652203882853021, guid: f2ec75b5c8b5e5c4b8d363ef89ccdef8, type: 3}
+  damageHudCounterpart: {fileID: 659072433960295877}
   root: {fileID: 0}
 --- !u!1 &8492800243895846407
 GameObject:
@@ -9803,7 +9839,7 @@ MonoBehaviour:
   <ChildNetworkObjects>k__BackingField:
   - {fileID: 1108100127182144343}
   SerializedTransformProperties:
-    Position: {x: -51.999977, y: -92.06985, z: -20.171467}
+    Position: {x: -35.63483, y: 0, z: 7.4694886}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -9813,7 +9849,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 20
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 7356535827244043655
 --- !u!114 &9138636613039549510
@@ -10027,7 +10063,7 @@ GameObject:
   - component: {fileID: 8974030234204851894}
   - component: {fileID: 8982097589795013948}
   m_Layer: 0
-  m_Name: Wing2
+  m_Name: PortUpperWing
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10040,13 +10076,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9004097075771986084}
-  m_LocalRotation: {x: 0.00000008146034, y: -0.00000004371139, z: 3.560745e-15, w: 1}
-  m_LocalPosition: {x: -1.5999985, y: 0.71300006, z: -2.8500004}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalRotation: {x: 0.00000008940696, y: -0.000000059604638, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5999559, y: 0.2380161, z: 1.1299977}
+  m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.79999995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 10
+  m_Father: {fileID: 661811475082577751}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8974030234204851894
 MeshFilter:
@@ -10110,7 +10146,7 @@ GameObject:
   - component: {fileID: 9169089335023910086}
   - component: {fileID: 9158959921846013098}
   m_Layer: 0
-  m_Name: Engine1
+  m_Name: StarboardEngine
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10123,13 +10159,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9173612083780749472}
-  m_LocalRotation: {x: 0, y: 0, z: 0.29237175, w: 0.9563048}
-  m_LocalPosition: {x: 3.37, y: 0.6, z: -3.565}
+  m_LocalRotation: {x: -0, y: -0, z: 0.29237172, w: 0.9563048}
+  m_LocalPosition: {x: 1.069957, y: 1.0158728, z: -3.2539995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1808595273904471943}
-  m_RootOrder: 1
+  m_Father: {fileID: 8038862203502901937}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9169089335023910086
 MeshFilter:

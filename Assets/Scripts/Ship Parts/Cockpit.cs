@@ -47,6 +47,8 @@ public class Cockpit : ShipPart
     [ServerRpc(RequireOwnership =false)]
     public override void DestroyIfDead()
     {
+        ChangeCounterpartColor(damageHudCounterpart);
+
         if (!hasRun)
         CockpitDestroyIfDeadObservers(); 
     }
