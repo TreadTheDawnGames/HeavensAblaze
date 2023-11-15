@@ -124,6 +124,8 @@ public class ShipPart : NetworkBehaviour
                 {
                     debrisChild.AddComponent<Rigidbody>();
                 }
+                
+                
 
                 GameObject instance = Instantiate(debrisChild, originalObject.transform.position, originalObject.transform.rotation);
                 GameObject spawn = instance;
@@ -134,6 +136,7 @@ public class ShipPart : NetworkBehaviour
 
                 spawn.gameObject.GetComponent<ShipPart>().hitPoints = originalObject.GetComponent<ShipPart>().hitPoints;
                 spawn.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                spawn.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
                 if (spawn.transform.childCount <= 0)
                 {
@@ -230,10 +233,23 @@ public class ShipPart : NetworkBehaviour
             //Spawn(spawn);
 
 
-        }
-
+        }   
+        ///TODO:
+        ///add kinematic rigidbody to ship parts
+        ///when destroyed instead of adding a rigidbody, set the body isKinematic = false;
+        ///make sure collisions are filtered by owner
+        
     }
 
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
+        if (GetComponent<Rigidbody>().velocity.magnitude > 2)
+            childPart.hitPoints -= GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
+        childPart.DestroyIfDead();
+    }
+
+    
 }

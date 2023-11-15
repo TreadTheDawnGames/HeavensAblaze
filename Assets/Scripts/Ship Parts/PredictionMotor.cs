@@ -236,6 +236,16 @@ public class PredictionMotor : NetworkBehaviour
         SubscribeToTimeManager(false);
     }
 
+    public float collisionDivider = 5f;
+    private void OnCollisionEnter(Collision collision)
+    {
+        ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
+        if (_rigidbody.velocity.magnitude > 2)
+        childPart.hitPoints -= _rigidbody.velocity.magnitude/collisionDivider;
+        childPart.DestroyIfDead();
+    }
+    
+
     public List<ShipPart> shipParts = new List<ShipPart>();
     public override void OnStartClient()
     {
