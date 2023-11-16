@@ -374,8 +374,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 971.0000610351563,
-            "y": 126.0
+            "x": 933.0000610351563,
+            "y": 239.00001525878907
         },
         "m_Blocks": [
             {
@@ -406,7 +406,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10200,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -610,7 +610,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.05000000074505806,
+    "m_Value": -0.029999999329447748,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1535,7 +1535,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Power",
     "m_StageCapability": 3,
-    "m_Value": 1.0,
+    "m_Value": 0.5,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -1640,9 +1640,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 2.0,
-        "g": 2.0,
-        "b": 2.0,
+        "r": 0.0,
+        "g": 2.670156955718994,
+        "b": 0.0,
         "a": 0.0
     },
     "isMainColor": false,
@@ -1977,7 +1977,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"cfd21bbf6f6d4084ab6d95e990cd7a90\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"10a3fb62422b9864795f5b16a90fa9fc\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -2257,7 +2257,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_Space": 0,
+    "m_Space": 1,
     "m_PositionSource": 0
 }
 

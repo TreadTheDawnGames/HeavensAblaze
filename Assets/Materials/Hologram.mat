@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hollogram
+  m_Name: Hologram
   m_Shader: {fileID: -6465566751694194690, guid: ec84ea912a75fbc4dbdd6ac4a78f31c6, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -114,9 +114,9 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 3.9999995, g: 3.9999995, b: 3.9999995, a: 1}
-    - _Hologram_Tiling: {r: 3, g: 3, b: 0, a: 0}
-    - _MainColor: {r: 0, g: 5.992157, b: 0, a: 0}
+    - _FresnelColor: {r: 1.0586275, g: 1.0586275, b: 1.0586275, a: 1}
+    - _Hologram_Tiling: {r: 8, g: 8, b: 0, a: 0}
+    - _MainColor: {r: 0, g: 8, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1321435124435583997

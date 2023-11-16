@@ -75,7 +75,7 @@ public class ShipPart : NetworkBehaviour
     //[ServerRpc]
     public virtual void DestroyIfDead()
     {
-        ChangeCounterpartColor(damageHudCounterpart);
+        ChangeCounterpartColor(damageHudCounterpart, this);
 
         if (hitPoints <= 0f)
         {
@@ -222,6 +222,10 @@ public class ShipPart : NetworkBehaviour
             Debug.Log("++++++++++ Instantiating: " + debrisChild.name + " / " + parent.name);
             GameObject spawn = Instantiate(debrisChild, GO.transform.position, GO.transform.rotation, parent);
 
+            if (spawn.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                Destroy(rb);
+            }
 
             spawn.gameObject.GetComponent<ShipPart>().hitPoints = GO.GetComponent<ShipPart>().hitPoints;
 
@@ -267,38 +271,80 @@ public class ShipPart : NetworkBehaviour
 
     }
 
-    public void ChangeCounterpartColor(GameObject hudPart)
+    public Color GetDamageColor(ShipPart damagedPart)
+    {
+        Color color;
+
+        if (damagedPart.hitPoints > (damagedPart.maxHitPoints / 3f) && damagedPart.hitPoints < 2f * (damagedPart.maxHitPoints / 3f))
+        {
+            color = Color.yellow * 20;
+
+
+        }
+        else if (damagedPart.hitPoints < (damagedPart.maxHitPoints / 3) && damagedPart.hitPoints > 0f)
+        {
+            color = Color.red * 40;
+
+        }
+        else if (damagedPart.hitPoints <= 0)
+        {
+            color = Color.green * 0f;
+
+
+            
+        }
+        else color = Color.green;
+
+        return color;
+    }
+
+    public void ChangeCounterpartColor(GameObject hudPart, ShipPart damagedPart)
     {
         if (IsOwner)
         {
 
-            
-            if (hitPoints > (maxHitPoints / 3f) && hitPoints < 2f * (maxHitPoints / 3f))
+            if (damagedPart.hitPoints <= 0)
             {
-                hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.yellow);
-
-
-            }
-            else if (hitPoints < (maxHitPoints / 3) && hitPoints > 0f)
-            {
-                hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.red);
-
-            }
-            else if (hitPoints <= 0)
-            {
-                hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.green * 0f);
-
-            }
-
-            if(hudPart.transform.childCount > 0)
-            {
-                for(int i= 0; i< hudPart.transform.childCount; i++)
+                if (hudPart.transform.childCount > 0)
                 {
-                    hudPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.green * 0f);
+                    for (int i = 0; i < hudPart.transform.childCount; i++)
+                    {
+                        ChangeCounterpartColor(hudPart.transform.GetChild(i).gameObject, this);
+                    }
                 }
             }
+            StartCoroutine(SwapHUDMaterial(hudPart, GetDamageColor(damagedPart)));
         }
     }
 
+    public Material glitchedMaterial;
+    public Material regularMaterial;
+
+
+    private IEnumerator SwapHUDMaterial(GameObject hudPart, Color color)
+    {
+
+        hudPart.GetComponent<MeshRenderer>().material = glitchedMaterial;
+        hudPart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
+
+
+
+        print("hit");
+
+        GameObject HudPart = hudPart;
+        yield return new WaitForSeconds(0.1f);
+
+
+        if (hudPart != null)
+        {
+            hudPart.GetComponent<MeshRenderer>().material = regularMaterial;
+            hudPart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
+
+            print("restored");
+
+        }         
+    }
+
     
+
 }

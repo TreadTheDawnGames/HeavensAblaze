@@ -13,12 +13,13 @@ public class ConnectorWing : ShipPart
 
     public Transform alternateSupport;
     public bool hasChild = true;
-
+    [SerializeField]
+    GameObject alternateSupportHudCounterpart;
 
      //[ServerRpc(RequireOwnership = false)]
     public override void DestroyIfDead()
     {
-        ChangeCounterpartColor(damageHudCounterpart);
+        ChangeCounterpartColor(damageHudCounterpart, this);
         if (hitPoints <= 0f)
         {
             if(!hasRun)
@@ -37,9 +38,14 @@ public class ConnectorWing : ShipPart
                 explosion[Random.Range(0, explosion.Count)].Play();
             }
 
-
             if (alternateSupport != null)
             {
+                foreach(Transform child in damageHudCounterpart.transform)
+                {
+                    child.SetParent(alternateSupportHudCounterpart.transform);
+                }
+                 RecoverLostHudItems(alternateSupportHudCounterpart);
+
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     // if (transform.GetChild(i).name.Contains("Collider")) { break; }
@@ -68,6 +74,18 @@ public class ConnectorWing : ShipPart
 
         }
 
+    }
+
+    void RecoverLostHudItems(GameObject alternateSupportWithChildren)
+    {
+        
+
+        alternateSupportWithChildren.GetComponent<MeshRenderer>().material = regularMaterial;
+        alternateSupportWithChildren.GetComponent<MeshRenderer>().material.SetColor("_MainColor", GetDamageColor(alternateSupport.GetComponent<ShipPart>()));
+        for (int i = 0; i < alternateSupportWithChildren.transform.childCount; i++)
+        {
+            RecoverLostHudItems(alternateSupportWithChildren.transform.GetChild(i).gameObject);
+        }
     }
 }
 
