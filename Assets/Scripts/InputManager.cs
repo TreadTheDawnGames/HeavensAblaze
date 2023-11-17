@@ -380,6 +380,8 @@ public class InputManager : MonoBehaviour
         if (inputActions == null)
             inputActions = new PlayerShip();
 
+        print(actionName);
+
         InputAction action = inputActions.asset.FindAction(actionName);
         return action.GetBindingDisplayString(bindingIndex);
     }

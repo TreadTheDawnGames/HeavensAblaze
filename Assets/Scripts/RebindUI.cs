@@ -96,7 +96,9 @@ public class RebindUI : MonoBehaviour
         {
             if (Application.isPlaying)
             {
-                rebindText.text = inputManager.GetBindingName(actionName, bindingIndex);
+//                rebindText.text = inputManager.GetBindingName(actionName, bindingIndex);
+                rebindText.text = inputActionReference.action.GetBindingDisplayString(bindingIndex);
+
             }
             else
             {

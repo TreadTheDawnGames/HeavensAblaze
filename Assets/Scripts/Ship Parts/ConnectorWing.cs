@@ -19,7 +19,7 @@ public class ConnectorWing : ShipPart
      //[ServerRpc(RequireOwnership = false)]
     public override void DestroyIfDead()
     {
-        ChangeCounterpartColor(damageHudCounterpart, this);
+       // ChangeCounterpartColor(damageHudCounterpart, this);
         if (hitPoints <= 0f)
         {
             if(!hasRun)
@@ -40,11 +40,11 @@ public class ConnectorWing : ShipPart
 
             if (alternateSupport != null)
             {
-                foreach(Transform child in damageHudCounterpart.transform)
+                /*foreach(Transform child in damageHudCounterpart.transform)
                 {
                     child.SetParent(alternateSupportHudCounterpart.transform);
                 }
-                 RecoverLostHudItems(alternateSupportHudCounterpart);
+                RecoverLostHudItems(alternateSupportHudCounterpart);*/
 
                 for (int i = 0; i < transform.childCount; i++)
                 {
@@ -78,10 +78,11 @@ public class ConnectorWing : ShipPart
 
     void RecoverLostHudItems(GameObject alternateSupportWithChildren)
     {
-        
+        if (alternateSupportWithChildren == null)
+            return;
 
-        alternateSupportWithChildren.GetComponent<MeshRenderer>().material = regularMaterial;
-        alternateSupportWithChildren.GetComponent<MeshRenderer>().material.SetColor("_MainColor", GetDamageColor(alternateSupport.GetComponent<ShipPart>()));
+       // alternateSupportWithChildren.GetComponent<MeshRenderer>().material = regularMaterial;
+       // alternateSupportWithChildren.GetComponent<MeshRenderer>().material.SetColor("_MainColor", GetDamageColor(alternateSupport.GetComponent<ShipPart>()));
         for (int i = 0; i < alternateSupportWithChildren.transform.childCount; i++)
         {
             RecoverLostHudItems(alternateSupportWithChildren.transform.GetChild(i).gameObject);

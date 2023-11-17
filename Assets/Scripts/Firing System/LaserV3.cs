@@ -101,17 +101,17 @@ public class LaserV3 : NetworkBehaviour
 
         if (collision.GetComponentInParent<LaserV3>()!=null)
         {
-            Debug.Log("Not continuing: hit laser");
+           // Debug.Log("Not continuing: hit laser");
             return;
         }
         else if (collision.TryGetComponent<NetworkObject>(out NetworkObject nob))
         {
             if (nob.Owner == GetComponent<NetworkObject>().Owner)
             {
-            Debug.Log("Not continuing: owner of target");
+          //  Debug.Log("Not continuing: owner of target");
                 return;
             }
-            else
+            /*else
             {
             Debug.Log("Continuing: Not owner");
 
@@ -120,7 +120,7 @@ public class LaserV3 : NetworkBehaviour
         else
         {
             Debug.Log("Continuing: good target");
-
+*/
         }
 
 
@@ -135,6 +135,8 @@ public class LaserV3 : NetworkBehaviour
         {
             if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))
             {
+                //collision.transform.root.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(collision.GetComponent<ShipPart>().damageHudCounterpart, collision.GetComponent<ShipPart>());
+
                 Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Vector3 pos = hit.point;
                 Instantiate(hitSparks, pos, rot);
@@ -148,7 +150,10 @@ public class LaserV3 : NetworkBehaviour
 
                 ps.hitPoints -= 12;
 
-               ps.DestroyIfDead();
+                
+                   collision.transform.root.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(ps.damageHudCounterpart, ps);
+
+                ps.DestroyIfDead();
 
             }
         }

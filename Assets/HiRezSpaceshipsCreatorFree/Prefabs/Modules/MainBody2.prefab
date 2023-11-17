@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4300762526349960
 Transform:
   m_ObjectHideFlags: 0
@@ -137,10 +137,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 8756623048227464615}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 8756623048227464615}
   hitPoints: 50
+  maxHitPoints: 50
+  hasRun: 0
   transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destroyObject: 0
+  explosion: []
+  showOwner: 0
+  childCount: 0
+  partId: 0
+  _parent: {fileID: 0}
+  debris: {fileID: 0}
+  damageHudCounterpart: {fileID: 0}
+  glitchedMaterial: {fileID: 0}
+  regularMaterial: {fileID: 0}
 --- !u!114 &8756623048227464615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,9 +168,15 @@ MonoBehaviour:
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours: []
+  _networkBehaviours:
+  - {fileID: 8706987679550247443}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
-  <ChildNetworkObjects>k__BackingField: []
+  <ChildNetworkObjects>k__BackingField:
+  - {fileID: 9068995390499623151}
+  - {fileID: 1427661135044860688}
+  - {fileID: 8801982793492717535}
+  - {fileID: 4743838532266776920}
+  - {fileID: 1470598757330346150}
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 0}
@@ -168,7 +186,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 0
+  <PrefabId>k__BackingField: 52
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -629,6 +647,10 @@ PrefabInstance:
       propertyPath: <ComponentIndex>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8031126158639797012, guid: 7fe074f22a922d346abeef0a74266e0d, type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 8756623048227464615}
     - target: {fileID: 8320653598040392708, guid: 7fe074f22a922d346abeef0a74266e0d, type: 3}
       propertyPath: <IsNested>k__BackingField
       value: 1
@@ -640,6 +662,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6862420380326820344, guid: 7fe074f22a922d346abeef0a74266e0d, type: 3}
   m_PrefabInstance: {fileID: 1346508062364533755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9068995390499623151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8031126158639797012, guid: 7fe074f22a922d346abeef0a74266e0d, type: 3}
+  m_PrefabInstance: {fileID: 1346508062364533755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1597953351823663058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,6 +1090,10 @@ PrefabInstance:
       propertyPath: <ComponentIndex>k__BackingField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -6840446227786714372, guid: 54e1b562c3fea284f8a0ec8cdc70057c, type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 8756623048227464615}
     - target: {fileID: 1168450754309862, guid: 54e1b562c3fea284f8a0ec8cdc70057c, type: 3}
       propertyPath: m_Name
       value: Cockpit3_WithInterior
@@ -1111,6 +1148,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e1b562c3fea284f8a0ec8cdc70057c, type: 3}
+--- !u!114 &1427661135044860688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6840446227786714372, guid: 54e1b562c3fea284f8a0ec8cdc70057c, type: 3}
+  m_PrefabInstance: {fileID: 3657424657422117356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3661917076364687334 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4633844506500618, guid: 54e1b562c3fea284f8a0ec8cdc70057c, type: 3}
@@ -1135,6 +1183,10 @@ PrefabInstance:
       propertyPath: <ComponentIndex>k__BackingField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -5474186291333146383, guid: ebec0dbd42c377149abd20c9507cb70f, type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 8756623048227464615}
     - target: {fileID: -1242214031697699157, guid: ebec0dbd42c377149abd20c9507cb70f, type: 3}
       propertyPath: <IsNested>k__BackingField
       value: 0
@@ -1202,6 +1254,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4413083218773408, guid: ebec0dbd42c377149abd20c9507cb70f, type: 3}
   m_PrefabInstance: {fileID: 5629820752468215598}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8801982793492717535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5474186291333146383, guid: ebec0dbd42c377149abd20c9507cb70f, type: 3}
+  m_PrefabInstance: {fileID: 5629820752468215598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7097160670414887186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1700,6 +1763,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -5474186291333146383, guid: ebec0dbd42c377149abd20c9507cb70f, type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 8756623048227464615}
+    - target: {fileID: -5474186291333146383, guid: ebec0dbd42c377149abd20c9507cb70f, type: 3}
       propertyPath: <ChildNetworkObjects>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1844,6 +1911,10 @@ PrefabInstance:
       propertyPath: <ComponentIndex>k__BackingField
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8031126158639797012, guid: 7fe074f22a922d346abeef0a74266e0d, type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 8756623048227464615}
     - target: {fileID: 8031126158639797012, guid: 7fe074f22a922d346abeef0a74266e0d, type: 3}
       propertyPath: <ChildNetworkObjects>k__BackingField.Array.size
       value: 1
