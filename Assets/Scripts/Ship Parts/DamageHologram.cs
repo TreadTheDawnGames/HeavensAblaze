@@ -9,7 +9,20 @@ public class DamageHologram : MonoBehaviour
     public Material glitchedMaterial;
     public Material regularMaterial;
 
-
+/*    private int _damage;
+    public int damage
+    {
+        get
+        {
+            return _damage;
+        }
+        set
+        {
+            _damage = value;
+            doMyStuff(value);
+        }
+    }
+*/
     
 
     public Color GetDamageColor(float partDamage)
@@ -47,7 +60,7 @@ public class DamageHologram : MonoBehaviour
         if (counterpart == null || counterpart.gameObject.activeInHierarchy == false)
             return;
 
-        StartCoroutine(SwapHUDMaterial(counterpart, GetDamageColor(partDamage)));
+        StartCoroutine(SwapHUDMaterial(counterpart,partDamage));
 
         /*if (partDamage <= 0)
         {
@@ -62,8 +75,12 @@ public class DamageHologram : MonoBehaviour
 
     }
 
-    private IEnumerator SwapHUDMaterial(DamageHologram counterpart, Color color)
+    private IEnumerator SwapHUDMaterial(DamageHologram counterpart, float damage)
     {
+        print("Started coroutine for " + counterpart);
+
+        Color color = GetDamageColor(damage);
+
         if (counterpart == null)
             yield break;
 
@@ -72,10 +89,19 @@ public class DamageHologram : MonoBehaviour
 
         print("material changed to hit");
 
+        print("basePart damage (Before): " + counterpart.basePart.hitPoints);
 
-        yield return new WaitForSeconds(0.5f);
+        int count = 0;
+       // while (count <= 150 && counterpart.basePart != null && damage == counterpart.basePart.hitPoints)
+        {
+            yield return new WaitForSeconds(0.1f);
+            count++;
+        }
+
+        print("basePart damage (After): " + count + " / " + counterpart.basePart.hitPoints);
 
         print("material changed to not-hit");
+
 
        /* bool damagedDestroyed = false;
         if (damagedPart == null) damagedDestroyed = true;*/
@@ -90,6 +116,7 @@ public class DamageHologram : MonoBehaviour
             counterpart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
 
         }
+        print("ended coroutine for " + counterpart);
     }
 
     public void SetToDeadMaterial(GameObject counterpart)
@@ -104,7 +131,7 @@ public class DamageHologram : MonoBehaviour
     [SerializeField]
     ShipPart basePart;
 
-    public void UpdateHolo()
+    /*public void UpdateHolo()
     {
 
        // print("hit " + gameObject.name);
@@ -122,13 +149,13 @@ public class DamageHologram : MonoBehaviour
             }
             transform.GetChild(i).GetComponent<DamageHologram>()?.UpdateHolo();
         }
-    }
+    }*/
 
 
-    public void UpdateCounterpart()
+    public void UpdateCounterpart(float hitPoints)
     {
         if(basePart != null)
-            ChangeColorAndMaterial(this, basePart.hitPoints);
+            ChangeColorAndMaterial(this, hitPoints);
         
     }
 }

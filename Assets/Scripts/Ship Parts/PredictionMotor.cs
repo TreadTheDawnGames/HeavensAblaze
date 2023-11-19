@@ -241,7 +241,8 @@ public class PredictionMotor : NetworkBehaviour
     {
             ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
         if(IsClient)
-            childPart.transform.GetComponent<ShipPart>().damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart();
+            childPart.damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(childPart.hitPoints);
+
         if (IsServer)
         {
 
@@ -337,9 +338,9 @@ public class PredictionMotor : NetworkBehaviour
             }
             foreach (Camera camera in FindObjectsOfType<Camera>().ToList<Camera>())
             {
-                if (camera.transform.root.name.StartsWith("DEBRIS"))
+                if (camera.transform.root.name.StartsWith("DEBRIS")|| camera.transform.root.GetComponent<CameraDampener>() != null)
                 {
-                    camera.gameObject.SetActive(false);
+                    Destroy(camera.gameObject);
                 }
             }
 

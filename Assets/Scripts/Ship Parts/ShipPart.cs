@@ -16,10 +16,14 @@ using FishNet.Observing;
 
 public class ShipPart : NetworkBehaviour
 {
-    [SyncVar]
+    [SyncVar(Channel = Channel.Unreliable, OnChange = nameof(on_health))]
     public float hitPoints = 50f;
     public float maxHitPoints = 50f;
-
+    private void on_health(float prev, float next, bool asServer)
+    {
+        if(damageHudCounterpart!=null)  
+            damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
+    }
     //[SyncVar] public Transform parent;
     //[SyncVar] public NetworkObject netParent;
 
@@ -73,7 +77,7 @@ public class ShipPart : NetworkBehaviour
     {
         if (damageHudCounterpart != null)
         {
-            transform.root.GetComponentInChildren<DamageHologram>()?.UpdateHolo() ;
+            transform.root.GetComponentInChildren<DamageHologram>()?.UpdateCounterpart(hitPoints) ;
         }
     }
 

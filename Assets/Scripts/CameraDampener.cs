@@ -20,7 +20,7 @@ public class CameraDampener : NetworkBehaviour
 
     public void Transition()
     {
-        //if (!isActiveAndEnabled)
+        if (isActiveAndEnabled)
             StartCoroutine(Lerp());
     }
 

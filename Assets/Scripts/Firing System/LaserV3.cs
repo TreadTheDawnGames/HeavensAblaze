@@ -122,7 +122,8 @@ public class LaserV3 : NetworkBehaviour
             Debug.Log("Continuing: good target");
 */
         }
-
+        print("Started laser hit for " + collision.gameObject.name + collision.GetComponent<NetworkObject>()?.ObjectId);
+        print("Part damage before: " + collision.transform.GetComponent<ShipPart>()?.hitPoints);
 
         /* These projectiles are instantiated locally, as in,
          * they are not networked. Because of this there is a very
@@ -132,8 +133,15 @@ public class LaserV3 : NetworkBehaviour
        //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
-            if(collision.GetComponent<ShipPart>() != null)
-                collision.GetComponent<ShipPart>()?.damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart();
+            /*if(collision.TryGetComponent<ShipPart>(out ShipPart sp))
+            {
+                if(sp.damageHudCounterpart!=null && sp.damageHudCounterpart.TryGetComponent<DamageHologram>(out DamageHologram dh))
+                {
+                    dh.UpdateCounterpart();
+                }
+            }*/
+
+
             
             if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))
             {
@@ -160,6 +168,8 @@ public class LaserV3 : NetworkBehaviour
        
 
 
+        print("Part damage after: " + collision.transform.GetComponent<ShipPart>()?.hitPoints);
+        print("ended laser hit for " + collision.gameObject.name + collision.GetComponent<NetworkObject>()?.ObjectId);
         //Destroy projectile (probably pool it instead).
         Destroy(gameObject);
     }
