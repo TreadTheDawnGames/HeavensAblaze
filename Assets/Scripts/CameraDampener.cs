@@ -20,7 +20,8 @@ public class CameraDampener : NetworkBehaviour
 
     public void Transition()
     {
-        StartCoroutine(Lerp());
+        //if (!isActiveAndEnabled)
+            StartCoroutine(Lerp());
     }
 
     float timeElapsed = 0;

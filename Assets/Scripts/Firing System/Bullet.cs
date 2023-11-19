@@ -7,7 +7,9 @@ using FishNet.Object;
 using FishNet.Object.Prediction;
 using FishNet;
 using FishNet.Managing.Timing;
+using System;
 
+[ObsoleteAttribute]
 public class Bullet : NetworkBehaviour
 {
     private Rigidbody rb;

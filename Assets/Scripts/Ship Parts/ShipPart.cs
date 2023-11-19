@@ -71,8 +71,15 @@ public class ShipPart : NetworkBehaviour
 
     private void OnDestroy()
     {
+        if (damageHudCounterpart != null)
+        {
+            transform.root.GetComponentInChildren<DamageHologram>()?.UpdateHolo() ;
+        }
+    }
 
-        transform?.root?.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(damageHudCounterpart, this);
+    public void UpdateCounterpart()
+    {
+        transform.root.GetComponentInChildren<DamageHologram>()?.ChangeColorAndMaterial(damageHudCounterpart.GetComponent<DamageHologram>(), hitPoints);
 
     }
 
@@ -212,7 +219,6 @@ public class ShipPart : NetworkBehaviour
         {
 
 
-            Debug.Log("***************");
 
             GameObject debrisChild = null;
             if (GO.TryGetComponent<ShipPart>(out ShipPart part))
@@ -225,7 +231,6 @@ public class ShipPart : NetworkBehaviour
                 return;
             }
 
-            Debug.Log("++++++++++ Instantiating: " + debrisChild.name + " / " + parent.name);
             GameObject spawn = Instantiate(debrisChild, GO.transform.position, GO.transform.rotation, parent);
 
             if (spawn.TryGetComponent<Rigidbody>(out Rigidbody rb))
@@ -257,14 +262,16 @@ public class ShipPart : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (IsClient)
+            ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
+        if (IsServer)
         {
 
-            ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
+
             if (GetComponent<Rigidbody>().velocity.magnitude > 2)
                 childPart.hitPoints -= GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
             childPart.DestroyIfDead();
         }
+        
     }
 
     [SerializeField]

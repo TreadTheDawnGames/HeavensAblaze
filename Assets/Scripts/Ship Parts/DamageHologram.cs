@@ -6,23 +6,27 @@ using UnityEngine;
 public class DamageHologram : MonoBehaviour
 {
 
+    public Material glitchedMaterial;
+    public Material regularMaterial;
+
+
     
 
-    public Color GetDamageColor(ShipPart damagedPart)
+    public Color GetDamageColor(float partDamage)
     {
 
-        if (damagedPart.hitPoints > (damagedPart.maxHitPoints / 3f) && damagedPart.hitPoints < 2f * (damagedPart.maxHitPoints / 3f))
+        if (partDamage > (50f / 3f) && partDamage < 2f * (50f / 3f))
         {
             return Color.yellow * 20;
 
 
         }
-        else if (damagedPart.hitPoints < (damagedPart.maxHitPoints / 3) && damagedPart.hitPoints > 0f)
+        else if (partDamage < (50f / 3) && partDamage > 0f)
         {
             return Color.red * 40;
 
         }
-        else if (damagedPart.hitPoints <= 0)
+        else if (partDamage <= 0)
         {
             return Color.green * 0f;
 
@@ -35,53 +39,96 @@ public class DamageHologram : MonoBehaviour
     }
 
 
-    public void ChangeCounterpartColor(GameObject counterpart, ShipPart damagedPart)
+    public void ChangeColorAndMaterial(DamageHologram counterpart, float partDamage)
     {
-        if (counterpart == null || counterpart.activeInHierarchy == false)
+
+        //GameObject counterpart= damagedPart.damageHudCounterpart;
+
+        if (counterpart == null || counterpart.gameObject.activeInHierarchy == false)
             return;
 
+        StartCoroutine(SwapHUDMaterial(counterpart, GetDamageColor(partDamage)));
 
-        if (damagedPart.hitPoints <= 0)
+        /*if (partDamage <= 0)
         {
-            if (counterpart.transform.childCount > 0)
-            {
-                for (int i = 0; i < counterpart.transform.childCount; i++)
-                {
-                    ChangeCounterpartColor(counterpart.transform.GetChild(i).gameObject, damagedPart);
-                }
-            }
-        }
 
-        StartCoroutine(SwapHUDMaterial(counterpart, GetDamageColor(damagedPart), damagedPart));
+            Destroy(gameObject);
+            
+        }*/
+
         
 
 
 
     }
-    public Material glitchedMaterial;
-    public Material regularMaterial;
 
-
-    private IEnumerator SwapHUDMaterial(GameObject hudPart, Color color, ShipPart damagedPart)
+    private IEnumerator SwapHUDMaterial(DamageHologram counterpart, Color color)
     {
-        if (hudPart == null)
+        if (counterpart == null)
             yield break;
 
-        hudPart.GetComponent<MeshRenderer>().material = glitchedMaterial;
-        hudPart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
+        counterpart.GetComponent<MeshRenderer>().material = glitchedMaterial;
+        counterpart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
 
-        yield return new WaitForSeconds(0.1f);
+        print("material changed to hit");
 
-        bool damagedDestroyed = false;
-        if (damagedPart == null) damagedDestroyed = true;
 
-        
-        if (hudPart != null && !damagedDestroyed)
+        yield return new WaitForSeconds(0.5f);
+
+        print("material changed to not-hit");
+
+       /* bool damagedDestroyed = false;
+        if (damagedPart == null) damagedDestroyed = true;*/
+        if(counterpart.basePart == null || !counterpart.basePart.gameObject.activeInHierarchy)
         {
-            hudPart.GetComponent<MeshRenderer>().material = regularMaterial;
-            hudPart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
-
+            Destroy(gameObject);
+        }
+        
+        if (counterpart != null /*&& !damagedDestroyed*/)
+        {
+            counterpart.GetComponent<MeshRenderer>().material = regularMaterial;
+            counterpart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
 
         }
+    }
+
+    public void SetToDeadMaterial(GameObject counterpart)
+    {
+        StopCoroutine("SwapHUDMaterial");
+
+        counterpart.GetComponent<MeshRenderer>().material = glitchedMaterial;
+        counterpart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", Color.green * 0f) ;
+
+    }
+
+    [SerializeField]
+    ShipPart basePart;
+
+    public void UpdateHolo()
+    {
+
+       // print("hit " + gameObject.name);
+
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (basePart != null)
+                transform.GetChild(i).GetComponent<DamageHologram>()?.UpdateCounterpart();
+            else if(gameObject.GetComponent<MeshRenderer>()!=null)
+            {
+                gameObject.GetComponent<MeshRenderer>().material = glitchedMaterial;
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_MainColor", Color.green * 0f);
+
+            }
+            transform.GetChild(i).GetComponent<DamageHologram>()?.UpdateHolo();
+        }
+    }
+
+
+    public void UpdateCounterpart()
+    {
+        if(basePart != null)
+            ChangeColorAndMaterial(this, basePart.hitPoints);
+        
     }
 }

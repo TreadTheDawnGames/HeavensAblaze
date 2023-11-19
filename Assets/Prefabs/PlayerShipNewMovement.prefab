@@ -488,8 +488,7 @@ MonoBehaviour:
   - {fileID: 5625079233873163944}
   - {fileID: 6421230819222282558}
   <ParentNetworkObject>k__BackingField: {fileID: 1108100127182144343}
-  <ChildNetworkObjects>k__BackingField:
-  - {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
     Position: {x: 0, y: 0.0040000975, z: 5.9}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
@@ -558,8 +557,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 2179317181517415770, guid: 18c35432e21141843b05f1c5729fb990, type: 3}
   damageHudCounterpart: {fileID: 4315713298605378643}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
   root: {fileID: 0}
   cam: {fileID: 0}
 --- !u!1 &593972849467792051
@@ -676,8 +673,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 811012160001688720, guid: 11f96e1a8ad8d0148b4273cef3eea7c9, type: 3}
   damageHudCounterpart: {fileID: 7073714463806532087}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &4458997867012844273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 17
+  <ComponentIndex>k__BackingField: 15
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 9159175239805278171}
@@ -818,8 +813,9 @@ GameObject:
   - component: {fileID: 661811475082577751}
   - component: {fileID: 673196356095441367}
   - component: {fileID: 680987439256795853}
+  - component: {fileID: 8281404186280319983}
   m_Layer: 0
-  m_Name: DamageHolo
+  m_Name: MainBody
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,6 +892,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8281404186280319983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659072433960295877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 3061293453561482294}
 --- !u!1 &659683447877911201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1084,7 @@ GameObject:
   - component: {fileID: 909950848516540460}
   - component: {fileID: 920538796100835986}
   - component: {fileID: 929319186959317088}
+  - component: {fileID: 8424008945127275430}
   m_Layer: 10
   m_Name: StarboardBlaster
   m_TagString: ship body
@@ -1145,6 +1157,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8424008945127275430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916421166786005216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 4197694443606761902}
 --- !u!1 &917271927635654313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1183,7 @@ GameObject:
   - component: {fileID: 915106820414513497}
   - component: {fileID: 921762633276993467}
   - component: {fileID: 932152315300463105}
+  - component: {fileID: 2085598791031909764}
   m_Layer: 0
   m_Name: PortBody
   m_TagString: ship body
@@ -1231,6 +1259,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2085598791031909764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917271927635654313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 9082669467972612393}
 --- !u!1 &967975839617266692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1700,7 @@ GameObject:
   - component: {fileID: 1622011402421012236}
   - component: {fileID: 1649791476021338820}
   - component: {fileID: 1639454483377834848}
+  - component: {fileID: 9088191864048047880}
   m_Layer: 0
   m_Name: PortLargeWing
   m_TagString: ship body
@@ -1730,6 +1774,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9088191864048047880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627854481311530850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 8941636783857954174}
 --- !u!1 &1807218332833124013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,6 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
   regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 0}
 --- !u!1 &1857894922026605868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,8 +1952,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 5966448011966313755, guid: cccf8407675eea84db47644cbd6c1013, type: 3}
   damageHudCounterpart: {fileID: 3245404445211909863}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &9054018023451953807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,7 +1965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 11
+  <ComponentIndex>k__BackingField: 9
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 3486316545179820338}
@@ -2234,6 +2292,7 @@ GameObject:
   - component: {fileID: 2408458524719972688}
   - component: {fileID: 2381038717104694424}
   - component: {fileID: 2391017402434997564}
+  - component: {fileID: 3873941247956864980}
   m_Layer: 0
   m_Name: StarboardLargeWing
   m_TagString: ship body
@@ -2307,6 +2366,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3873941247956864980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412055304047687998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 3575602308188727079}
 --- !u!1 &2584330154625863763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,8 +2828,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 995413602997119175, guid: a3d1374467ca7a84d8690037f59a7586, type: 3}
   damageHudCounterpart: {fileID: 916421166786005216}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &3272608215638426253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2769,7 +2841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 10
+  <ComponentIndex>k__BackingField: 8
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 4197694443606761902}
@@ -3004,8 +3076,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 4106634755171536676, guid: 4db4928ed2d7ba643a7793b5a61ee89a, type: 3}
   damageHudCounterpart: {fileID: 917271927635654313}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &7222148593307531868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3019,7 +3089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 14
+  <ComponentIndex>k__BackingField: 12
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 9082669467972612393}
@@ -3265,8 +3335,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 854212674681976713, guid: aa37f8dac44362b4a90df87aef77c720, type: 3}
   damageHudCounterpart: {fileID: 4952526517578542766}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &3557753721484384471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3280,7 +3348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 12
+  <ComponentIndex>k__BackingField: 10
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 1198386528956311135}
@@ -3325,6 +3393,7 @@ GameObject:
   - component: {fileID: 3242763320669599637}
   - component: {fileID: 3276135923711262965}
   - component: {fileID: 3268441917814098815}
+  - component: {fileID: 5635975894595717980}
   m_Layer: 0
   m_Name: StarboardUpperWing
   m_TagString: ship body
@@ -3397,6 +3466,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5635975894595717980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245404445211909863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 3486316545179820338}
 --- !u!1 &3267662833257777207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,8 +3679,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 6495566703491081548, guid: c0f19cddce682b64b87164f0c0439c78, type: 3}
   damageHudCounterpart: {fileID: 6936344867401459837}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
   alternateSupport: {fileID: 7933884648759838941}
   hasChild: 1
   alternateSupportHudCounterpart: {fileID: 9004097075771986084}
@@ -3613,7 +3695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 13
+  <ComponentIndex>k__BackingField: 11
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 93269840197402927}
@@ -3879,8 +3961,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 4633965018164895638, guid: 0d15080cced52dc4eab4ae23e1435d4f, type: 3}
   damageHudCounterpart: {fileID: 4082959777514095283}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &2204128287715840632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3894,7 +3974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 18
+  <ComponentIndex>k__BackingField: 16
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2521481955775224455}
@@ -4188,6 +4268,7 @@ GameObject:
   - component: {fileID: 4088869351227556479}
   - component: {fileID: 4096084692788056257}
   - component: {fileID: 4106091657049961011}
+  - component: {fileID: 8570673130853493338}
   m_Layer: 10
   m_Name: PortBlaster
   m_TagString: ship body
@@ -4260,6 +4341,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8570673130853493338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082959777514095283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 2521481955775224455}
 --- !u!1 &4121417065491699481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,8 +4513,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 1435303954191780476, guid: b2c541b4f97441744817af62b2906508, type: 3}
   damageHudCounterpart: {fileID: 9004097075771986084}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &2609810771120417631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4432,7 +4526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 19
+  <ComponentIndex>k__BackingField: 17
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2604177224775252034}
@@ -4560,6 +4654,7 @@ GameObject:
   - component: {fileID: 4319432659364821129}
   - component: {fileID: 4293978372025566139}
   - component: {fileID: 4301524140612613443}
+  - component: {fileID: 8710758794454205957}
   m_Layer: 0
   m_Name: Cockpit
   m_TagString: Untagged
@@ -4633,6 +4728,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8710758794454205957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315713298605378643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 5625079233873163944}
 --- !u!1 &4316068331185102539
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,8 +4940,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 8166672600586179698, guid: 6bfe29d766de7ea4eb43db00b1a6991c, type: 3}
   damageHudCounterpart: {fileID: 4948530844344400474}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &2666647688940424582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4845,7 +4953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 15
+  <ComponentIndex>k__BackingField: 13
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 6214245077238066504}
@@ -4972,6 +5080,7 @@ GameObject:
   - component: {fileID: 4946218655883255460}
   - component: {fileID: 4962024680469925436}
   - component: {fileID: 4969907484235300432}
+  - component: {fileID: 7931205557482449379}
   m_Layer: 0
   m_Name: PortEngine
   m_TagString: ship body
@@ -5044,6 +5153,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7931205557482449379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948530844344400474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 6214245077238066504}
 --- !u!1 &4952526517578542766
 GameObject:
   m_ObjectHideFlags: 0
@@ -5055,6 +5179,7 @@ GameObject:
   - component: {fileID: 4950452740762470364}
   - component: {fileID: 4955150116271435964}
   - component: {fileID: 4965429825631337270}
+  - component: {fileID: 7411389693251172759}
   m_Layer: 0
   m_Name: StarboardTail
   m_TagString: ship body
@@ -5127,6 +5252,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7411389693251172759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952526517578542766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 1198386528956311135}
 --- !u!1 &4954910500065779347
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,6 +5311,7 @@ GameObject:
   - component: {fileID: 5120298152373878609}
   - component: {fileID: 5150222718457399345}
   - component: {fileID: 5140224139138057147}
+  - component: {fileID: 5310296923306880899}
   m_Layer: 0
   m_Name: PortTail
   m_TagString: ship body
@@ -5243,6 +5384,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5310296923306880899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118224566957397539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 3547532755605313539}
 --- !u!1 &5118361628593860086
 GameObject:
   m_ObjectHideFlags: 0
@@ -5490,8 +5646,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 762981041287403669, guid: bde3a02ba0d8c2b429b137e782faf160, type: 3}
   damageHudCounterpart: {fileID: 7735765633954239791}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &4598649451210763521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5505,7 +5659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 9
+  <ComponentIndex>k__BackingField: 7
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 8597717999941921568}
@@ -5687,8 +5841,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 5664024148753422706, guid: 2d16a0c14f5387d4aabae38d2c13e2ac, type: 3}
   damageHudCounterpart: {fileID: 2412055304047687998}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &7130604413930889920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5702,7 +5854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 8
+  <ComponentIndex>k__BackingField: 6
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 3575602308188727079}
@@ -6703,8 +6855,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 1395894264075563107, guid: b39833114c62b9640ad37e2a07e1c44e, type: 3}
   damageHudCounterpart: {fileID: 8036136622345661761}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &5399910879307005185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6718,7 +6868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 6
+  <ComponentIndex>k__BackingField: 4
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 267071918001611267}
@@ -7110,6 +7260,7 @@ GameObject:
   - component: {fileID: 6491917219484061260}
   - component: {fileID: 6512306337463892268}
   - component: {fileID: 6506758924836139686}
+  - component: {fileID: 2616826764302385238}
   m_Layer: 0
   m_Name: StarboardLowerWing
   m_TagString: ship body
@@ -7183,6 +7334,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2616826764302385238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493784367569037118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 1506968248875949833}
 --- !u!1 &6535270083715999935
 GameObject:
   m_ObjectHideFlags: 0
@@ -7380,8 +7546,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 784535784555587574, guid: 897cc3796ff9b8d4484ea54d60ef067b, type: 3}
   damageHudCounterpart: {fileID: 5118224566957397539}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &3564129775933450657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7395,7 +7559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 20
+  <ComponentIndex>k__BackingField: 18
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 3547532755605313539}
@@ -7440,6 +7604,7 @@ GameObject:
   - component: {fileID: 6938844996961845519}
   - component: {fileID: 6934429131798083183}
   - component: {fileID: 6922296881708760549}
+  - component: {fileID: 5794639436235198631}
   m_Layer: 0
   m_Name: PortLowerWing
   m_TagString: ship body
@@ -7513,6 +7678,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5794639436235198631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6936344867401459837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 93269840197402927}
 --- !u!1 &6985928971119296443
 GameObject:
   m_ObjectHideFlags: 0
@@ -7627,8 +7807,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 3790386061770104960, guid: 0519907b4f3f9314686cc6a50203180c, type: 3}
   damageHudCounterpart: {fileID: 9173612083780749472}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &3082780588136901237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7642,7 +7820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 7
+  <ComponentIndex>k__BackingField: 5
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 7941552249507965588}
@@ -7885,6 +8063,7 @@ GameObject:
   - component: {fileID: 7070935513382646473}
   - component: {fileID: 7086713044534172497}
   - component: {fileID: 7096084204371246973}
+  - component: {fileID: 2633848139878736668}
   m_Layer: 0
   m_Name: PortLauncher
   m_TagString: ship body
@@ -7957,6 +8136,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2633848139878736668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073714463806532087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 9159175239805278171}
 --- !u!1 &7188574460418625669
 GameObject:
   m_ObjectHideFlags: 0
@@ -8072,8 +8266,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 1138686896202132161, guid: 873c43e3c8fab944ba3585d4bcf08593, type: 3}
   damageHudCounterpart: {fileID: 6493784367569037118}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
   alternateSupport: {fileID: 5269781142277030034}
   hasChild: 1
   alternateSupportHudCounterpart: {fileID: 3245404445211909863}
@@ -8090,7 +8282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 5
+  <ComponentIndex>k__BackingField: 3
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 1506968248875949833}
@@ -8406,8 +8598,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 4262579675015811570, guid: 8c75a12847c2866458c9a653cef2b068, type: 3}
   damageHudCounterpart: {fileID: 1627854481311530850}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
 --- !u!114 &5310433346382501726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8421,7 +8611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 16
+  <ComponentIndex>k__BackingField: 14
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 8941636783857954174}
@@ -8550,6 +8740,7 @@ GameObject:
   - component: {fileID: 7732986682997378577}
   - component: {fileID: 7721733820695275401}
   - component: {fileID: 7713064124622668709}
+  - component: {fileID: 4897796155402782458}
   m_Layer: 0
   m_Name: StarboardLauncher
   m_TagString: ship body
@@ -8622,6 +8813,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4897796155402782458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735765633954239791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 8597717999941921568}
 --- !u!1 &7740333171839987156
 GameObject:
   m_ObjectHideFlags: 0
@@ -8818,7 +9024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 21
+  <ComponentIndex>k__BackingField: 19
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours: []
   <ParentNetworkObject>k__BackingField: {fileID: 1108100127182144343}
@@ -9097,6 +9303,7 @@ GameObject:
   - component: {fileID: 8038862203502901937}
   - component: {fileID: 8067662583747228755}
   - component: {fileID: 8057909281871649257}
+  - component: {fileID: 1045478884217892876}
   m_Layer: 0
   m_Name: StarboardBody
   m_TagString: ship body
@@ -9172,6 +9379,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1045478884217892876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036136622345661761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 267071918001611267}
 --- !u!1 &8194163464253271978
 GameObject:
   m_ObjectHideFlags: 0
@@ -9616,8 +9838,6 @@ MonoBehaviour:
   _parent: {fileID: 0}
   debris: {fileID: 7618652203882853021, guid: f2ec75b5c8b5e5c4b8d363ef89ccdef8, type: 3}
   damageHudCounterpart: {fileID: 659072433960295877}
-  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
-  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
   root: {fileID: 0}
 --- !u!1 &8492800243895846407
 GameObject:
@@ -10116,6 +10336,7 @@ GameObject:
   - component: {fileID: 9006522777577781718}
   - component: {fileID: 8974030234204851894}
   - component: {fileID: 8982097589795013948}
+  - component: {fileID: 3649373693655984833}
   m_Layer: 0
   m_Name: PortUpperWing
   m_TagString: ship body
@@ -10188,6 +10409,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3649373693655984833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004097075771986084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 2604177224775252034}
 --- !u!1 &9173612083780749472
 GameObject:
   m_ObjectHideFlags: 0
@@ -10199,6 +10435,7 @@ GameObject:
   - component: {fileID: 9171579176364895326}
   - component: {fileID: 9169089335023910086}
   - component: {fileID: 9158959921846013098}
+  - component: {fileID: 6287917535263678186}
   m_Layer: 0
   m_Name: StarboardEngine
   m_TagString: ship body
@@ -10271,6 +10508,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6287917535263678186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173612083780749472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4768a92c93f1002498495becc5e8df0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchedMaterial: {fileID: 2100000, guid: 55b906d45550aed4a9caacfb764e98c2, type: 2}
+  regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
+  basePart: {fileID: 7941552249507965588}
 --- !u!1 &9221221527490524764
 GameObject:
   m_ObjectHideFlags: 0

@@ -239,15 +239,16 @@ public class PredictionMotor : NetworkBehaviour
     public float collisionDivider = 5f;
     private void OnCollisionEnter(Collision collision)
     {
+            ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
+        if(IsClient)
+            childPart.transform.GetComponent<ShipPart>().damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart();
         if (IsServer)
         {
 
 
-            ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
             if (_rigidbody.velocity.magnitude > 2)
                 childPart.hitPoints -= _rigidbody.velocity.magnitude / collisionDivider;
 
-            GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(childPart.damageHudCounterpart, childPart);
 
             childPart.DestroyIfDead();
         }

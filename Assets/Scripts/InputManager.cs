@@ -184,7 +184,7 @@ public class InputManager : MonoBehaviour
         foreach (RebindUI button in rebindButtons)
         {
             button.UpdateUI();
-            Debug.Log("Updated " + button.name);
+        //    Debug.Log("Updated " + button.name);
         }
         if (ship != null)
         {
@@ -261,7 +261,7 @@ public class InputManager : MonoBehaviour
         foreach (RebindUI button in rebindButtons)
         {
             button.UpdateUI();
-            Debug.Log("Updated " + button.name);
+         //   Debug.Log("Updated " + button.name);
         }
     }
 

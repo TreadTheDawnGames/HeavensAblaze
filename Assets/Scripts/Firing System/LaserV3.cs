@@ -129,10 +129,12 @@ public class LaserV3 : NetworkBehaviour
          * small chance the occasional projectile may not align with
          * 100% accuracy. But, the differences are generally
          * insignifcant and will not affect gameplay. */
-
-        //If client show visual effects, play impact audio.
+       //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
+            if(collision.GetComponent<ShipPart>() != null)
+                collision.GetComponent<ShipPart>()?.damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart();
+            
             if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))
             {
                 //collision.transform.root.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(collision.GetComponent<ShipPart>().damageHudCounterpart, collision.GetComponent<ShipPart>());
@@ -142,22 +144,22 @@ public class LaserV3 : NetworkBehaviour
                 Instantiate(hitSparks, pos, rot);
             }
         }
+        
         //If server check to damage hit objects.
         if (InstanceFinder.IsServer)
         {
             if (collision.gameObject.TryGetComponent<ShipPart>(out ShipPart ps))
             {
-
                 ps.hitPoints -= 12;
-
                 
-                   collision.transform.root.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(ps.damageHudCounterpart, ps);
-
                 ps.DestroyIfDead();
 
             }
         }
-        
+         
+       
+
+
         //Destroy projectile (probably pool it instead).
         Destroy(gameObject);
     }
