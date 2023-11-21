@@ -15,7 +15,6 @@ public class AddInvertedMeshCollider : MonoBehaviour
 
         gameObject.AddComponent<MeshCollider>();
     }
-
     private void RemoveExistingColliders()
     {
         Collider[] colliders = GetComponents<Collider>();
@@ -27,7 +26,6 @@ public class AddInvertedMeshCollider : MonoBehaviour
     {
         Mesh mesh = GetComponent<MeshFilter>().sharedMesh;
         mesh.triangles = mesh.triangles.Reverse().ToArray();
-       // mesh.normals = mesh.normals.Select(n => -n).ToArray();
 
     }
 
