@@ -179,6 +179,8 @@ public class InputManager : MonoBehaviour
 
         }
 
+        RebindUI.excludeMouse = !inputActions.Mouse.enabled;
+        print("excludeMouse = " + RebindUI.excludeMouse);
 
 
         foreach (RebindUI button in rebindButtons)
@@ -256,7 +258,6 @@ public class InputManager : MonoBehaviour
 
         ChangeInputType(num);
        // if (ship != null)
-            RebindUI.excludeMouse = inputActions.Mouse.enabled;
 
         foreach (RebindUI button in rebindButtons)
         {

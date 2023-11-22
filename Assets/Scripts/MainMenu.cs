@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject controlsHud;
     public GameObject personalizationHud;
 
+
     public PredictionMotor ship;
     public InputManager inputManager;
 
@@ -24,35 +25,28 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-
-
-            if (!anotherMenuUp)
-            {
-                ToggleMenu(settingsHud);
-                inputManager.menuUp = !inputManager.menuUp;
-            }
-
+            ToggleMainMenu();
         }
-
-
     }
 #else
 private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
-
-            if (!anotherMenuUp)
-            {
-                ToggleMenu(settingsHud);
-            }
-            
+           ToggleMainMenu();
         }
-        
-
     }
 #endif
+
+    public void ToggleMainMenu()
+    {
+        if (!anotherMenuUp)
+        {
+            ToggleMenu(settingsHud);
+            inputManager.menuUp = !inputManager.menuUp;
+        }
+    }
+
     public void ToggleMenu(GameObject menu)
     {
 
@@ -72,8 +66,11 @@ private void Update()
 
         if (ship != null)
         {
+
             if (Cursor.visible)
+            {
                 ship.playerShip.Disable();
+            }
             else
                 ship.inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
         }
