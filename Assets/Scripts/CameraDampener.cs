@@ -19,14 +19,7 @@ public class CameraDampener : NetworkBehaviour
     public float maxDisplacement = 0.1f;
     public float positionMultiplier = 0.25f;
 
-    /*private void Update()
-    {
-        {
-            //transform.localPosition = -Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().velocity), maxDisplacement) * positionMultiplier;
-            //transform.localPosition = -Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().velocity), maxDisplacement) * positionMultiplier;
-            
-        }
-    }*/
+    
 
     
 

@@ -50,6 +50,9 @@ public class ShipPart : NetworkBehaviour
     [SerializeField]
     NetworkBehaviour _parent;
 
+    [SerializeField]
+    public ParticleSystem collisionImpact;
+
 #if UNITY_EDITOR
     private void FixedUpdate()
     {
@@ -267,12 +270,27 @@ public class ShipPart : NetworkBehaviour
     private void OnCollisionEnter(Collision collision)
     {
             ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
+            Rigidbody otherPart = collision.GetContact(0).otherCollider.transform.root.GetComponentInChildren<Rigidbody>();
+
+        if (IsClient && childPart != null)
+        {
+            Instantiate(childPart.collisionImpact, collision.GetContact(0).point, Quaternion.Euler(collision.GetContact(0).normal));
+        }
+
         if (IsServer)
         {
 
 
             if (GetComponent<Rigidbody>().velocity.magnitude > 2)
-                childPart.hitPoints -= GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
+            {
+                    float damage = GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
+                if(otherPart!=null) 
+                { 
+                    damage *= Mathf.Clamp(otherPart.velocity.magnitude, 1f, 50f); 
+                }
+                childPart.hitPoints -= damage;
+
+            }
             childPart.DestroyIfDead();
         }
         

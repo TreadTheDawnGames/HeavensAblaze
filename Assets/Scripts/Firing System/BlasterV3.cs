@@ -23,8 +23,13 @@ public class BlasterV3 : NetworkBehaviour
 
     public Vector3 originalPos;
 
+    [SerializeField]
+    AudioSource audioSource;
+
     public void Setup()
     {
+        if(audioSource == null) audioSource = GetComponent<AudioSource>();
+
         isUsingAimpoint = PlayerPrefs.GetInt("useAimpoint", 1) == 1 ? true : false;
 
         if (!base.IsOwner)
@@ -95,7 +100,9 @@ public class BlasterV3 : NetworkBehaviour
     
     private void SpawnProjectile(Vector3 position, Vector3 direction, float passedTime, NetworkConnection connection)
     {
-        
+
+        audioSource.pitch = Random.Range(0.75f, 1f);
+        audioSource.Play();
 
         laserColor = myShip.syncedLaserColor;
 

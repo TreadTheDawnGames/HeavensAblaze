@@ -12,6 +12,8 @@ using FishNet.Component.Prediction;
 using UnityEngine.InputSystem;
 using System.Data;
 using FishNet.Managing.Timing;
+using UnityEngine.InputSystem.Layouts;
+using Unity.VisualScripting;
 
 public class PredictionMotor : NetworkBehaviour
 {
@@ -126,7 +128,6 @@ public class PredictionMotor : NetworkBehaviour
 
 
     public List<BlasterV3> blasters = new List<BlasterV3>();
-    public float _thrust;
 
     public bool blastersUseAimpoint = true;
 
@@ -154,14 +155,17 @@ public class PredictionMotor : NetworkBehaviour
     [SerializeField]
     public MainMenu mainMenu;
 
-
-
     #endregion
-    
 
+    [SerializeField]
+    ShipSound shipSound;
+
+    [SerializeField]
+    DamageHologram damageHolo;
     private void Awake()
     {
-        
+        if (damageHolo == null) GetComponentInChildren<DamageHologram>();
+        if (shipSound == null) GetComponent<ShipSound>();
 
         
         _rigidbody = GetComponent<Rigidbody>();
@@ -175,8 +179,7 @@ public class PredictionMotor : NetworkBehaviour
 
     }
 
-    
-            
+
 
     [ServerRpc(RequireOwnership=true)]
     public void ChangeColor(PredictionMotor script, Color changeToColor)
@@ -239,19 +242,40 @@ public class PredictionMotor : NetworkBehaviour
     public float collisionDivider = 5f;
     private void OnCollisionEnter(Collision collision)
     {
+
             ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
-        if(IsClient)
-            childPart.damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(childPart.hitPoints);
+        Rigidbody otherPart = collision.GetContact(0).otherCollider.transform.root.GetComponentInChildren<Rigidbody>();
+
+        if (IsClient)
+        {
+            if (childPart != null)
+            {
+                Instantiate(childPart.collisionImpact, collision.GetContact(0).point, Quaternion.Euler(collision.GetContact(0).normal));
+                if(childPart.damageHudCounterpart.TryGetComponent<DamageHologram>(out DamageHologram dh))
+                {
+                    dh.UpdateCounterpart(childPart.hitPoints);
+
+                }
+            }
+        }
 
         if (IsServer)
         {
 
 
             if (_rigidbody.velocity.magnitude > 2)
-                childPart.hitPoints -= _rigidbody.velocity.magnitude / collisionDivider;
+            {
 
+                float damage = GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
+                if (otherPart != null)
+                {
+                    damage *= Mathf.Clamp(otherPart.velocity.magnitude, 1f, 50f);
+                }
 
-            childPart.DestroyIfDead();
+                childPart.hitPoints -= damage;
+
+                childPart.DestroyIfDead();
+            }
         }
     }
    
@@ -263,6 +287,7 @@ public class PredictionMotor : NetworkBehaviour
         base.OnStartClient();
         if (!base.IsOwner)
         {
+            damageHolo.gameObject.SetActive(false);
             gameObject.GetComponent<PredictionMotor>().enabled = false;
             
         }
@@ -611,9 +636,12 @@ public class PredictionMotor : NetworkBehaviour
             }
         }
 
+        
+
         float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
 
         //Debug.Log(thrust);
+
 
         //Be sure to add new control to this. control == off
          if (thrust == 0f && lift == 0f && lateral == 0f && pitch == 0f && roll == 0f && yaw == 0f && !brake && !fire && !swapUseAimpoint)
@@ -664,7 +692,9 @@ public class PredictionMotor : NetworkBehaviour
          * out playing the audio/vfx multiple times by not running the logic if replaying
          * is true. */
 
-        
+        shipSound.PlayThrust(data.Thrust);
+        shipSound.PlayLateral(data.Lateral);
+        shipSound.PlayLift(data.Lift);
 
         Vector3 force = new Vector3(data.Lateral, data.Lift, data.Thrust);
         //Make Ship Go
@@ -672,7 +702,6 @@ public class PredictionMotor : NetworkBehaviour
 
 
         _rigidbody.velocity = Vector3.ClampMagnitude(gameObject.GetComponent<Rigidbody>().velocity, clampVelocityMagnitude);
-
 
 
         Vector3 torque = new Vector3(data.Pitch, data.Yaw, data.Roll) * rotSpeed;
