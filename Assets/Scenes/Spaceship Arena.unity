@@ -20689,6 +20689,8 @@ GameObject:
   - component: {fileID: 6865854413610217888}
   - component: {fileID: 6865854413610217887}
   - component: {fileID: 6865854413610217889}
+  - component: {fileID: 6865854413610217891}
+  - component: {fileID: 6865854413610217890}
   m_Layer: 0
   m_Name: module6
   m_TagString: Untagged
@@ -21919,6 +21921,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.005021812
   m_Center: {x: -0.0000141327955, y: -0.015264714, z: 0.034980237}
+--- !u!65 &6865854413610217890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801088572283729650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0030682797, y: 0.033288743, z: 0.002859523}
+  m_Center: {x: 0.000018475363, y: -0.026407422, z: 0.011296848}
+--- !u!65 &6865854413610217891
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801088572283729650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0033333702, y: 0.057961818, z: 0.0034635072}
+  m_Center: {x: 0.00002373909, y: -0.038743947, z: 0.0041564275}
 --- !u!1 &7130293729878754506
 GameObject:
   m_ObjectHideFlags: 0
@@ -22224,7 +22252,7 @@ MonoBehaviour:
   _maximumConsumeCount: 4
   _redundancyCount: 3
   _allowPredictedSpawning: 1
-  _reservedObjectIds: 15
+  _reservedObjectIds: 50
 --- !u!114 &7443408888079287730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22343,7 +22371,7 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
-  m_MaximumClients: 4095
+  m_MaximumClients: 50
 --- !u!4 &8147049429812314672
 Transform:
   m_ObjectHideFlags: 0

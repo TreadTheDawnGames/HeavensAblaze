@@ -27,6 +27,9 @@ public class LaserV3 : NetworkBehaviour
     [SerializeField]
     private float MOVE_RATE = 5f;
 
+    [SerializeField]
+    AudioSource whirSource;
+
     /// <summary>
     /// Initializes this projectile.
     /// </summary>
@@ -35,6 +38,8 @@ public class LaserV3 : NetworkBehaviour
     public void Initialize(Vector3 direction, float passedTime, Color laserColor, NetworkConnection LocalConnection)
     {
         GetComponentInChildren<Renderer>().material.SetColor("_EmissionColor", laserColor * 80);
+
+        whirSource.pitch = Random.Range(0.8f, 1f);
 
         _direction = direction;
         _passedTime = passedTime;

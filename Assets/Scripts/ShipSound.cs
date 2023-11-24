@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using LambdaTheDev.NetworkAudioSync;
 using FishNet.Object;
+using Unity.VisualScripting;
 
 public class ShipSound : NetworkBehaviour
 {
@@ -28,8 +29,6 @@ public class ShipSound : NetworkBehaviour
     [SerializeField]
     NetworkAudioSource netLiftSource;
 
-    [SerializeField]
-    NetworkAudioSource netBrakeSource;
 
     [SerializeField]
     NetworkAudioSource netDeadThrust;
@@ -44,24 +43,29 @@ public class ShipSound : NetworkBehaviour
     AudioSource liftSource;
 
     [SerializeField]
-    AudioSource brakeSource;
-
-    [SerializeField]
     AudioSource deadThrust;
 
+    [SerializeField]
+    Transform lateralSoundTruck;
 
+    [SerializeField]
+    Transform liftSoundTruck;
+
+    [SerializeField]
+    PredictionMotor root;
     private void PlayLateral(float lateral)
     {
 
-
-        lateralSource.pitch = lateral;
+        lateralSoundTruck.localPosition = new Vector3(-lateral, 0);
+        netLateralSource.Volume = Mathf.Abs(lateral);
 
     }
     private void PlayLift(float lift)
     {
 
+        liftSoundTruck.localPosition = new Vector3(0,-lift);
 
-        liftSource.pitch = lift;
+        liftSource.volume = Mathf.Abs(lift);
 
     }
     [ObserversRpc]
@@ -83,7 +87,7 @@ public class ShipSound : NetworkBehaviour
     }
 
     [ObserversRpc]
-    public void PlayClientSounds(float thrust, float lift, float lateral, bool brake)
+    public void PlayClientSounds(float thrust, float lift, float lateral)
     {
         PlayThrust(thrust);
         PlayLift(lift);
@@ -93,31 +97,46 @@ public class ShipSound : NetworkBehaviour
     [ServerRpc]
     public void PlayServerSounds(float thrust, float lift, float lateral, bool brake)
     {
+        if (root.inputType == PredictionMotor.InputType.Disabled) 
+                return;
+                
+
+        thrust += 0.25f;
+
         //thrust = -thrust;
         if (thrust < 0f)
             thrust = Mathf.Abs(thrust) * 0.5f;
 
-        thrust = Mathf.Clamp(thrust, 0.3f, 1f);
+        thrust = Mathf.Clamp(thrust, 0.1f, 1f);
         if (brake) thrust *=0.75f;
 
         PlayServerThrust(thrust);
         PlayServerLift(lift);
         PlayServerLateral(lateral);
-        PlayClientSounds(thrust, lift, lateral, brake);
+       // PlayClientSounds(thrust, lift, lateral);
     }
 
     private void PlayServerLateral(float lateral)
     {
+        if (lateralSoundTruck != null)
+        {
 
 
-        netLateralSource.Pitch = lateral;
+            lateralSoundTruck.localPosition = new Vector3(-lateral, 0);
+            netLateralSource.Volume = Mathf.Abs(lateral);
+        }
 
     }
     private void PlayServerLift(float lift)
     {
+        if (liftSoundTruck != null)
+        {
 
+         
+        liftSoundTruck.localPosition = new Vector3(0,-lift);
 
-        netLiftSource.Pitch = lift;
+        netLiftSource.Volume = Mathf.Abs(lift);
+        }
 
     }
     private void PlayServerThrust(float thrust)

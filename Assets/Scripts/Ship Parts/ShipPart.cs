@@ -78,6 +78,14 @@ public class ShipPart : NetworkBehaviour
 
     private void OnDestroy()
     {
+        if(TryGetComponent<AudioSource>(out AudioSource audio)) 
+        {
+            if (audio.isPlaying)
+            {
+                audio.Stop();
+            }
+        }
+
         if (damageHudCounterpart != null)
         {
             transform.root.GetComponentInChildren<DamageHologram>()?.UpdateCounterpart(hitPoints) ;

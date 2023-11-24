@@ -102,7 +102,7 @@ public class BlasterV3 : NetworkBehaviour
     {
 
         audioSource.pitch = Random.Range(0.9f, 1f);
-        audioSource.Play();
+        audioSource.PlayOneShot(audioSource.clip);
 
         laserColor = myShip.syncedLaserColor;
 

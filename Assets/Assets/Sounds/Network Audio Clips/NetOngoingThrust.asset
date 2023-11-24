@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   registeredClips:
   - name: OngoingThrust
-    clip: {fileID: 8300000, guid: 7c0505bcb6b781041b2b9ac4c62194b2, type: 3}
+    clip: {fileID: 8300000, guid: 018b53c55051bb741a5d2177a6fe41d8, type: 3}
