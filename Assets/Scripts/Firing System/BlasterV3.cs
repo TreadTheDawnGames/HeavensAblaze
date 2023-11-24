@@ -101,7 +101,7 @@ public class BlasterV3 : NetworkBehaviour
     private void SpawnProjectile(Vector3 position, Vector3 direction, float passedTime, NetworkConnection connection)
     {
 
-        audioSource.pitch = Random.Range(0.75f, 1f);
+        audioSource.pitch = Random.Range(0.9f, 1f);
         audioSource.Play();
 
         laserColor = myShip.syncedLaserColor;

@@ -270,7 +270,7 @@ public class ShipPart : NetworkBehaviour
     private void OnCollisionEnter(Collision collision)
     {
             ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
-            Rigidbody otherPart = collision.GetContact(0).otherCollider.transform.root.GetComponentInChildren<Rigidbody>();
+           // Rigidbody otherPart = collision.GetContact(0).otherCollider.transform.root.GetComponentInChildren<Rigidbody>();
 
         if (IsClient && childPart != null)
         {
@@ -284,10 +284,10 @@ public class ShipPart : NetworkBehaviour
             if (GetComponent<Rigidbody>().velocity.magnitude > 2)
             {
                     float damage = GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
-                if(otherPart!=null) 
+                /*if(otherPart!=null) 
                 { 
                     damage *= Mathf.Clamp(otherPart.velocity.magnitude, 1f, 50f); 
-                }
+                }*/
                 childPart.hitPoints -= damage;
 
             }

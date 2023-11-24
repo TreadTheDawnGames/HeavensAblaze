@@ -1063,7 +1063,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 8
+  <PrefabId>k__BackingField: 2
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -1122,6 +1122,7 @@ MonoBehaviour:
   childCount: 0
   partId: 0
   _parent: {fileID: 0}
+  collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   debris: {fileID: 2179317181517415770}
   damageHudCounterpart: {fileID: 0}
   root: {fileID: 0}

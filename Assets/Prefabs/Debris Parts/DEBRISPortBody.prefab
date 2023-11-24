@@ -115,10 +115,9 @@ MonoBehaviour:
   childCount: 0
   partId: 0
   _parent: {fileID: 0}
+  collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   debris: {fileID: 4106634755171536676}
   damageHudCounterpart: {fileID: 0}
-  glitchedMaterial: {fileID: 0}
-  regularMaterial: {fileID: 0}
 --- !u!114 &8364348129743590094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +147,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 12
+  <PrefabId>k__BackingField: 23
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0

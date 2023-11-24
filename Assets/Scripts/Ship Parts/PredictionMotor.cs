@@ -161,12 +161,17 @@ public class PredictionMotor : NetworkBehaviour
     ShipSound shipSound;
 
     [SerializeField]
+    List<GameObject> engines = new List<GameObject>();
+    private int engineCount;
+
+
+    [SerializeField]
     DamageHologram damageHolo;
     private void Awake()
     {
         if (damageHolo == null) GetComponentInChildren<DamageHologram>();
         if (shipSound == null) GetComponent<ShipSound>();
-
+        engineCount = engines.Count;
         
         _rigidbody = GetComponent<Rigidbody>();
         blasters = GetComponentsInChildren<BlasterV3>().ToList<BlasterV3>();
@@ -244,16 +249,20 @@ public class PredictionMotor : NetworkBehaviour
     {
 
             ShipPart childPart = collision.GetContact(0).thisCollider.GetComponent<ShipPart>();
-        Rigidbody otherPart = collision.GetContact(0).otherCollider.transform.root.GetComponentInChildren<Rigidbody>();
+       // Rigidbody otherPart = collision.GetContact(0).otherCollider.transform.root.GetComponentInChildren<Rigidbody>();
 
         if (IsClient)
         {
             if (childPart != null)
             {
                 Instantiate(childPart.collisionImpact, collision.GetContact(0).point, Quaternion.Euler(collision.GetContact(0).normal));
-                if(childPart.damageHudCounterpart.TryGetComponent<DamageHologram>(out DamageHologram dh))
+                if (childPart.damageHudCounterpart != null)
                 {
-                    dh.UpdateCounterpart(childPart.hitPoints);
+
+                    if (childPart.damageHudCounterpart.TryGetComponent<DamageHologram>(out DamageHologram dh))
+                    {
+                        dh.UpdateCounterpart(childPart.hitPoints);
+                    }
 
                 }
             }
@@ -267,10 +276,10 @@ public class PredictionMotor : NetworkBehaviour
             {
 
                 float damage = GetComponent<Rigidbody>().velocity.magnitude / 1.6f;
-                if (otherPart != null)
+               /* if (otherPart != null)
                 {
                     damage *= Mathf.Clamp(otherPart.velocity.magnitude, 1f, 50f);
-                }
+                }*/
 
                 childPart.hitPoints -= damage;
 
@@ -287,15 +296,17 @@ public class PredictionMotor : NetworkBehaviour
         base.OnStartClient();
         if (!base.IsOwner)
         {
-            damageHolo.gameObject.SetActive(false);
+            damageHolo?.gameObject.SetActive(false);
             gameObject.GetComponent<PredictionMotor>().enabled = false;
             
         }
 
         if (IsOwner)
         {
-
-
+            /*foreach (AudioSource audioSource in GetComponents<AudioSource>())
+            {
+                audioSource.Play();
+            }*/
 
 
 
@@ -637,6 +648,9 @@ public class PredictionMotor : NetworkBehaviour
         }
 
         
+            shipSound.PlayServerSounds(thrust, lift, lateral, brake);
+       
+        
 
         float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
 
@@ -657,8 +671,28 @@ public class PredictionMotor : NetworkBehaviour
             personalizationManager.UpdateUseAimpoint(false);
         }
 
-        if (thrust > 0f)
-            thrust *= thrustMultiplier;
+
+        //this is a total hack
+        int i = 0;
+        foreach(GameObject engine in engines)
+        {
+            if(engine!=null)
+                i++;
+        }
+        if (i > 0)
+        {
+            if (thrust > 0f)
+                thrust *= thrustMultiplier;
+
+        }
+        if(i <= engineCount/2)
+        {
+            thrust *= 0.5f;
+        }
+        if (i == 0)
+        {
+            shipSound.PlayServerDeadThrust(thrust*2f);
+        }
 
         data = new MoveData(
             thrust  * invertThrust  * moveSpeed, 
@@ -692,9 +726,7 @@ public class PredictionMotor : NetworkBehaviour
          * out playing the audio/vfx multiple times by not running the logic if replaying
          * is true. */
 
-        shipSound.PlayThrust(data.Thrust);
-        shipSound.PlayLateral(data.Lateral);
-        shipSound.PlayLift(data.Lift);
+        
 
         Vector3 force = new Vector3(data.Lateral, data.Lift, data.Thrust);
         //Make Ship Go
