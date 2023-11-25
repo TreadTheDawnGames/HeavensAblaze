@@ -856,18 +856,18 @@
                 },
                 {
                     "name": "Roll",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "dc19e280-dad7-4ccf-ac5b-acc461912b6c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Pitch",
-                    "type": "Button",
-                    "id": "c71acba5-958e-445c-97b6-ca636614ed74",
-                    "expectedControlType": "Button",
+                    "type": "PassThrough",
+                    "id": "767f98c7-0ba6-459e-8c2e-8ef054fdbf50",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -964,39 +964,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "b16cd256-1082-40e6-b824-bd5d9d82e0ea",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pitch",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "32b9e66e-c5da-4383-9b7d-4fe32bf28d28",
-                    "path": "<Mouse>/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pitch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "a5de2ef5-bbc0-453e-80d5-eebb8912ed06",
-                    "path": "<Mouse>/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pitch",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1129,6 +1096,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwapUseAimpoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e058a77c-4533-4e5d-bdd8-2b5df1902f44",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

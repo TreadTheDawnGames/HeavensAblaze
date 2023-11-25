@@ -493,6 +493,7 @@ public class PredictionMotor : NetworkBehaviour
      * right before physics are updated. */
     private void TimeManager_OnTick()
     {
+
         if (base.IsOwner)
         {
             /* Reconciliation must be done first.
@@ -510,6 +511,8 @@ public class PredictionMotor : NetworkBehaviour
             /* When moving on the client pass in the just gathered data, and
              * false for asServer. This will move the client locally using data.
              * You do not need to pass in the replaying value. */
+
+
             Move(data, false);
 
         }
@@ -567,7 +570,7 @@ public class PredictionMotor : NetworkBehaviour
     }
 
     #endregion
-
+    [SerializeField] float mouseSensitivityBuff = 4f;
     /* GatherInputs takes local inputs of the client and puts them into MoveData.
      * When no inputs are available the method is exited early. Note that data is set
      * to default at the very beginning of the method. You should pass default data into the
@@ -577,6 +580,7 @@ public class PredictionMotor : NetworkBehaviour
      * but this will cost you bandwidth. */
     private void GatherInputs(out MoveData data)
     {
+
         //Set to default.
         data = default;
 
@@ -624,9 +628,11 @@ public class PredictionMotor : NetworkBehaviour
                 thrust = playerShip.Mouse.Thrust.ReadValue<float>();
                 lift = playerShip.Mouse.Lift.ReadValue<float>();
                 lateral = playerShip.Mouse.Lateral.ReadValue<float>();
-                pitch = playerShip.Mouse.Pitch.ReadValue<float>();
+
+                pitch = playerShip.Mouse.Pitch.ReadValue<float>()*(float)TimeManager.TickDelta *mouseSensitivityBuff;
                 roll = -playerShip.Mouse.Roll.ReadValue<float>();
-                yaw = playerShip.Mouse.Yaw.ReadValue<float>();
+                yaw = playerShip.Mouse.Yaw.ReadValue<float>() * (float)TimeManager.TickDelta * mouseSensitivityBuff;
+
                 brake = playerShip.Mouse.Brake.IsInProgress();
                 fire = playerShip.Mouse.Fire.IsInProgress();
                 swapUseAimpoint = playerShip.Mouse.SwapUseAimpoint.WasPressedThisFrame();
@@ -694,13 +700,20 @@ public class PredictionMotor : NetworkBehaviour
             shipSound.PlayServerDeadThrust(thrust*2f);
         }
 
+        if(inputType!=InputType.Mouse)
+        {
+            pitch = inputManager.curve.Evaluate(pitch);
+            roll = inputManager.curve.Evaluate(roll);
+            yaw = inputManager.curve.Evaluate(yaw);
+        }
+
         data = new MoveData(
             thrust  * invertThrust  * moveSpeed, 
             lift    * invertLift    * moveSpeed,
             lateral * invertLateral * moveSpeed, 
-            -inputManager.curve.Evaluate(pitch) * invertPitch * sensitivityVal,
-            inputManager.curve.Evaluate(roll)   * invertRoll  * sensitivityVal,
-            inputManager.curve.Evaluate(yaw)    * invertYaw   * sensitivityVal ,
+            -pitch  * invertPitch * sensitivityVal,
+            roll   * invertRoll  * sensitivityVal,
+            yaw    * invertYaw   * sensitivityVal ,
             brake, fire);
 
     }

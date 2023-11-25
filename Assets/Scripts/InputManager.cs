@@ -117,9 +117,11 @@ public class InputManager : MonoBehaviour
     public void ChangeInputType(int num)
     {
 
+
         if(ship != null)
         {
             ship.playerShip.Disable();
+            if(ship.inputType==PredictionMotor.InputType.Disabled) { num = 4; }
         }
 
         inputActions.Disable();
@@ -198,6 +200,8 @@ public class InputManager : MonoBehaviour
     }
     public void ChangeInputTypeAndActivateShip(int num)
     {
+        if (ship.inputType == PredictionMotor.InputType.Disabled) { num = 4; }
+
         ship.playerShip.Disable();
         ship.playerShip = inputActions;
 
