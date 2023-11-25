@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
     public PredictionMotor ship;
     public bool menuUp = false;
 
-    List<RebindUI> rebindButtons = new List<RebindUI>();
+    public List<RebindUI> rebindButtons { get; private set; } = new List<RebindUI>();
 
     #region inversions
     public void InvThrust(bool toDefault = false)

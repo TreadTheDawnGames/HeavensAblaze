@@ -27,7 +27,7 @@ public class RebindUI : MonoBehaviour
     private InputBinding inputBinding;
     private int bindingIndex;
 
-    private string actionName;
+    public  string actionName { get; private set; }
 
     [Header("UI Fields")]
     [SerializeField]
@@ -38,6 +38,8 @@ public class RebindUI : MonoBehaviour
     private TMP_Text rebindText;
     [SerializeField]
     private Button resetButton;
+
+
 
     private void OnEnable()
     {
@@ -110,7 +112,7 @@ public class RebindUI : MonoBehaviour
 
 
         }
-
+       
 
     }
 

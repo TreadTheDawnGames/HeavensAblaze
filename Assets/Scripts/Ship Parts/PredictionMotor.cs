@@ -360,8 +360,12 @@ public class PredictionMotor : NetworkBehaviour
             //Debug.Log(PlayerPrefs.GetString("LaserColor"));
 
             //shipCurve = inputManager.curve;
+            foreach (RebindUI button in inputManager.rebindButtons)
+            {
+                inputManager.LoadBindingOverride(button.actionName);
 
-            
+            }
+
             foreach (IdleCamera cam in FindObjectsOfType<IdleCamera>().ToList<IdleCamera>())
             {
                 if (cam.name == "Idle Camera")
