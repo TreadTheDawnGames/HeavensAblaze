@@ -658,7 +658,7 @@ public class PredictionMotor : NetworkBehaviour
         }
 
         if (inputType != InputType.Disabled)
-            shipSound.PlayServerSounds(thrust, lift, lateral, brake);
+            shipSound.PlayServerSounds(thrust, lift, lateral, roll, pitch, yaw, brake);
        
         
 

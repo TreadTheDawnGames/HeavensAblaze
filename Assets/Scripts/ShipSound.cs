@@ -5,21 +5,11 @@ using UnityEngine;
 using LambdaTheDev.NetworkAudioSync;
 using FishNet.Object;
 using Unity.VisualScripting;
+using GameKit.Utilities.Types;
 
 public class ShipSound : NetworkBehaviour
 {
-    [SerializeField]
-    AudioClip pushHiss;
-    [SerializeField]
-    AudioClip thrustOngoing;
-    [SerializeField]
-    AudioClip thrustCooldown;
-    [SerializeField]
-    AudioClip brake;
-
-    [SerializeField]
-    AudioClip[] collisionThud;
-
+  
     [SerializeField]
     List<NetworkAudioSource> netThrustSource = new List<NetworkAudioSource>();
 
@@ -34,16 +24,7 @@ public class ShipSound : NetworkBehaviour
     NetworkAudioSource netDeadThrust;
 
     [SerializeField]
-    List<AudioSource> thrustSource = new List<AudioSource>();
-
-    [SerializeField]
-    AudioSource lateralSource;
-
-    [SerializeField]
-    AudioSource liftSource;
-
-    [SerializeField]
-    AudioSource deadThrust;
+    NetworkAudioSource netRoll, netPitch, netYaw;
 
     [SerializeField]
     Transform lateralSoundTruck;
@@ -53,49 +34,14 @@ public class ShipSound : NetworkBehaviour
 
     [SerializeField]
     PredictionMotor root;
-    private void PlayLateral(float lateral)
-    {
 
-        lateralSoundTruck.localPosition = new Vector3(-lateral, 0);
-        netLateralSource.Volume = Mathf.Abs(lateral);
 
-    }
-    private void PlayLift(float lift)
-    {
 
-        liftSoundTruck.localPosition = new Vector3(0,-lift);
 
-        liftSource.volume = Mathf.Abs(lift);
 
-    }
-    [ObserversRpc]
-    public void PlayDeadThrust(float thrust)
-    {
-        deadThrust.volume = thrust;
-
-    }
-    private void PlayThrust(float thrust)
-    {
-        foreach (AudioSource audioSource in thrustSource)
-        {
-            if(audioSource != null&&audioSource.isActiveAndEnabled)
-            {
-
-            audioSource.pitch = thrust;
-            }
-        }
-    }
-
-    [ObserversRpc]
-    public void PlayClientSounds(float thrust, float lift, float lateral)
-    {
-        PlayThrust(thrust);
-        PlayLift(lift);
-        PlayLateral(lateral);
-    }
 
     [ServerRpc]
-    public void PlayServerSounds(float thrust, float lift, float lateral, bool brake)
+    public void PlayServerSounds(float thrust, float lift, float lateral, float roll, float pitch, float yaw, bool brake)
     {
         if (root.inputType == PredictionMotor.InputType.Disabled) 
                 return;
@@ -113,7 +59,9 @@ public class ShipSound : NetworkBehaviour
         PlayServerThrust(thrust);
         PlayServerLift(lift);
         PlayServerLateral(lateral);
-       // PlayClientSounds(thrust, lift, lateral);
+        PlayServerRoll(roll);
+        PlayServerPitch(pitch);
+        PlayServerYaw(yaw);
     }
 
     private void PlayServerLateral(float lateral)
@@ -154,13 +102,25 @@ public class ShipSound : NetworkBehaviour
         }
     }
 
+    private void PlayServerRoll(float roll)
+    {
+        netRoll.Volume = Mathf.Abs(roll);
+    }
+    private void PlayServerPitch(float pitch)
+    {
+        netPitch.Volume = Mathf.Abs(pitch);
+    }
+    private void PlayServerYaw(float yaw)
+    {
+        netYaw.Volume = Mathf.Abs(yaw);
+    }
+
     [ServerRpc]
     public void PlayServerDeadThrust(float thrust)
     {
         if (Mathf.Abs(thrust) < 0.15f)
             thrust = 0;
         netDeadThrust.Volume = Mathf.Abs(thrust);
-        PlayDeadThrust(Mathf.Abs(thrust));
     }
 
 
