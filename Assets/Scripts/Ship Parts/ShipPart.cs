@@ -266,10 +266,6 @@ public class ShipPart : NetworkBehaviour
 
 
         }   
-        ///TODO:
-        ///add kinematic rigidbody to ship parts
-        ///when destroyed instead of adding a rigidbody, set the body isKinematic = false;
-        ///make sure collisions are filtered by owner
         
     }
 
@@ -306,8 +302,6 @@ public class ShipPart : NetworkBehaviour
 
     [SerializeField]
     public GameObject damageHudCounterpart;
-    //put this anywhere the ship may take damage
-    //also link up the damageHudCounterpart vars
 
     
 

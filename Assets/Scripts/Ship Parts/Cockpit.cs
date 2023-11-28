@@ -63,7 +63,7 @@ public class Cockpit : ShipPart
             for (int i = 0; i < transform.childCount; i++)
             {
 
-                if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp))
+                if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
                 {
                     camDamp.transform.SetParent(transform.parent);
                     camDamp.Transition();

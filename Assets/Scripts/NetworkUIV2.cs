@@ -35,6 +35,9 @@ public class NetworkUIV2 : MonoBehaviour
 
     public InputManager inputManager;
 
+    [SerializeField]
+    GameObject optionsMenu;
+
     
     private async void Start()
     {
@@ -51,15 +54,14 @@ public class NetworkUIV2 : MonoBehaviour
 
     public async void CreateRelay()
     {
-        serverButtonText.text = "Starting\nServer";
-        clientButtonText.text = "Starting\nClient";
+        //clientButtonText.text = "Starting\nClient";
 
         if (!serverStarted)
         {
-
+            serverButtonText.text = "Starting\nServer";
             try
             {
-                Allocation allocation = await RelayService.Instance.CreateAllocationAsync(9);
+                Allocation allocation = await RelayService.Instance.CreateAllocationAsync(20);
 
                 string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
                 utp.SetRelayServerData(new RelayServerData(allocation, "dtls"));
@@ -68,54 +70,64 @@ public class NetworkUIV2 : MonoBehaviour
                 joinCodeBox.text = joinCode;
                 joinCodeBox.interactable = false;
                 this.joinCode = joinCode;
+                // Start Server Connection
+                _networkManager.ServerManager.StartConnection();
+                // Start Client Connection
+                JoinRelay();
 
+                serverButtonText.text = "Stop\nServer";
+                //clientButtonText.text = "Stop\nClient";
+                serverStarted = true;
+
+               
             }
             catch (RelayServiceException e)
             {
                 Debug.LogError(e);
+                StartCoroutine(ShowServerFailedToStartErrorText());
+                
+                serverStarted = false;
             }
 
-        // Start Server Connection
-        _networkManager.ServerManager.StartConnection();
-        // Start Client Connection
-        _networkManager.ClientManager.StartConnection();
 
-            serverButtonText.text = "Stop\nServer";
-            clientButtonText.text = "Stop\nClient";
 
         }
         else
         {
-        _networkManager.ClientManager.StopConnection();
-        _networkManager.ServerManager.StopConnection(true);
+            _networkManager.ServerManager.StopConnection(true);
+
             serverButtonText.text = "Start\nServer";
-            clientButtonText.text = "Start\nclient";
+            JoinRelay();
+
+           
             joinCodeBox.interactable = true;
+            serverStarted = false;
 
         }
 
 
-
-        serverStarted = !serverStarted;
-        clientStarted = !clientStarted;
-        if (serverStarted && !inputManager.menuUp)
+       /* if (serverStarted && !inputManager.menuUp)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
         }
+        if (clientStarted && serverStarted)
+
+            ToggleNetUIVisability(optionsMenu.activeInHierarchy);*/
     }
 
     public async void JoinRelay()
     {
-        clientButtonText.text = "Starting\nClient";
 
         if (!clientStarted)
         {
+            clientButtonText.text = "Starting\nClient";
 
             if (joinCode.Length != 6)
             {
                 Debug.LogWarning("No joinCode provided, or code is invalid! Code:" + joinCode);
+                StartCoroutine(ShowJoinCodeErrorText());
                 return;
             }
 
@@ -124,35 +136,42 @@ public class NetworkUIV2 : MonoBehaviour
                 Debug.Log("Joining Relay with " + joinCode);
                 JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
-                if (!serverStarted){
+                if (!serverStarted)
+                {
 
-                utp.SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+                    utp.SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
                 }
+                _networkManager.ClientManager.StartConnection();
+                clientButtonText.text = "Stop\nClient";
 
+                clientStarted = true;
+
+                if (!inputManager.menuUp)
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
             catch (RelayServiceException e)
             {
                 Debug.LogError(e);
-            }
-            if (!inputManager.menuUp)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(ShowJoinCodeErrorText());
+                clientStarted = false;
             }
 
-            _networkManager.ClientManager.StartConnection();
 
-            clientButtonText.text = "Stop\nClient";
+
         }
         else
         {
-        _networkManager.ClientManager.StopConnection();
+            _networkManager.ClientManager.StopConnection();
             clientButtonText.text = "Start\nClient";
-
+            clientStarted = false;
         }
-        clientStarted = !clientStarted;
 
-        
+        if(clientStarted)
+        ToggleNetUIVisability(optionsMenu.activeInHierarchy);
+
     }
 
     public void SyncJoinCode(string s)
@@ -161,6 +180,25 @@ public class NetworkUIV2 : MonoBehaviour
         
     }
 
+    [SerializeField]
+    GameObject networkButtons;
 
+    public void ToggleNetUIVisability(bool setActive)
+    {
+        networkButtons.SetActive(setActive);
+    }
+
+    IEnumerator ShowJoinCodeErrorText()
+    {
+        clientButtonText.text = "Invalid\nCode!";
+        yield return new WaitForSeconds(2f);
+        clientButtonText.text = "Start\nClient";
+    }
+    IEnumerator ShowServerFailedToStartErrorText()
+    {
+        clientButtonText.text = "Server Failed\nto Start!";
+        yield return new WaitForSeconds(2f);
+        clientButtonText.text = "Start\nServer";
+    }
 
 }

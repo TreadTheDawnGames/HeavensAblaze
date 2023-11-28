@@ -58,8 +58,10 @@ private void Update()
                 Cursor.visible = !Cursor.visible;
 
                 Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+            
+                
+                networkUIV2.ToggleNetUIVisability(!menu.activeInHierarchy);
             }
-
 
 
         }

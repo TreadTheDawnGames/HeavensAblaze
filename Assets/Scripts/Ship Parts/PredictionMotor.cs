@@ -758,7 +758,10 @@ public class PredictionMotor : NetworkBehaviour
 
         _rigidbody.AddRelativeTorque(torque, ForceMode.VelocityChange); ;
 
+       // if(data.Roll > 0 || data.Pitch > 0 || data.Yaw > 0)
         StableizeAll(StableizeX() * stablizeBrake, StableizeY() * stablizeBrake, StableizeZ() * stablizeBrake, gameObject);
+        
+        
         if (data.Brake)
         {
             BrakeAll(BrakeX(), BrakeY(), BrakeZ());

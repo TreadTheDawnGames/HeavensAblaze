@@ -869,9 +869,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Yaw"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""ba001adf-ec75-4fc3-a12d-5b361fc57a4b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -924,37 +924,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""e82d9ab4-edcb-46c2-93d6-f4af1a9c5ae0"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""39c763a3-aeb3-4e9e-9456-fe5a1f6e91b5"",
+                    ""path"": ""<Mouse>/delta/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Yaw"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""c8e4a2bf-47cc-43be-856b-159605b77035"",
-                    ""path"": ""<Mouse>/delta/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""cc445960-e11f-4413-8078-81fb15b5444a"",
-                    ""path"": ""<Mouse>/delta/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""1D Axis"",
@@ -970,7 +948,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""5febf6d4-ab54-44f5-9175-7ad04ddbda47"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -981,7 +959,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""06ea7646-1201-4601-b09e-60578b90c8d3"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1003,7 +981,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""4ef70aac-c5c5-4239-a192-f09f936024d2"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1014,7 +992,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""f9edeccd-1bcc-4b1a-a3c0-808e7474470c"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1091,7 +1069,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""81d39d8e-1878-426b-b015-c6b5562f646b"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1102,7 +1080,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""495e7049-c58a-4600-95fa-e47c6938b005"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
