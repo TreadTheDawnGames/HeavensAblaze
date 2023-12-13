@@ -52,6 +52,14 @@ public class NetworkUIV2 : MonoBehaviour
             };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        StartCoroutine(WaitToShow());
+    }
+
+    IEnumerator WaitToShow()
+    {
+        yield return new WaitForSeconds(6);
+        GetComponent<Canvas>().enabled = true;
     }
 
     public async void CreateRelay()

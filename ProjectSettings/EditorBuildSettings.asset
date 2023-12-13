@@ -5,11 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Spaceship Arena.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/FishNet/Demos/Prediction V1/Rigidbody/RigidbodyPrediction.unity
     guid: 005289ca292137448ba5edc0e1163f4a
+  - enabled: 0
+    path: Assets/Scenes/Animated Logo.unity
+    guid: 1db2fd7e3312bea49b18b1a28eb36e0c
+  - enabled: 1
+    path: Assets/Scenes/Spaceship Arena.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1b0d37e8cb4222840bbea652583bdc0d, type: 2}

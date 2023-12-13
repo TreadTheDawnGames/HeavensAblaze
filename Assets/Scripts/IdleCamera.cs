@@ -22,6 +22,12 @@ public class IdleCamera : MonoBehaviour
 
     }*/
 
+    /*IEnumerator Start()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(transform.GetChild(0).gameObject);
+    }*/
+
     void FixedUpdate()
     {
 
