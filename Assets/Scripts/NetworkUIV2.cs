@@ -13,6 +13,8 @@ using UnityEngine.UI;
 using static System.Net.WebRequestMethods;
 using TMPro;
 using UnityEditor;
+using FishNet.Managing.Client;
+using FishNet.Transporting;
 
 public class NetworkUIV2 : MonoBehaviour
 {
@@ -72,12 +74,13 @@ public class NetworkUIV2 : MonoBehaviour
                 this.joinCode = joinCode;
                 // Start Server Connection
                 _networkManager.ServerManager.StartConnection();
+                serverStarted = true;
+
                 // Start Client Connection
                 JoinRelay();
 
                 serverButtonText.text = "Stop\nServer";
                 //clientButtonText.text = "Stop\nClient";
-                serverStarted = true;
 
                
             }
@@ -94,14 +97,22 @@ public class NetworkUIV2 : MonoBehaviour
         }
         else
         {
-            _networkManager.ServerManager.StopConnection(true);
-
-            serverButtonText.text = "Start\nServer";
-            JoinRelay();
-
-           
+            
             joinCodeBox.interactable = true;
             serverStarted = false;
+
+            serverButtonText.text = "Start\nServer";
+
+            //JoinRelay();
+            clientStarted = false;
+            _networkManager.ClientManager.StopConnection();
+            clientButtonText.text = "Start\nClient";
+
+            _networkManager.ServerManager.StopConnection(true);
+
+
+           
+            
 
         }
 
@@ -135,21 +146,29 @@ public class NetworkUIV2 : MonoBehaviour
             {
                 Debug.Log("Joining Relay with " + joinCode);
                 JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+                print(joinAllocation.ToString());
 
                 if (!serverStarted)
                 {
 
                     utp.SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
                 }
-                _networkManager.ClientManager.StartConnection();
-                clientButtonText.text = "Stop\nClient";
 
-                clientStarted = true;
-
-                if (!inputManager.menuUp)
+                if (_networkManager.ClientManager.StartConnection())
                 {
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
+
+
+                    clientButtonText.text = "Stop\nClient";
+
+                    clientStarted = true;
+
+
+
+                    if (!inputManager.menuUp)
+                    {
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                    }
                 }
             }
             catch (RelayServiceException e)
@@ -159,20 +178,24 @@ public class NetworkUIV2 : MonoBehaviour
                 clientStarted = false;
             }
 
-
+            
 
         }
         else
         {
+            clientStarted = false;
             _networkManager.ClientManager.StopConnection();
             clientButtonText.text = "Start\nClient";
-            clientStarted = false;
+
+            
         }
 
         if(clientStarted)
         ToggleNetUIVisability(optionsMenu.activeInHierarchy);
 
     }
+
+    
 
     public void SyncJoinCode(string s)
     {

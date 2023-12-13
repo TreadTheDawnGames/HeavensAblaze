@@ -23,7 +23,7 @@ public class PersonalizationManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateDistanceValue(PlayerPrefs.GetInt("distance"));
+        UpdateDistanceValue(PlayerPrefs.GetInt("distance",75));
         UpdateAimpointViewability(true);
         UpdateUseAimpoint(true);
     }
@@ -37,8 +37,8 @@ public class PersonalizationManager : MonoBehaviour
     {
         
         if(!onStart)
-            PlayerPrefs.SetInt("showAimpoint", PlayerPrefs.GetInt("showAimpoint", 1) == 1 ? 0 : 1);
-        bool showAimpoint = PlayerPrefs.GetInt("showAimpoint", 1) == 1 ? true : false;
+            PlayerPrefs.SetInt("showAimpoint", PlayerPrefs.GetInt("showAimpoint", 0) == 1 ? 0 : 1);
+        bool showAimpoint = PlayerPrefs.GetInt("showAimpoint", 0) == 1 ? true : false;
 
         if (aimpoint != null)
         {

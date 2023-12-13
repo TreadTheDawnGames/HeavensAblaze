@@ -10,9 +10,9 @@ public class AimPoint : MonoBehaviour
     private void Awake()
     {
 
-        UpdatePosition(PlayerPrefs.GetInt("distance"));
+        UpdatePosition(PlayerPrefs.GetInt("distance", 75));
 
-        UpdateViewability(PlayerPrefs.GetInt("showAimpoint") == 1 ? true : false);
+        UpdateViewability(PlayerPrefs.GetInt("showAimpoint", 0) == 1 ? true : false);
     }
 
    
