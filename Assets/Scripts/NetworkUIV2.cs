@@ -40,15 +40,18 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     GameObject optionsMenu;
 
-    
+
     private async void Start()
     {
+        _networkManager.ClientManager.OnClientConnectionState += UpdateClientConnectionState;
+        _networkManager.ServerManager.OnServerConnectionState += UpdateServerConnectionState;
+
         utp = (FishyUnityTransport)_networkManager.TransportManager.Transport;
         await UnityServices.InitializeAsync();
 
         AuthenticationService.Instance.SignedIn += () =>
             {
-              Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
+                Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
             };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
@@ -56,9 +59,67 @@ public class NetworkUIV2 : MonoBehaviour
         StartCoroutine(WaitToShow());
     }
 
+    void UpdateClientConnectionState(ClientConnectionStateArgs args)
+    {
+        switch (args.ConnectionState.ToString())
+        {
+            case "Stopped":
+                clientButtonText.text = "Start\nClient";
+                break;
+            case "Starting":
+                clientButtonText.text = "Starting\nClient";
+                break;
+            case "Stopping":
+                clientButtonText.text = "Stopping\nClient";
+                break;
+            case "Started":
+                clientButtonText.text = "Stop\nClient";
+                break;
+
+            default:
+                clientButtonText.text = "Wake up!";
+
+                break;
+
+        }
+
+       
+
+    }
+    void UpdateServerConnectionState(ServerConnectionStateArgs args)
+    {
+        switch (args.ConnectionState.ToString())
+        {
+            case "Stopped":
+                serverButtonText.text = "Start\nServer";
+                break;
+            case "Starting":
+                serverButtonText.text = "Starting\nServer";
+                break;
+            case "Stopping":
+                serverButtonText.text = "Stopping\nServer";
+                break;
+            case "Started":
+                serverButtonText.text = "Stop\nServer";
+                break;
+
+            default:
+                serverButtonText.text = "Wake up!";
+                break;
+
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _networkManager.ClientManager.OnClientConnectionState -= UpdateClientConnectionState;
+        _networkManager.ServerManager.OnServerConnectionState -= UpdateServerConnectionState;
+
+    }
+
     IEnumerator WaitToShow()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(5);
         GetComponent<Canvas>().enabled = true;
     }
 
@@ -87,16 +148,16 @@ public class NetworkUIV2 : MonoBehaviour
                 // Start Client Connection
                 JoinRelay();
 
-                serverButtonText.text = "Stop\nServer";
+                //serverButtonText.text = "Stop\nServer";
                 //clientButtonText.text = "Stop\nClient";
 
-               
+
             }
             catch (RelayServiceException e)
             {
                 Debug.LogError(e);
                 StartCoroutine(ShowServerFailedToStartErrorText());
-                
+
                 serverStarted = false;
             }
 
@@ -105,36 +166,38 @@ public class NetworkUIV2 : MonoBehaviour
         }
         else
         {
-            
+
             joinCodeBox.interactable = true;
             serverStarted = false;
 
-            serverButtonText.text = "Start\nServer";
+          //  serverButtonText.text = "Start\nServer";
 
             //JoinRelay();
             clientStarted = false;
             _networkManager.ClientManager.StopConnection();
-            clientButtonText.text = "Start\nClient";
+         //   clientButtonText.text = "Start\nClient";
 
             _networkManager.ServerManager.StopConnection(true);
 
 
-           
-            
+
+
 
         }
 
 
-       /* if (serverStarted && !inputManager.menuUp)
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+        /* if (serverStarted && !inputManager.menuUp)
+         {
+             Cursor.visible = false;
+             Cursor.lockState = CursorLockMode.Locked;
 
-        }
-        if (clientStarted && serverStarted)
+         }
+         if (clientStarted && serverStarted)
 
-            ToggleNetUIVisability(optionsMenu.activeInHierarchy);*/
+             ToggleNetUIVisability(optionsMenu.activeInHierarchy);*/
     }
+
+    
 
     public async void JoinRelay()
     {
@@ -166,7 +229,7 @@ public class NetworkUIV2 : MonoBehaviour
                 {
 
 
-                    clientButtonText.text = "Stop\nClient";
+            //        clientButtonText.text = "Stop\nClient";
 
                     clientStarted = true;
 
@@ -186,29 +249,29 @@ public class NetworkUIV2 : MonoBehaviour
                 clientStarted = false;
             }
 
-            
+
 
         }
         else
         {
             clientStarted = false;
             _networkManager.ClientManager.StopConnection();
-            clientButtonText.text = "Start\nClient";
+          //  clientButtonText.text = "Start\nClient";
 
-            
+
         }
 
-        if(clientStarted)
-        ToggleNetUIVisability(optionsMenu.activeInHierarchy);
+        if (clientStarted)
+            ToggleNetUIVisability(optionsMenu.activeInHierarchy);
 
     }
 
-    
+
 
     public void SyncJoinCode(string s)
     {
         joinCode = s;
-        
+
     }
 
     [SerializeField]
@@ -232,4 +295,4 @@ public class NetworkUIV2 : MonoBehaviour
         clientButtonText.text = "Start\nServer";
     }
 
-}
+} 

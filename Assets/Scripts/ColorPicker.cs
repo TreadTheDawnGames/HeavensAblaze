@@ -17,6 +17,8 @@ public class ColorPicker : MonoBehaviour
     [SerializeField]
     CustomColor customColor1;
 
+    public delegate void ColorSwitchHandler();
+    public event ColorSwitchHandler ColorChanged;
 
     public Color laserColor;
     Color orange = new Color(1f, 0.5f, 0f, 1f);
@@ -27,6 +29,7 @@ public class ColorPicker : MonoBehaviour
 
     public void OnClickPickColor()
     {
+        ColorChanged.Invoke();
         SetColor();
     }
 
@@ -55,51 +58,68 @@ public class ColorPicker : MonoBehaviour
 
             customColor1.ChangeColor();
         }
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
 
     }
+
     public void OnClickPickRed()
     {
         laserColor = Color.red;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
 
     }
     public void OnClickPickOrange()
     {
         laserColor = orange;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
     }
     public void OnClickPickYellow()
     {
         laserColor = Color.yellow;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
     }
     public void OnClickPickGreen()
     {
         laserColor = Color.green;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
     }
     public void OnClickPickBlue()
     {
         laserColor = Color.blue;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
     }
     public void OnClickPickCyan()
     {
         laserColor = Color.cyan;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
     }
     public void OnClickPickMagenta()
     {
         laserColor = Color.magenta;
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
 
     }
     private void Awake()
@@ -134,7 +154,10 @@ public class ColorPicker : MonoBehaviour
             laserColor = customColor1.custom1;
         }
 
-        ship.ChangeColor(ship, laserColor);
+        if (ship != null)
+            ship.ChangeColor(ship, laserColor);
+        ColorChanged.Invoke();
+
     }
 
 }

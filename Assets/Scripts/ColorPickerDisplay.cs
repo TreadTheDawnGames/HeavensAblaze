@@ -5,17 +5,26 @@ using UnityEngine.UI;
 
 public class ColorPickerDisplay : MonoBehaviour
 {
+    [SerializeField]
     ColorPicker picker;
-    private void Awake()
+    private void Start()
     {
-        picker = FindObjectOfType<ColorPicker>();
+        if (picker == null)
+        {
+            picker = FindObjectOfType<ColorPicker>();
+        }
+        picker.ColorChanged += UpdateColor;
     }
 
-    private void Update()
+    private void OnDestroy()
+    {
+        picker.ColorChanged -= UpdateColor;        
+    }
+
+    public void UpdateColor()
     {
         GetComponent<Image>().material.color = picker.laserColor;
     }
-
     
 
 }

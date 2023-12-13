@@ -180,7 +180,6 @@ public class PredictionMotor : NetworkBehaviour
             blaster.myShip = this;
             blaster.Setup();
         }
-       
 
     }
 
@@ -351,6 +350,7 @@ public class PredictionMotor : NetworkBehaviour
                 playerShip = new PlayerShip();
             }
             inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
+            ChangeColor(this, colorPicker.laserColor);
 
             /* Both the server and owner must have a reference to the rigidbody.
              * Forces are applied to both the owner and server so that the objects
