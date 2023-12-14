@@ -14,14 +14,29 @@ public class CameraDampener : NetworkBehaviour
     [SerializeField]
     float transitionSpeed = 1.0f;
 
+    [SerializeField]
+    PredictionMotor ship;
+
     public bool cockpitDied = false;
 
     public float maxDisplacement = 0.1f;
     public float positionMultiplier = 0.25f;
+    private Vector3 startPosition;
 
-    
+    private void Start()
+    {
+        startPosition = transform.localPosition;
+    }
+    private void LateUpdate()
+    {
 
-    
+        
+       // transform.localPosition = startPosition + -Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier;
+        //transform.localPosition = -Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().velocity), maxDisplacement) * positionMultiplier;
+        transform.localRotation = Quaternion.Euler(Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier);
+        
+    }
+
 
     public void Transition()
     {

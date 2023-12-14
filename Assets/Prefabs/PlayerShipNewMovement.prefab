@@ -11034,9 +11034,10 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 9, z: -6}
   targetRotation: {x: 45, y: 0, z: 0}
   transitionSpeed: 2
+  ship: {fileID: 0}
   cockpitDied: 0
-  maxDisplacement: 0.1
-  positionMultiplier: 0.25
+  maxDisplacement: 8
+  positionMultiplier: 0.4
 --- !u!1 &8236536560026466242
 GameObject:
   m_ObjectHideFlags: 0
