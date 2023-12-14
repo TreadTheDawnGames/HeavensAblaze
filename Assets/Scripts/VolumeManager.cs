@@ -26,11 +26,15 @@ public class VolumeManager : MonoBehaviour
     AudioSource music;
 
     public bool isIngame = false;
+    bool masterMute = false;
 
     private void Start()
     {
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
+
+        SetupMusicMute(PlayerPrefs.GetInt("MusicMute", 0) == 0 ? true : false);
+        SetupMasterMute(PlayerPrefs.GetInt("MasterMute", 0) == 0 ? true : false);
 
         UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
         UpdateMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
@@ -60,18 +64,65 @@ public class VolumeManager : MonoBehaviour
 
     void ToggleMasterMute()
     {
-        if (masterImage.sprite == masterOn)
+        masterMute = !masterMute;        
+
+        if (masterMute)
+        {
             masterImage.sprite = masterOff;
+            AudioListener.volume = 0;
+            masterSlider.onValueChanged.RemoveAllListeners();
+        }
         else
+        {
             masterImage.sprite = masterOn;
-       
+            masterSlider.onValueChanged.AddListener(val => UpdateMasterVolume(val));
+            UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
+        }
+
+        PlayerPrefs.SetInt("MasterMute", masterMute ? 0 : 1);
+
     }
     void ToggleMusicMute()
     {
-        if (musicImage.sprite == musicOn)
+        music.mute = !music.mute;
+        if (music.mute)
+        {
             musicImage.sprite = musicOff;
+        }
         else
+        {
             musicImage.sprite = musicOn;
-       
+        }
+
+        PlayerPrefs.SetInt("MusicMute", music.mute ? 0 : 1);
+
+    }
+
+    void SetupMusicMute(bool isMuted)
+    {
+        if(isMuted)
+        {
+            musicImage.sprite = musicOff;
+        }
+        else
+        {
+            musicImage.sprite = musicOn;
+        }
+        music.mute = isMuted;
+    }
+
+    void SetupMasterMute(bool isMuted)
+    {
+        if (isMuted)
+        {
+            musicImage.sprite = musicOff;
+            
+        }
+        else
+        {
+            musicImage.sprite = musicOn;
+        }
+        AudioListener.pause = isMuted;
+
     }
 }
