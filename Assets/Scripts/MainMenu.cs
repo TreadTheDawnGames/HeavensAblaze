@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 public class MainMenu : MonoBehaviour
 {
     private bool anotherMenuUp = false;
@@ -17,15 +19,21 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     NetworkUIV2 networkUIV2;
 
+    GameObject currentMenu;
+
 #if UNITY_EDITOR
 
-
-
+    
     private void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.M))
         {
-            ToggleMainMenu();
+            if (!anotherMenuUp)
+                ToggleMainMenu();
+            else
+                ToggleMenu(currentMenu);
         }
     }
 #else
@@ -33,10 +41,21 @@ private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           ToggleMainMenu();
+           if (!anotherMenuUp)
+                ToggleMainMenu();
+            else
+                ToggleMenu(currentMenu);
         }
     }
 #endif
+
+    private void ToggleMenus(InputAction.CallbackContext context)
+    {
+        if (!anotherMenuUp)
+            ToggleMainMenu();
+        else
+            ToggleMenu(currentMenu);
+    }
 
     public void ToggleMainMenu()
     {
@@ -49,7 +68,7 @@ private void Update()
 
     public void ToggleMenu(GameObject menu)
     {
-
+        currentMenu = menu;
         if (menu == settingsHud)
         {
             if (networkUIV2.clientStarted)

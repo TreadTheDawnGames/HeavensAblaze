@@ -15,6 +15,7 @@ using TMPro;
 using UnityEditor;
 using FishNet.Managing.Client;
 using FishNet.Transporting;
+using FishNet.Demo.AdditiveScenes;
 
 public class NetworkUIV2 : MonoBehaviour
 {
@@ -55,7 +56,14 @@ public class NetworkUIV2 : MonoBehaviour
             };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
-
+        foreach (Image image in GetComponentsInChildren<Image>())
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+        }
+        foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+        {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+        }
         StartCoroutine(WaitToShow());
     }
 
@@ -83,7 +91,7 @@ public class NetworkUIV2 : MonoBehaviour
 
         }
 
-       
+
 
     }
     void UpdateServerConnectionState(ServerConnectionStateArgs args)
@@ -117,10 +125,36 @@ public class NetworkUIV2 : MonoBehaviour
 
     }
 
+    
+
     IEnumerator WaitToShow()
     {
         yield return new WaitForSeconds(5);
-        GetComponent<Canvas>().enabled = true;
+        float elapsedTime = 0f;
+        float whileWait = 6f;
+        while (elapsedTime < whileWait)
+        {
+            foreach(Image image in GetComponentsInChildren<Image>())
+            {
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, (elapsedTime / whileWait)));
+            }    
+            foreach(TMP_Text text in GetComponentsInChildren<TMP_Text>())
+            {
+                if(text.gameObject.name == "Placeholder")
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 0.35f, (elapsedTime / whileWait)));
+
+                }
+                else
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 1, (elapsedTime / whileWait)));
+
+                }
+            }
+            elapsedTime += Time.fixedDeltaTime;
+            yield return null;
+        }
+        //GetComponent<Canvas>().enabled = true;
     }
 
     public async void CreateRelay()
