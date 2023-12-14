@@ -41,7 +41,8 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     GameObject optionsMenu;
 
-
+    [SerializeField]
+    AudioSource ambientMusic;
     private async void Start()
     {
         _networkManager.ClientManager.OnClientConnectionState += UpdateClientConnectionState;
@@ -131,6 +132,7 @@ public class NetworkUIV2 : MonoBehaviour
     IEnumerator WaitToShow()
     {
         yield return new WaitForSeconds(waitToStartTime);
+        ambientMusic.Play();
         float elapsedTime = 0f;
         float whileWait = 6f;
         while (elapsedTime < whileWait)
@@ -155,6 +157,7 @@ public class NetworkUIV2 : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }
+
         //GetComponent<Canvas>().enabled = true;
     }
 

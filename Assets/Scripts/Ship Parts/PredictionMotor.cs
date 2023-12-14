@@ -14,6 +14,7 @@ using System.Data;
 using FishNet.Managing.Timing;
 using UnityEngine.InputSystem.Layouts;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 
 public class PredictionMotor : NetworkBehaviour
 {
@@ -163,6 +164,11 @@ public class PredictionMotor : NetworkBehaviour
     [SerializeField]
     List<GameObject> engines = new List<GameObject>();
     private int engineCount;
+
+    [SerializeField]
+    AudioSource ambientMusic;
+    [SerializeField]
+    VolumeManager volumeManager;
 
 
     [SerializeField]
@@ -344,6 +350,8 @@ public class PredictionMotor : NetworkBehaviour
             inputManager.ship = this;
             colorPicker.ship = this;
             mainMenu.ship = this;
+            volumeManager = FindObjectOfType<VolumeManager>();
+            ambientMusic = FindObjectOfType<AmbientMusic>().GetComponent<AudioSource>();
 
             if (playerShip == null)
             {
@@ -417,8 +425,10 @@ public class PredictionMotor : NetworkBehaviour
          * OnStartClient or OnStartServer, so do not
          * try to subscribe before these events. */
         if (activeIdleCam != null)
-            activeIdleCam.enabled = false;
-        
+            activeIdleCam.gameObject.SetActive(false);
+        ambientMusic.volume *= 0.5f;
+        volumeManager.isIngame = true;
+
         SubscribeToTimeManager(true);
 
     }
@@ -479,9 +489,12 @@ public class PredictionMotor : NetworkBehaviour
     {
         base.OnStopClient();
         if(activeIdleCam!=null)
-            activeIdleCam.enabled = true;
+            activeIdleCam.gameObject.SetActive(true);
+        ambientMusic.volume /= 0.5f;
+        volumeManager.isIngame = false ;
+
         //Instantiate(Camera.main);
-       // Camera.main.enabled = true;
+        // Camera.main.enabled = true;
 
     }
     public override void OnStartServer()
