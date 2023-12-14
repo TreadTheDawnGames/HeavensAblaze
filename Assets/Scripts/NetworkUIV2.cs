@@ -125,11 +125,12 @@ public class NetworkUIV2 : MonoBehaviour
 
     }
 
-    
+    [SerializeField]
+    float waitToStartTime = 6;
 
     IEnumerator WaitToShow()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(waitToStartTime);
         float elapsedTime = 0f;
         float whileWait = 6f;
         while (elapsedTime < whileWait)

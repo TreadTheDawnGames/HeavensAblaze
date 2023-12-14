@@ -11,7 +11,11 @@ using UnityEngine.UI;
 public class AnimateLogo : MonoBehaviour
 {
     [SerializeField]
+    float fadeInWait = 3;
+    [SerializeField]
     float waitTime = 3;
+    [SerializeField]
+    float fadeOutWait = 3;
 
     [SerializeField]
     VideoPlayer player;
@@ -34,11 +38,10 @@ public class AnimateLogo : MonoBehaviour
     IEnumerator Animate()
     {
         float elapsedTime = 0f;
-        float whileWait = 3f;
-        while (elapsedTime < whileWait)
+        while (elapsedTime < fadeInWait)
         {
             
-            player.targetCameraAlpha = Mathf.Lerp(0, 1, (elapsedTime / whileWait));
+            player.targetCameraAlpha = Mathf.Lerp(0, 1, (elapsedTime / fadeInWait));
             elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }
@@ -49,10 +52,10 @@ public class AnimateLogo : MonoBehaviour
 
         elapsedTime = 0f;
 
-        while (elapsedTime < whileWait)
+        while (elapsedTime < fadeOutWait)
         {
             
-            player.targetCameraAlpha = Mathf.Lerp(1, 0, (elapsedTime / whileWait));
+            player.targetCameraAlpha = Mathf.Lerp(1, 0, (elapsedTime / fadeOutWait));
             elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }
