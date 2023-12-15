@@ -17,6 +17,9 @@ public class AnimateLogo : MonoBehaviour
     [SerializeField]
     float fadeOutWait = 3;
 
+    public delegate void AnimationCompletedHandler();
+    public event AnimationCompletedHandler animationComplete;
+
     [SerializeField]
     VideoPlayer player;
     void Start()
@@ -59,7 +62,8 @@ public class AnimateLogo : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }
-
+        print("completed logo");
+        animationComplete.Invoke();
 
     }
 

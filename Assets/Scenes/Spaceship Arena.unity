@@ -16486,6 +16486,7 @@ MonoBehaviour:
   ship: {fileID: 0}
   inputManager: {fileID: 2079349578}
   networkUIV2: {fileID: 1202873142}
+  logo: {fileID: 633482462}
 --- !u!114 &1470237120
 MonoBehaviour:
   m_ObjectHideFlags: 0

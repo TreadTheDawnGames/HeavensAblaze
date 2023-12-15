@@ -21,30 +21,57 @@ public class MainMenu : MonoBehaviour
 
     GameObject currentMenu;
 
-#if UNITY_EDITOR
+    [SerializeField]
+    AnimateLogo logo;
 
+
+   
     
-    private void Update()
+
+    private void Start()
     {
+        logo.animationComplete += ToggleMenus;
+    }
 
+    private void OnDestroy()
+    {
+        logo.animationComplete -= ToggleMenus;        
+    }
+    void ToggleMenus()
+    {
+        StartCoroutine(ToggleMenusCoroutine());
+    }
 
-        if (Input.GetKeyDown(KeyCode.M))
+#if UNITY_EDITOR
+    IEnumerator ToggleMenusCoroutine()
+    {
+        while (true)
         {
-            if (!anotherMenuUp)
-                ToggleMainMenu();
-            else
-                ToggleMenu(currentMenu);
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                if (!anotherMenuUp)
+                    ToggleMainMenu();
+                else
+                    ToggleMenu(currentMenu);
+            }
+            yield return null;
         }
     }
+
+
 #else
-private void Update()
+IEnumerator ToggleMenusCoroutine()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        while (true)
         {
-           if (!anotherMenuUp)
-                ToggleMainMenu();
-            else
-                ToggleMenu(currentMenu);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!anotherMenuUp)
+                    ToggleMainMenu();
+                else
+                    ToggleMenu(currentMenu);
+            }
+            yield return null;
         }
     }
 #endif
