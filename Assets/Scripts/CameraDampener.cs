@@ -4,6 +4,7 @@ using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 
 public class CameraDampener : NetworkBehaviour
 {
@@ -21,26 +22,26 @@ public class CameraDampener : NetworkBehaviour
 
     public float maxDisplacement = 0.1f;
     public float positionMultiplier = 0.25f;
-    private Vector3 startPosition;
 
     private void Start()
     {
-
-        startPosition = transform.localPosition;
+        StartCoroutine(WiggleCamera());
     }
-    private void LateUpdate()
+
+
+
+    public IEnumerator WiggleCamera()
     {
-
-        
-       // transform.localPosition = startPosition + -Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier;
-        //transform.localPosition = -Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().velocity), maxDisplacement) * positionMultiplier;
-        transform.localRotation = Quaternion.Euler(Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier);
-        
+        while (!cockpitDied)
+        {
+            transform.localRotation = Quaternion.Euler(Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier);
+            yield return null;
+        }
     }
-
 
     public void Transition()
     {
+
         if (isActiveAndEnabled)
             StartCoroutine(Lerp());
     }
@@ -50,6 +51,7 @@ public class CameraDampener : NetworkBehaviour
 
     public IEnumerator Lerp()
     {
+        StopCoroutine(WiggleCamera());
         Quaternion qTargetRot = Quaternion.Euler(targetRotation);
         
         //float timeElapsed = 0;

@@ -124,7 +124,7 @@ public class ColorPicker : MonoBehaviour
     }
     private void Awake()
     {
-        Color savedColor = new Color(PlayerPrefs.GetFloat("LaserColorR"), PlayerPrefs.GetFloat("LaserColorG"), PlayerPrefs.GetFloat("LaserColorB"), PlayerPrefs.GetFloat("LaserColorA"));
+        Color savedColor = new Color(PlayerPrefs.GetFloat("LaserColorR", 1), PlayerPrefs.GetFloat("LaserColorG", 0), PlayerPrefs.GetFloat("LaserColorB", 0), PlayerPrefs.GetFloat("LaserColorA", 1));
         laserColor = savedColor;
     }
     private void OnDisable()

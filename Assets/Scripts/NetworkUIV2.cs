@@ -154,6 +154,14 @@ public class NetworkUIV2 : MonoBehaviour
 
                 }
             }
+            foreach(Button button in GetComponentsInChildren<Button>())
+            {
+                button.interactable = true;
+            }
+            foreach (TMP_InputField field in GetComponentsInChildren<TMP_InputField>())
+            {
+                field.interactable = true;
+            }
             elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }

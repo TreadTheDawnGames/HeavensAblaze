@@ -26,15 +26,15 @@ public class VolumeManager : MonoBehaviour
     AudioSource music;
 
     public bool isIngame = false;
-    bool masterMute = false;
+    bool masterMute;
 
     private void Start()
     {
+        masterMute = PlayerPrefs.GetInt("MasterMute", 1) == 0 ? true : false;
+
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
 
-        SetupMusicMute(PlayerPrefs.GetInt("MusicMute", 0) == 0 ? true : false);
-        SetupMasterMute(PlayerPrefs.GetInt("MasterMute", 0) == 0 ? true : false);
 
         UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
         UpdateMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
@@ -44,6 +44,9 @@ public class VolumeManager : MonoBehaviour
 
         masterMuteButton.onClick.AddListener(() => ToggleMasterMute());
         musicMuteButton.onClick.AddListener(() => ToggleMusicMute());
+
+        SetupMusicMute(PlayerPrefs.GetInt("MusicMute", 1) == 0 ? true : false);
+        SetupMasterMute(PlayerPrefs.GetInt("MasterMute", 1) == 0 ? true : false);
     }
 
 
@@ -115,14 +118,16 @@ public class VolumeManager : MonoBehaviour
     {
         if (isMuted)
         {
-            musicImage.sprite = musicOff;
-            
+            masterImage.sprite = masterOff;
+            AudioListener.volume = 0;
+            masterSlider.onValueChanged.RemoveAllListeners();
         }
         else
         {
-            musicImage.sprite = musicOn;
+            masterImage.sprite = masterOn;
+            masterSlider.onValueChanged.AddListener(val => UpdateMasterVolume(val));
+            UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
         }
-        AudioListener.pause = isMuted;
 
     }
 }

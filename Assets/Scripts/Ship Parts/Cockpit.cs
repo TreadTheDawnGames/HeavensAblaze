@@ -66,6 +66,7 @@ public class Cockpit : ShipPart
                 if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
                 {
                     camDamp.transform.SetParent(transform.parent);
+                    camDamp.cockpitDied = true;
                     camDamp.Transition();
                     i--;
                 }
