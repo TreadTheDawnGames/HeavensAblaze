@@ -15,6 +15,7 @@ using FishNet.Managing.Timing;
 using UnityEngine.InputSystem.Layouts;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PredictionMotor : NetworkBehaviour
 {
@@ -589,6 +590,67 @@ public class PredictionMotor : NetworkBehaviour
     }
 
     #endregion
+
+    void SetJoystickValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    {
+        thrust = -playerShip.Joystick.Thrust.ReadValue<float>();
+        lift = playerShip.Joystick.Lift.ReadValue<float>();
+        lateral = playerShip.Joystick.Lateral.ReadValue<float>();
+
+        pitch = inputManager.curve.Evaluate(-playerShip.Joystick.Pitch.ReadValue<float>());
+        roll = inputManager.curve.Evaluate(-playerShip.Joystick.Roll.ReadValue<float>());
+        yaw = inputManager.curve.Evaluate(playerShip.Joystick.Yaw.ReadValue<float>());
+
+
+        brake = playerShip.Joystick.Brake.IsInProgress();
+        fire = playerShip.Joystick.Fire.IsInProgress();
+        swapUseAimpoint = playerShip.Joystick.SwapUseAimpoint.WasPressedThisFrame();
+
+
+    }
+    void SetKeyboardValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    {
+        thrust = playerShip.Keyboard.Thrust.ReadValue<float>();
+        lift = playerShip.Keyboard.Lift.ReadValue<float>();
+        lateral = playerShip.Keyboard.Lateral.ReadValue<float>();
+
+        pitch = inputManager.curve.Evaluate(-playerShip.Keyboard.Pitch.ReadValue<float>());
+        roll = inputManager.curve.Evaluate(-playerShip.Keyboard.Roll.ReadValue<float>());
+        yaw = inputManager.curve.Evaluate(playerShip.Keyboard.Yaw.ReadValue<float>());
+
+        brake = playerShip.Keyboard.Brake.IsInProgress();
+        fire = playerShip.Keyboard.Fire.IsInProgress();
+        swapUseAimpoint = playerShip.Keyboard.SwapUseAimpoint.WasPressedThisFrame();
+    }
+    void SetMouseValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    {
+        thrust = playerShip.Mouse.Thrust.ReadValue<float>();
+        lift = playerShip.Mouse.Lift.ReadValue<float>();
+        lateral = playerShip.Mouse.Lateral.ReadValue<float>();
+
+        pitch = playerShip.Mouse.Pitch.ReadValue<float>() * (float)TimeManager.TickDelta * mouseSensitivityBuff;
+        roll = -playerShip.Mouse.Roll.ReadValue<float>();
+        yaw = playerShip.Mouse.Yaw.ReadValue<float>() * (float)TimeManager.TickDelta * mouseSensitivityBuff;
+
+        brake = playerShip.Mouse.Brake.IsInProgress();
+        fire = playerShip.Mouse.Fire.IsInProgress();
+        swapUseAimpoint = playerShip.Mouse.SwapUseAimpoint.WasPressedThisFrame();
+    }
+    void SetGamepadValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    {
+        thrust = playerShip.Gamepad.Thrust.ReadValue<float>();
+        lift = playerShip.Gamepad.Lift.ReadValue<float>();
+        lateral = playerShip.Gamepad.Lateral.ReadValue<float>();
+
+        pitch = inputManager.curve.Evaluate(-playerShip.Keyboard.Pitch.ReadValue<float>());
+        roll = inputManager.curve.Evaluate(-playerShip.Keyboard.Roll.ReadValue<float>());
+        yaw = inputManager.curve.Evaluate(playerShip.Keyboard.Yaw.ReadValue<float>());
+
+        brake = playerShip.Gamepad.Brake.IsInProgress();
+        fire = playerShip.Gamepad.Fire.IsInProgress();
+        swapUseAimpoint = playerShip.Gamepad.SwapUseAimpoint.WasPressedThisFrame();
+    }
+
     [SerializeField] float mouseSensitivityBuff = 4f;
     /* GatherInputs takes local inputs of the client and puts them into MoveData.
      * When no inputs are available the method is exited early. Note that data is set
@@ -615,69 +677,33 @@ public class PredictionMotor : NetworkBehaviour
         if (!inputManager.menuUp)
         {
 
-
-
-            if (inputType == InputType.Joystick)
+            switch (inputType)
             {
-                thrust = -playerShip.Joystick.Thrust.ReadValue<float>();
-                lift = playerShip.Joystick.Lift.ReadValue<float>();
-                lateral = playerShip.Joystick.Lateral.ReadValue<float>();
-                pitch = -playerShip.Joystick.Pitch.ReadValue<float>();
-                roll = -playerShip.Joystick.Roll.ReadValue<float>();
-                yaw = playerShip.Joystick.Yaw.ReadValue<float>();
-                brake = playerShip.Joystick.Brake.IsInProgress();
-                fire = playerShip.Joystick.Fire.IsInProgress();
-                swapUseAimpoint = playerShip.Joystick.SwapUseAimpoint.WasPressedThisFrame();
-            }
-            else if (inputType == InputType.Keyboard)
-            {
-                thrust = playerShip.Keyboard.Thrust.ReadValue<float>();
-                lift = playerShip.Keyboard.Lift.ReadValue<float>();
-                lateral = playerShip.Keyboard.Lateral.ReadValue<float>();
-                pitch = playerShip.Keyboard.Pitch.ReadValue<float>();
-                roll = -playerShip.Keyboard.Roll.ReadValue<float>();
-                yaw = playerShip.Keyboard.Yaw.ReadValue<float>();
-                brake = playerShip.Keyboard.Brake.IsInProgress();
-                fire = playerShip.Keyboard.Fire.IsInProgress();
-                swapUseAimpoint = playerShip.Keyboard.SwapUseAimpoint.WasPressedThisFrame();
+                case InputType.Joystick:
+                    SetJoystickValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    break;
 
-            }
-            else if (inputType == InputType.Mouse)
-            {
-                thrust = playerShip.Mouse.Thrust.ReadValue<float>();
-                lift = playerShip.Mouse.Lift.ReadValue<float>();
-                lateral = playerShip.Mouse.Lateral.ReadValue<float>();
+                case InputType.Mouse:
+                    SetMouseValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    break;
 
-                pitch = playerShip.Mouse.Pitch.ReadValue<float>()*(float)TimeManager.TickDelta *mouseSensitivityBuff;
-                roll = -playerShip.Mouse.Roll.ReadValue<float>();
-                yaw = playerShip.Mouse.Yaw.ReadValue<float>() * (float)TimeManager.TickDelta * mouseSensitivityBuff;
+                case InputType.Keyboard:
+                    SetKeyboardValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    break;
 
-                brake = playerShip.Mouse.Brake.IsInProgress();
-                fire = playerShip.Mouse.Fire.IsInProgress();
-                swapUseAimpoint = playerShip.Mouse.SwapUseAimpoint.WasPressedThisFrame();
+                case InputType.Gamepad:
+                    SetGamepadValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    break;
 
-            }
-            else if (inputType == InputType.Gamepad)
-            {
-                thrust = playerShip.Gamepad.Thrust.ReadValue<float>();
-                lift = playerShip.Gamepad.Lift.ReadValue<float>();
-                lateral = playerShip.Gamepad.Lateral.ReadValue<float>();
-                pitch = playerShip.Gamepad.Pitch.ReadValue<float>();
-                roll = -playerShip.Gamepad.Roll.ReadValue<float>();
-                yaw = playerShip.Gamepad.Yaw.ReadValue<float>();
-                brake = playerShip.Gamepad.Brake.IsInProgress();
-                fire = playerShip.Gamepad.Fire.IsInProgress();
-                swapUseAimpoint = playerShip.Gamepad.SwapUseAimpoint.WasPressedThisFrame();
-
+                default:
+                    break;
             }
         }
 
         if (inputType != InputType.Disabled)
             shipSound.PlayServerSounds(thrust, lift, lateral, roll, pitch, yaw, brake);
-       
-        
 
-        float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
+
 
         //Debug.Log(thrust);
 
@@ -704,27 +730,23 @@ public class PredictionMotor : NetworkBehaviour
             if(engine!=null)
                 i++;
         }
+        
+
         if (i > 0)
         {
-            if (thrust > 0f)
-                thrust *= thrustMultiplier;
+            thrust *= thrustMultiplier;
 
         }
-        if(i <= engineCount/2)
+        else if(i <= engineCount/2)
         {
             thrust *= 0.5f;
         }
-        if (i == 0)
+        else if (i == 0)
         {
             shipSound.PlayServerDeadThrust(thrust*2f);
         }
 
-        if(inputType!=InputType.Mouse)
-        {
-            pitch = inputManager.curve.Evaluate(pitch);
-            roll = inputManager.curve.Evaluate(roll);
-            yaw = inputManager.curve.Evaluate(yaw);
-        }
+        float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
 
         data = new MoveData(
             thrust  * invertThrust  * moveSpeed, 
@@ -732,8 +754,9 @@ public class PredictionMotor : NetworkBehaviour
             lateral * invertLateral * moveSpeed, 
             -pitch  * invertPitch * sensitivityVal,
             roll   * invertRoll  * sensitivityVal,
-            yaw    * invertYaw   * sensitivityVal ,
-            brake, fire);
+            yaw    * invertYaw   * sensitivityVal,
+            brake, 
+            fire); 
 
     }
 
