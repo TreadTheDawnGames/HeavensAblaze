@@ -138,7 +138,7 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     float waitToStartTime = 6;
     [SerializeField] float whileWait = 6f;
-    [SerializeField] float subtitleWait = 3f;
+    [SerializeField] float subtitleWait = 170000f;
     public float timePassed;
     IEnumerator WaitToShow()
     {
@@ -147,6 +147,8 @@ public class NetworkUIV2 : MonoBehaviour
         yield return new WaitForSeconds(waitToStartTime);
         ambientMusic.Play();
         float elapsedTime = 0f;
+
+        
 
         while (elapsedTime < whileWait + subtitleWait)
         {
@@ -163,8 +165,8 @@ public class NetworkUIV2 : MonoBehaviour
                 }
                 else if(text.gameObject.name == "Subtitle" )
                 {
-                    if(elapsedTime >= subtitleWait)
-                       text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 1, ((elapsedTime-subtitleWait) / whileWait)));
+                    if(ambientMusic.timeSamples >= subtitleWait)
+                       text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
 
                 }
                 else
@@ -185,7 +187,7 @@ public class NetworkUIV2 : MonoBehaviour
                 player.targetCameraAlpha = (elapsedTime / whileWait);
 
             elapsedTime += Time.fixedDeltaTime;
-            timePassed = elapsedTime;
+            timePassed = ambientMusic.timeSamples;
             yield return null;
         }
 
