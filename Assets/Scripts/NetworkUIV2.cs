@@ -16,6 +16,7 @@ using UnityEditor;
 using FishNet.Managing.Client;
 using FishNet.Transporting;
 using FishNet.Demo.AdditiveScenes;
+using UnityEngine.Video;
 
 public class NetworkUIV2 : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     TMP_InputField joinCodeBox;
 
+    [SerializeField]
+    VideoPlayer player;
+
     public InputManager inputManager;
 
     [SerializeField]
@@ -43,6 +47,10 @@ public class NetworkUIV2 : MonoBehaviour
 
     [SerializeField]
     AudioSource ambientMusic;
+
+    [SerializeField] List<string> splashTexts = new List<string>();
+    [SerializeField] TMP_Text splash;
+
     private async void Start()
     {
         _networkManager.ClientManager.OnClientConnectionState += UpdateClientConnectionState;
@@ -65,6 +73,7 @@ public class NetworkUIV2 : MonoBehaviour
         {
             text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         }
+            player.targetCameraAlpha = 0;
         StartCoroutine(WaitToShow());
     }
 
@@ -128,14 +137,18 @@ public class NetworkUIV2 : MonoBehaviour
 
     [SerializeField]
     float waitToStartTime = 6;
-
+    [SerializeField] float whileWait = 6f;
+    [SerializeField] float subtitleWait = 3f;
+    public float timePassed;
     IEnumerator WaitToShow()
     {
+        
+        splash.text = splashTexts[Random.Range(0, splashTexts.Count)];
         yield return new WaitForSeconds(waitToStartTime);
         ambientMusic.Play();
         float elapsedTime = 0f;
-        float whileWait = 6f;
-        while (elapsedTime < whileWait)
+
+        while (elapsedTime < whileWait + subtitleWait)
         {
             foreach(Image image in GetComponentsInChildren<Image>())
             {
@@ -146,6 +159,12 @@ public class NetworkUIV2 : MonoBehaviour
                 if(text.gameObject.name == "Placeholder")
                 {
                     text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 0.35f, (elapsedTime / whileWait)));
+
+                }
+                else if(text.gameObject.name == "Subtitle" )
+                {
+                    if(elapsedTime >= subtitleWait)
+                       text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 1, ((elapsedTime-subtitleWait) / whileWait)));
 
                 }
                 else
@@ -162,11 +181,34 @@ public class NetworkUIV2 : MonoBehaviour
             {
                 field.interactable = true;
             }
+            if(player!=null)
+                player.targetCameraAlpha = (elapsedTime / whileWait);
+
             elapsedTime += Time.fixedDeltaTime;
+            timePassed = elapsedTime;
             yield return null;
         }
 
-        //GetComponent<Canvas>().enabled = true;
+        foreach (Image image in GetComponentsInChildren<Image>())
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        }
+        foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+        {
+            if (text.gameObject.name == "Placeholder")
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 0.35f);
+
+            }
+            else
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+
+            }
+        }
+        if (player != null)
+
+            player.targetCameraAlpha = 1;
     }
 
     public async void CreateRelay()
