@@ -9399,7 +9399,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770858011}
   m_Enabled: 1
-  m_VideoClip: {fileID: 0}
+  m_VideoClip: {fileID: 32900000, guid: 4f6248a24707e9f488a8d4c70b187b5b, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 296071835}
@@ -13760,71 +13760,11 @@ MonoBehaviour:
   serverButtonText: {fileID: 2137715023}
   clientButtonText: {fileID: 697296519}
   joinCodeBox: {fileID: 581747047}
-  player: {fileID: 770858013}
+  menuVideoPlayer: {fileID: 770858013}
   inputManager: {fileID: 2079349578}
   optionsMenu: {fileID: 2120485260}
   ambientMusic: {fileID: 672353090}
-  splashTexts:
-  - 1.0.0
-  - Splash Text
-  - Shoot your friends!
-  - War of the Cheesy Dibbles
-  - Not Star Wars
-  - (Cap'n Caspian's Shooty Pew Pew)
-  - Try Alt + F4
-  - youtube.com/@gravityhamster8805
-  - Eat a bagel
-  - Pew Pew Pew Pew Pew Pew
-  - Jokes on you, my layers go "nyoom nyoom"!
-  - I'm flabergasted
-  - Today is today
-  - Don't have a cow
-  - See above
-  - Sea above
-  - Press F to pay respects
-  - Intended to be played with a joystick (not included)
-  - Roger Roger
-  - You got a splash text!
-  - Gilda class space fighter
-  - Outpost 1
-  - Comb your hair
-  - 100% bug free*
-  - No text this time
-  - 
-  - Inspired by Starfighter Arduxim (on Steam)
-  - Stop, drop and roll
-  - Feel the burn
-  - Made in Unity
-  - You just committed tax evasion!
-  - Stop committing tax evasion!
-  - Check your A/C
-  - Beware the boogyman
-  - Check your six
-  - Check ur 6
-  - I promise I'm only sorta stupid
-  - Touch grass
-  - Kachow!
-  - Citation needed*
-  - The enemy's gate is down
-  - The sky is falling!
-  - Not what the emporor had in mind
-  - Do a jig!
-  - Not sponsored!
-  - Why wait?
-  - The sky is on fire
-  - Your move...
-  - In my mum's spaceship. Broom, broom.
-  - Oreos not included
-  - Cheese (for a friend)
-  - Heavens Ablaze
-  - S O S
-  - Special thanks to Stack Overflow!
-  - Try ramming!
-  - You use your guns to shoot the other ships!
-  - Also try D&D!
-  - Ask about the deluxe version!
-  - C'est magnifique!
-  - C'est magnifique!
+  splashTexts: []
   splash: {fileID: 174890238}
   waitToStartTime: 7.5
   whileWait: 6

@@ -38,7 +38,7 @@ public class NetworkUIV2 : MonoBehaviour
     TMP_InputField joinCodeBox;
 
     [SerializeField]
-    VideoPlayer player;
+    VideoPlayer menuVideoPlayer;
 
     public InputManager inputManager;
 
@@ -73,7 +73,7 @@ public class NetworkUIV2 : MonoBehaviour
         {
             text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         }
-            player.targetCameraAlpha = 0;
+            menuVideoPlayer.targetCameraAlpha = 0;
         StartCoroutine(WaitToShow());
     }
 
@@ -143,24 +143,23 @@ public class NetworkUIV2 : MonoBehaviour
     IEnumerator WaitToShow()
     {
         
-        splash.text = splashTexts[Random.Range(0, splashTexts.Count)];
         yield return new WaitForSeconds(waitToStartTime);
+        splash.text = SplashText.GetInstance().Get();
         ambientMusic.Play();
         float elapsedTime = 0f;
 
-        
 
-        while (elapsedTime < whileWait + subtitleWait)
+        while (ambientMusic.timeSamples < subtitleWait)
         {
             foreach(Image image in GetComponentsInChildren<Image>())
             {
-                    image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, (elapsedTime / whileWait)));
+                    image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, (ambientMusic.timeSamples / subtitleWait)));
             }    
             foreach(TMP_Text text in GetComponentsInChildren<TMP_Text>())
             {
                 if(text.gameObject.name == "Placeholder")
                 {
-                    text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 0.35f, (elapsedTime / whileWait)));
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 0.35f, (ambientMusic.timeSamples / subtitleWait)));
 
                 }
                 else if(text.gameObject.name == "Subtitle" )
@@ -171,7 +170,7 @@ public class NetworkUIV2 : MonoBehaviour
                 }
                 else
                 {
-                    text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 1, (elapsedTime / whileWait)));
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 1, (ambientMusic.timeSamples / subtitleWait)));
 
                 }
             }
@@ -183,8 +182,10 @@ public class NetworkUIV2 : MonoBehaviour
             {
                 field.interactable = true;
             }
-            if(player!=null)
-                player.targetCameraAlpha = (elapsedTime / whileWait);
+            if(menuVideoPlayer!=null && menuVideoPlayer.clip != null)
+            {
+                menuVideoPlayer.targetCameraAlpha = (ambientMusic.timeSamples / subtitleWait);
+            }
 
             elapsedTime += Time.fixedDeltaTime;
             timePassed = ambientMusic.timeSamples;
@@ -208,9 +209,9 @@ public class NetworkUIV2 : MonoBehaviour
 
             }
         }
-        if (player != null)
+        if (menuVideoPlayer != null)
 
-            player.targetCameraAlpha = 1;
+            menuVideoPlayer.targetCameraAlpha = 1;
     }
 
     public async void CreateRelay()
