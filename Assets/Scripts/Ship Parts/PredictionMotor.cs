@@ -426,7 +426,7 @@ public class PredictionMotor : NetworkBehaviour
          * OnStartClient or OnStartServer, so do not
          * try to subscribe before these events. */
         if (activeIdleCam != null)
-            activeIdleCam.gameObject.SetActive(false);
+            activeIdleCam.SetEnabled(false);
         if (ambientMusic != null)
             ambientMusic.volume *= 0.5f;
         if (volumeManager != null)
@@ -492,7 +492,7 @@ public class PredictionMotor : NetworkBehaviour
     {
         base.OnStopClient();
         if(activeIdleCam!=null)
-            activeIdleCam.gameObject.SetActive(true);
+            activeIdleCam.SetEnabled(true);
         if(ambientMusic!=null)
             ambientMusic.volume /= 0.5f;
         if (volumeManager != null)

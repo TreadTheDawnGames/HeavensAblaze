@@ -4,29 +4,10 @@ using UnityEngine;
 using FishNet.Object;
 public class IdleCamera : MonoBehaviour
 {
-    /*[SerializeField]
-    AudioListener listener;
-
-    private void OnDisable()
+    public void SetEnabled(bool setTo)
     {
-
-        listener.enabled = false;
-
-
+        gameObject.SetActive(setTo) ;
     }
-
-    private void OnEnable()
-    {
-
-        listener.enabled = true;
-
-    }*/
-
-    /*IEnumerator Start()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(transform.GetChild(0).gameObject);
-    }*/
 
     void FixedUpdate()
     {

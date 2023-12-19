@@ -13,7 +13,8 @@ public class MainBody : ShipPart
     private void Awake()
     {
         root = transform.root.GetComponent<PredictionMotor>();
-        cam = GetCamInChildren(root.transform);
+        cam = GetComponentInChildren<CameraDampener>();
+//        cam = GetCamInChildren(root.transform);
     }
 
 
@@ -35,6 +36,10 @@ public class MainBody : ShipPart
 
         base.DestroyIfDeadObservers();
         root.gameObject.SetActive(false);
+        if (GetComponentInChildren<Camera>() != null)
+        {
+            root.activeIdleCam.SetEnabled(true);
+        }
     }
 
 
@@ -57,25 +62,6 @@ public class MainBody : ShipPart
             //return cam;
         }
     }
-    Cockpit GetCockpitInChildren(Transform parent)
-    {
-
-        if (parent.TryGetComponent<Cockpit>(out Cockpit cam))
-            return cam;
-        else
-        {
-            for (int i = 0; i < parent.childCount; i++)
-            {
-                if (GetCockpitInChildren(parent.GetChild(i)) != null)
-                {
-                    Debug.Log("found " + parent.GetChild(i));
-                    
-                    return GetCockpitInChildren(parent.GetChild(i));
-                }
-            }
-            return null;
-            //return cam;
-        }
-    }
+   
 
 }

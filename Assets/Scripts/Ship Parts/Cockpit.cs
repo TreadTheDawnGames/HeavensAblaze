@@ -19,30 +19,19 @@ public class Cockpit : ShipPart
     private void Awake()
     {
         root = transform.root.GetComponent<PredictionMotor>();
-        cam = GetCamInChildren(transform);
+//        cam = GetCamInChildren(transform);
+        //cam = GetComponentInChildren<Camera>();
     }
 
     public override void OnStopClient()
     {
-        if (cam != null)
+        base.OnStopClient();
+        if (GetComponentInChildren<Camera>())
         {
-            base.OnStopClient();
-            if(GetComponentInChildren<Camera>()!=null)
+            //if(GetComponentInChildren<Camera>()!=null)
                 transform.GetComponentInChildren<Camera>().gameObject.SetActive(false); ;
         }
     }
-    /*public override void OnStartClient()
-    {
-            base.OnStopClient();  
-        if (cam != null)
-        {
-            if (root!=null && root.GetComponent<NetworkObject>().IsOwner)
-            {
-
-                cam.gameObject.SetActive(true);
-            }
-        }
-    }*/
 
     [ServerRpc(RequireOwnership =false)]
     public override void DestroyIfDead()
@@ -60,29 +49,37 @@ public class Cockpit : ShipPart
         {
             Instantiate(destructionExplosion, transform.position, transform.rotation);
 
+            //find camera and do the transition to look at the body
             for (int i = 0; i < transform.childCount; i++)
             {
-
-                if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
+                if (IsOwner)
                 {
-                    camDamp.transform.SetParent(transform.parent);
-                    camDamp.cockpitDied = true;
-                    camDamp.Transition();
-                    i--;
+
+                    if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
+                    {
+                        camDamp.transform.SetParent(transform.parent);
+                        camDamp.cockpitDied = true;
+                        camDamp.Transition();
+                        i--;
+                    }
+                    /*else
+                    {
+                        FindObjectOfType<IdleCamera>(true).SetEnabled(true);
+                    }*/
                 }
                 Destroy(transform.GetChild(i).gameObject);
 
             }
-            if(root!=null)
+            if (root != null)
             {
-
+                //disable player input
                 root.inputType = PredictionMotor.InputType.Disabled;
 
-            /*if(root.mainCam.activeInHierarchy)
-                root.mainCam.GetComponent<CameraDampener>().Transition();*/
-            
-
-            } 
+            }
+            else
+            {
+                FindObjectOfType<IdleCamera>(true).SetEnabled(true);
+            }
 
             Destroy(gameObject);
         }
