@@ -429,7 +429,8 @@ public class PredictionMotor : NetworkBehaviour
             activeIdleCam.gameObject.SetActive(false);
         if (ambientMusic != null)
             ambientMusic.volume *= 0.5f;
-        volumeManager.isIngame = true;
+        if (volumeManager != null)
+            volumeManager.isIngame = true;
 
         SubscribeToTimeManager(true);
 
@@ -494,7 +495,8 @@ public class PredictionMotor : NetworkBehaviour
             activeIdleCam.gameObject.SetActive(true);
         if(ambientMusic!=null)
             ambientMusic.volume /= 0.5f;
-        volumeManager.isIngame = false ;
+        if (volumeManager != null)
+            volumeManager.isIngame = false ;
 
         //Instantiate(Camera.main);
         // Camera.main.enabled = true;
