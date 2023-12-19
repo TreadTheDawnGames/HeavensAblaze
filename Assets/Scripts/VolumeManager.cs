@@ -29,17 +29,20 @@ public class VolumeManager : MonoBehaviour
 
     private void Start()
     {
-        masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1);
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
+        try
+        {
+            masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1);
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
 
-        UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
-        UpdateMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
+            UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
+            UpdateMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
 
-        masterSlider.onValueChanged.AddListener(val => UpdateMasterVolume(val));
-        musicSlider.onValueChanged.AddListener(val => UpdateMusicVolume(val));
+            masterSlider.onValueChanged.AddListener(val => UpdateMasterVolume(val));
+            musicSlider.onValueChanged.AddListener(val => UpdateMusicVolume(val));
 
-        masterMuteButton.onClick.AddListener(() => ToggleMasterMute());
-        musicMuteButton.onClick.AddListener(() => ToggleMusicMute());
+            masterMuteButton.onClick.AddListener(() => ToggleMasterMute());
+            musicMuteButton.onClick.AddListener(() => ToggleMusicMute());
+        } catch { }
     }
 
 

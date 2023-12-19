@@ -426,8 +426,10 @@ public class PredictionMotor : NetworkBehaviour
          * try to subscribe before these events. */
         if (activeIdleCam != null)
             activeIdleCam.gameObject.SetActive(false);
-        ambientMusic.volume *= 0.5f;
-        volumeManager.isIngame = true;
+        if (ambientMusic != null)
+            ambientMusic.volume *= 0.5f;
+        if (volumeManager != null)
+            volumeManager.isIngame = true;
 
         SubscribeToTimeManager(true);
 
@@ -490,8 +492,10 @@ public class PredictionMotor : NetworkBehaviour
         base.OnStopClient();
         if(activeIdleCam!=null)
             activeIdleCam.gameObject.SetActive(true);
-        ambientMusic.volume /= 0.5f;
-        volumeManager.isIngame = false ;
+        if(ambientMusic!=null)
+            ambientMusic.volume /= 0.5f;
+        if (volumeManager != null)
+            volumeManager.isIngame = false ;
 
         //Instantiate(Camera.main);
         // Camera.main.enabled = true;
