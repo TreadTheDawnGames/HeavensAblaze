@@ -133,7 +133,7 @@ public class PredictionMotor : NetworkBehaviour
 
     public bool blastersUseAimpoint = true;
 
-    private IdleCamera activeIdleCam;
+    public IdleCamera activeIdleCam { get; private set; }
 
     public GameObject mainCam;
     public GameObject thirdPersonCam;

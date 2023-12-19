@@ -151,11 +151,11 @@ public class NetworkUIV2 : MonoBehaviour
 
         while (ambientMusic.timeSamples < subtitleWait)
         {
-            foreach(Image image in GetComponentsInChildren<Image>())
+            foreach(Image image in GetComponentsInChildren<Image>(true))
             {
                     image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, (ambientMusic.timeSamples / subtitleWait)));
             }    
-            foreach(TMP_Text text in GetComponentsInChildren<TMP_Text>())
+            foreach(TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
             {
                 if(text.gameObject.name == "Placeholder")
                 {
@@ -174,11 +174,11 @@ public class NetworkUIV2 : MonoBehaviour
 
                 }
             }
-            foreach(Button button in GetComponentsInChildren<Button>())
+            foreach(Button button in GetComponentsInChildren<Button>(true))
             {
                 button.interactable = true;
             }
-            foreach (TMP_InputField field in GetComponentsInChildren<TMP_InputField>())
+            foreach (TMP_InputField field in GetComponentsInChildren<TMP_InputField>(true))
             {
                 field.interactable = true;
             }
@@ -192,11 +192,11 @@ public class NetworkUIV2 : MonoBehaviour
             yield return null;
         }
 
-        foreach (Image image in GetComponentsInChildren<Image>())
+        foreach (Image image in GetComponentsInChildren<Image>(true))
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
         }
-        foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+        foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
         {
             if (text.gameObject.name == "Placeholder")
             {
@@ -210,8 +210,9 @@ public class NetworkUIV2 : MonoBehaviour
             }
         }
         if (menuVideoPlayer != null)
-
+        {
             menuVideoPlayer.targetCameraAlpha = 1;
+        }
     }
 
     public async void CreateRelay()

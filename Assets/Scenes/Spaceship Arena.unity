@@ -2454,7 +2454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.0.0
+  m_text: Something's wrong! (No, actually. please tell me if you see this).
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6979808c7e873734ca18ada260f637e5, type: 2}
   m_sharedMaterial: {fileID: -8772995662177029571, guid: 6979808c7e873734ca18ada260f637e5, type: 2}
