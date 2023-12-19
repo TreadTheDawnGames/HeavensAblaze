@@ -30,6 +30,7 @@ public class VolumeManager : MonoBehaviour
 
     private void Start()
     {
+<<<<<<< HEAD
         masterMute = PlayerPrefs.GetInt("MasterMute", 1) == 0 ? true : false;
 
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1);
@@ -38,15 +39,30 @@ public class VolumeManager : MonoBehaviour
 
         UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
         UpdateMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
+=======
+        try
+        {
+            masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1);
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
 
-        masterSlider.onValueChanged.AddListener(val => UpdateMasterVolume(val));
-        musicSlider.onValueChanged.AddListener(val => UpdateMusicVolume(val));
+            UpdateMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1));
+            UpdateMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1));
+>>>>>>> bugfix/packetQueueSizeTooSmallFixed
 
+            masterSlider.onValueChanged.AddListener(val => UpdateMasterVolume(val));
+            musicSlider.onValueChanged.AddListener(val => UpdateMusicVolume(val));
+
+<<<<<<< HEAD
         masterMuteButton.onClick.AddListener(() => ToggleMasterMute());
         musicMuteButton.onClick.AddListener(() => ToggleMusicMute());
 
         SetupMusicMute(PlayerPrefs.GetInt("MusicMute", 1) == 0 ? true : false);
         SetupMasterMute(PlayerPrefs.GetInt("MasterMute", 1) == 0 ? true : false);
+=======
+            masterMuteButton.onClick.AddListener(() => ToggleMasterMute());
+            musicMuteButton.onClick.AddListener(() => ToggleMusicMute());
+        } catch { }
+>>>>>>> bugfix/packetQueueSizeTooSmallFixed
     }
 
 
