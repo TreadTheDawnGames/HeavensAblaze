@@ -180,7 +180,8 @@ public class NetworkUIV2 : MonoBehaviour
             }
             foreach (TMP_InputField field in GetComponentsInChildren<TMP_InputField>(true))
             {
-                field.interactable = true;
+                if(!serverStarted)
+                    field.interactable = true;
             }
             if (menuVideoPlayer != null && menuVideoPlayer.clip != null)
             {
@@ -313,9 +314,9 @@ public class NetworkUIV2 : MonoBehaviour
 
                 if (!serverStarted)
                 {
-
                     utp.SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
                 }
+                joinCodeBox.interactable = false;
 
                 if (_networkManager.ClientManager.StartConnection())
                 {
@@ -347,6 +348,7 @@ public class NetworkUIV2 : MonoBehaviour
         else
         {
             clientStarted = false;
+            joinCodeBox.interactable = true;
             _networkManager.ClientManager.StopConnection();
             //  clientButtonText.text = "Start\nClient";
 
