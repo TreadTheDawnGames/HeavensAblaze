@@ -28,7 +28,7 @@ public class CameraDampener : NetworkBehaviour
         StartCoroutine(WiggleCamera());
     }
 
-
+   
 
     public IEnumerator WiggleCamera()
     {

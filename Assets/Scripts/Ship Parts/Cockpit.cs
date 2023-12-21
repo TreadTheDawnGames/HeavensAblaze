@@ -29,7 +29,7 @@ public class Cockpit : ShipPart
         if (GetComponentInChildren<Camera>())
         {
             //if(GetComponentInChildren<Camera>()!=null)
-                transform.GetComponentInChildren<Camera>().gameObject.SetActive(false); ;
+            transform.GetComponentInChildren<Camera>().enabled = false ;
         }
     }
 
@@ -45,40 +45,48 @@ public class Cockpit : ShipPart
     [ObserversRpc]
     public void CockpitDestroyIfDeadObservers()
     {
+        print("destroy if dead for " + gameObject.name + "is started");
         if (hitPoints <= 0)
         {
             Instantiate(destructionExplosion, transform.position, transform.rotation);
 
             //find camera and do the transition to look at the body
-            for (int i = 0; i < transform.childCount; i++)
+            print(IsOwner);
+            if (IsOwner)
             {
-                if (IsOwner)
+                for (int i = 0; i < transform.childCount; i++)
                 {
-
+                    print(i);
                     if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
                     {
+                        Debug.Log("Cockpit parent: " + transform.parent.name);
                         camDamp.transform.SetParent(transform.parent);
                         camDamp.cockpitDied = true;
                         camDamp.Transition();
                         i--;
                     }
-                    /*else
-                    {
-                        FindObjectOfType<IdleCamera>(true).SetEnabled(true);
-                    }*/
+
+                    print(transform.GetChild(i).name);
+                    Destroy(transform.GetChild(i).gameObject);
                 }
-                Destroy(transform.GetChild(i).gameObject);
 
             }
             if (root != null)
             {
+                print(root);
                 //disable player input
                 root.inputType = PredictionMotor.InputType.Disabled;
 
             }
             else
             {
-                FindObjectOfType<IdleCamera>(true).SetEnabled(true);
+                print("root is null");
+                //if(IsOwner)
+                    if (GetComponentInChildren<CameraDampener>() != null)
+                    {
+                        print(GetComponentInChildren<CameraDampener>().gameObject.name);
+                        FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
+                    }
             }
 
             Destroy(gameObject);

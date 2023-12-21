@@ -1,6 +1,7 @@
 using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MainBody : ShipPart
@@ -18,7 +19,7 @@ public class MainBody : ShipPart
     }
 
 
-    //[ServerRpc(RequireOwnership = false)]
+   // [ServerRpc(RequireOwnership = false)]
     public override void DestroyIfDead()
     {
         //ChangeCounterpartColor(damageHudCounterpart, this);
@@ -29,19 +30,32 @@ public class MainBody : ShipPart
                 MainBodyDestroyIfDeadObservers();
         }
     }
-
+    [ObserversRpc(RunLocally = false)]
+    void ChangeCamera()
+    {
+        if (GetComponentInChildren<Camera>() != null)
+        {
+            FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true) ;
+        }
+    }
+    //[ObserversRpc(RunLocally =false)]
     public void MainBodyDestroyIfDeadObservers()
     {
         root.inputType = PredictionMotor.InputType.Disabled;
 
-        base.DestroyIfDeadObservers();
         root.gameObject.SetActive(false);
+        ChangeCamera();
+        base.DestroyIfDeadObservers();
+    }
+
+    void OnDestroy()
+    {
         if (GetComponentInChildren<Camera>() != null)
         {
             root.activeIdleCam.SetEnabled(true);
         }
     }
-
+    
 
     CameraDampener GetCamInChildren(Transform parent)
     {

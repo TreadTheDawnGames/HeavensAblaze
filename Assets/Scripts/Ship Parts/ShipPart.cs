@@ -23,6 +23,9 @@ public class ShipPart : NetworkBehaviour
     {
         if(damageHudCounterpart!=null)  
             damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
+        DestroyIfDead();
+        
+       
     }
     //[SyncVar] public Transform parent;
     //[SyncVar] public NetworkObject netParent;
@@ -92,14 +95,8 @@ public class ShipPart : NetworkBehaviour
         }
     }
 
-    public void UpdateCounterpart()
-    {
-        transform.root.GetComponentInChildren<DamageHologram>()?.ChangeColorAndMaterial(damageHudCounterpart.GetComponent<DamageHologram>(), hitPoints);
 
-    }
-
-
-    //[ServerRpc]
+   // [ServerRpc(RequireOwnership=false)]
     public virtual void DestroyIfDead()
     {
         //ChangeCounterpartColor(damageHudCounterpart, this);

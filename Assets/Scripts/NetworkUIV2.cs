@@ -73,7 +73,7 @@ public class NetworkUIV2 : MonoBehaviour
         {
             text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         }
-            menuVideoPlayer.targetCameraAlpha = 0;
+        menuVideoPlayer.targetCameraAlpha = 0;
         StartCoroutine(WaitToShow());
     }
 
@@ -142,7 +142,7 @@ public class NetworkUIV2 : MonoBehaviour
     public float timePassed;
     IEnumerator WaitToShow()
     {
-        
+
         yield return new WaitForSeconds(waitToStartTime);
         splash.text = SplashText.GetInstance().Get();
         ambientMusic.Play();
@@ -151,21 +151,21 @@ public class NetworkUIV2 : MonoBehaviour
 
         while (ambientMusic.timeSamples < subtitleWait)
         {
-            foreach(Image image in GetComponentsInChildren<Image>(true))
+            foreach (Image image in GetComponentsInChildren<Image>(true))
             {
-                    image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, (ambientMusic.timeSamples / subtitleWait)));
-            }    
-            foreach(TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
+                image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, (ambientMusic.timeSamples / subtitleWait)));
+            }
+            foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
             {
-                if(text.gameObject.name == "Placeholder")
+                if (text.gameObject.name == "Placeholder")
                 {
                     text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.Lerp(0, 0.35f, (ambientMusic.timeSamples / subtitleWait)));
 
                 }
-                else if(text.gameObject.name == "Subtitle" )
+                else if (text.gameObject.name == "Subtitle")
                 {
-                    if(ambientMusic.timeSamples >= subtitleWait)
-                       text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+                    if (ambientMusic.timeSamples >= subtitleWait)
+                        text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
 
                 }
                 else
@@ -174,7 +174,7 @@ public class NetworkUIV2 : MonoBehaviour
 
                 }
             }
-            foreach(Button button in GetComponentsInChildren<Button>(true))
+            foreach (Button button in GetComponentsInChildren<Button>(true))
             {
                 button.interactable = true;
             }
@@ -182,7 +182,7 @@ public class NetworkUIV2 : MonoBehaviour
             {
                 field.interactable = true;
             }
-            if(menuVideoPlayer!=null && menuVideoPlayer.clip != null)
+            if (menuVideoPlayer != null && menuVideoPlayer.clip != null)
             {
                 menuVideoPlayer.targetCameraAlpha = (ambientMusic.timeSamples / subtitleWait);
             }
@@ -262,12 +262,12 @@ public class NetworkUIV2 : MonoBehaviour
             joinCodeBox.interactable = true;
             serverStarted = false;
 
-          //  serverButtonText.text = "Start\nServer";
+            //  serverButtonText.text = "Start\nServer";
 
             //JoinRelay();
             clientStarted = false;
             _networkManager.ClientManager.StopConnection();
-         //   clientButtonText.text = "Start\nClient";
+            //   clientButtonText.text = "Start\nClient";
 
             _networkManager.ServerManager.StopConnection(true);
 
@@ -289,7 +289,7 @@ public class NetworkUIV2 : MonoBehaviour
              ToggleNetUIVisability(optionsMenu.activeInHierarchy);*/
     }
 
-    
+
 
     public async void JoinRelay()
     {
@@ -321,7 +321,7 @@ public class NetworkUIV2 : MonoBehaviour
                 {
 
 
-            //        clientButtonText.text = "Stop\nClient";
+                    //        clientButtonText.text = "Stop\nClient";
 
                     clientStarted = true;
 
@@ -348,7 +348,7 @@ public class NetworkUIV2 : MonoBehaviour
         {
             clientStarted = false;
             _networkManager.ClientManager.StopConnection();
-          //  clientButtonText.text = "Start\nClient";
+            //  clientButtonText.text = "Start\nClient";
 
 
         }
@@ -367,11 +367,14 @@ public class NetworkUIV2 : MonoBehaviour
     }
 
     [SerializeField]
-    GameObject networkButtons;
+    GameObject[] hidables;
 
     public void ToggleNetUIVisability(bool setActive)
-    {
-        networkButtons.SetActive(setActive);
+    {foreach (GameObject hidable in hidables)
+        {
+            hidable.SetActive(setActive);
+
+        }
     }
 
     IEnumerator ShowJoinCodeErrorText()

@@ -55,7 +55,7 @@ public class LaserV3 : NetworkBehaviour
     private void Update()
     {
         Move();
-        Debug.DrawLine (  raycastPoint.transform.position,transform.position, Color.green, 5);
+        Debug.DrawLine(raycastPoint.transform.position, transform.position, Color.green, 5);
 
     }
 
@@ -104,16 +104,16 @@ public class LaserV3 : NetworkBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        if (collision.GetComponentInParent<LaserV3>()!=null)
+        if (collision.GetComponentInParent<LaserV3>() != null)
         {
-           // Debug.Log("Not continuing: hit laser");
+            // Debug.Log("Not continuing: hit laser");
             return;
         }
         else if (collision.TryGetComponent<NetworkObject>(out NetworkObject nob))
         {
             if (nob.Owner == GetComponent<NetworkObject>().Owner)
             {
-          //  Debug.Log("Not continuing: owner of target");
+                //  Debug.Log("Not continuing: owner of target");
                 return;
             }
             /*else
@@ -127,15 +127,13 @@ public class LaserV3 : NetworkBehaviour
             Debug.Log("Continuing: good target");
 */
         }
-        print("Started laser hit for " + collision.gameObject.name + collision.GetComponent<NetworkObject>()?.ObjectId);
-        print("Part damage before: " + collision.transform.GetComponent<ShipPart>()?.hitPoints);
 
         /* These projectiles are instantiated locally, as in,
          * they are not networked. Because of this there is a very
          * small chance the occasional projectile may not align with
          * 100% accuracy. But, the differences are generally
          * insignifcant and will not affect gameplay. */
-       //If client show visual effects, play impact audio.
+        //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
             /*if(collision.TryGetComponent<ShipPart>(out ShipPart sp))
@@ -145,9 +143,13 @@ public class LaserV3 : NetworkBehaviour
                     dh.UpdateCounterpart();
                 }
             }*/
+           /* if (collision.gameObject.TryGetComponent<MainBody>(out MainBody body))
+            {
+                print("hit");
+              //  body.TryActivateCamera();
+            }*/
 
 
-            
             if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))
             {
                 //collision.transform.root.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(collision.GetComponent<ShipPart>().damageHudCounterpart, collision.GetComponent<ShipPart>());
@@ -156,25 +158,26 @@ public class LaserV3 : NetworkBehaviour
                 Vector3 pos = hit.point;
                 Instantiate(hitSparks, pos, rot);
             }
+
+
         }
-        
+
         //If server check to damage hit objects.
         if (InstanceFinder.IsServer)
         {
             if (collision.gameObject.TryGetComponent<ShipPart>(out ShipPart ps))
             {
                 ps.hitPoints -= 12;
-                
-                ps.DestroyIfDead();
+                print(ps.name);
+               // ps.DestroyIfDead();
 
             }
         }
-         
-       
+
+        
 
 
-        print("Part damage after: " + collision.transform.GetComponent<ShipPart>()?.hitPoints);
-        print("ended laser hit for " + collision.gameObject.name + collision.GetComponent<NetworkObject>()?.ObjectId);
+
         //Destroy projectile (probably pool it instead).
         Destroy(gameObject);
     }
