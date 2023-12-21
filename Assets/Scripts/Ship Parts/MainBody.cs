@@ -33,9 +33,11 @@ public class MainBody : ShipPart
     [ObserversRpc(RunLocally = false)]
     void ChangeCamera()
     {
-        if (GetComponentInChildren<Camera>() != null)
+        Camera cam = GetComponentInChildren<Camera>();
+        if (cam != null)
         {
-            FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true) ;
+            if(cam.transform.parent.name != "Cockpit")  
+                FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true) ;
         }
     }
     //[ObserversRpc(RunLocally =false)]

@@ -23,7 +23,8 @@ public class ShipPart : NetworkBehaviour
     {
         if(damageHudCounterpart!=null)  
             damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
-        DestroyIfDead();
+        if(asServer)
+            DestroyIfDead();
         
        
     }
