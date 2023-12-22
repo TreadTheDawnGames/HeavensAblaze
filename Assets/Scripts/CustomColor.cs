@@ -24,7 +24,8 @@ public class CustomColor : MonoBehaviour
 
     private void Awake()
     {
-        custom1 = new Color(PlayerPrefs.GetFloat("Custom1R"), PlayerPrefs.GetFloat("Custom1G"), PlayerPrefs.GetFloat("Custom1B"), PlayerPrefs.GetFloat("Custom1A"));
+        
+        custom1 = new Color(PlayerPrefs.GetFloat("Custom1R",1), PlayerPrefs.GetFloat("Custom1G",1), PlayerPrefs.GetFloat("Custom1B",1), PlayerPrefs.GetFloat("Custom1A",1));
         if (custom1 == Color.white)
         {
             hasColor = false;

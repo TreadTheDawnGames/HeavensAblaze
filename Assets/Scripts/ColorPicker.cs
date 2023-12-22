@@ -29,8 +29,46 @@ public class ColorPicker : MonoBehaviour
 
     public void OnClickPickColor()
     {
-        SetColor();
+        SetColorV2();
         ColorChanged.Invoke();
+    }
+    
+    private void SetColorV2()
+    {
+        if (RectTransformUtility.RectangleContainsScreenPoint(_texture, Input.mousePosition))
+        {
+
+            Vector2 delta;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_texture, Input.mousePosition, null, out delta);
+
+            float width = _texture.rect.width;
+            float height = _texture.rect.height;
+
+            delta += new Vector2(width * 0.5f, height * 0.5f);
+
+            float x = Mathf.Clamp(delta.x / width, 0, 1);
+            float y = Mathf.Clamp(delta.y / height, 0, 1);
+
+            int texX = Mathf.RoundToInt(x * _RefSprite.width);
+            int texY = Mathf.RoundToInt(y * _RefSprite.height);
+
+            laserColor = _RefSprite.GetPixel(texX, texY);
+            if (pickingCustomColor1)
+            {
+                pickingCustomColor1 = false;
+                customColor1.selectingText.gameObject.SetActive(false);
+
+                /*PlayerPrefs.SetFloat("Custom1R", laserColor.r);
+                PlayerPrefs.SetFloat("Custom1G", laserColor.g);
+                PlayerPrefs.SetFloat("Custom1B", laserColor.b);
+                PlayerPrefs.SetFloat("Custom1A", laserColor.a);*/
+
+                customColor1.ChangeColor();
+            }
+            if (ship != null)
+                ship.ChangeColor(ship, laserColor);
+            ColorChanged.Invoke();
+        }
     }
 
     private void SetColor()
