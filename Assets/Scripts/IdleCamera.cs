@@ -6,7 +6,7 @@ public class IdleCamera : MonoBehaviour
 {
     public void SetEnabled(bool setTo)
     {
-        gameObject.SetActive(setTo) ;
+        gameObject?.SetActive(setTo) ;
     }
 
     void FixedUpdate()

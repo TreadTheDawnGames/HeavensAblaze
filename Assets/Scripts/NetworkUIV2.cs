@@ -137,7 +137,6 @@ public class NetworkUIV2 : MonoBehaviour
 
     [SerializeField]
     float waitToStartTime = 6;
-    [SerializeField] float whileWait = 6f;
     [SerializeField] float subtitleWait = 170000f;
     public float timePassed;
     IEnumerator WaitToShow()

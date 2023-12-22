@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 929319186959317088}
   - component: {fileID: 8424008945127275430}
   m_Layer: 10
-  m_Name: StarboardBlaster
+  m_Name: HoloStarboardBlaster
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2554,7 +2554,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3214,7 +3214,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2d551aad7c459524f8a8d1118c01b6b6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4614,7 +4614,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2d551aad7c459524f8a8d1118c01b6b6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4788,7 +4788,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5119,7 +5119,7 @@ GameObject:
   - component: {fileID: 4106091657049961011}
   - component: {fileID: 8570673130853493338}
   m_Layer: 10
-  m_Name: PortBlaster
+  m_Name: HoloPortBlaster
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8495,7 +8495,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

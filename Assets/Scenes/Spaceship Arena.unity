@@ -13768,7 +13768,6 @@ MonoBehaviour:
   splashTexts: []
   splash: {fileID: 174890238}
   waitToStartTime: 7.5
-  whileWait: 6
   subtitleWait: 170000
   timePassed: 0
   hidables:

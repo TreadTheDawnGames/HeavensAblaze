@@ -29,8 +29,8 @@ public class ColorPicker : MonoBehaviour
 
     public void OnClickPickColor()
     {
-        ColorChanged.Invoke();
         SetColor();
+        ColorChanged.Invoke();
     }
 
     private void SetColor()
