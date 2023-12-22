@@ -279,17 +279,17 @@ public class InputManager : MonoBehaviour
             inputActions = new PlayerShip();
         }
 
-        invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? true : false;
+        invertThrust = PlayerPrefs.GetInt("invertThrust", 0) == 1 ? true : false;
         invThrTick.SetActive(invertThrust);
-        invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? true : false;
+        invertLift = PlayerPrefs.GetInt("invertLift", 0) == 1 ? true : false;
         invLifTick.SetActive(invertLift);
-        invertLateral = PlayerPrefs.GetInt("invertLateral") == 1 ? true : false;
+        invertLateral = PlayerPrefs.GetInt("invertLateral", 0) == 1 ? true : false;
         invLatTick.SetActive(invertLateral);
-        invertRoll = PlayerPrefs.GetInt("invertRoll") == 1 ? true : false;
+        invertRoll = PlayerPrefs.GetInt("invertRoll", 0) == 1 ? true : false;
         invRollTick.SetActive(invertRoll);
-        invertPitch = PlayerPrefs.GetInt("invertPitch") == 1 ? true : false;
+        invertPitch = PlayerPrefs.GetInt("invertPitch", 0) == 1 ? true : false;
         invPitTick.SetActive(invertPitch);
-        invertYaw = PlayerPrefs.GetInt("invertYaw") == 1 ? true : false;
+        invertYaw = PlayerPrefs.GetInt("invertYaw", 0) == 1 ? true : false;
         invYawTick.SetActive(invertYaw);
 
 
