@@ -9,6 +9,11 @@ public class IdleCamera : MonoBehaviour
         gameObject?.SetActive(setTo) ;
     }
 
+    private void OnEnable()
+    {
+        FindObjectOfType<NetworkUIV2>().ToggleNetUIVisability(true);
+    }
+
     void FixedUpdate()
     {
 

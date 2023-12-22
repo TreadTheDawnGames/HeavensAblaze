@@ -93,12 +93,17 @@ IEnumerator ToggleMenusCoroutine()
         }
     }
 
+    public bool shipDestroyed = false;
+
     public void ToggleMenu(GameObject menu)
     {
         currentMenu = menu;
-        if (menu == settingsHud)
+        if (networkUIV2.clientStarted && (!shipDestroyed || ship.gameObject.activeInHierarchy))
         {
-            if (networkUIV2.clientStarted)
+            networkUIV2.ToggleNetUIVisability(!menu.activeInHierarchy);
+        }
+        /*if (menu == settingsHud)
+        {
             {
 
                 Cursor.visible = !Cursor.visible;
@@ -106,11 +111,10 @@ IEnumerator ToggleMenusCoroutine()
                 Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
             
                 
-                networkUIV2.ToggleNetUIVisability(!menu.activeInHierarchy);
             }
 
 
-        }
+        }*/
 
         if (ship != null)
         {
@@ -128,9 +132,6 @@ IEnumerator ToggleMenusCoroutine()
         if (menu != settingsHud)
         {
             anotherMenuUp = !anotherMenuUp;
-
-
-
 
             settingsHud.SetActive(!settingsHud.activeInHierarchy);
         }

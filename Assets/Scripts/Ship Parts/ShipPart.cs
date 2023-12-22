@@ -11,6 +11,7 @@ using System.Linq;
 using FishNet.Component.Transforming;
 using FishNet.Object.Prediction;
 using FishNet.Observing;
+using static PredictionMotor;
 
 
 
@@ -33,7 +34,6 @@ public class ShipPart : NetworkBehaviour
 
     public bool hasRun = false;
 
-    public List<Transform> transforms = new List<Transform>();
     public ParticleSystem destructionExplosion;
 
     public bool destroyObject = false;
@@ -49,17 +49,18 @@ public class ShipPart : NetworkBehaviour
 
     private Transform originalRoot;
 
-    public int partId;
-
     [SerializeField]
     NetworkBehaviour _parent;
 
     [SerializeField]
     public ParticleSystem collisionImpact;
 
+    public PredictionMotor ship;
 #if UNITY_EDITOR
     private void FixedUpdate()
     {
+        //ship = transform.root.GetComponent<PredictionMotor>();
+
         owner = GetComponent<NetworkObject>().Owner;
 
         if (showOwner)
@@ -74,15 +75,16 @@ public class ShipPart : NetworkBehaviour
             {
 
                 hitPoints = 0f;
-                DestroyIfDead();
+                //DestroyIfDead();
             }
         }
     }
 #endif
-
+    
     private void OnDestroy()
     {
-        if(TryGetComponent<AudioSource>(out AudioSource audio)) 
+
+        if (TryGetComponent<AudioSource>(out AudioSource audio)) 
         {
             if (audio.isPlaying)
             {
@@ -96,6 +98,7 @@ public class ShipPart : NetworkBehaviour
         }
     }
 
+    public virtual void OnShipCreated(PredictionMotor ship) { }
 
    // [ServerRpc(RequireOwnership=false)]
     public virtual void DestroyIfDead()
@@ -198,7 +201,7 @@ public class ShipPart : NetworkBehaviour
         {
 
             transform.root.GetComponentInChildren<CameraDampener>().transform.SetParent(cockpit.transform);
-
+            
 
         }
     }

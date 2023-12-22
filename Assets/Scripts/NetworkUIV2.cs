@@ -374,7 +374,8 @@ public class NetworkUIV2 : MonoBehaviour
     {foreach (GameObject hidable in hidables)
         {
             hidable.SetActive(setActive);
-
+            Cursor.visible = setActive;
+            Cursor.lockState = setActive ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 

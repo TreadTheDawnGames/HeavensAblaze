@@ -174,6 +174,10 @@ public class PredictionMotor : NetworkBehaviour
 
     [SerializeField]
     DamageHologram damageHolo;
+
+    
+
+
     private void Awake()
     {
         if (damageHolo == null) GetComponentInChildren<DamageHologram>();
@@ -294,9 +298,60 @@ public class PredictionMotor : NetworkBehaviour
         }
     }
    
+    void SetupInversions()
+    {
+
+        invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? -1 : 1;
+        invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? -1 : 1;
+        invertLateral = PlayerPrefs.GetInt("invertLateral") == 1 ? -1 : 1;
+        invertRoll = PlayerPrefs.GetInt("invertRoll") == 1 ? -1 : 1;
+        invertPitch = PlayerPrefs.GetInt("invertPitch") == 1 ? -1 : 1;
+        invertYaw = PlayerPrefs.GetInt("invertYaw") == 1 ? -1 : 1;
+    }
+
+    void SetupThirdPartyVars()
+    {
+        if (colorPicker == null)
+        {
+            colorPicker = FindObjectOfType<ColorPicker>();
+        }
+        if (inputManager == null)
+        {
+            inputManager = FindObjectOfType<InputManager>();
+        }
+        if (personalizationManager == null)
+        {
+            personalizationManager = FindObjectOfType<PersonalizationManager>();
+        }
+        if (mainMenu == null)
+        {
+            mainMenu = FindObjectOfType<MainMenu>(true);
+
+        }
+        personalizationManager.ship = this;
+        personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
+        inputManager.ship = this;
+        colorPicker.ship = this;
+        mainMenu.ship = this;
+        mainMenu.shipDestroyed = false;
+        volumeManager = FindObjectOfType<VolumeManager>();
+        ambientMusic = FindObjectOfType<AmbientMusic>().GetComponent<AudioSource>();
 
 
-    public List<ShipPart> shipParts = new List<ShipPart>();
+        if (playerShip == null)
+        {
+            playerShip = new PlayerShip();
+        }
+        inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
+        
+        foreach (ShipPart part in GetComponentsInChildren<ShipPart>())
+        {
+            part.ship = this;
+            part.OnShipCreated(this);
+            
+        }
+    }
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -315,50 +370,12 @@ public class PredictionMotor : NetworkBehaviour
             }*/
 
 
+            SetupInversions();
 
-
-            invertThrust = PlayerPrefs.GetInt("invertThrust") == 1 ? -1 : 1;
-            invertLift = PlayerPrefs.GetInt("invertLift") == 1 ? -1 : 1;
-            invertLateral = PlayerPrefs.GetInt("invertLateral") == 1 ? -1 : 1;
-            invertRoll = PlayerPrefs.GetInt("invertRoll") == 1 ? -1 : 1;
-            invertPitch = PlayerPrefs.GetInt("invertPitch") == 1 ? -1 : 1;
-            invertYaw = PlayerPrefs.GetInt("invertYaw") == 1 ? -1 : 1;
 
             //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
+            SetupThirdPartyVars();
 
-            colorPicker = FindObjectOfType<ColorPicker>();
-            if (inputManager == null)
-            {
-                inputManager = FindObjectOfType<InputManager>();
-
-
-            }
-            if (personalizationManager == null)
-            {
-                personalizationManager = FindObjectOfType<PersonalizationManager>();
-
-
-            }
-            personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
-            if (mainMenu == null)
-            {
-                mainMenu = FindObjectOfType<MainMenu>();
-
-
-            }
-
-            personalizationManager.ship = this;
-            inputManager.ship = this;
-            colorPicker.ship = this;
-            mainMenu.ship = this;
-            volumeManager = FindObjectOfType<VolumeManager>();
-            ambientMusic = FindObjectOfType<AmbientMusic>().GetComponent<AudioSource>();
-
-            if (playerShip == null)
-            {
-                playerShip = new PlayerShip();
-            }
-            inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
             ChangeColor(this, colorPicker.laserColor);
 
             /* Both the server and owner must have a reference to the rigidbody.
@@ -368,23 +385,16 @@ public class PredictionMotor : NetworkBehaviour
             //ChangeColor(this,PlayerPrefs.GetString("LaserColor"));
             //Debug.Log(PlayerPrefs.GetString("LaserColor"));
 
-            //shipCurve = inputManager.curve;
+            //Load rebinds
             foreach (RebindUI button in inputManager.rebindButtons)
             {
                 inputManager.LoadBindingOverride(button.actionName);
 
             }
 
-            foreach (IdleCamera cam in FindObjectsOfType<IdleCamera>().ToList<IdleCamera>())
-            {
-                if (cam.name == "Idle Camera")
-                {
-                    activeIdleCam = cam;
-                    //                break;
-                }
+            activeIdleCam = FindObjectOfType<IdleCamera>();
 
-
-            }
+            //Destroy extra cameras               
             foreach (Camera camera in FindObjectsOfType<Camera>().ToList<Camera>())
             {
                 if (camera.transform.root.name.StartsWith("DEBRIS")|| camera.transform.root.GetComponent<CameraDampener>() != null)
@@ -393,38 +403,14 @@ public class PredictionMotor : NetworkBehaviour
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
             mainCam = GetCamInChildren(transform).gameObject;
             mainCam.SetActive(true);
-
-            GetChildRecursive(gameObject);
-            int i = 0;
-
-            foreach (ShipPart part in shipParts)
-            {
-                if (part!=null)
-                {
-                    part.partId = i;
-                    i++;
-                }
-
-            }
-
+          //  GetComponentInChildren<Camera>().gameObject.SetActive(true);
+            
         }
 
 
-        /* The TimeManager won't be set until at least
-         * OnStartClient or OnStartServer, so do not
-         * try to subscribe before these events. */
+        
         if (activeIdleCam != null)
             activeIdleCam.SetEnabled(false);
         if (ambientMusic != null)
@@ -432,8 +418,8 @@ public class PredictionMotor : NetworkBehaviour
         if (volumeManager != null)
             volumeManager.isIngame = true;
 
-        SubscribeToTimeManager(true);
 
+        SubscribeToTimeManager(true);
     }
     CameraDampener GetCamInChildren(Transform parent)
     {
@@ -446,7 +432,7 @@ public class PredictionMotor : NetworkBehaviour
             {
                 if (GetCamInChildren(parent.GetChild(i)) != null)
                 {
-                    Debug.Log("found " + parent.GetChild(i));
+                    //Debug.Log("found " + parent.GetChild(i));
                     return GetCamInChildren(parent.GetChild(i));
                 }
             }
@@ -473,21 +459,7 @@ public class PredictionMotor : NetworkBehaviour
         return null;
     }
 
-    private void GetChildRecursive(GameObject obj)
-    {
-        if (obj == null)
-            return;
-
-        foreach (Transform child in obj.transform)
-        {
-            if (child == null)
-                continue;
-            //child.gameobject contains the current child you can do whatever you want like add it to an array
-            if(child.TryGetComponent<ShipPart>(out ShipPart part))
-                shipParts.Add(part);
-            GetChildRecursive(child.gameObject);
-        }
-    }
+    
     public override void OnStopClient()
     {
         base.OnStopClient();

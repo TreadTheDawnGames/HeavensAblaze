@@ -14,12 +14,20 @@ public class Cockpit : ShipPart
 
     public Camera cam;
 
+    [SerializeField]
+    MainMenu menu;
+
     //Need to activate camera only when my main body is destroyed
 
-    private void Awake()
+    public override void OnShipCreated(PredictionMotor ship)
     {
-        root = transform.root.GetComponent<PredictionMotor>();
-//        cam = GetCamInChildren(transform);
+        print("Coclpit OnShipCreated");
+
+        root = ship;
+        menu = root.mainMenu;
+        print("body menu = " + menu.name + "on awake");
+
+        //        cam = GetCamInChildren(transform);
         //cam = GetComponentInChildren<Camera>();
     }
 
@@ -73,7 +81,8 @@ public class Cockpit : ShipPart
             }
             if (root != null)
             {
-                print(root);
+                print(root.name);
+                menu.shipDestroyed = true;
                 //disable player input
                 root.inputType = PredictionMotor.InputType.Disabled;
 
@@ -82,11 +91,13 @@ public class Cockpit : ShipPart
             {
                 print("root is null");
                 //if(IsOwner)
-                    if (GetComponentInChildren<CameraDampener>() != null)
-                    {
-                        print(GetComponentInChildren<CameraDampener>().gameObject.name);
-                        FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
-                    }
+                if (GetComponentInChildren<CameraDampener>() != null)
+                {
+                    
+                    FindObjectOfType<MainMenu>().shipDestroyed = true;
+                    FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
+
+                }
             }
 
             Destroy(gameObject);

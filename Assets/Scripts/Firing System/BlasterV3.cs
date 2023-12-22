@@ -105,11 +105,7 @@ public class BlasterV3 : NetworkBehaviour
         audioSource.PlayOneShot(audioSource.clip);
 
         laserColor = myShip.syncedLaserColor;
-
-        Debug.Log(passedTime);
-
         
-
         position += direction.normalized * 30f * passedTime ;
 
         Quaternion rotationQ;

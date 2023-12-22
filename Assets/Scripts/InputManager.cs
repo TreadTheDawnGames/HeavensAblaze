@@ -182,7 +182,6 @@ public class InputManager : MonoBehaviour
         }
 
         RebindUI.excludeMouse = !inputActions.Mouse.enabled;
-        print("excludeMouse = " + RebindUI.excludeMouse);
 
 
         foreach (RebindUI button in rebindButtons)
@@ -385,7 +384,6 @@ public class InputManager : MonoBehaviour
         if (inputActions == null)
             inputActions = new PlayerShip();
 
-        print(actionName);
 
         InputAction action = inputActions.asset.FindAction(actionName);
         return action.GetBindingDisplayString(bindingIndex);

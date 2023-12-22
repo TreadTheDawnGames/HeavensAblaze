@@ -9,15 +9,21 @@ public class MainBody : ShipPart
     [SerializeField]
     private PredictionMotor root;
 
+    [SerializeField]
+    MainMenu menu;
     CameraDampener cam;
 
-    private void Awake()
+    
+    public override void OnShipCreated(PredictionMotor ship)
     {
-        root = transform.root.GetComponent<PredictionMotor>();
-        cam = GetComponentInChildren<CameraDampener>();
-//        cam = GetCamInChildren(root.transform);
-    }
+        print("Body OnShipCreated");
+        root = ship;
 
+        menu = root.mainMenu;
+        print("body menu = " + menu.name + "on awake");
+
+        cam = GetComponentInChildren<CameraDampener>();
+    }
 
    // [ServerRpc(RequireOwnership = false)]
     public override void DestroyIfDead()
@@ -30,22 +36,32 @@ public class MainBody : ShipPart
                 MainBodyDestroyIfDeadObservers();
         }
     }
-    [ObserversRpc(RunLocally = false)]
+    [ObserversRpc]
     void ChangeCamera()
     {
         Camera cam = GetComponentInChildren<Camera>();
         if (cam != null)
         {
-            if(cam.transform.parent.name != "Cockpit")  
+            if(cam.transform.parent.name != "Cockpit")
+            {
+                print("body menu = " + menu.name + "when destroyed");
+
+                menu.shipDestroyed = true;
+
                 FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true) ;
+
+            }
         }
     }
+    
+
     //[ObserversRpc(RunLocally =false)]
     public void MainBodyDestroyIfDeadObservers()
     {
         root.inputType = PredictionMotor.InputType.Disabled;
 
         root.gameObject.SetActive(false);
+
         ChangeCamera();
         base.DestroyIfDeadObservers();
     }
@@ -54,7 +70,7 @@ public class MainBody : ShipPart
     {
         if (GetComponentInChildren<Camera>() != null)
         {
-            root.activeIdleCam.SetEnabled(true);
+            root?.activeIdleCam?.SetEnabled(true);
         }
     }
     

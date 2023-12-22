@@ -39,7 +39,6 @@ public class SplashText
             return "Did you delete the splash file? *squints*";
         }
 
-        Debug.Log(texts.Length);
 
         if (texts.Length == 0)
         {
@@ -47,7 +46,6 @@ public class SplashText
             return "Wake Up!";
         }
         int randomNum = UnityEngine.Random.Range(0, texts.Length - 1);
-        Debug.Log(randomNum);
         return texts[UnityEngine.Random.Range(0, randomNum)];
     }
 }
