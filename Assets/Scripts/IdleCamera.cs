@@ -11,7 +11,7 @@ public class IdleCamera : MonoBehaviour
         gameObject?.SetActive(setTo) ;
     }
 
-    private void Start()
+    private void Awake()
     {
         netUI = FindObjectOfType<NetworkUIV2>();
     }
