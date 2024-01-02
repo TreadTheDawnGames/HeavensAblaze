@@ -93,8 +93,10 @@ IEnumerator ToggleMenusCoroutine()
         }
     }
 
-    private bool cockpitDestroyed = false;
-    private bool mainBodyDestroyed = false;
+    [SerializeField]
+    public bool cockpitDestroyed  = false;
+    [SerializeField]
+    public bool mainBodyDestroyed  = false;
 
     public void ResetShipDestroyed()
     {
@@ -117,7 +119,7 @@ IEnumerator ToggleMenusCoroutine()
         currentMenu = menu;
         if (networkUIV2.clientStarted && (!cockpitDestroyed || !mainBodyDestroyed))
         {
-            networkUIV2.ToggleNetUIVisability(!menu.activeInHierarchy);
+            networkUIV2.SetNetUIVisability(!menu.activeInHierarchy);
         }
        
         if (ship != null)

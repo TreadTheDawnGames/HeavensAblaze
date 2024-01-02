@@ -4,14 +4,22 @@ using UnityEngine;
 using FishNet.Object;
 public class IdleCamera : MonoBehaviour
 {
+    NetworkUIV2 netUI;
+
     public void SetEnabled(bool setTo)
     {
         gameObject?.SetActive(setTo) ;
     }
 
+    private void Start()
+    {
+        netUI = FindObjectOfType<NetworkUIV2>();
+    }
+
     private void OnEnable()
     {
-        FindObjectOfType<NetworkUIV2>().ToggleNetUIVisability(true);
+        if(netUI.mainMenu!=null)
+            netUI.SetNetUIVisability(true);
     }
 
     void FixedUpdate()

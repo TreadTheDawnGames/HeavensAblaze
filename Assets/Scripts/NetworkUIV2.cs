@@ -17,6 +17,7 @@ using FishNet.Managing.Client;
 using FishNet.Transporting;
 using FishNet.Demo.AdditiveScenes;
 using UnityEngine.Video;
+using System.IO;
 
 public class NetworkUIV2 : MonoBehaviour
 {
@@ -51,10 +52,16 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField] List<string> splashTexts = new List<string>();
     [SerializeField] TMP_Text splash;
 
+    public MainMenu mainMenu;
+    private void Awake()
+    {
+        mainMenu = FindObjectOfType<MainMenu>();        
+    }
     private async void Start()
     {
         _networkManager.ClientManager.OnClientConnectionState += UpdateClientConnectionState;
         _networkManager.ServerManager.OnServerConnectionState += UpdateServerConnectionState;
+
 
         utp = (FishyUnityTransport)_networkManager.TransportManager.Transport;
         await UnityServices.InitializeAsync();
@@ -278,15 +285,6 @@ public class NetworkUIV2 : MonoBehaviour
         }
 
 
-        /* if (serverStarted && !inputManager.menuUp)
-         {
-             Cursor.visible = false;
-             Cursor.lockState = CursorLockMode.Locked;
-
-         }
-         if (clientStarted && serverStarted)
-
-             ToggleNetUIVisability(optionsMenu.activeInHierarchy);*/
     }
 
 
@@ -355,7 +353,7 @@ public class NetworkUIV2 : MonoBehaviour
         }
 
         if (clientStarted)
-            ToggleNetUIVisability(optionsMenu.activeInHierarchy);
+            SetNetUIVisability(optionsMenu.activeInHierarchy);
 
     }
 
@@ -370,9 +368,19 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     GameObject[] hidables;
 
-    public void ToggleNetUIVisability(bool setActive)
-    {foreach (GameObject hidable in hidables)
+    public void SetNetUIVisability(bool setActive)
+    {
+        foreach (GameObject hidable in hidables)
         {
+            if (hidable.name == "Respawn Button")
+            {
+                if(!mainMenu.cockpitDestroyed && !mainMenu.mainBodyDestroyed)
+                {
+                    continue;
+                }
+            }
+            
+            
             hidable.SetActive(setActive);
             Cursor.visible = setActive;
             Cursor.lockState = setActive ? CursorLockMode.None : CursorLockMode.Locked;
@@ -390,6 +398,17 @@ public class NetworkUIV2 : MonoBehaviour
         clientButtonText.text = "Server Failed\nto Start!";
         yield return new WaitForSeconds(2f);
         clientButtonText.text = "Start\nServer";
+    }
+
+    public void StartRespawn()
+    {
+        StartCoroutine(Respawn());
+    }
+    public IEnumerator Respawn()
+    {
+        JoinRelay();
+        yield return new WaitUntil(() => clientStarted == false);
+        JoinRelay();
     }
 
 } 

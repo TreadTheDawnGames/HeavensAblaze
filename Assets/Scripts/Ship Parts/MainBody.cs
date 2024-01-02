@@ -62,7 +62,7 @@ public class MainBody : ShipPart
         root.inputType = PredictionMotor.InputType.Disabled;
 
         root.gameObject.SetActive(false);
-
+        FindObjectOfType<MainMenu>().SetShipPartDestroyed(this);
         ChangeCamera();
         base.DestroyIfDeadObservers();
     }
