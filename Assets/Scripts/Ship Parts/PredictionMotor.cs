@@ -333,7 +333,7 @@ public class PredictionMotor : NetworkBehaviour
         inputManager.ship = this;
         colorPicker.ship = this;
         mainMenu.ship = this;
-        mainMenu.shipDestroyed = false;
+        mainMenu.cockpitDestroyed = false;
         volumeManager = FindObjectOfType<VolumeManager>();
         ambientMusic = FindObjectOfType<AmbientMusic>().GetComponent<AudioSource>();
 

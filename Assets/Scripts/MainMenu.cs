@@ -93,29 +93,29 @@ IEnumerator ToggleMenusCoroutine()
         }
     }
 
-    public bool shipDestroyed = false;
+    public bool cockpitDestroyed = false;
+    public bool mainBodyDestroyed = false;
+
+    public void SetShipPartDestroyed(ShipPart caller, bool value = true)
+    {
+        if(caller is Cockpit)
+        {
+            cockpitDestroyed = value;
+        }
+        else if(caller is MainBody)
+        {
+            mainBodyDestroyed = value;
+        }
+    }
 
     public void ToggleMenu(GameObject menu)
     {
         currentMenu = menu;
-        if (networkUIV2.clientStarted && (!shipDestroyed || ship.gameObject.activeInHierarchy))
+        if (networkUIV2.clientStarted && (!cockpitDestroyed || !mainBodyDestroyed))
         {
             networkUIV2.ToggleNetUIVisability(!menu.activeInHierarchy);
         }
-        /*if (menu == settingsHud)
-        {
-            {
-
-                Cursor.visible = !Cursor.visible;
-
-                Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
-            
-                
-            }
-
-
-        }*/
-
+       
         if (ship != null)
         {
 

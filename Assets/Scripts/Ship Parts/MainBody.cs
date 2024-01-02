@@ -46,7 +46,7 @@ public class MainBody : ShipPart
             {
                 print("body menu = " + menu.name + "when destroyed");
 
-                menu.shipDestroyed = true;
+                menu.cockpitDestroyed = true;
 
                 FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true) ;
 
@@ -61,6 +61,7 @@ public class MainBody : ShipPart
         root.inputType = PredictionMotor.InputType.Disabled;
 
         root.gameObject.SetActive(false);
+        FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
 
         ChangeCamera();
         base.DestroyIfDeadObservers();
@@ -75,25 +76,6 @@ public class MainBody : ShipPart
     }
     
 
-    CameraDampener GetCamInChildren(Transform parent)
-    {
-
-        if (parent.TryGetComponent<CameraDampener>(out CameraDampener cam))
-            return cam;
-        else
-        {
-            for (int i = 0; i < parent.childCount; i++)
-            {
-                if (GetCamInChildren(parent.GetChild(i)) != null)
-                {
-                    Debug.Log("found " + parent.GetChild(i));
-                    return GetCamInChildren(parent.GetChild(i));
-                }
-            }
-            return null;
-            //return cam;
-        }
-    }
    
 
 }

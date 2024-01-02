@@ -21,11 +21,11 @@ public class Cockpit : ShipPart
 
     public override void OnShipCreated(PredictionMotor ship)
     {
-        print("Coclpit OnShipCreated");
+        print("Cockpit OnShipCreated");
 
         root = ship;
         menu = root.mainMenu;
-        print("body menu = " + menu.name + "on awake");
+        print("body menu = " + menu.name + " on awake");
 
         //        cam = GetCamInChildren(transform);
         //cam = GetComponentInChildren<Camera>();
@@ -82,7 +82,6 @@ public class Cockpit : ShipPart
             if (root != null)
             {
                 print(root.name);
-                menu.shipDestroyed = true;
                 //disable player input
                 root.inputType = PredictionMotor.InputType.Disabled;
 
@@ -94,34 +93,17 @@ public class Cockpit : ShipPart
                 if (GetComponentInChildren<CameraDampener>() != null)
                 {
                     
-                    FindObjectOfType<MainMenu>().shipDestroyed = true;
                     FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
 
                 }
             }
 
+            FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
+
             Destroy(gameObject);
         }
 
     }
-    Camera GetCamInChildren(Transform parent)
-    {
-
-        if (parent.TryGetComponent<Camera>(out Camera cam))
-            return cam;
-        else
-        {
-            for (int i = 0; i < parent.childCount; i++)
-            {
-                if (GetCamInChildren(parent.GetChild(i)) != null)
-                {
-                    Debug.Log("found " + parent.GetChild(i));
-                    return GetCamInChildren(parent.GetChild(i));
-                }
-            }
-            return null;
-            //return cam;
-        }
-    }
+   
 
 }
