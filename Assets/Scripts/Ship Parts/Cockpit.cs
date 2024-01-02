@@ -97,8 +97,7 @@ public class Cockpit : ShipPart
 
                 }
             }
-
-            FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
+                FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
 
             Destroy(gameObject);
         }

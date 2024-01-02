@@ -349,7 +349,7 @@ public class NetworkUIV2 : MonoBehaviour
             _networkManager.ClientManager.StopConnection();
             //  clientButtonText.text = "Start\nClient";
 
-
+            mainMenu.ResetShipDestroyed();
         }
 
         if (clientStarted)

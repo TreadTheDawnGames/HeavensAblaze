@@ -13,7 +13,13 @@ public class MainBody : ShipPart
     MainMenu menu;
     CameraDampener cam;
 
-    
+    private void Awake()
+    {
+        if (root == null)
+        {
+            root = transform.root.GetComponent<PredictionMotor>();
+        }
+    }
     public override void OnShipCreated(PredictionMotor ship)
     {
         FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
@@ -62,7 +68,7 @@ public class MainBody : ShipPart
         root.inputType = PredictionMotor.InputType.Disabled;
 
         root.gameObject.SetActive(false);
-        FindObjectOfType<MainMenu>().SetShipPartDestroyed(this);
+            FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
         ChangeCamera();
         base.DestroyIfDeadObservers();
     }
