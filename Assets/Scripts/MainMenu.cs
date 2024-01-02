@@ -93,9 +93,13 @@ IEnumerator ToggleMenusCoroutine()
         }
     }
 
-    public bool cockpitDestroyed = false;
-    public bool mainBodyDestroyed = false;
+    private bool cockpitDestroyed = false;
+    private bool mainBodyDestroyed = false;
 
+    public void ResetShipDestroyed()
+    {
+        cockpitDestroyed = mainBodyDestroyed = false;
+    }
     public void SetShipPartDestroyed(ShipPart caller, bool value = true)
     {
         if(caller is Cockpit)

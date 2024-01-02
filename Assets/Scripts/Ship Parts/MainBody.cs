@@ -16,6 +16,8 @@ public class MainBody : ShipPart
     
     public override void OnShipCreated(PredictionMotor ship)
     {
+        FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
+
         print("Body OnShipCreated");
         root = ship;
 
@@ -46,7 +48,6 @@ public class MainBody : ShipPart
             {
                 print("body menu = " + menu.name + "when destroyed");
 
-                menu.cockpitDestroyed = true;
 
                 FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true) ;
 
@@ -61,7 +62,6 @@ public class MainBody : ShipPart
         root.inputType = PredictionMotor.InputType.Disabled;
 
         root.gameObject.SetActive(false);
-        FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
 
         ChangeCamera();
         base.DestroyIfDeadObservers();
