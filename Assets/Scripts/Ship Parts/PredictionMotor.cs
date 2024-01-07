@@ -616,9 +616,9 @@ public class PredictionMotor : NetworkBehaviour
         lift = playerShip.Gamepad.Lift.ReadValue<float>();
         lateral = playerShip.Gamepad.Lateral.ReadValue<float>();
 
-        pitch = inputManager.curve.Evaluate(-playerShip.Keyboard.Pitch.ReadValue<float>());
-        roll = inputManager.curve.Evaluate(-playerShip.Keyboard.Roll.ReadValue<float>());
-        yaw = inputManager.curve.Evaluate(playerShip.Keyboard.Yaw.ReadValue<float>());
+        pitch = inputManager.curve.Evaluate(playerShip.Gamepad.Pitch.ReadValue<float>());
+        roll = inputManager.curve.Evaluate(-playerShip.Gamepad.Roll.ReadValue<float>());
+        yaw = inputManager.curve.Evaluate(playerShip.Gamepad.Yaw.ReadValue<float>());
 
         brake = playerShip.Gamepad.Brake.IsInProgress();
         fire = playerShip.Gamepad.Fire.IsInProgress();

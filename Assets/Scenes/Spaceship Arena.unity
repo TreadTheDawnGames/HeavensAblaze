@@ -9907,7 +9907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: trigger
+  m_text: Trigger
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14040,13 +14040,13 @@ MonoBehaviour:
   ambientMusic: {fileID: 672353090}
   splashTexts: []
   splash: {fileID: 174890238}
+  mainMenu: {fileID: 0}
   waitToStartTime: 7.5
   subtitleWait: 170000
   timePassed: 0
   hidables:
   - {fileID: 1565321877}
   - {fileID: 1710604469}
-  - {fileID: 2076417912}
 --- !u!114 &1202873143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16975,6 +16975,8 @@ MonoBehaviour:
   inputManager: {fileID: 2079349578}
   networkUIV2: {fileID: 1202873142}
   logo: {fileID: 633482462}
+  cockpitDestroyed: 0
+  mainBodyDestroyed: 0
 --- !u!114 &1470237120
 MonoBehaviour:
   m_ObjectHideFlags: 0
