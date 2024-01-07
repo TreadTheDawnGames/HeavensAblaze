@@ -92,11 +92,11 @@ public class MainMenu : MonoBehaviour
     {
         currentMenu = menu;
         bool changeTo = !menu.activeInHierarchy;
-        if (networkUIV2.clientStarted)
+        if (networkUIV2.clientStarted && menu==settingsHud)
         {
             networkUIV2.SetNetUIVisability(changeTo);
         }
-       
+
         if (ship != null)
         {
 
