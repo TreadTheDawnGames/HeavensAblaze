@@ -372,13 +372,7 @@ public class NetworkUIV2 : MonoBehaviour
     {
         foreach (GameObject hidable in hidables)
         {
-            if (hidable.name == "Respawn Button")
-            {
-                if(!mainMenu.cockpitDestroyed && !mainMenu.mainBodyDestroyed)
-                {
-                    continue;
-                }
-            }
+            
             
             
             hidable.SetActive(setActive);
@@ -400,15 +394,6 @@ public class NetworkUIV2 : MonoBehaviour
         clientButtonText.text = "Start\nServer";
     }
 
-    public void StartRespawn()
-    {
-        StartCoroutine(Respawn());
-    }
-    public IEnumerator Respawn()
-    {
-        JoinRelay();
-        yield return new WaitUntil(() => clientStarted == false);
-        JoinRelay();
-    }
+    
 
 } 

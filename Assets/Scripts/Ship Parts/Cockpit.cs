@@ -97,7 +97,11 @@ public class Cockpit : ShipPart
 
                 }
             }
-                FindObjectOfType<MainMenu>()?.SetShipPartDestroyed(this);
+            if (IsOwner)
+            {
+                FindObjectOfType<RespawnManager>().SetShowRespawn(true) ;
+
+            }
 
             Destroy(gameObject);
         }

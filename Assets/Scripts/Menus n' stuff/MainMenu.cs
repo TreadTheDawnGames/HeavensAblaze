@@ -17,15 +17,21 @@ public class MainMenu : MonoBehaviour
     public InputManager inputManager;
 
     [SerializeField]
-    NetworkUIV2 networkUIV2;
+    public NetworkUIV2 networkUIV2;
 
     GameObject currentMenu;
 
     [SerializeField]
     AnimateLogo logo;
 
+#if UNITY_EDITOR
 
-   
+    KeyCode escapeKey = KeyCode.M;
+
+#else
+
+    KeyCode escapeKey = KeyCode.Escape;
+#endif
     
 
     private void Start()
@@ -42,12 +48,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(ToggleMenusCoroutine());
     }
 
-#if UNITY_EDITOR
     IEnumerator ToggleMenusCoroutine()
     {
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(escapeKey))
             {
                 if (!anotherMenuUp)
                     ToggleMainMenu();
@@ -57,24 +62,6 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
     }
-
-
-#else
-IEnumerator ToggleMenusCoroutine()
-    {
-        while (true)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (!anotherMenuUp)
-                    ToggleMainMenu();
-                else
-                    ToggleMenu(currentMenu);
-            }
-            yield return null;
-        }
-    }
-#endif
 
     private void ToggleMenus(InputAction.CallbackContext context)
     {
