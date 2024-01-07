@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FishNet.Object;
-public class RespawnManager : NetworkBehaviour
+public class RespawnManager : MonoBehaviour
 {
     [SerializeField]
     NetworkUIV2 netUI;
   
 
     [SerializeField]
-    Button button;
+    public Button button;
     
     public bool cockpitDead = false;
     private void Awake()
@@ -23,19 +23,24 @@ public class RespawnManager : NetworkBehaviour
     }
     public void SetShowRespawn(bool show)
     {
-        button.gameObject.SetActive(show);
         netUI.SetNetUIVisability(show);
+        button.gameObject.SetActive(show);
+        Cursor.visible = show;
+        Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void StartRespawn()
     {
         StartCoroutine(Respawn());
     }
+
+
     public IEnumerator Respawn()
     {
         netUI.JoinRelay();
         yield return new WaitUntil(() => netUI.clientStarted == false);
         netUI.JoinRelay();
         button.gameObject.SetActive(false);
+
         
     }
 

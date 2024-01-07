@@ -53,6 +53,10 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField] TMP_Text splash;
 
     public MainMenu mainMenu;
+
+    [SerializeField]
+    public RespawnManager respawnManager;
+
     private void Awake()
     {
         mainMenu = FindObjectOfType<MainMenu>();        
@@ -353,7 +357,11 @@ public class NetworkUIV2 : MonoBehaviour
         }
 
         if (clientStarted)
+        {
             SetNetUIVisability(optionsMenu.activeInHierarchy);
+        }
+
+        respawnManager.button.gameObject.SetActive(false);
 
     }
 
@@ -370,14 +378,17 @@ public class NetworkUIV2 : MonoBehaviour
 
     public void SetNetUIVisability(bool setActive)
     {
-        foreach (GameObject hidable in hidables)
+        if (!respawnManager.button.gameObject.activeInHierarchy)
         {
-            
-            
-            
-            hidable.SetActive(setActive);
-            Cursor.visible = setActive;
-            Cursor.lockState = setActive ? CursorLockMode.None : CursorLockMode.Locked;
+            foreach (GameObject hidable in hidables)
+            {
+
+
+
+                Cursor.visible = setActive;
+                Cursor.lockState = setActive ? CursorLockMode.None : CursorLockMode.Locked;
+                hidable.SetActive(setActive);
+            }
         }
     }
 

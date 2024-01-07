@@ -474,19 +474,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4995220}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2079349578}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: InvPitch
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4995220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14040,7 +14028,8 @@ MonoBehaviour:
   ambientMusic: {fileID: 672353090}
   splashTexts: []
   splash: {fileID: 174890238}
-  mainMenu: {fileID: 0}
+  mainMenu: {fileID: 1470237119}
+  respawnManager: {fileID: 2079349583}
   waitToStartTime: 7.5
   subtitleWait: 170000
   timePassed: 0
@@ -14842,19 +14831,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1299379361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2079349578}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: InvPitch
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1299379361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21846,7 +21823,6 @@ GameObject:
   - component: {fileID: 2079349581}
   - component: {fileID: 2079349582}
   - component: {fileID: 2079349583}
-  - component: {fileID: 2079349584}
   m_Layer: 0
   m_Name: ---Managers---
   m_TagString: Untagged
@@ -22024,45 +22000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae350c598b614f488dd673fbe78f97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 2079349584}
-  _networkObjectCache: {fileID: 2079349584}
   netUI: {fileID: 1202873142}
   button: {fileID: 2076417914}
   cockpitDead: 0
---- !u!114 &2079349584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079349577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <IsNested>k__BackingField: 0
-  <ComponentIndex>k__BackingField: 0
-  <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours:
-  - {fileID: 2079349583}
-  <ParentNetworkObject>k__BackingField: {fileID: 0}
-  <ChildNetworkObjects>k__BackingField: []
-  SerializedTransformProperties:
-    Position: {x: 182.32765, y: 74.04531, z: 257.90192}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 1, y: 1, z: 1}
-  _isNetworked: 1
-  _isGlobal: 0
-  _initializeOrder: 0
-  _defaultDespawnType: 0
-  NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 0
-  <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 560870815
-  <SceneId>k__BackingField: 2408921807993098130
-  <AssetPathHash>k__BackingField: 0
 --- !u!1 &2091036804
 GameObject:
   m_ObjectHideFlags: 0

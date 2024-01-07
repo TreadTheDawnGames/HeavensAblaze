@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
     private bool anotherMenuUp = false;
 
     public GameObject settingsHud;
@@ -23,6 +24,8 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     AnimateLogo logo;
+
+    
 
 #if UNITY_EDITOR
 
@@ -47,7 +50,7 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(ToggleMenusCoroutine());
     }
-
+    
     IEnumerator ToggleMenusCoroutine()
     {
         while (true)
@@ -63,13 +66,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void ToggleMenus(InputAction.CallbackContext context)
-    {
-        if (!anotherMenuUp)
-            ToggleMainMenu();
-        else
-            ToggleMenu(currentMenu);
-    }
+    
 
     public void ToggleMainMenu()
     {
@@ -89,24 +86,15 @@ public class MainMenu : MonoBehaviour
     {
         cockpitDestroyed = mainBodyDestroyed = false;
     }
-    public void SetShipPartDestroyed(ShipPart caller, bool value = true)
-    {
-        if(caller is Cockpit)
-        {
-            cockpitDestroyed = value;
-        }
-        else if(caller is MainBody)
-        {
-            mainBodyDestroyed = value;
-        }
-    }
+   
 
     public void ToggleMenu(GameObject menu)
     {
         currentMenu = menu;
-        if (networkUIV2.clientStarted && (!cockpitDestroyed || !mainBodyDestroyed))
+        bool changeTo = !menu.activeInHierarchy;
+        if (networkUIV2.clientStarted)
         {
-            networkUIV2.SetNetUIVisability(!menu.activeInHierarchy);
+            networkUIV2.SetNetUIVisability(changeTo);
         }
        
         if (ship != null)
