@@ -17,7 +17,11 @@ public class Cockpit : ShipPart
     [SerializeField]
     MainMenu menu;
 
+    public bool destroyCockpit = false;
     //Need to activate camera only when my main body is destroyed
+
+   
+
 
     public override void OnShipCreated(PredictionMotor ship)
     {
@@ -25,7 +29,6 @@ public class Cockpit : ShipPart
 
         root = ship;
         menu = root.mainMenu;
-        print("body menu = " + menu.name + " on awake");
 
         //        cam = GetCamInChildren(transform);
         //cam = GetComponentInChildren<Camera>();
@@ -50,9 +53,12 @@ public class Cockpit : ShipPart
         CockpitDestroyIfDeadObservers(); 
     }
 
-    [ObserversRpc]
+    [ObserversRpc(RunLocally =true)]
     public void CockpitDestroyIfDeadObservers()
     {
+
+        //problem is CockpitDestroyIfDeadObservers method (this one) is being called multiple times. I need it to not be.
+
         print("destroy if dead for " + gameObject.name + "is started");
         if (hitPoints <= 0)
         {
@@ -77,18 +83,19 @@ public class Cockpit : ShipPart
                     print(transform.GetChild(i).name);
                     Destroy(transform.GetChild(i).gameObject);
                 }
+                FindObjectOfType<RespawnManager>().SetShowRespawn(true);
 
             }
             if (root != null)
             {
-                print(root.name);
+                print("Root = " + root.name);
                 //disable player input
                 root.inputType = PredictionMotor.InputType.Disabled;
 
             }
             else
             {
-                print("root is null");
+                print("Root is null");
                 //if(IsOwner)
                 if (GetComponentInChildren<CameraDampener>() != null)
                 {
@@ -96,11 +103,6 @@ public class Cockpit : ShipPart
                     FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
 
                 }
-            }
-            if (IsOwner)
-            {
-                FindObjectOfType<RespawnManager>().SetShowRespawn(true) ;
-
             }
 
             Destroy(gameObject);

@@ -77,7 +77,6 @@ public class DamageHologram : MonoBehaviour
 
     private IEnumerator SwapHUDMaterial(DamageHologram counterpart, float damage)
     {
-        print("Started coroutine for " + counterpart);
 
         Color color = GetDamageColor(damage);
 
@@ -87,9 +86,7 @@ public class DamageHologram : MonoBehaviour
         counterpart.GetComponent<MeshRenderer>().material = glitchedMaterial;
         counterpart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
 
-        print("material changed to hit");
-
-        print("basePart damage (Before): " + counterpart.basePart.hitPoints);
+       
 
         int count = 0;
        // while (count <= 150 && counterpart.basePart != null && damage == counterpart.basePart.hitPoints)
@@ -98,9 +95,6 @@ public class DamageHologram : MonoBehaviour
             count++;
         }
 
-        print("basePart damage (After): " + count + " / " + counterpart.basePart.hitPoints);
-
-        print("material changed to not-hit");
 
 
        /* bool damagedDestroyed = false;
@@ -116,7 +110,6 @@ public class DamageHologram : MonoBehaviour
             counterpart.GetComponent<MeshRenderer>().material.SetColor("_MainColor", color);
 
         }
-        print("ended coroutine for " + counterpart);
     }
 
     public void SetToDeadMaterial(GameObject counterpart)

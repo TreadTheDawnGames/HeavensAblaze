@@ -56,6 +56,7 @@ public class ShipPart : NetworkBehaviour
     public ParticleSystem collisionImpact;
 
     public PredictionMotor ship;
+
 #if UNITY_EDITOR
     private void FixedUpdate()
     {

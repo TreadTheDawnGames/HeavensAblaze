@@ -25,7 +25,6 @@ public class IdleCamera : MonoBehaviour
     void FixedUpdate()
     {
 
-
         transform.Rotate(Vector3.up, 5f * Time.fixedDeltaTime);
 
     }

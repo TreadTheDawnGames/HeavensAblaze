@@ -35,13 +35,14 @@ public class CameraDampener : NetworkBehaviour
         while (!cockpitDied)
         {
             transform.localRotation = Quaternion.Euler(Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier);
+            
             yield return null;
         }
     }
 
     public void Transition()
     {
-
+        print("transition");
         if (isActiveAndEnabled)
             StartCoroutine(Lerp());
     }
@@ -51,6 +52,7 @@ public class CameraDampener : NetworkBehaviour
 
     public IEnumerator Lerp()
     {
+        print("camera lerp");
         StopCoroutine(WiggleCamera());
         Quaternion qTargetRot = Quaternion.Euler(targetRotation);
         

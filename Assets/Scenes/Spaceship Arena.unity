@@ -16945,6 +16945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7956f52edff71242b8fcff01b244c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anotherMenuUp: 0
   settingsHud: {fileID: 2120485260}
   controlsHud: {fileID: 1810011514}
   personalizationHud: {fileID: 1111342400}

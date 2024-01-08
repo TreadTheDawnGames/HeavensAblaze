@@ -171,7 +171,8 @@ public class PredictionMotor : NetworkBehaviour
     [SerializeField]
     VolumeManager volumeManager;
 
-
+    
+    
     [SerializeField]
     DamageHologram damageHolo;
 
@@ -180,8 +181,9 @@ public class PredictionMotor : NetworkBehaviour
 
     private void Awake()
     {
-        if (damageHolo == null) GetComponentInChildren<DamageHologram>();
-        if (shipSound == null) GetComponent<ShipSound>();
+        
+        if (damageHolo == null) damageHolo = GetComponentInChildren<DamageHologram>();
+        if (shipSound == null) shipSound = GetComponent<ShipSound>();
         engineCount = engines.Count;
         
         _rigidbody = GetComponent<Rigidbody>();
@@ -357,7 +359,8 @@ public class PredictionMotor : NetworkBehaviour
         base.OnStartClient();
         if (!base.IsOwner)
         {
-            damageHolo?.gameObject.SetActive(false);
+            if(damageHolo!=null)
+                damageHolo.gameObject.SetActive(false);
             gameObject.GetComponent<PredictionMotor>().enabled = false;
             
         }

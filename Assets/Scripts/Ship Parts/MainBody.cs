@@ -74,17 +74,14 @@ public class MainBody : ShipPart
             FindObjectOfType<RespawnManager>()?.SetShowRespawn(true);
         }
 
-        base.DestroyIfDeadObservers();
-    }
-
-    void OnDestroy()
-    {
         if (GetComponentInChildren<Camera>() != null)
         {
             root?.activeIdleCam?.SetEnabled(true);
         }
+        base.DestroyIfDeadObservers();
     }
-    
+
+   
 
    
 

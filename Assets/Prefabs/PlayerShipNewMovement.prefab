@@ -544,19 +544,19 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 2179317181517415770, guid: 18c35432e21141843b05f1c5729fb990, type: 3}
   damageHudCounterpart: {fileID: 4315713298605378643}
   root: {fileID: 7859034845989005786}
   cam: {fileID: 8212157703595107912}
+  menu: {fileID: 0}
 --- !u!1 &593972849467792051
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,15 +661,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 811012160001688720, guid: 11f96e1a8ad8d0148b4273cef3eea7c9, type: 3}
   damageHudCounterpart: {fileID: 7073714463806532087}
 --- !u!114 &4458997867012844273
@@ -1356,6 +1355,89 @@ MonoBehaviour:
   glitchedMaterial: {fileID: 2100000, guid: f82505f1cc5f5fc4fbe928ec1641ed87, type: 2}
   regularMaterial: {fileID: 2100000, guid: 0079454ea71a67b4dbc1e05b8dcd9caf, type: 2}
   basePart: {fileID: 9082669467972612393}
+--- !u!1 &936109671097845151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5510130640871503914}
+  - component: {fileID: 6552445493880353802}
+  - component: {fileID: 3137001902898103983}
+  m_Layer: 10
+  m_Name: PortNavLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5510130640871503914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936109671097845151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.276, y: -0, z: -0.411}
+  m_LocalScale: {x: 0.10502, y: 0.10502, z: 0.26749647}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6941003347420096710}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6552445493880353802
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936109671097845151}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3137001902898103983
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936109671097845151}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f462f261d29b4744594567f365f37b68, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &967975839617266692
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,15 +2106,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 5966448011966313755, guid: cccf8407675eea84db47644cbd6c1013, type: 3}
   damageHudCounterpart: {fileID: 3245404445211909863}
 --- !u!114 &9054018023451953807
@@ -2706,6 +2787,89 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2585486291746327178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4527536522210551689}
+  - component: {fileID: 706630235436074269}
+  - component: {fileID: 2028740702215651081}
+  m_Layer: 10
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4527536522210551689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585486291746327178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.193, z: -3.01}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5930350676301458272}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &706630235436074269
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585486291746327178}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2028740702215651081
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585486291746327178}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 24c8afb6ccad7fa4ea2511aa3daf4e41, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2630178723937647018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,15 +3308,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 995413602997119175, guid: a3d1374467ca7a84d8690037f59a7586, type: 3}
   damageHudCounterpart: {fileID: 916421166786005216}
 --- !u!114 &3272608215638426253
@@ -3489,15 +3652,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 4106634755171536676, guid: 4db4928ed2d7ba643a7793b5a61ee89a, type: 3}
   damageHudCounterpart: {fileID: 917271927635654313}
 --- !u!114 &7222148593307531868
@@ -3749,15 +3911,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 854212674681976713, guid: aa37f8dac44362b4a90df87aef77c720, type: 3}
   damageHudCounterpart: {fileID: 4952526517578542766}
 --- !u!114 &3557753721484384471
@@ -4177,15 +4338,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 6495566703491081548, guid: c0f19cddce682b64b87164f0c0439c78, type: 3}
   damageHudCounterpart: {fileID: 6936344867401459837}
   alternateSupport: {fileID: 7933884648759838941}
@@ -4544,15 +4704,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 4633965018164895638, guid: 0d15080cced52dc4eab4ae23e1435d4f, type: 3}
   damageHudCounterpart: {fileID: 4082959777514095283}
 --- !u!114 &2204128287715840632
@@ -5352,15 +5511,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 1435303954191780476, guid: b2c541b4f97441744817af62b2906508, type: 3}
   damageHudCounterpart: {fileID: 9004097075771986084}
 --- !u!114 &2609810771120417631
@@ -5700,15 +5858,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 8166672600586179698, guid: 6bfe29d766de7ea4eb43db00b1a6991c, type: 3}
   damageHudCounterpart: {fileID: 4948530844344400474}
 --- !u!114 &2666647688940424582
@@ -6355,6 +6512,89 @@ Transform:
   m_Father: {fileID: 8859533449110064894}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -25, y: 0, z: 0}
+--- !u!1 &5168520019011920125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4635346203961321163}
+  - component: {fileID: 3427981274034117449}
+  - component: {fileID: 1710305696382104186}
+  m_Layer: 10
+  m_Name: PortNavLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4635346203961321163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168520019011920125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.276, y: -0, z: -0.411}
+  m_LocalScale: {x: 0.10502, y: 0.10502, z: 0.26749647}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6150417086359031783}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3427981274034117449
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168520019011920125}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1710305696382104186
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168520019011920125}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e836d424bce3b3345bdaf9136c3fc5e0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5184630430248911904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,15 +6782,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 762981041287403669, guid: bde3a02ba0d8c2b429b137e782faf160, type: 3}
   damageHudCounterpart: {fileID: 7735765633954239791}
 --- !u!114 &4598649451210763521
@@ -6667,6 +6906,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7221711931244666745}
+  - {fileID: 4635346203961321163}
   m_Father: {fileID: 2744322626461666799}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6738,15 +6978,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 5664024148753422706, guid: 2d16a0c14f5387d4aabae38d2c13e2ac, type: 3}
   damageHudCounterpart: {fileID: 2412055304047687998}
 --- !u!114 &7130604413930889920
@@ -7816,15 +8055,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 1395894264075563107, guid: b39833114c62b9640ad37e2a07e1c44e, type: 3}
   damageHudCounterpart: {fileID: 8036136622345661761}
 --- !u!114 &5399910879307005185
@@ -8668,15 +8906,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 784535784555587574, guid: 897cc3796ff9b8d4484ea54d60ef067b, type: 3}
   damageHudCounterpart: {fileID: 5118224566957397539}
 --- !u!114 &3564129775933450657
@@ -8935,15 +9172,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 3790386061770104960, guid: 0519907b4f3f9314686cc6a50203180c, type: 3}
   damageHudCounterpart: {fileID: 9173612083780749472}
 --- !u!114 &3082780588136901237
@@ -9530,15 +9766,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 1138686896202132161, guid: 873c43e3c8fab944ba3585d4bcf08593, type: 3}
   damageHudCounterpart: {fileID: 6493784367569037118}
   alternateSupport: {fileID: 5269781142277030034}
@@ -9792,6 +10027,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3805292705723536177}
+  - {fileID: 5510130640871503914}
   m_Father: {fileID: 1705971202834007456}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9863,15 +10099,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 4262579675015811570, guid: 8c75a12847c2866458c9a653cef2b068, type: 3}
   damageHudCounterpart: {fileID: 1627854481311530850}
 --- !u!114 &5310433346382501726
@@ -10912,7 +11147,7 @@ GameObject:
   - component: {fileID: 6421230819222282558}
   m_Layer: 10
   m_Name: Ship Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11163,6 +11398,7 @@ Transform:
   - {fileID: 7933884648759838941}
   - {fileID: 3713704071374620464}
   - {fileID: 7815924413573839673}
+  - {fileID: 4527536522210551689}
   m_Father: {fileID: 7216740580467273708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11301,18 +11537,18 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 7618652203882853021, guid: f2ec75b5c8b5e5c4b8d363ef89ccdef8, type: 3}
   damageHudCounterpart: {fileID: 659072433960295877}
   root: {fileID: 0}
+  menu: {fileID: 0}
 --- !u!1 &8492800243895846407
 GameObject:
   m_ObjectHideFlags: 0
@@ -11709,25 +11945,6 @@ MonoBehaviour:
   volumeManager: {fileID: 0}
   damageHolo: {fileID: 4778431504686667591}
   collisionDivider: 5
-  shipParts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   mouseSensitivityBuff: 4
 --- !u!114 &8527098106827161147
 MonoBehaviour:

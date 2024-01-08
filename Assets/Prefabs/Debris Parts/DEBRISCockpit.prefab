@@ -1052,6 +1052,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 6315042280251820144}
   - {fileID: -1105443788933550335}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -1112,7 +1113,6 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion:
@@ -1120,13 +1120,14 @@ MonoBehaviour:
   - {fileID: 0}
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 2179317181517415770}
   damageHudCounterpart: {fileID: 0}
   root: {fileID: 0}
   cam: {fileID: 0}
+  menu: {fileID: 0}
 --- !u!114 &-1105443788933550335
 MonoBehaviour:
   m_ObjectHideFlags: 0
