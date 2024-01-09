@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FishNet.Object;
+using FishNet.Object.Prediction;
+using FishNet.Object.Synchronizing;
+using FishNet.Transporting;
+using FishNet.Managing.Timing;
+
 public class RespawnManager : MonoBehaviour
 {
     [SerializeField]
@@ -33,7 +38,7 @@ public class RespawnManager : MonoBehaviour
         StartCoroutine(Respawn());
     }
 
-
+    
     public IEnumerator Respawn()
     {
         netUI.JoinRelay();
@@ -43,5 +48,4 @@ public class RespawnManager : MonoBehaviour
 
         
     }
-
 }

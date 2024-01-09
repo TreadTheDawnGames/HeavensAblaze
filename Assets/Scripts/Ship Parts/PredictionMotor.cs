@@ -153,7 +153,7 @@ public class PredictionMotor : NetworkBehaviour
     [SerializeField]
     public InputManager inputManager;
     [SerializeField]
-    PersonalizationManager personalizationManager;
+    public PersonalizationManager personalizationManager { get; private set; }
     [SerializeField]
     public MainMenu mainMenu;
 
@@ -176,8 +176,11 @@ public class PredictionMotor : NetworkBehaviour
     [SerializeField]
     DamageHologram damageHolo;
 
-    
 
+    [SerializeField]
+    RespawnManager respawnManager;
+
+    public float _thrust { get; private set; }
 
     private void Awake()
     {
@@ -330,6 +333,10 @@ public class PredictionMotor : NetworkBehaviour
             mainMenu = FindObjectOfType<MainMenu>(true);
 
         }
+        if(respawnManager == null)
+        {
+            respawnManager = FindObjectOfType<RespawnManager>();
+        }
         personalizationManager.ship = this;
         personalizationManager.aimpoint = GetComponentInChildren<AimPoint>();
         inputManager.ship = this;
@@ -473,6 +480,8 @@ public class PredictionMotor : NetworkBehaviour
         if (volumeManager != null)
             volumeManager.isIngame = false ;
 
+        if(respawnManager.button!=null)
+            respawnManager?.button?.gameObject?.SetActive(false);
         //Instantiate(Camera.main);
         // Camera.main.enabled = true;
 
@@ -680,7 +689,8 @@ public class PredictionMotor : NetworkBehaviour
         if (inputType != InputType.Disabled)
             shipSound.PlayServerSounds(thrust, lift, lateral, roll, pitch, yaw, brake);
 
-
+        _thrust = thrust;
+        if (brake) _thrust /= 2f;
 
         //Debug.Log(thrust);
 

@@ -557,6 +557,7 @@ MonoBehaviour:
   root: {fileID: 7859034845989005786}
   cam: {fileID: 8212157703595107912}
   menu: {fileID: 0}
+  destroyCockpit: 0
 --- !u!1 &593972849467792051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,6 +3203,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2769894399890432579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2405968725561104398}
+  m_Layer: 10
+  m_Name: Display Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2405968725561104398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769894399890432579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5930350676301458272}
+  m_Father: {fileID: 7216740580467273708}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2826485175912267717
 GameObject:
   m_ObjectHideFlags: 0
@@ -11273,6 +11306,7 @@ MonoBehaviour:
   cockpitDied: 0
   maxDisplacement: 8
   positionMultiplier: 0.4
+  cam: {fileID: 8212157703595107912}
 --- !u!1 &8236536560026466242
 GameObject:
   m_ObjectHideFlags: 0
@@ -11385,7 +11419,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8362939112336641479}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11399,7 +11433,7 @@ Transform:
   - {fileID: 3713704071374620464}
   - {fileID: 7815924413573839673}
   - {fileID: 4527536522210551689}
-  m_Father: {fileID: 7216740580467273708}
+  m_Father: {fileID: 2405968725561104398}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1538393156525752468
@@ -11481,7 +11515,7 @@ MonoBehaviour:
   - {fileID: 7628247516525207411}
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
   _isGlobal: 0
@@ -11785,7 +11819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5930350676301458272}
+  - {fileID: 2405968725561104398}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11873,7 +11907,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8535732708594832469}
   _networkObjectCache: {fileID: 8535732708594832469}
   _implementsPredictionMethods: 1
-  _graphicalObject: {fileID: 5930350676301458272}
+  _graphicalObject: {fileID: 2405968725561104398}
   _enableTeleport: 0
   _teleportThreshold: 1
   _ownerSmoothPosition: 1
@@ -11944,6 +11978,7 @@ MonoBehaviour:
   ambientMusic: {fileID: 0}
   volumeManager: {fileID: 0}
   damageHolo: {fileID: 4778431504686667591}
+  respawnManager: {fileID: 0}
   collisionDivider: 5
   mouseSensitivityBuff: 4
 --- !u!114 &8527098106827161147

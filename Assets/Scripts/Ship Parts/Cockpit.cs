@@ -20,7 +20,7 @@ public class Cockpit : ShipPart
     public bool destroyCockpit = false;
     //Need to activate camera only when my main body is destroyed
 
-   
+
 
 
     public override void OnShipCreated(PredictionMotor ship)
@@ -40,75 +40,76 @@ public class Cockpit : ShipPart
         if (GetComponentInChildren<Camera>())
         {
             //if(GetComponentInChildren<Camera>()!=null)
-            transform.GetComponentInChildren<Camera>().enabled = false ;
+            transform.GetComponentInChildren<Camera>().enabled = false;
         }
     }
 
-    [ServerRpc(RequireOwnership =false)]
+    //[ServerRpc(RequireOwnership =false)]
     public override void DestroyIfDead()
     {
         //ChangeCounterpartColor(damageHudCounterpart, this);
-
-        if (!hasRun)
-        CockpitDestroyIfDeadObservers(); 
+        if (hitPoints <= 0)
+        {
+            if (!hasRun)
+                CockpitDestroyIfDeadObservers();
+        }
     }
 
-    [ObserversRpc(RunLocally =true)]
+    [ObserversRpc]
     public void CockpitDestroyIfDeadObservers()
     {
-
+        hasRun = true;
         //problem is CockpitDestroyIfDeadObservers method (this one) is being called multiple times. I need it to not be.
 
         print("destroy if dead for " + gameObject.name + "is started");
-        if (hitPoints <= 0)
+
+        Instantiate(destructionExplosion, transform.position, transform.rotation);
+
+        //find camera and do the transition to look at the body
+        print(IsOwner);
+        if (IsOwner)
         {
-            Instantiate(destructionExplosion, transform.position, transform.rotation);
-
-            //find camera and do the transition to look at the body
-            print(IsOwner);
-            if (IsOwner)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                for (int i = 0; i < transform.childCount; i++)
+                print(i);
+                if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
                 {
-                    print(i);
-                    if (transform.GetChild(i).TryGetComponent<CameraDampener>(out CameraDampener camDamp) && transform.root != this.transform)
-                    {
-                        Debug.Log("Cockpit parent: " + transform.parent.name);
-                        camDamp.transform.SetParent(transform.parent);
-                        camDamp.cockpitDied = true;
-                        camDamp.Transition();
-                        i--;
-                    }
-
-                    print(transform.GetChild(i).name);
-                    Destroy(transform.GetChild(i).gameObject);
+                    Debug.Log("Cockpit parent: " + transform.parent.name);
+                    camDamp.transform.SetParent(transform.parent);
+                    camDamp.cockpitDied = true;
+                    camDamp.Transition();
+                    i--;
                 }
-                FindObjectOfType<RespawnManager>().SetShowRespawn(true);
 
+                print(transform.GetChild(i).name);
+                Destroy(transform.GetChild(i).gameObject);
             }
-            if (root != null)
+            FindObjectOfType<RespawnManager>().SetShowRespawn(true);
+
+        }
+        if (root != null)
+        {
+            print("Root = " + root.name);
+            //disable player input
+            root.inputType = PredictionMotor.InputType.Disabled;
+
+        }
+        else
+        {
+            print("Root is null");
+            //if(IsOwner)
+            if (GetComponentInChildren<CameraDampener>() != null)
             {
-                print("Root = " + root.name);
-                //disable player input
-                root.inputType = PredictionMotor.InputType.Disabled;
+
+                FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
 
             }
-            else
-            {
-                print("Root is null");
-                //if(IsOwner)
-                if (GetComponentInChildren<CameraDampener>() != null)
-                {
-                    
-                    FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
-
-                }
-            }
-
-            Destroy(gameObject);
         }
 
+        Destroy(gameObject);
+
+
     }
-   
+
 
 }

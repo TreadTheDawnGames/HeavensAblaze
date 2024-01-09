@@ -20,12 +20,28 @@ public class PersonalizationManager : MonoBehaviour
     TMP_Text showAimpointTickbox;
     [SerializeField]
     TMP_Text useAimpointTickbox;
+    [SerializeField]
+    TMP_Text useFOVTickbox;
+
+    public bool useFOVEffects { get; private set; } = true;
 
     private void Start()
     {
+        ToggleUseFOVEffects(true);
         UpdateDistanceValue(PlayerPrefs.GetInt("distance",75));
         UpdateAimpointViewability(true);
         UpdateUseAimpoint(true);
+    }
+
+    public void ToggleUseFOVEffects(bool onStart = false)
+    {
+        useFOVEffects = !useFOVEffects;
+        if (onStart)
+        {
+            useFOVEffects = PlayerPrefs.GetFloat("useFOV", 1) == 1 ? true : false;
+        }
+        useFOVTickbox.gameObject.SetActive(useFOVEffects);
+        PlayerPrefs.SetFloat("useFOV", useFOVEffects ? 1 : 0);
     }
 
     public void ResetDistance()

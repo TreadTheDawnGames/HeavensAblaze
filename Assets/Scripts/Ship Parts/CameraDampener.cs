@@ -23,19 +23,30 @@ public class CameraDampener : NetworkBehaviour
     public float maxDisplacement = 0.1f;
     public float positionMultiplier = 0.25f;
 
+    [SerializeField]
+    Camera cam;
+
     private void Start()
     {
+        if (cam == null) cam = GetComponent<Camera>();
+        if(ship==null) ship=transform.root.GetComponent<PredictionMotor>();
         StartCoroutine(WiggleCamera());
     }
 
-   
+    public float minFOV = 60;
+    public float maxFOV = 61;
+    public float thrustMultiplier = 0.5f;
 
     public IEnumerator WiggleCamera()
     {
         while (!cockpitDied)
         {
             transform.localRotation = Quaternion.Euler(Vector3.ClampMagnitude(transform.InverseTransformDirection(transform.root.GetComponent<Rigidbody>().angularVelocity), maxDisplacement) * positionMultiplier);
-            
+            if (ship.personalizationManager.useFOVEffects)
+            {
+                cam.fieldOfView += thrustMultiplier*(-0.5f+ship._thrust);
+                cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, minFOV, maxFOV);
+            }
             yield return null;
         }
     }

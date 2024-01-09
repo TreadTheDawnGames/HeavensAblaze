@@ -22,13 +22,18 @@ public class ShipPart : NetworkBehaviour
     public float maxHitPoints = 50f;
     private void on_health(float prev, float next, bool asServer)
     {
-        if(damageHudCounterpart!=null)  
-            damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
-        if(asServer)
-            DestroyIfDead();
         
-       
+            if (damageHudCounterpart != null)
+            {
+                damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
+            }
+            if(asServer)
+                DestroyIfDead();
+        
+
+
     }
+    
     //[SyncVar] public Transform parent;
     //[SyncVar] public NetworkObject netParent;
 

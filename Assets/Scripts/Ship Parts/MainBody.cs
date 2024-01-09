@@ -69,10 +69,7 @@ public class MainBody : ShipPart
 
         root.gameObject.SetActive(false);
         ChangeCamera();
-        if (IsOwner)
-        {
-            FindObjectOfType<RespawnManager>()?.SetShowRespawn(true);
-        }
+        ShowRespawnButton();
 
         if (GetComponentInChildren<Camera>() != null)
         {
@@ -81,7 +78,15 @@ public class MainBody : ShipPart
         base.DestroyIfDeadObservers();
     }
 
-   
+    [ObserversRpc(RunLocally =true)]
+    void ShowRespawnButton()
+    {
+        if (IsOwner)
+        {
+            FindObjectOfType<RespawnManager>()?.SetShowRespawn(true);
+        }
+
+    }
 
    
 

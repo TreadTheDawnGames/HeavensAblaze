@@ -143,7 +143,7 @@ public class NetworkUIV2 : MonoBehaviour
     {
         _networkManager.ClientManager.OnClientConnectionState -= UpdateClientConnectionState;
         _networkManager.ServerManager.OnServerConnectionState -= UpdateServerConnectionState;
-
+        
     }
 
     [SerializeField]
@@ -406,5 +406,4 @@ public class NetworkUIV2 : MonoBehaviour
     }
 
     
-
 } 
