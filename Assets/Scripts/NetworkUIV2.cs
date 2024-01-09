@@ -378,6 +378,7 @@ public class NetworkUIV2 : MonoBehaviour
 
     public void SetNetUIVisability(bool setActive)
     {
+        if(respawnManager!=null && respawnManager.button!=null)
         if (!respawnManager.button.gameObject.activeInHierarchy)
         {
             foreach (GameObject hidable in hidables)

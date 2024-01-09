@@ -160,7 +160,7 @@ public class ColorPicker : MonoBehaviour
         ColorChanged.Invoke();
 
     }
-    private void Awake()
+    public void Awake()
     {
         Color savedColor = new Color(PlayerPrefs.GetFloat("LaserColorR", 1), PlayerPrefs.GetFloat("LaserColorG", 0), PlayerPrefs.GetFloat("LaserColorB", 0), PlayerPrefs.GetFloat("LaserColorA", 1));
         laserColor = savedColor;

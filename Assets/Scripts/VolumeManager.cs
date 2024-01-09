@@ -25,10 +25,12 @@ public class VolumeManager : MonoBehaviour
     [SerializeField]
     AudioSource music;
 
+
+
     public bool isIngame = false;
     bool masterMute;
 
-    private void Start()
+    public void Start()
     {
         try
         {
@@ -56,6 +58,14 @@ public class VolumeManager : MonoBehaviour
         }
     }
 
+    public void RemoveAllListeners()
+    {
+        masterSlider.onValueChanged.RemoveAllListeners();
+        musicSlider.onValueChanged.RemoveAllListeners();
+
+        masterMuteButton.onClick.RemoveAllListeners();
+        musicMuteButton.onClick.RemoveAllListeners();
+    }
 
     void UpdateMasterVolume(float volume)
     {
@@ -71,6 +81,8 @@ public class VolumeManager : MonoBehaviour
         music.volume = volume;
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
+
+    
 
     void ToggleMasterMute()
     {

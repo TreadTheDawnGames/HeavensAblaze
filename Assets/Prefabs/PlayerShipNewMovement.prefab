@@ -11307,6 +11307,9 @@ MonoBehaviour:
   maxDisplacement: 8
   positionMultiplier: 0.4
   cam: {fileID: 8212157703595107912}
+  minFOV: 60
+  maxFOV: 62
+  thrustMultiplier: 0.25
 --- !u!1 &8236536560026466242
 GameObject:
   m_ObjectHideFlags: 0
@@ -11969,7 +11972,6 @@ MonoBehaviour:
   invertYaw: 1
   colorPicker: {fileID: 0}
   inputManager: {fileID: 0}
-  personalizationManager: {fileID: 0}
   mainMenu: {fileID: 0}
   shipSound: {fileID: 8527098106827161147}
   engines:

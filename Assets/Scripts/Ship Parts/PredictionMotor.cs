@@ -480,7 +480,7 @@ public class PredictionMotor : NetworkBehaviour
         if (volumeManager != null)
             volumeManager.isIngame = false ;
 
-        if(respawnManager.button!=null)
+        if(respawnManager!=null&&respawnManager.button!=null)
             respawnManager?.button?.gameObject?.SetActive(false);
         //Instantiate(Camera.main);
         // Camera.main.enabled = true;

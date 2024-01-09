@@ -111,7 +111,16 @@ public class InputManager : MonoBehaviour
     #endregion
 
 
+    public void ResetAllInversions()
+    {
+        InvPitch(true);
+        InvRoll(true);
+        InvYaw(true);
+        InvLift(true);
+        InvThrust(true);
+        InvLateral(true);
 
+    }
 
 
     public void ChangeInputType(int num)
@@ -271,7 +280,7 @@ public class InputManager : MonoBehaviour
 
 
 
-    private void Start()
+    public void Start()
     {
         if (inputActions == null)
         {
@@ -482,30 +491,21 @@ public class InputManager : MonoBehaviour
     
     public void RestoreDefaultControls()
     {
-       
-        for(int i = 3; i>=0; i--)
+
+        for (int i = 3; i >= 0; i--)
         {
 
-        ChangeInputType(i);
-        foreach(RebindUI button in rebindButtons)
-        {
-            button.ResetBinding();
-        }
+            ChangeInputType(i);
+            foreach (RebindUI button in rebindButtons)
+            {
+                button.ResetBinding();
+            }
         }
         
         UpdateSensitivityValue(100);
-        InvThrust(true);
-        InvLift(true);
-        InvLateral(true);
-        InvRoll(true);
-        InvPitch(true);
-        InvYaw(true);
+        ResetAllInversions();
 
-        if(ship != null)
-        {
-       //     ship.playerShip.Disable();
-        }
-       // inputActions.Disable();
+       
     }
 
 

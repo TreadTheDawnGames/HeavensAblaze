@@ -23,6 +23,10 @@ public class PersonalizationManager : MonoBehaviour
     [SerializeField]
     TMP_Text useFOVTickbox;
 
+    [SerializeField]
+    InputManager inputManager;
+    [SerializeField]
+    VolumeManager volumeManager;
     public bool useFOVEffects { get; private set; } = true;
 
     private void Start()
@@ -117,6 +121,33 @@ public class PersonalizationManager : MonoBehaviour
         showAimpointTickbox.gameObject.SetActive(useAimpoint);
     }
 
+    [SerializeField]
+    GameObject areYouSurePanel;
+    [SerializeField]
+    ColorPicker colorPicker;
+    [SerializeField]
+    CustomColor[] customColors;
+    public void SetAYSPanelVisible(bool setTo)
+    {
+        areYouSurePanel.SetActive(setTo);
+    }
 
+    public void ResetAllPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        inputManager.RestoreDefaultControls();
+        volumeManager.RemoveAllListeners();
+        colorPicker.OnClickPickRed();
+        foreach(CustomColor color in customColors)
+        {
+            color.ResetColor();
+        }
+
+        colorPicker.Awake();
+        volumeManager.Start();
+        inputManager.Start();
+        Start();
+        SetAYSPanelVisible(false);
+    }
 
 }
