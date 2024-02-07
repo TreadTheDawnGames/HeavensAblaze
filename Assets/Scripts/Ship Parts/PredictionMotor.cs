@@ -711,26 +711,26 @@ public class PredictionMotor : NetworkBehaviour
 
 
         //this is a total hack
-        int i = 0;
+        int engineCount = 0;
         foreach(GameObject engine in engines)
         {
             if(engine!=null)
-                i++;
+                engineCount++;
         }
         
 
-        if (i > 0)
+        if (engineCount > 0)
         {
             thrust *= thrustMultiplier;
 
         }
-        else if(i <= engineCount/2)
+        else if(engineCount <= this.engineCount/2)
         {
             thrust *= 0.5f;
         }
-        else if (i == 0)
+        else if (engineCount == 0)
         {
-            shipSound.PlayServerDeadThrust(thrust*2f);
+            shipSound.PlayServerDeadThrust(thrust * 2f);
         }
 
         float sensitivityVal = (inputManager.sensitivityValue / 100.0f);

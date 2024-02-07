@@ -85,6 +85,13 @@ public class Cockpit : ShipPart
                 Destroy(transform.GetChild(i).gameObject);
             }
             FindObjectOfType<RespawnManager>().SetShowRespawn(true);
+            //untested
+            transform.parent.GetComponent<NetworkBehaviour>().RemoveOwnership();
+
+            GameObject duplicateBody = new GameObject();
+            duplicateBody = transform.parent.gameObject;
+            Spawn(duplicateBody);
+
 
         }
         if (root != null)
@@ -92,7 +99,7 @@ public class Cockpit : ShipPart
             print("Root = " + root.name);
             //disable player input
             root.inputType = PredictionMotor.InputType.Disabled;
-
+            
         }
         else
         {
