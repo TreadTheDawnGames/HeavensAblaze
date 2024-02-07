@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 854212674681976713}
   m_LocalRotation: {x: -0.04920511, y: 0.08522575, z: 0.26225984, w: 0.95996624}
   m_LocalPosition: {x: 0.99400043, y: 0.5849999, z: -2.124}
-  m_LocalScale: {x: 0.80000013, y: 0.8000001, z: 0.79999995}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,15 +106,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 854212674681976713}
   damageHudCounterpart: {fileID: 0}
 --- !u!114 &1201996717727672334
@@ -146,7 +145,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 44
+  <PrefabId>k__BackingField: 45
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
