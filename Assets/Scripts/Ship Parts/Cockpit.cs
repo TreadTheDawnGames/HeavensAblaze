@@ -5,6 +5,7 @@ using FishNet.Component.Transforming;
 using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Managing;
+using Unity.VisualScripting;
 
 
 public class Cockpit : ShipPart
@@ -85,11 +86,10 @@ public class Cockpit : ShipPart
                 Destroy(transform.GetChild(i).gameObject);
             }
             FindObjectOfType<RespawnManager>().SetShowRespawn(true);
-            //untested
+            //spawns with cockpit
             transform.parent.GetComponent<NetworkBehaviour>().RemoveOwnership();
 
-            GameObject duplicateBody = new GameObject();
-            duplicateBody = transform.parent.gameObject;
+            GameObject duplicateBody = Instantiate(transform.parent.gameObject);
             Spawn(duplicateBody);
 
 
