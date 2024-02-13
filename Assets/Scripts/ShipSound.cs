@@ -41,27 +41,50 @@ public class ShipSound : NetworkBehaviour
 
 
     [ServerRpc]
-    public void PlayServerSounds(float thrust, float lift, float lateral, float roll, float pitch, float yaw, bool brake)
+    public void PlayServerSounds(float thrust, float lift, float lateral, float roll, float pitch, float yaw, bool brake, bool deadThrust)
     {
         if (root.inputType == PredictionMotor.InputType.Disabled) 
                 return;
+
+        float brakeVal;
+        if (brake)
+        {
+            brakeVal = 0.75f;
+            
+        }
+        else
+        {
+            brakeVal = 1f;
+        }
+
+        if (deadThrust)
+        {
+            if (thrust != 0f)
+            {
+                thrust = 1f;
                 
+            }
+            PlayServerDeadThrust(thrust * brakeVal);
+        }
+        else
+        {
 
-        thrust += 0.25f;
+            thrust += 0.25f;
 
-        //thrust = -thrust;
-        if (thrust < 0f)
-            thrust = Mathf.Abs(thrust) * 0.5f;
+            if (thrust < 0f)
+                thrust = Mathf.Abs(thrust) * 0.5f;
 
-        thrust = Mathf.Clamp(thrust, 0.1f, 1f);
-        if (brake) thrust *=0.75f;
+            thrust = Mathf.Clamp(thrust, 0.1f, 1f);
 
-        PlayServerThrust(thrust);
-        PlayServerLift(lift);
-        PlayServerLateral(lateral);
-        PlayServerRoll(roll);
-        PlayServerPitch(pitch);
-        PlayServerYaw(yaw);
+
+            PlayServerThrust(thrust * brakeVal);
+        }
+        PlayServerLift(lift * brakeVal);
+        PlayServerLateral(lateral * brakeVal);
+        PlayServerRoll(roll * brakeVal);
+        PlayServerPitch(pitch * brakeVal);
+        PlayServerYaw(yaw * brakeVal);
+
     }
 
     private void PlayServerLateral(float lateral)
@@ -115,11 +138,10 @@ public class ShipSound : NetworkBehaviour
         netYaw.Volume = Mathf.Abs(yaw);
     }
 
-    [ServerRpc]
+    
     public void PlayServerDeadThrust(float thrust)
     {
-        if (Mathf.Abs(thrust) < 0.15f)
-            thrust = 0;
+        
         netDeadThrust.Volume = Mathf.Abs(thrust);
     }
 

@@ -686,8 +686,42 @@ public class PredictionMotor : NetworkBehaviour
             }
         }
 
+        //this is a total hack
+        int engineCount = 0;
+        foreach (GameObject engine in engines)
+        {
+            if (engine != null)
+                engineCount++;
+        }
+
+        bool deadThrust = false;
+        print("PredictionMotor pre-engine thrust: "+thrust);
+        print("this.engineCount: "+this.engineCount);
+
+
+        if (engineCount == 0)
+        {
+            print("dead");
+            deadThrust = true;
+            thrust *= 0.25f;
+        }
+        else if (engineCount > this.engineCount / 2)
+        {
+            thrust *= thrustMultiplier;
+            print("Not dead");
+        }        
+        else if (engineCount <= this.engineCount / 2)
+        {
+            thrust *= 0.5f;
+            print("half dead");
+
+        }
+        
+
+        print("PredictionMotor post-engine thrust: " + thrust);
+
         if (inputType != InputType.Disabled)
-            shipSound.PlayServerSounds(thrust, lift, lateral, roll, pitch, yaw, brake);
+            shipSound.PlayServerSounds(thrust, lift, lateral, roll, pitch, yaw, brake, deadThrust);
 
         _thrust = thrust;
         if (brake) _thrust /= 2f;
@@ -710,28 +744,7 @@ public class PredictionMotor : NetworkBehaviour
         }
 
 
-        //this is a total hack
-        int engineCount = 0;
-        foreach(GameObject engine in engines)
-        {
-            if(engine!=null)
-                engineCount++;
-        }
         
-
-        if (engineCount > 0)
-        {
-            thrust *= thrustMultiplier;
-
-        }
-        else if(engineCount <= this.engineCount/2)
-        {
-            thrust *= 0.5f;
-        }
-        else if (engineCount == 0)
-        {
-            shipSound.PlayServerDeadThrust(thrust * 2f);
-        }
 
         float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
 

@@ -3284,9 +3284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2781adbf9130f74c9ec8c24b23d84bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 424187843963977470}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 424187843963977470}
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
