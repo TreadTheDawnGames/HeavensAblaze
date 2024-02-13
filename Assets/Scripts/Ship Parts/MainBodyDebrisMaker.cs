@@ -19,7 +19,8 @@ public class MainBodyDebrisMaker : ShipPart
             }
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
         //Despawn(gameObject);
     }
 
