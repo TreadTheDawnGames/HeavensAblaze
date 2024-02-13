@@ -23,6 +23,7 @@ public class MainBodyDebrisMaker : ShipPart
         //Despawn(gameObject);
     }
 
+    [ObserversRpc]
     private void InstantiateDebris(GameObject originalObject)
     {
         if (IsServer)
@@ -74,14 +75,17 @@ public class MainBodyDebrisMaker : ShipPart
 
                 ServerManager.Spawn(spawn);
                 SpawnChildren(spawn);
+                if (IsOwner)
+                {
+                    FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
+                }
 
 
-                FindObjectOfType<IdleCamera>(true)?.gameObject.SetActive(true);
             }
 
 
         }
-
+        
 
     }
 

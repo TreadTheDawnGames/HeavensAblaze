@@ -24,6 +24,7 @@ public class Cockpit : ShipPart
     [SerializeField]
     MainBodyDebrisMaker debrisMaker;
 
+    bool cockpitDestroyed = false;
 
     public override void OnShipCreated(PredictionMotor ship)
     {
@@ -110,7 +111,12 @@ public class Cockpit : ShipPart
 
             }
         }
-        debrisMaker.SpawnMainBodyDebris()
+
+        if (!cockpitDestroyed)
+        {
+            cockpitDestroyed = true;
+            debrisMaker.SpawnMainBodyDebris();
+        }
 ;
 
         //Destroy(gameObject);
