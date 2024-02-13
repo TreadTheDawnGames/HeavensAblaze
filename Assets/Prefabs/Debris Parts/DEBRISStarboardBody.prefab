@@ -107,15 +107,14 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  transforms: []
   destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
   childCount: 0
-  partId: 0
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  ship: {fileID: 0}
   debris: {fileID: 1395894264075563107}
   damageHudCounterpart: {fileID: 0}
 --- !u!114 &1033725002640076948
@@ -147,7 +146,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 33
+  <PrefabId>k__BackingField: 34
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -233,7 +232,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

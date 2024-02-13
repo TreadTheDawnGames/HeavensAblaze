@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d13724d416cfed046a3451d79375da91
+guid: f2781adbf9130f74c9ec8c24b23d84bc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -8,12 +8,10 @@ MonoImporter:
   - _networkObjectCache: {instanceID: 0}
   - destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
   - _parent: {instanceID: 0}
-  - collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
+  - collisionImpact: {instanceID: 0}
   - ship: {instanceID: 0}
   - debris: {instanceID: 0}
   - damageHudCounterpart: {instanceID: 0}
-  - root: {instanceID: 0}
-  - menu: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

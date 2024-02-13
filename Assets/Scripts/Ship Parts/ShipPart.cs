@@ -107,12 +107,12 @@ public class ShipPart : NetworkBehaviour
     public virtual void OnShipCreated(PredictionMotor ship) { }
 
    // [ServerRpc(RequireOwnership=false)]
-    public virtual void DestroyIfDead()
+    public virtual void DestroyIfDead(bool disregardHP = false)
     {
         //ChangeCounterpartColor(damageHudCounterpart, this);
         
 
-        if (hitPoints <= 0f)
+        if (hitPoints <= 0f || disregardHP)
         {
             if (!hasRun)
                 DestroyIfDeadObservers();

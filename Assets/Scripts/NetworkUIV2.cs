@@ -150,8 +150,22 @@ public class NetworkUIV2 : MonoBehaviour
     float waitToStartTime = 6;
     [SerializeField] float subtitleWait = 170000f;
     public float timePassed;
+
+#if UNITY_EDITOR 
+    bool devBuild = true;
+#else
+    bool devBuild = false;
+#endif
+
     IEnumerator WaitToShow()
     {
+        if (devBuild)
+        {
+            ButtonsOn();
+
+            yield return null;
+        }
+
 
         yield return new WaitForSeconds(waitToStartTime);
         splash.text = SplashText.GetInstance().Get();
@@ -223,6 +237,44 @@ public class NetworkUIV2 : MonoBehaviour
         if (menuVideoPlayer != null)
         {
             menuVideoPlayer.targetCameraAlpha = 1;
+        }
+    }
+
+    void ButtonsOn()
+    {
+        if (devBuild)
+        {
+            foreach (Button button in GetComponentsInChildren<Button>(true))
+            {
+                button.interactable = true;
+            }
+            foreach (TMP_InputField field in GetComponentsInChildren<TMP_InputField>(true))
+            {
+                if (!serverStarted)
+                    field.interactable = true;
+            }
+            foreach (Image image in GetComponentsInChildren<Image>(true))
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+            }
+            foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>(true))
+            {
+                if (text.gameObject.name == "Placeholder")
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, 0.35f);
+
+                }
+                else
+                {
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+
+                }
+            }
+            if (menuVideoPlayer != null)
+            {
+                menuVideoPlayer.targetCameraAlpha = 1;
+            }
+
         }
     }
 

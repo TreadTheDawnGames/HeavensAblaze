@@ -10514,7 +10514,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Trigger
+  m_text: trigger
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14653,6 +14653,7 @@ MonoBehaviour:
   waitToStartTime: 7.5
   subtitleWait: 170000
   timePassed: 0
+  devBuild: 1
   hidables:
   - {fileID: 1565321877}
   - {fileID: 1710604469}

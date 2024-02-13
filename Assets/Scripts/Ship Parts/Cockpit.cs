@@ -21,7 +21,8 @@ public class Cockpit : ShipPart
     public bool destroyCockpit = false;
     //Need to activate camera only when my main body is destroyed
 
-
+    [SerializeField]
+    MainBodyDebrisMaker debrisMaker;
 
 
     public override void OnShipCreated(PredictionMotor ship)
@@ -46,10 +47,10 @@ public class Cockpit : ShipPart
     }
 
     //[ServerRpc(RequireOwnership =false)]
-    public override void DestroyIfDead()
+    public override void DestroyIfDead(bool disregardHP = false)
     {
         //ChangeCounterpartColor(damageHudCounterpart, this);
-        if (hitPoints <= 0)
+        if (hitPoints <= 0 || disregardHP)
         {
             if (!hasRun)
                 CockpitDestroyIfDeadObservers();
@@ -89,9 +90,6 @@ public class Cockpit : ShipPart
             //spawns with cockpit
             transform.parent.GetComponent<NetworkBehaviour>().RemoveOwnership();
 
-            GameObject duplicateBody = Instantiate(transform.parent.gameObject);
-            Spawn(duplicateBody);
-
 
         }
         if (root != null)
@@ -112,8 +110,10 @@ public class Cockpit : ShipPart
 
             }
         }
+        debrisMaker.SpawnMainBodyDebris()
+;
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
 
     }
