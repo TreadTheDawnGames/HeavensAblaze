@@ -5064,6 +5064,7 @@ GameObject:
   - component: {fileID: 818495765072175364}
   - component: {fileID: 6277454470613935902}
   - component: {fileID: 3648608236722185037}
+  - component: {fileID: 8357886131921986845}
   m_Layer: 10
   m_Name: TargetingHud
   m_TagString: Untagged
@@ -5153,6 +5154,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8357886131921986845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3720491132651274151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5c38c9471c9ed4ca0df22913e26d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  canvas: {fileID: 0}
+  shipCam: {fileID: 0}
 --- !u!1 &3735630953165478576
 GameObject:
   m_ObjectHideFlags: 0
