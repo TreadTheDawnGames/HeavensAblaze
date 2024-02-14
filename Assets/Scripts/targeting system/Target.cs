@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PredictionMotor targetShip;
+    public new RectTransform transform;
 
-    // Update is called once per frame
-    void Update()
+    public Target(PredictionMotor targetShip)
     {
-        
+        this.targetShip = targetShip;
+        this.transform = GetComponent<RectTransform>();
     }
 }

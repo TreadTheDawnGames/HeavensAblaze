@@ -695,25 +695,20 @@ public class PredictionMotor : NetworkBehaviour
         }
 
         bool deadThrust = false;
-        print("PredictionMotor pre-engine thrust: "+thrust);
-        print("this.engineCount: "+this.engineCount);
 
 
         if (engineCount == 0)
         {
-            print("dead");
             deadThrust = true;
             thrust *= 0.25f;
         }
         else if (engineCount > this.engineCount / 2)
         {
             thrust *= thrustMultiplier;
-            print("Not dead");
         }        
         else if (engineCount <= this.engineCount / 2)
         {
             thrust *= 0.5f;
-            print("half dead");
 
         }
         
