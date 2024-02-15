@@ -52,20 +52,32 @@ public class TargetingHud : NetworkBehaviour
             if (target.GetComponent<Target>().targetShip != null)
             {
                 
-                Renderer renderer = target.GetComponent<Target>().targetShip.GetComponentInChildren<Renderer>();
+                Renderer renderer = target.targetShip.shipRenderer;
                 if (renderer == null)
                 {
                     continue;
                 }
 
+                
+
                 bool vis = renderer.isVisible;
-                if(target.targetShip == null || !target.targetShip.gameObject.activeInHierarchy)
+                if(target.targetShip == null )
                 {
                     //find whether the ship is dead so it works on client.
                     //currently the PredictionMotor does not deactivate, the main body and its children do
                     //meaning this chunk of code doesn't register the ship as dead
                     vis = false;
                 }
+
+                var heading = target.targetShip.transform.position - transform.position;
+                float dot = Vector3.Dot(heading, transform.forward);
+                print(dot);
+                if (dot < 0)
+                {
+                    vis = false;
+                }
+
+
 
                 target.GetComponent<Image>().enabled = vis;
                 target.distanceDisplay.gameObject.SetActive(vis);

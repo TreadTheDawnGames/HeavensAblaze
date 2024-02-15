@@ -182,6 +182,9 @@ public class PredictionMotor : NetworkBehaviour
 
     public float _thrust { get; private set; }
 
+    [SerializeField]
+    public Renderer shipRenderer;
+
     private void Awake()
     {
         
@@ -346,6 +349,7 @@ public class PredictionMotor : NetworkBehaviour
         volumeManager = FindObjectOfType<VolumeManager>();
         ambientMusic = FindObjectOfType<AmbientMusic>().GetComponent<AudioSource>();
 
+        
 
         if (playerShip == null)
         {

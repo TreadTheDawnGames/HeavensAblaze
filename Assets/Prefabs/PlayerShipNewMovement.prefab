@@ -12187,6 +12187,7 @@ MonoBehaviour:
   volumeManager: {fileID: 0}
   damageHolo: {fileID: 4778431504686667591}
   respawnManager: {fileID: 0}
+  shipRenderer: {fileID: 601673447492328063}
   collisionDivider: 5
   mouseSensitivityBuff: 4
 --- !u!114 &8527098106827161147

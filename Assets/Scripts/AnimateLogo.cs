@@ -21,6 +21,9 @@ public class AnimateLogo : MonoBehaviour
     public event AnimationCompletedHandler animationComplete;
 
     [SerializeField]
+    NetworkUIV2 netHud;
+
+    [SerializeField]
     VideoPlayer player;
     void Start()
     {
@@ -40,6 +43,18 @@ public class AnimateLogo : MonoBehaviour
     }
     IEnumerator Animate()
     {
+        if (netHud.devMode)
+        {
+            player.Stop();
+            animationComplete.Invoke();
+            player.targetCameraAlpha = 0;
+            player.targetCamera.cullingMask ^= 1 >> LayerMask.NameToLayer("Default");
+            RenderSkybox(player.targetCamera);
+
+            
+            yield return null;
+        }
+
         float elapsedTime = 0f;
         while (elapsedTime < fadeInWait)
         {

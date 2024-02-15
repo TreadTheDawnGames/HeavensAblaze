@@ -152,14 +152,14 @@ public class NetworkUIV2 : MonoBehaviour
     public float timePassed;
 
 #if UNITY_EDITOR 
-    bool devBuild = true;
+    public bool devMode { get; private set; } = true;
 #else
-    bool devBuild = false;
+    public bool devMode { get; private set; } = false;
 #endif
 
     IEnumerator WaitToShow()
     {
-        if (devBuild)
+        if (devMode)
         {
             ButtonsOn();
 
@@ -242,7 +242,7 @@ public class NetworkUIV2 : MonoBehaviour
 
     void ButtonsOn()
     {
-        if (devBuild)
+        if (devMode)
         {
             foreach (Button button in GetComponentsInChildren<Button>(true))
             {

@@ -111,7 +111,6 @@ public class Cockpit : ShipPart
 
             }
         }
-
         if (!cockpitDestroyed)
         {
             cockpitDestroyed = true;
