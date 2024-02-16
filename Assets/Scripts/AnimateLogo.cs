@@ -36,24 +36,26 @@ public class AnimateLogo : MonoBehaviour
         //player.targetCamera = FindObjectOfType<IdleCamera>().GetComponent<Camera>();
 
         player.targetCamera.backgroundColor = Color.white;
-        StartCoroutine(Animate());
+
+        if (netHud.devMode)
+        {
+            player.Stop();
+            player.targetCameraAlpha = 0;
+            player.targetCamera.cullingMask ^= 1 >> LayerMask.NameToLayer("Default");
+            RenderSkybox(player.targetCamera);
+            animationComplete.Invoke();
+        }
+        else
+        {
+            StartCoroutine(Animate());
+        }
+        
 
 
         //Destroy(gameObject);
     }
     IEnumerator Animate()
     {
-        if (netHud.devMode)
-        {
-            player.Stop();
-            animationComplete.Invoke();
-            player.targetCameraAlpha = 0;
-            player.targetCamera.cullingMask ^= 1 >> LayerMask.NameToLayer("Default");
-            RenderSkybox(player.targetCamera);
-
-            
-            yield return null;
-        }
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeInWait)
