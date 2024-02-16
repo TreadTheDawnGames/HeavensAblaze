@@ -363,6 +363,7 @@ public class PredictionMotor : NetworkBehaviour
         {
             playerShip = new PlayerShip();
         }
+
         inputManager.ChangeInputTypeAndActivateShip(PlayerPrefs.GetInt("inputType", 0));
         
         foreach (ShipPart part in GetComponentsInChildren<ShipPart>())
@@ -397,6 +398,7 @@ public class PredictionMotor : NetworkBehaviour
 
             //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
             SetupThirdPartyVars();
+            playerShip.Mouse.HideTargeting.performed += UpdateHideTargeting;
 
             ChangeColor(this, colorPicker.laserColor);
 
@@ -431,7 +433,6 @@ public class PredictionMotor : NetworkBehaviour
             
         }
 
-        //playerShip.Mouse.HideTargeting.performed += UpdateHideTargeting;
 
 
         if (activeIdleCam != null)
@@ -734,7 +735,6 @@ public class PredictionMotor : NetworkBehaviour
         }
         
 
-        print("PredictionMotor post-engine thrust: " + thrust);
 
         if (inputType != InputType.Disabled)
             shipSound.PlayServerSounds(thrust, lift, lateral, roll, pitch, yaw, brake, deadThrust);
