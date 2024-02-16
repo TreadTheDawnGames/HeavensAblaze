@@ -492,15 +492,19 @@ public class PredictionMotor : NetworkBehaviour
     public override void OnStopClient()
     {
         base.OnStopClient();
-        playerShip.Mouse.HideTargeting.performed -= UpdateHideTargeting;
-        playerShip.Keyboard.HideTargeting.performed -= UpdateHideTargeting;
-        playerShip.Joystick.HideTargeting.performed -= UpdateHideTargeting;
-        playerShip.Gamepad.HideTargeting.performed -= UpdateHideTargeting;
+        if (playerShip != null)
+        {
 
-        playerShip.Mouse.SwapUseAimpoint.performed -= SwapUseAimpoint;
-        playerShip.Keyboard.SwapUseAimpoint.performed -= SwapUseAimpoint;
-        playerShip.Joystick.SwapUseAimpoint.performed -= SwapUseAimpoint;
-        playerShip.Gamepad.SwapUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Mouse.HideTargeting.performed -= UpdateHideTargeting;
+            playerShip.Keyboard.HideTargeting.performed -= UpdateHideTargeting;
+            playerShip.Joystick.HideTargeting.performed -= UpdateHideTargeting;
+            playerShip.Gamepad.HideTargeting.performed -= UpdateHideTargeting;
+
+            playerShip.Mouse.SwapUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Keyboard.SwapUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Joystick.SwapUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Gamepad.SwapUseAimpoint.performed -= SwapUseAimpoint;
+        }
 
         if (activeIdleCam!=null)
             activeIdleCam.SetEnabled(true);
