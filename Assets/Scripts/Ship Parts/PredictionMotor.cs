@@ -209,6 +209,14 @@ public class PredictionMotor : NetworkBehaviour
     private void UpdateHideTargeting(InputAction.CallbackContext context)
     {
         targetingHud.hideTargets = !targetingHud.hideTargets;
+        if (targetingHud.hideTargets == true)
+        {
+            print("Tracking");
+        }
+        else
+        {
+            print("Not tracking");
+        }
     }
 
     [ServerRpc(RequireOwnership=true)]
@@ -399,6 +407,9 @@ public class PredictionMotor : NetworkBehaviour
             //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
             SetupThirdPartyVars();
             playerShip.Mouse.HideTargeting.performed += UpdateHideTargeting;
+            playerShip.Keyboard.HideTargeting.performed += UpdateHideTargeting;
+            playerShip.Joystick.HideTargeting.performed += UpdateHideTargeting;
+            playerShip.Gamepad.HideTargeting.performed += UpdateHideTargeting;
 
             ChangeColor(this, colorPicker.laserColor);
 
@@ -487,7 +498,13 @@ public class PredictionMotor : NetworkBehaviour
     public override void OnStopClient()
     {
         base.OnStopClient();
-        if(activeIdleCam!=null)
+        playerShip.Mouse.HideTargeting.performed -= UpdateHideTargeting;
+        playerShip.Keyboard.HideTargeting.performed -= UpdateHideTargeting;
+        playerShip.Joystick.HideTargeting.performed -= UpdateHideTargeting;
+        playerShip.Gamepad.HideTargeting.performed -= UpdateHideTargeting;
+
+
+        if (activeIdleCam!=null)
             activeIdleCam.SetEnabled(true);
         if(ambientMusic!=null)
             ambientMusic.volume /= 0.5f;
