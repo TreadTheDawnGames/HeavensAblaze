@@ -108,7 +108,7 @@ public class PersonalizationManager : MonoBehaviour
     }
 
 
-    public void UpdateUseAimpoint(bool onStart)
+    public void UpdateUseAimpoint(bool onStart = false)
     {
         if (!onStart)
             PlayerPrefs.SetInt("useAimpoint", PlayerPrefs.GetInt("useAimpoint", 1) == 1 ? 0 : 1);
