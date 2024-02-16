@@ -5096,6 +5096,7 @@ MonoBehaviour:
   targetPrefab: {fileID: 7459013866127852561, guid: c9afa8e0ada6e304a97790f1284f1fbd, type: 3}
   canvas: {fileID: 818495765072175364}
   shipCam: {fileID: 8212157703595107912}
+  hideTargets: 0
 --- !u!1 &3735630953165478576
 GameObject:
   m_ObjectHideFlags: 0
@@ -12188,6 +12189,7 @@ MonoBehaviour:
   damageHolo: {fileID: 4778431504686667591}
   respawnManager: {fileID: 0}
   shipRenderer: {fileID: 601673447492328063}
+  targetingHud: {fileID: 8357886131921986845}
   collisionDivider: 5
   mouseSensitivityBuff: 4
 --- !u!114 &8527098106827161147

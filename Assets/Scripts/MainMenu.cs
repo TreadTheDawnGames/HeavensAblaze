@@ -39,7 +39,14 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        logo.animationComplete += ToggleMenus;
+        if (logo.netHud.devMode)
+        {
+            ToggleMenus();
+        }
+        else
+        {
+            logo.animationComplete += ToggleMenus;
+        }
     }
 
     private void OnDestroy()

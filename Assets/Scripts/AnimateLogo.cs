@@ -18,10 +18,10 @@ public class AnimateLogo : MonoBehaviour
     float fadeOutWait = 3;
 
     public delegate void AnimationCompletedHandler();
-    public event AnimationCompletedHandler animationComplete;
+    public event AnimationCompletedHandler animationComplete = delegate { };
 
     [SerializeField]
-    NetworkUIV2 netHud;
+    public NetworkUIV2 netHud;
 
     [SerializeField]
     VideoPlayer player;

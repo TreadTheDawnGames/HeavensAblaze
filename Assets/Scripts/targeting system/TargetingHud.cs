@@ -23,6 +23,8 @@ public class TargetingHud : NetworkBehaviour
 
     PredictionMotor ship;
 
+    public bool hideTargets = false;
+
     private void Start()
     {
         ship = transform.root.GetComponent<PredictionMotor>();
@@ -44,61 +46,64 @@ public class TargetingHud : NetworkBehaviour
                 }
             }
         }
+        
 
-        foreach (GameObject targetPre in targets)
-        {
-            Target target = targetPre.GetComponent<Target>();
-
-            if (target.GetComponent<Target>().targetShip != null)
+            foreach (GameObject targetPre in targets)
             {
-                
-                Renderer renderer = target.targetShip.shipRenderer;
-                if (renderer == null)
+                Target target = targetPre.GetComponent<Target>();
+
+                if (target.GetComponent<Target>().targetShip != null)
                 {
-                    continue;
+
+                    Renderer renderer = target.targetShip.shipRenderer;
+                    if (renderer == null)
+                    {
+                        continue;
+                    }
+
+
+
+                    bool vis = renderer.isVisible;
+                    if (target.targetShip == null)
+                    {
+                        //find whether the ship is dead so it works on client.
+                        //currently the PredictionMotor does not deactivate, the main body and its children do
+                        //meaning this chunk of code doesn't register the ship as dead
+                        vis = false;
+                    }
+
+                    var heading = target.targetShip.transform.position - transform.position;
+                    float dot = Vector3.Dot(heading, transform.forward);
+
+                    if (dot < 0 || hideTargets)
+                    {
+                        vis = false;
+                    }
+
+
+
+                    target.GetComponent<Image>().enabled = vis;
+                    target.distanceDisplay.gameObject.SetActive(vis);
+
+
+                    target.distanceDisplay.text = Vector3.Distance(ship.transform.position, target.targetShip.transform.position).ToString("0.00") + "m";
+
+                    if (!gameObject.activeInHierarchy)
+                        gameObject.SetActive(true);
+
+                    Vector3 shipPosition = shipCam.WorldToScreenPoint(target.GetComponent<Target>().targetShip.gameObject.transform.position);
+
+
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), shipPosition, shipCam, out Vector2 localPoint);
+
+                    target.GetComponent<RectTransform>().localPosition = localPoint;
                 }
 
-                
-
-                bool vis = renderer.isVisible;
-                if(target.targetShip == null )
-                {
-                    //find whether the ship is dead so it works on client.
-                    //currently the PredictionMotor does not deactivate, the main body and its children do
-                    //meaning this chunk of code doesn't register the ship as dead
-                    vis = false;
-                }
-
-                var heading = target.targetShip.transform.position - transform.position;
-                float dot = Vector3.Dot(heading, transform.forward);
-                print(dot);
-                if (dot < 0)
-                {
-                    vis = false;
-                }
-
-
-
-                target.GetComponent<Image>().enabled = vis;
-                target.distanceDisplay.gameObject.SetActive(vis);
-                
-
-                target.distanceDisplay.text = Vector3.Distance(ship.transform.position, target.targetShip.transform.position).ToString("0.00") + "m";
-
-                if (!gameObject.activeInHierarchy)
-                    gameObject.SetActive(true);
-
-                Vector3 shipPosition = shipCam.WorldToScreenPoint(target.GetComponent<Target>().targetShip.gameObject.transform.position);
-                
-
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), shipPosition, shipCam, out Vector2 localPoint);
-
-                target.GetComponent<RectTransform>().localPosition = localPoint;
             }
+        
+        
 
-        }
     }
-
     
 
         //for each ship in the scene

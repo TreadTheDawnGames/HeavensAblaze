@@ -107,6 +107,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideTargeting"",
+                    ""type"": ""Button"",
+                    ""id"": ""8cf20bc1-6bf2-485c-bebd-243be0d6ebee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -340,6 +349,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""SwapUseAimpoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f9c19b6-abed-40ab-ae2a-b7ba7b6ee0f8"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTargeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -423,6 +443,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""name"": ""SwapUseAimpoint"",
                     ""type"": ""Button"",
                     ""id"": ""30eee94d-7aec-4ad0-a117-2841c34e8b4f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideTargeting"",
+                    ""type"": ""Button"",
+                    ""id"": ""43b7da2a-70c0-4d9f-9420-bff9d3077ecd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -572,6 +601,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""SwapUseAimpoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61563fa1-b5ec-4731-ab3c-1e77cf420489"",
+                    ""path"": ""<HID::Thrustmaster T.Flight Stick X>/button4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTargeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -655,6 +695,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""name"": ""SwapUseAimpoint"",
                     ""type"": ""Button"",
                     ""id"": ""cea317db-af1d-4320-aa58-7a26d888f88a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideTargeting"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe4693bf-4b38-4f9a-a3ae-459d692dc0ca"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -793,6 +842,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""SwapUseAimpoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46fec663-bc55-4c3f-b164-9903b0826cfe"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTargeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -876,6 +936,15 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""name"": ""SwapUseAimpoint"",
                     ""type"": ""Button"",
                     ""id"": ""1b7b513f-f8de-40c6-9bf8-f847e6ebf7dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideTargeting"",
+                    ""type"": ""Button"",
+                    ""id"": ""933e324d-2837-4130-beff-bdc63df9dedc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1069,6 +1138,17 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c4c92dc-4d0b-4706-9b56-a2bba6e8787b"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTargeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1120,6 +1200,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Keyboard_Brake = m_Keyboard.FindAction("Brake", throwIfNotFound: true);
         m_Keyboard_Fire = m_Keyboard.FindAction("Fire", throwIfNotFound: true);
         m_Keyboard_SwapUseAimpoint = m_Keyboard.FindAction("SwapUseAimpoint", throwIfNotFound: true);
+        m_Keyboard_HideTargeting = m_Keyboard.FindAction("HideTargeting", throwIfNotFound: true);
         // Joystick
         m_Joystick = asset.FindActionMap("Joystick", throwIfNotFound: true);
         m_Joystick_Lift = m_Joystick.FindAction("Lift", throwIfNotFound: true);
@@ -1131,6 +1212,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Joystick_Brake = m_Joystick.FindAction("Brake", throwIfNotFound: true);
         m_Joystick_Fire = m_Joystick.FindAction("Fire", throwIfNotFound: true);
         m_Joystick_SwapUseAimpoint = m_Joystick.FindAction("SwapUseAimpoint", throwIfNotFound: true);
+        m_Joystick_HideTargeting = m_Joystick.FindAction("HideTargeting", throwIfNotFound: true);
         // Gamepad
         m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
         m_Gamepad_Lift = m_Gamepad.FindAction("Lift", throwIfNotFound: true);
@@ -1142,6 +1224,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Gamepad_Brake = m_Gamepad.FindAction("Brake", throwIfNotFound: true);
         m_Gamepad_Fire = m_Gamepad.FindAction("Fire", throwIfNotFound: true);
         m_Gamepad_SwapUseAimpoint = m_Gamepad.FindAction("SwapUseAimpoint", throwIfNotFound: true);
+        m_Gamepad_HideTargeting = m_Gamepad.FindAction("HideTargeting", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Lift = m_Mouse.FindAction("Lift", throwIfNotFound: true);
@@ -1153,6 +1236,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         m_Mouse_Brake = m_Mouse.FindAction("Brake", throwIfNotFound: true);
         m_Mouse_Fire = m_Mouse.FindAction("Fire", throwIfNotFound: true);
         m_Mouse_SwapUseAimpoint = m_Mouse.FindAction("SwapUseAimpoint", throwIfNotFound: true);
+        m_Mouse_HideTargeting = m_Mouse.FindAction("HideTargeting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1223,6 +1307,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Brake;
     private readonly InputAction m_Keyboard_Fire;
     private readonly InputAction m_Keyboard_SwapUseAimpoint;
+    private readonly InputAction m_Keyboard_HideTargeting;
     public struct KeyboardActions
     {
         private @PlayerShip m_Wrapper;
@@ -1236,6 +1321,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Brake => m_Wrapper.m_Keyboard_Brake;
         public InputAction @Fire => m_Wrapper.m_Keyboard_Fire;
         public InputAction @SwapUseAimpoint => m_Wrapper.m_Keyboard_SwapUseAimpoint;
+        public InputAction @HideTargeting => m_Wrapper.m_Keyboard_HideTargeting;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1272,6 +1358,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
+            @HideTargeting.started += instance.OnHideTargeting;
+            @HideTargeting.performed += instance.OnHideTargeting;
+            @HideTargeting.canceled += instance.OnHideTargeting;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -1303,6 +1392,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
+            @HideTargeting.started -= instance.OnHideTargeting;
+            @HideTargeting.performed -= instance.OnHideTargeting;
+            @HideTargeting.canceled -= instance.OnHideTargeting;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -1333,6 +1425,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Joystick_Brake;
     private readonly InputAction m_Joystick_Fire;
     private readonly InputAction m_Joystick_SwapUseAimpoint;
+    private readonly InputAction m_Joystick_HideTargeting;
     public struct JoystickActions
     {
         private @PlayerShip m_Wrapper;
@@ -1346,6 +1439,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Brake => m_Wrapper.m_Joystick_Brake;
         public InputAction @Fire => m_Wrapper.m_Joystick_Fire;
         public InputAction @SwapUseAimpoint => m_Wrapper.m_Joystick_SwapUseAimpoint;
+        public InputAction @HideTargeting => m_Wrapper.m_Joystick_HideTargeting;
         public InputActionMap Get() { return m_Wrapper.m_Joystick; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1382,6 +1476,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
+            @HideTargeting.started += instance.OnHideTargeting;
+            @HideTargeting.performed += instance.OnHideTargeting;
+            @HideTargeting.canceled += instance.OnHideTargeting;
         }
 
         private void UnregisterCallbacks(IJoystickActions instance)
@@ -1413,6 +1510,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
+            @HideTargeting.started -= instance.OnHideTargeting;
+            @HideTargeting.performed -= instance.OnHideTargeting;
+            @HideTargeting.canceled -= instance.OnHideTargeting;
         }
 
         public void RemoveCallbacks(IJoystickActions instance)
@@ -1443,6 +1543,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gamepad_Brake;
     private readonly InputAction m_Gamepad_Fire;
     private readonly InputAction m_Gamepad_SwapUseAimpoint;
+    private readonly InputAction m_Gamepad_HideTargeting;
     public struct GamepadActions
     {
         private @PlayerShip m_Wrapper;
@@ -1456,6 +1557,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Brake => m_Wrapper.m_Gamepad_Brake;
         public InputAction @Fire => m_Wrapper.m_Gamepad_Fire;
         public InputAction @SwapUseAimpoint => m_Wrapper.m_Gamepad_SwapUseAimpoint;
+        public InputAction @HideTargeting => m_Wrapper.m_Gamepad_HideTargeting;
         public InputActionMap Get() { return m_Wrapper.m_Gamepad; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1492,6 +1594,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
+            @HideTargeting.started += instance.OnHideTargeting;
+            @HideTargeting.performed += instance.OnHideTargeting;
+            @HideTargeting.canceled += instance.OnHideTargeting;
         }
 
         private void UnregisterCallbacks(IGamepadActions instance)
@@ -1523,6 +1628,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
+            @HideTargeting.started -= instance.OnHideTargeting;
+            @HideTargeting.performed -= instance.OnHideTargeting;
+            @HideTargeting.canceled -= instance.OnHideTargeting;
         }
 
         public void RemoveCallbacks(IGamepadActions instance)
@@ -1553,6 +1661,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
     private readonly InputAction m_Mouse_Brake;
     private readonly InputAction m_Mouse_Fire;
     private readonly InputAction m_Mouse_SwapUseAimpoint;
+    private readonly InputAction m_Mouse_HideTargeting;
     public struct MouseActions
     {
         private @PlayerShip m_Wrapper;
@@ -1566,6 +1675,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         public InputAction @Brake => m_Wrapper.m_Mouse_Brake;
         public InputAction @Fire => m_Wrapper.m_Mouse_Fire;
         public InputAction @SwapUseAimpoint => m_Wrapper.m_Mouse_SwapUseAimpoint;
+        public InputAction @HideTargeting => m_Wrapper.m_Mouse_HideTargeting;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1602,6 +1712,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed += instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled += instance.OnSwapUseAimpoint;
+            @HideTargeting.started += instance.OnHideTargeting;
+            @HideTargeting.performed += instance.OnHideTargeting;
+            @HideTargeting.canceled += instance.OnHideTargeting;
         }
 
         private void UnregisterCallbacks(IMouseActions instance)
@@ -1633,6 +1746,9 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
             @SwapUseAimpoint.started -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.performed -= instance.OnSwapUseAimpoint;
             @SwapUseAimpoint.canceled -= instance.OnSwapUseAimpoint;
+            @HideTargeting.started -= instance.OnHideTargeting;
+            @HideTargeting.performed -= instance.OnHideTargeting;
+            @HideTargeting.canceled -= instance.OnHideTargeting;
         }
 
         public void RemoveCallbacks(IMouseActions instance)
@@ -1688,6 +1804,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSwapUseAimpoint(InputAction.CallbackContext context);
+        void OnHideTargeting(InputAction.CallbackContext context);
     }
     public interface IJoystickActions
     {
@@ -1700,6 +1817,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSwapUseAimpoint(InputAction.CallbackContext context);
+        void OnHideTargeting(InputAction.CallbackContext context);
     }
     public interface IGamepadActions
     {
@@ -1712,6 +1830,7 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSwapUseAimpoint(InputAction.CallbackContext context);
+        void OnHideTargeting(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {
@@ -1724,5 +1843,6 @@ public partial class @PlayerShip: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSwapUseAimpoint(InputAction.CallbackContext context);
+        void OnHideTargeting(InputAction.CallbackContext context);
     }
 }

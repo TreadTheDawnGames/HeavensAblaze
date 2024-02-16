@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HideTargeting",
+                    "type": "Button",
+                    "id": "8cf20bc1-6bf2-485c-bebd-243be0d6ebee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -318,6 +327,17 @@
                     "action": "SwapUseAimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f9c19b6-abed-40ab-ae2a-b7ba7b6ee0f8",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideTargeting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -401,6 +421,15 @@
                     "name": "SwapUseAimpoint",
                     "type": "Button",
                     "id": "30eee94d-7aec-4ad0-a117-2841c34e8b4f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideTargeting",
+                    "type": "Button",
+                    "id": "43b7da2a-70c0-4d9f-9420-bff9d3077ecd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -550,6 +579,17 @@
                     "action": "SwapUseAimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61563fa1-b5ec-4731-ab3c-1e77cf420489",
+                    "path": "<HID::Thrustmaster T.Flight Stick X>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideTargeting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -633,6 +673,15 @@
                     "name": "SwapUseAimpoint",
                     "type": "Button",
                     "id": "cea317db-af1d-4320-aa58-7a26d888f88a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideTargeting",
+                    "type": "Button",
+                    "id": "fe4693bf-4b38-4f9a-a3ae-459d692dc0ca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -771,6 +820,17 @@
                     "action": "SwapUseAimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46fec663-bc55-4c3f-b164-9903b0826cfe",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideTargeting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -854,6 +914,15 @@
                     "name": "SwapUseAimpoint",
                     "type": "Button",
                     "id": "1b7b513f-f8de-40c6-9bf8-f847e6ebf7dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideTargeting",
+                    "type": "Button",
+                    "id": "933e324d-2837-4130-beff-bdc63df9dedc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1045,6 +1114,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c4c92dc-4d0b-4706-9b56-a2bba6e8787b",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideTargeting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

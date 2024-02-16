@@ -185,9 +185,13 @@ public class PredictionMotor : NetworkBehaviour
     [SerializeField]
     public Renderer shipRenderer;
 
+    [SerializeField]
+    TargetingHud targetingHud;
+    
+
     private void Awake()
     {
-        
+
         if (damageHolo == null) damageHolo = GetComponentInChildren<DamageHologram>();
         if (shipSound == null) shipSound = GetComponent<ShipSound>();
         engineCount = engines.Count;
@@ -202,7 +206,10 @@ public class PredictionMotor : NetworkBehaviour
 
     }
 
-
+    private void UpdateHideTargeting(InputAction.CallbackContext context)
+    {
+        targetingHud.hideTargets = !targetingHud.hideTargets;
+    }
 
     [ServerRpc(RequireOwnership=true)]
     public void ChangeColor(PredictionMotor script, Color changeToColor)
@@ -260,6 +267,7 @@ public class PredictionMotor : NetworkBehaviour
          * subscription. This is so the events are not calling
          * to a null object. */
         SubscribeToTimeManager(false);
+
     }
 
     public float collisionDivider = 5f;
@@ -423,8 +431,9 @@ public class PredictionMotor : NetworkBehaviour
             
         }
 
+        //playerShip.Mouse.HideTargeting.performed += UpdateHideTargeting;
 
-        
+
         if (activeIdleCam != null)
             activeIdleCam.SetEnabled(false);
         if (ambientMusic != null)
@@ -488,6 +497,7 @@ public class PredictionMotor : NetworkBehaviour
             respawnManager?.button?.gameObject?.SetActive(false);
         //Instantiate(Camera.main);
         // Camera.main.enabled = true;
+        //playerShip.Mouse.HideTargeting.performed -= UpdateHideTargeting;
 
     }
     public override void OnStartServer()
@@ -581,7 +591,7 @@ public class PredictionMotor : NetworkBehaviour
 
     #endregion
 
-    void SetJoystickValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    void SetJoystickValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint, out bool hideTargets)
     {
         thrust = -playerShip.Joystick.Thrust.ReadValue<float>();
         lift = playerShip.Joystick.Lift.ReadValue<float>();
@@ -595,10 +605,11 @@ public class PredictionMotor : NetworkBehaviour
         brake = playerShip.Joystick.Brake.IsInProgress();
         fire = playerShip.Joystick.Fire.IsInProgress();
         swapUseAimpoint = playerShip.Joystick.SwapUseAimpoint.WasPressedThisFrame();
+        hideTargets = playerShip.Joystick.HideTargeting.WasPressedThisFrame();
 
 
     }
-    void SetKeyboardValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    void SetKeyboardValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint, out bool hideTargets)
     {
         thrust = playerShip.Keyboard.Thrust.ReadValue<float>();
         lift = playerShip.Keyboard.Lift.ReadValue<float>();
@@ -611,6 +622,8 @@ public class PredictionMotor : NetworkBehaviour
         brake = playerShip.Keyboard.Brake.IsInProgress();
         fire = playerShip.Keyboard.Fire.IsInProgress();
         swapUseAimpoint = playerShip.Keyboard.SwapUseAimpoint.WasPressedThisFrame();
+        hideTargets = playerShip.Keyboard.HideTargeting.WasPressedThisFrame();
+
     }
     void SetMouseValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
     {
@@ -625,8 +638,9 @@ public class PredictionMotor : NetworkBehaviour
         brake = playerShip.Mouse.Brake.IsInProgress();
         fire = playerShip.Mouse.Fire.IsInProgress();
         swapUseAimpoint = playerShip.Mouse.SwapUseAimpoint.WasPressedThisFrame();
+
     }
-    void SetGamepadValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint)
+    void SetGamepadValues(out float thrust, out float lift, out float lateral, out float pitch, out float roll, out float yaw, out bool brake, out bool fire, out bool swapUseAimpoint, out bool hideTargets)
     {
         thrust = playerShip.Gamepad.Thrust.ReadValue<float>();
         lift = playerShip.Gamepad.Lift.ReadValue<float>();
@@ -639,6 +653,8 @@ public class PredictionMotor : NetworkBehaviour
         brake = playerShip.Gamepad.Brake.IsInProgress();
         fire = playerShip.Gamepad.Fire.IsInProgress();
         swapUseAimpoint = playerShip.Gamepad.SwapUseAimpoint.WasPressedThisFrame();
+        hideTargets = playerShip.Gamepad.HideTargeting.WasPressedThisFrame();
+
     }
 
     [SerializeField] float mouseSensitivityBuff = 4f;
@@ -664,13 +680,14 @@ public class PredictionMotor : NetworkBehaviour
         bool brake = false;
         bool fire = false;
         bool swapUseAimpoint = false;
+        bool hideTargets = false;
         if (!inputManager.menuUp)
         {
 
             switch (inputType)
             {
                 case InputType.Joystick:
-                    SetJoystickValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    SetJoystickValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint, out hideTargets);
                     break;
 
                 case InputType.Mouse:
@@ -678,11 +695,11 @@ public class PredictionMotor : NetworkBehaviour
                     break;
 
                 case InputType.Keyboard:
-                    SetKeyboardValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    SetKeyboardValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint, out hideTargets);
                     break;
 
                 case InputType.Gamepad:
-                    SetGamepadValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint);
+                    SetGamepadValues(out thrust, out lift, out lateral, out pitch, out roll, out yaw, out brake, out fire, out swapUseAimpoint, out hideTargets);
                     break;
 
                 default:
@@ -742,7 +759,7 @@ public class PredictionMotor : NetworkBehaviour
             personalizationManager.UpdateUseAimpoint(false);
         }
 
-
+        
         
 
         float sensitivityVal = (inputManager.sensitivityValue / 100.0f);
