@@ -114,11 +114,14 @@ public class Cockpit : ShipPart
         if (!cockpitDestroyed)
         {
             cockpitDestroyed = true;
-            debrisMaker.SpawnMainBodyDebris();
-        }
-;
 
-        //Destroy(gameObject);
+            debrisMaker?.SpawnMainBodyDebris();
+        }
+        if(debrisMaker == null) 
+        {
+            Destroy(gameObject);
+        }
+
 
 
     }
