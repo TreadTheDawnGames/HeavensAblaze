@@ -9,7 +9,6 @@ public class MainBodyDebrisMaker : ShipPart
     public void SpawnMainBodyDebris()
     {
         hasRun = true;
-        Instantiate(destructionExplosion, transform.position, transform.rotation);
 
         for (int i = 0; i < transform.childCount; i++)
         {

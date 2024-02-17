@@ -32,7 +32,6 @@ public class ConnectorWing : ShipPart
     {
         if (hitPoints <= 0)
         {
-            Instantiate(destructionExplosion, transform.position, transform.rotation);
             if (explosion.Count != 0)
             {
                 explosion[Random.Range(0, explosion.Count)].Play();

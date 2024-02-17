@@ -106,7 +106,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 49
+  <PrefabId>k__BackingField: 53
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0

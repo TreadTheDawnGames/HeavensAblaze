@@ -66,8 +66,6 @@ public class Cockpit : ShipPart
 
         print("destroy if dead for " + gameObject.name + "is started");
 
-        Instantiate(destructionExplosion, transform.position, transform.rotation);
-
         //find camera and do the transition to look at the body
         print(IsOwner);
         if (IsOwner)

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 541410496678663567}
   - component: {fileID: -1838398332334243005}
   - component: {fileID: 7118369870220043998}
+  - component: {fileID: 6388328511136886877}
   m_Layer: 0
   m_Name: DEBRISStarboardBlaster
   m_TagString: ship body
@@ -105,7 +106,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -113,6 +114,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 995413602997119175}
   damageHudCounterpart: {fileID: 0}
 --- !u!114 &541410496678663567
@@ -144,7 +146,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 27
+  <PrefabId>k__BackingField: 31
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -209,3 +211,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6388328511136886877
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995413602997119175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 4}
+  m_Center: {x: 0, y: -0.039, z: 0.076}

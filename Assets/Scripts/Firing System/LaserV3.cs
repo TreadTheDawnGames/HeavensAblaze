@@ -116,16 +116,7 @@ public class LaserV3 : NetworkBehaviour
                 //  Debug.Log("Not continuing: owner of target");
                 return;
             }
-            /*else
-            {
-            Debug.Log("Continuing: Not owner");
-
-            }
-        }
-        else
-        {
-            Debug.Log("Continuing: good target");
-*/
+            
         }
 
         /* These projectiles are instantiated locally, as in,
@@ -136,18 +127,7 @@ public class LaserV3 : NetworkBehaviour
         //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
-            /*if(collision.TryGetComponent<ShipPart>(out ShipPart sp))
-            {
-                if(sp.damageHudCounterpart!=null && sp.damageHudCounterpart.TryGetComponent<DamageHologram>(out DamageHologram dh))
-                {
-                    dh.UpdateCounterpart();
-                }
-            }*/
-           /* if (collision.gameObject.TryGetComponent<MainBody>(out MainBody body))
-            {
-                print("hit");
-              //  body.TryActivateCamera();
-            }*/
+           
 
 
             if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))

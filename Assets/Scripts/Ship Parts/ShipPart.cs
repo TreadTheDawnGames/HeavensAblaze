@@ -22,15 +22,19 @@ public class ShipPart : NetworkBehaviour
     public float maxHitPoints = 50f;
     private void on_health(float prev, float next, bool asServer)
     {
-        
-            if (damageHudCounterpart != null)
-            {
-                damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
-            }
-            if(asServer)
-                DestroyIfDead();
-        
 
+        if (damageHudCounterpart != null)
+        {
+            damageHudCounterpart?.GetComponent<DamageHologram>()?.UpdateCounterpart(next);
+        }
+        if (asServer)
+            DestroyIfDead();
+
+        
+            if (hitPoints <= 0f)    
+                Instantiate(destructionExplosion, transform.position, transform.rotation);
+
+        
 
     }
     
@@ -121,6 +125,40 @@ public class ShipPart : NetworkBehaviour
 
     }
 
+    [SerializeField] private List<Collider> _collidersToIgnore;
+
+    private void SetIgnoredCollision()
+    {
+        foreach (Collider collider1 in _collidersToIgnore)
+        {
+            foreach (Collider collider2 in _collidersToIgnore)
+            {
+                Physics.IgnoreCollision(collider1, collider2);
+            }
+        }
+    }
+    public void AddColliderToIgnore(Collider collider)
+    {
+        _collidersToIgnore.Add(collider);
+        foreach (Collider collider1 in _collidersToIgnore)
+        {
+            Physics.IgnoreCollision(collider1, collider);
+        }
+    }
+    public void AddCollidersToIgnore(Collider[] colliders)
+    {
+        foreach (Collider collider1 in colliders)
+        {
+            _collidersToIgnore.Add(collider1);
+            foreach (Collider collider2 in _collidersToIgnore)
+            {
+                if (collider2 == null)
+                    continue;
+
+                Physics.IgnoreCollision(collider1, collider2);
+            }
+        }
+    }
 
     public GameObject debris;
 
@@ -129,7 +167,6 @@ public class ShipPart : NetworkBehaviour
     public void DestroyIfDeadObservers()
     {
         hasRun = true;
-        Instantiate(destructionExplosion, transform.position, transform.rotation);
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -175,6 +212,7 @@ public class ShipPart : NetworkBehaviour
                 spawn.gameObject.GetComponent<Rigidbody>().useGravity = false;
                 spawn.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
+                _collidersToIgnore.Add(spawn.GetComponent<Collider>());
                 if (spawn.transform.childCount <= 0)
                 {
                     for (int i = 0; i < originalObject.transform.childCount; i++)
@@ -186,7 +224,7 @@ public class ShipPart : NetworkBehaviour
 
 
                 }
-
+                SetIgnoredCollision();
                 //need this to run regardless of server or client
 
                 ServerManager.Spawn(spawn);
@@ -261,6 +299,7 @@ public class ShipPart : NetworkBehaviour
             }
 
             spawn.gameObject.GetComponent<ShipPart>().hitPoints = GO.GetComponent<ShipPart>().hitPoints;
+            _collidersToIgnore.Add(spawn.GetComponent<Collider>());
 
             //spawn.transform.SetParent(parent);
 

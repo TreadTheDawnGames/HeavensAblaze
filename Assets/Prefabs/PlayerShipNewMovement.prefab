@@ -546,7 +546,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -2803,7 +2803,7 @@ GameObject:
   - component: {fileID: 706630235436074269}
   - component: {fileID: 2028740702215651081}
   m_Layer: 10
-  m_Name: Sphere
+  m_Name: TailLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3294,7 +3294,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -3428,7 +3428,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -3772,7 +3772,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -4031,7 +4031,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -4458,7 +4458,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -4824,7 +4824,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -5751,7 +5751,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -6098,7 +6098,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -7022,7 +7022,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -7218,7 +7218,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -8295,7 +8295,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -9146,7 +9146,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -9412,7 +9412,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -10006,7 +10006,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -10339,7 +10339,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
@@ -11781,7 +11781,7 @@ MonoBehaviour:
   hitPoints: 50
   maxHitPoints: 50
   hasRun: 0
-  destructionExplosion: {fileID: 3288592844268194827, guid: 9c53c0c2e9cec9d4abd71fd51e59627b, type: 3}
+  destructionExplosion: {fileID: 3288592844268194827, guid: 781f5a53259261a4caa81a5732dbf3b5, type: 3}
   destroyObject: 0
   explosion: []
   showOwner: 0
