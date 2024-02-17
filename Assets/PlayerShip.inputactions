@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwapUseAimpoint",
+                    "name": "Toggle Use Aimpoint",
                     "type": "Button",
                     "id": "c66f0495-079b-408b-a80e-b36f2be22c3a",
                     "expectedControlType": "Button",
@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HideTargeting",
+                    "name": "Toggle Targeting Hud",
                     "type": "Button",
                     "id": "8cf20bc1-6bf2-485c-bebd-243be0d6ebee",
                     "expectedControlType": "Button",
@@ -324,7 +324,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwapUseAimpoint",
+                    "action": "Toggle Use Aimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -335,7 +335,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HideTargeting",
+                    "action": "Toggle Targeting Hud",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -418,7 +418,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwapUseAimpoint",
+                    "name": "Toggle Use Aimpoint",
                     "type": "Button",
                     "id": "30eee94d-7aec-4ad0-a117-2841c34e8b4f",
                     "expectedControlType": "Button",
@@ -427,7 +427,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HideTargeting",
+                    "name": "Toggle Targeting Hud",
                     "type": "Button",
                     "id": "43b7da2a-70c0-4d9f-9420-bff9d3077ecd",
                     "expectedControlType": "Button",
@@ -576,7 +576,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwapUseAimpoint",
+                    "action": "Toggle Use Aimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -587,7 +587,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HideTargeting",
+                    "action": "Toggle Targeting Hud",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -670,7 +670,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwapUseAimpoint",
+                    "name": "Toggle Use Aimpoint",
                     "type": "Button",
                     "id": "cea317db-af1d-4320-aa58-7a26d888f88a",
                     "expectedControlType": "Button",
@@ -679,7 +679,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HideTargeting",
+                    "name": "Toggle Targeting Hud",
                     "type": "Button",
                     "id": "fe4693bf-4b38-4f9a-a3ae-459d692dc0ca",
                     "expectedControlType": "Button",
@@ -817,7 +817,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwapUseAimpoint",
+                    "action": "Toggle Use Aimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -828,7 +828,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HideTargeting",
+                    "action": "Toggle Targeting Hud",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -911,7 +911,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwapUseAimpoint",
+                    "name": "Toggle Use Aimpoint",
                     "type": "Button",
                     "id": "1b7b513f-f8de-40c6-9bf8-f847e6ebf7dc",
                     "expectedControlType": "Button",
@@ -920,7 +920,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HideTargeting",
+                    "name": "Toggle Targeting Hud",
                     "type": "Button",
                     "id": "933e324d-2837-4130-beff-bdc63df9dedc",
                     "expectedControlType": "Button",
@@ -1102,7 +1102,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwapUseAimpoint",
+                    "action": "Toggle Use Aimpoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1124,7 +1124,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HideTargeting",
+                    "action": "Toggle Targeting Hud",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -395,15 +395,15 @@ public class PredictionMotor : NetworkBehaviour
 
             //mainCam=transform.GetComponentInChildren<CameraDampener>().gameObject;
             SetupThirdPartyVars();
-            playerShip.Mouse.HideTargeting.performed += UpdateHideTargeting;
-            playerShip.Keyboard.HideTargeting.performed += UpdateHideTargeting;
-            playerShip.Joystick.HideTargeting.performed += UpdateHideTargeting;
-            playerShip.Gamepad.HideTargeting.performed += UpdateHideTargeting;
+            playerShip.Mouse.ToggleTargetingHud.performed += UpdateHideTargeting;
+            playerShip.Keyboard.ToggleTargetingHud.performed += UpdateHideTargeting;
+            playerShip.Joystick.ToggleTargetingHud.performed += UpdateHideTargeting;
+            playerShip.Gamepad.ToggleTargetingHud.performed += UpdateHideTargeting;
             
-            playerShip.Mouse.SwapUseAimpoint.performed += SwapUseAimpoint;
-            playerShip.Keyboard.SwapUseAimpoint.performed += SwapUseAimpoint;
-            playerShip.Joystick.SwapUseAimpoint.performed += SwapUseAimpoint;
-            playerShip.Gamepad.SwapUseAimpoint.performed += SwapUseAimpoint;
+            playerShip.Mouse.ToggleUseAimpoint.performed += SwapUseAimpoint;
+            playerShip.Keyboard.ToggleUseAimpoint.performed += SwapUseAimpoint;
+            playerShip.Joystick.ToggleUseAimpoint.performed += SwapUseAimpoint;
+            playerShip.Gamepad.ToggleUseAimpoint.performed += SwapUseAimpoint;
 
             ChangeColor(this, colorPicker.laserColor);
 
@@ -495,15 +495,15 @@ public class PredictionMotor : NetworkBehaviour
         if (playerShip != null)
         {
 
-            playerShip.Mouse.HideTargeting.performed -= UpdateHideTargeting;
-            playerShip.Keyboard.HideTargeting.performed -= UpdateHideTargeting;
-            playerShip.Joystick.HideTargeting.performed -= UpdateHideTargeting;
-            playerShip.Gamepad.HideTargeting.performed -= UpdateHideTargeting;
+            playerShip.Mouse.ToggleTargetingHud.performed -= UpdateHideTargeting;
+            playerShip.Keyboard.ToggleTargetingHud.performed -= UpdateHideTargeting;
+            playerShip.Joystick.ToggleTargetingHud.performed -= UpdateHideTargeting;
+            playerShip.Gamepad.ToggleTargetingHud.performed -= UpdateHideTargeting;
 
-            playerShip.Mouse.SwapUseAimpoint.performed -= SwapUseAimpoint;
-            playerShip.Keyboard.SwapUseAimpoint.performed -= SwapUseAimpoint;
-            playerShip.Joystick.SwapUseAimpoint.performed -= SwapUseAimpoint;
-            playerShip.Gamepad.SwapUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Mouse.ToggleUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Keyboard.ToggleUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Joystick.ToggleUseAimpoint.performed -= SwapUseAimpoint;
+            playerShip.Gamepad.ToggleUseAimpoint.performed -= SwapUseAimpoint;
         }
 
         if (activeIdleCam!=null)
