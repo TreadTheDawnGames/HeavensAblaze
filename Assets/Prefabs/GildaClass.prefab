@@ -554,6 +554,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 2179317181517415770, guid: 18c35432e21141843b05f1c5729fb990, type: 3}
   damageHudCounterpart: {fileID: 4315713298605378643}
   root: {fileID: 7859034845989005786}
@@ -673,6 +674,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 811012160001688720, guid: 11f96e1a8ad8d0148b4273cef3eea7c9, type: 3}
   damageHudCounterpart: {fileID: 7073714463806532087}
 --- !u!114 &4458997867012844273
@@ -2118,6 +2120,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 5966448011966313755, guid: cccf8407675eea84db47644cbd6c1013, type: 3}
   damageHudCounterpart: {fileID: 3245404445211909863}
 --- !u!114 &9054018023451953807
@@ -3302,6 +3305,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 0}
   damageHudCounterpart: {fileID: 0}
 --- !u!114 &333452734852035527
@@ -3436,6 +3440,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 995413602997119175, guid: a3d1374467ca7a84d8690037f59a7586, type: 3}
   damageHudCounterpart: {fileID: 916421166786005216}
 --- !u!114 &3272608215638426253
@@ -3780,6 +3785,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 4106634755171536676, guid: 4db4928ed2d7ba643a7793b5a61ee89a, type: 3}
   damageHudCounterpart: {fileID: 917271927635654313}
 --- !u!114 &7222148593307531868
@@ -4039,6 +4045,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 854212674681976713, guid: aa37f8dac44362b4a90df87aef77c720, type: 3}
   damageHudCounterpart: {fileID: 4952526517578542766}
 --- !u!114 &3557753721484384471
@@ -4466,6 +4473,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 6495566703491081548, guid: c0f19cddce682b64b87164f0c0439c78, type: 3}
   damageHudCounterpart: {fileID: 6936344867401459837}
   alternateSupport: {fileID: 7933884648759838941}
@@ -4832,6 +4840,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 4633965018164895638, guid: 0d15080cced52dc4eab4ae23e1435d4f, type: 3}
   damageHudCounterpart: {fileID: 4082959777514095283}
 --- !u!114 &2204128287715840632
@@ -5759,6 +5768,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 1435303954191780476, guid: b2c541b4f97441744817af62b2906508, type: 3}
   damageHudCounterpart: {fileID: 9004097075771986084}
 --- !u!114 &2609810771120417631
@@ -6106,6 +6116,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 8166672600586179698, guid: 6bfe29d766de7ea4eb43db00b1a6991c, type: 3}
   damageHudCounterpart: {fileID: 4948530844344400474}
 --- !u!114 &2666647688940424582
@@ -7030,6 +7041,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 762981041287403669, guid: bde3a02ba0d8c2b429b137e782faf160, type: 3}
   damageHudCounterpart: {fileID: 7735765633954239791}
 --- !u!114 &4598649451210763521
@@ -7226,6 +7238,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 5664024148753422706, guid: 2d16a0c14f5387d4aabae38d2c13e2ac, type: 3}
   damageHudCounterpart: {fileID: 2412055304047687998}
 --- !u!114 &7130604413930889920
@@ -8303,6 +8316,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 1395894264075563107, guid: b39833114c62b9640ad37e2a07e1c44e, type: 3}
   damageHudCounterpart: {fileID: 8036136622345661761}
 --- !u!114 &5399910879307005185
@@ -9154,6 +9168,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 784535784555587574, guid: 897cc3796ff9b8d4484ea54d60ef067b, type: 3}
   damageHudCounterpart: {fileID: 5118224566957397539}
 --- !u!114 &3564129775933450657
@@ -9420,6 +9435,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 3790386061770104960, guid: 0519907b4f3f9314686cc6a50203180c, type: 3}
   damageHudCounterpart: {fileID: 9173612083780749472}
 --- !u!114 &3082780588136901237
@@ -10014,6 +10030,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 1138686896202132161, guid: 873c43e3c8fab944ba3585d4bcf08593, type: 3}
   damageHudCounterpart: {fileID: 6493784367569037118}
   alternateSupport: {fileID: 5269781142277030034}
@@ -10347,6 +10364,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 4262579675015811570, guid: 8c75a12847c2866458c9a653cef2b068, type: 3}
   damageHudCounterpart: {fileID: 1627854481311530850}
 --- !u!114 &5310433346382501726
@@ -11789,6 +11807,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   collisionImpact: {fileID: 8294518357976499529, guid: e220ea9975561b545a65b61540e70ffc, type: 3}
   ship: {fileID: 0}
+  _collidersToIgnore: []
   debris: {fileID: 7618652203882853021, guid: f2ec75b5c8b5e5c4b8d363ef89ccdef8, type: 3}
   damageHudCounterpart: {fileID: 659072433960295877}
   root: {fileID: 0}
@@ -12011,7 +12030,7 @@ GameObject:
   - component: {fileID: 4470868081963779627}
   - component: {fileID: 3556382868146025987}
   m_Layer: 10
-  m_Name: PlayerShipNewMovement
+  m_Name: GildaClass
   m_TagString: ship body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12085,7 +12104,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 7356535827244043655
+  <AssetPathHash>k__BackingField: 11196613997872389273
 --- !u!114 &9138636613039549510
 MonoBehaviour:
   m_ObjectHideFlags: 0

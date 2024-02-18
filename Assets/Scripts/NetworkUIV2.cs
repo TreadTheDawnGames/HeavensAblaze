@@ -49,7 +49,6 @@ public class NetworkUIV2 : MonoBehaviour
     [SerializeField]
     AudioSource ambientMusic;
 
-    [SerializeField] List<string> splashTexts = new List<string>();
     [SerializeField] TMP_Text splash;
 
     public MainMenu mainMenu;
@@ -59,6 +58,7 @@ public class NetworkUIV2 : MonoBehaviour
 
     private void Awake()
     {
+        devMode = Debug.isDebugBuild;
         mainMenu = FindObjectOfType<MainMenu>();        
     }
     private async void Start()
@@ -76,16 +76,38 @@ public class NetworkUIV2 : MonoBehaviour
             };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        foreach (Image image in GetComponentsInChildren<Image>())
+
+        if (!devMode)
         {
-            image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+
+            foreach (Image image in GetComponentsInChildren<Image>())
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+            }
+            foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+            }
+            menuVideoPlayer.targetCameraAlpha = 0;
+            StartCoroutine(WaitToShow());
+
         }
-        foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+        else
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+            foreach (Image image in GetComponentsInChildren<Image>())
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+            }
+            foreach (TMP_Text text in GetComponentsInChildren<TMP_Text>())
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+            }
+            
+                ButtonsOn();
+            splash.text = "Welcome to DevMode!";
+            
+
         }
-        menuVideoPlayer.targetCameraAlpha = 0;
-        StartCoroutine(WaitToShow());
     }
 
     void UpdateClientConnectionState(ClientConnectionStateArgs args)
@@ -150,21 +172,11 @@ public class NetworkUIV2 : MonoBehaviour
     float waitToStartTime = 6;
     [SerializeField] float subtitleWait = 170000f;
     public float timePassed;
-
-#if UNITY_EDITOR 
-    public bool devMode { get; private set; } = true;
-#else
     public bool devMode { get; private set; } = false;
-#endif
 
     IEnumerator WaitToShow()
     {
-        if (devMode)
-        {
-            ButtonsOn();
-
-            yield return null;
-        }
+       
 
 
         yield return new WaitForSeconds(waitToStartTime);

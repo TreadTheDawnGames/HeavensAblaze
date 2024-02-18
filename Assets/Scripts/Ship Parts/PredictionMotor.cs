@@ -389,7 +389,7 @@ public class PredictionMotor : NetworkBehaviour
                 audioSource.Play();
             }*/
 
-
+            name += " Local";
             SetupInversions();
 
 
