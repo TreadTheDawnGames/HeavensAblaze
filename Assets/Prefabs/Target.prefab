@@ -228,3 +228,6 @@ MonoBehaviour:
   targetShip: {fileID: 0}
   transform: {fileID: 0}
   distanceDisplay: {fileID: 8031129948873054712}
+  _renderer: {fileID: 3866347242802462879}
+  _square: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
+  _arrow: {fileID: 21300000, guid: 6514dbc12a3f17b44918b460b695b90f, type: 3}
