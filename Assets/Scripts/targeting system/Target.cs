@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Target : MonoBehaviour
 {
-    public PredictionMotor targetShip;
+    public MainBody targetShip;
     public new RectTransform transform;
 
     public TMP_Text distanceDisplay;
@@ -19,10 +19,5 @@ public class Target : MonoBehaviour
     
     [SerializeField]
     public Sprite _arrow;
-    public Target(PredictionMotor targetShip)
-    {
-        
-        this.targetShip = targetShip;
-        this.transform = GetComponent<RectTransform>();
-    }
+    
 }

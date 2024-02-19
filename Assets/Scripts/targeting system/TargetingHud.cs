@@ -43,7 +43,7 @@ public class TargetingHud : NetworkBehaviour
                 {
                     ships.Add(ship);
                     GameObject target = Instantiate(targetPrefab, canvas.transform, false);
-                    target.GetComponent<Target>().targetShip = ship;
+                    target.GetComponent<Target>().targetShip = ship.GetComponentInChildren<MainBody>() ;
 
                     targets.Add(target);
                 }
@@ -57,8 +57,15 @@ public class TargetingHud : NetworkBehaviour
 
             if (target.GetComponent<Target>().targetShip != null)
             {
+                //fix hud hiding
 
-                Renderer renderer = target.targetShip.shipRenderer;
+                /*target.gameObject.SetActive(hideTargets);
+                if (hideTargets)
+                {
+                    return;
+                }*/
+
+                Renderer renderer = target.targetShip.GetComponent<Renderer>();
                 if (renderer == null)
                 {
                     target.distanceDisplay.gameObject.SetActive(false);
@@ -68,22 +75,7 @@ public class TargetingHud : NetworkBehaviour
 
 
 
-                bool vis = renderer.isVisible;
-
-                
-
-
-
-                if (hideTargets)
-                {
-                    vis = false;
-                }
-
-
-
-                /*                target.GetComponent<Image>().enabled = vis;
-                                target.distanceDisplay.gameObject.SetActive(vis);
-                */
+               
 
                 target.distanceDisplay.text = Vector3.Distance(ship.transform.position, target.targetShip.transform.position).ToString("0.00") + "m";
 
@@ -97,20 +89,17 @@ public class TargetingHud : NetworkBehaviour
 
 
 
-                /*float dotR = Vector3.Dot(heading.normalized, transform.right.normalized);
-                int dotIntR = (int)(dotR*100f);
-
-                float dotU = Vector3.Dot(heading.normalized, transform.up.normalized);
-                int dotIntU = (int)(dotU*100f);
-                print("dotint r: " + dotIntR);
-                print("dotint u: " + dotIntU);*/
+                
                 print("dotint f: " + dotInt + " " + ship.name) ;
 
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), shipPosition, shipCam, out Vector2 localPoint);
+
                 float validCanvasSizeX = canvas.GetComponent<RectTransform>().rect.max.x + target._renderer.GetComponent<RectTransform>().rect.x;
                 float validCanvasSizeY = canvas.GetComponent<RectTransform>().rect.max.y + target._renderer.GetComponent<RectTransform>().rect.y;
+
                 localPoint.x = Mathf.Clamp(localPoint.x, -validCanvasSizeX, validCanvasSizeX);
                 localPoint.y = Mathf.Clamp(localPoint.y, -validCanvasSizeY, validCanvasSizeY);
+
                 if (Mathf.Abs(localPoint.x ) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y ) >= validCanvasSizeY+ target._renderer.GetComponent<RectTransform>().rect.y)
                 {
                     target._renderer.sprite = target._arrow;
@@ -120,6 +109,7 @@ public class TargetingHud : NetworkBehaviour
                     target._renderer.sprite = target._square;
                 }
 
+                //special case 
                 if (dotInt == 0)
                 {
                     var vectorToTarget = target.targetShip.transform.position - transform.position;
@@ -154,24 +144,26 @@ public class TargetingHud : NetworkBehaviour
 
                     /*if (target.gameObject.activeInHierarchy)
                         target.gameObject.SetActive(false);*/
-                }/*
-                else
-                {
-                    if(!target.gameObject.activeInHierarchy)
-                        target.gameObject.SetActive(true);
-                }*/
+                }
 
                 if (dotInt < 0)
                 {
-                    localPoint = -localPoint;
-                    
+                    if(Mathf.Abs(localPoint.y) < validCanvasSizeY)
+                    {
+                        localPoint.x = validCanvasSizeX * (localPoint.x < 0 ? 1 : -1);
+                    }
+                    else
+                    {
+                        localPoint.x = -localPoint.x;
+                    }
+
+                   
+                        localPoint.y = -localPoint.y;
+                   
                 }
 
-
-
-
-
                 target.GetComponent<RectTransform>().localPosition = localPoint;
+
             }
             else
             {

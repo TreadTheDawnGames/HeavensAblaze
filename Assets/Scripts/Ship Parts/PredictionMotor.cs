@@ -187,6 +187,8 @@ public class PredictionMotor : NetworkBehaviour
 
     [SerializeField]
     TargetingHud targetingHud;
+
+    public MainBody mainBody;
     
 
     private void Awake()
@@ -367,6 +369,10 @@ public class PredictionMotor : NetworkBehaviour
         {
             part.ship = this;
             part.OnShipCreated(this);
+            if(part is MainBody)
+            {
+                mainBody = (MainBody)part;
+            }
             
         }
     }
