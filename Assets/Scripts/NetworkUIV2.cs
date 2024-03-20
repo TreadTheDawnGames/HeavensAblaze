@@ -18,6 +18,7 @@ using FishNet.Transporting;
 using FishNet.Demo.AdditiveScenes;
 using UnityEngine.Video;
 using System.IO;
+using System.Windows;
 
 public class NetworkUIV2 : MonoBehaviour
 {
@@ -311,6 +312,11 @@ public class NetworkUIV2 : MonoBehaviour
                 // Start Server Connection
                 _networkManager.ServerManager.StartConnection();
                 serverStarted = true;
+
+                if (devMode)
+                {
+                    GUIUtility.systemCopyBuffer = joinCode;
+                }
 
                 // Start Client Connection
                 JoinRelay();

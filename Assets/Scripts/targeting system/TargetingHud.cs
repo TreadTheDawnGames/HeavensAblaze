@@ -100,14 +100,7 @@ public class TargetingHud : NetworkBehaviour
                 localPoint.x = Mathf.Clamp(localPoint.x, -validCanvasSizeX, validCanvasSizeX);
                 localPoint.y = Mathf.Clamp(localPoint.y, -validCanvasSizeY, validCanvasSizeY);
 
-                if (Mathf.Abs(localPoint.x ) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y ) >= validCanvasSizeY+ target._renderer.GetComponent<RectTransform>().rect.y)
-                {
-                    target._renderer.sprite = target._arrow;
-                }
-                else
-                {
-                    target._renderer.sprite = target._square;
-                }
+                
 
                 //special case 
                 if (dotInt == 0)
@@ -146,23 +139,39 @@ public class TargetingHud : NetworkBehaviour
                         target.gameObject.SetActive(false);*/
                 }
 
+                Vector3 rotation = new Vector3();
+
+
                 if (dotInt < 0)
                 {
                     if(Mathf.Abs(localPoint.y) < validCanvasSizeY)
                     {
                         localPoint.x = validCanvasSizeX * (localPoint.x < 0 ? 1 : -1);
+                        rotation= new Vector3(0f,0f,-90f);
+                        
                     }
                     else
                     {
+                        rotation= new Vector3(0f,0f,90f);
                         localPoint.x = -localPoint.x;
                     }
 
-                   
                         localPoint.y = -localPoint.y;
                    
                 }
-
+                if (Mathf.Abs(localPoint.x) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y) >= validCanvasSizeY + target._renderer.GetComponent<RectTransform>().rect.y)
+                {
+                    target._renderer.sprite = target._arrow;
+                }
+                else
+                {
+                    target._renderer.sprite = target._square;
+                }
                 target.GetComponent<RectTransform>().localPosition = localPoint;
+
+                target.GetComponent<RectTransform>().localRotation = Quaternion.Euler(rotation);
+                
+                
 
             }
             else
