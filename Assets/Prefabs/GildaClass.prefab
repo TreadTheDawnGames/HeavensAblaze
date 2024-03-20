@@ -5043,7 +5043,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -12209,6 +12209,7 @@ MonoBehaviour:
   respawnManager: {fileID: 0}
   shipRenderer: {fileID: 601673447492328063}
   targetingHud: {fileID: 8357886131921986845}
+  mainBody: {fileID: 0}
   collisionDivider: 5
   mouseSensitivityBuff: 4
 --- !u!114 &8527098106827161147
