@@ -8,6 +8,9 @@ public class Target : MonoBehaviour
 {
     public MainBody targetShip;
     public new RectTransform transform;
+    public RectTransform arrow;
+
+    public RectTransform topAnchor, bottomAnchor, distanceDisplayTransform;
 
     public TMP_Text distanceDisplay;
 
