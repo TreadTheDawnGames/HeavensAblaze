@@ -28,6 +28,8 @@ public class TargetingHud : NetworkBehaviour
 
     public bool hideTargets = false;
 
+
+
     private void Start()
     {
         ship = transform.root.GetComponent<PredictionMotor>();
