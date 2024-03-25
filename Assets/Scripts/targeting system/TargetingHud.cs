@@ -37,6 +37,8 @@ public class TargetingHud : NetworkBehaviour
 
     private void Update()
     {
+
+        //make this an event that happens when a ship joins to get it out of the Update loop
         foreach (PredictionMotor ship in FindObjectsOfType<PredictionMotor>())
         {
             if (ship.transform != transform.root)
@@ -77,7 +79,7 @@ public class TargetingHud : NetworkBehaviour
 
 
 
-               
+
 
                 target.distanceDisplay.text = Vector3.Distance(ship.transform.position, target.targetShip.transform.position).ToString("0.00") + "m";
 
@@ -87,12 +89,12 @@ public class TargetingHud : NetworkBehaviour
                 Vector3 shipPosition = shipCam.WorldToScreenPoint(target.GetComponent<Target>().targetShip.gameObject.transform.position);
                 var heading = target.targetShip.transform.position - transform.position;
                 float dot = Vector3.Dot(transform.forward.normalized, heading.normalized);
-                int dotInt = (int)(dot*100f);
+                int dotInt = (int)(dot * 100f);
 
 
 
-                
-                print("dotint f: " + dotInt + " " + ship.name) ;
+
+                print("dotint f: " + dotInt + " " + ship.name);
 
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), shipPosition, shipCam, out Vector2 localPoint);
 
@@ -102,14 +104,7 @@ public class TargetingHud : NetworkBehaviour
                 localPoint.x = Mathf.Clamp(localPoint.x, -validCanvasSizeX, validCanvasSizeX);
                 localPoint.y = Mathf.Clamp(localPoint.y, -validCanvasSizeY, validCanvasSizeY);
 
-                if (Mathf.Abs(localPoint.x ) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y ) >= validCanvasSizeY+ target._renderer.GetComponent<RectTransform>().rect.y)
-                {
-                    target._renderer.sprite = target._arrow;
-                }
-                else
-                {
-                    target._renderer.sprite = target._square;
-                }
+
 
                 //special case 
                 if (dotInt == 0)
@@ -117,28 +112,30 @@ public class TargetingHud : NetworkBehaviour
                     var vectorToTarget = target.targetShip.transform.position - transform.position;
                     float dotR = Vector3.Dot(transform.right.normalized, vectorToTarget.normalized);
                     int dotIntR = (int)(dotR * 100f);
-                print("dotint r: " + dotIntR + " " + ship.name) ;
+                    print("dotint r: " + dotIntR + " " + ship.name);
 
                     if (dotIntR > 0)
                     {
                         localPoint.x = validCanvasSizeX;
 
-                    }if (dotIntR < 0)
+                    }
+                    if (dotIntR < 0)
                     {
                         localPoint.x = -validCanvasSizeX;
 
                     }
-                    
+
                     var vectorToTargetU = target.targetShip.transform.position - transform.position;
                     float dotU = Vector3.Dot(transform.up.normalized, vectorToTarget.normalized);
                     int dotIntU = (int)(dotU * 100f);
-                print("dotint u: " + dotIntU + " " + ship.name) ;
+                    print("dotint u: " + dotIntU + " " + ship.name);
 
                     if (dotIntU > 0)
                     {
                         localPoint.y = validCanvasSizeY;
 
-                    }if (dotIntU < 0)
+                    }
+                    if (dotIntU < 0)
                     {
                         localPoint.y = -validCanvasSizeY;
 
@@ -148,23 +145,74 @@ public class TargetingHud : NetworkBehaviour
                         target.gameObject.SetActive(false);*/
                 }
 
+                Vector3 rotation = new Vector3();
+
+
                 if (dotInt < 0)
                 {
-                    if(Mathf.Abs(localPoint.y) < validCanvasSizeY)
+                    if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
                     {
                         localPoint.x = validCanvasSizeX * (localPoint.x < 0 ? 1 : -1);
+
+
+
                     }
                     else
                     {
+
                         localPoint.x = -localPoint.x;
                     }
 
-                   
-                        localPoint.y = -localPoint.y;
-                   
+                    localPoint.y = -localPoint.y;
+
+                }
+                if (localPoint.y.Equals(validCanvasSizeY))
+                {
+                    target.distanceDisplayTransform = target.bottomAnchor;
+
+                }
+                else
+                {
+                    target.distanceDisplayTransform = target.topAnchor;
+
                 }
 
-                target.GetComponent<RectTransform>().localPosition = localPoint;
+                if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
+                {
+
+                    if (localPoint.x < 0f)
+                    {
+                        rotation = new Vector3(0f, 0f, -180f);
+                    }
+                    else
+                    {
+                        rotation = new Vector3(0f, 0f, 0f);
+                    }
+                }
+                else
+                {
+                    if (localPoint.y < 0f)
+                    {
+                        rotation = new Vector3(0f, 0f, -90f);
+                    }
+                    else
+                    {
+                        rotation = new Vector3(0f, 0f, 90f);
+                    }
+                }
+                if (Mathf.Abs(localPoint.x) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y) >= validCanvasSizeY + target._renderer.GetComponent<RectTransform>().rect.y)
+                {
+                    target._renderer.sprite = target._arrow;
+                }
+                else
+                {
+                    target._renderer.sprite = target._square;
+                }
+                target.transform.localPosition = localPoint;
+
+                target.arrow.localRotation = Quaternion.Euler(rotation);
+
+
 
             }
             else
