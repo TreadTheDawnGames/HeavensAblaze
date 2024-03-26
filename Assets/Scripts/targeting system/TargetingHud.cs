@@ -130,7 +130,7 @@ public class TargetingHud : NetworkBehaviour
                     float dotU = Vector3.Dot(transform.up.normalized, vectorToTarget.normalized);
                     int dotIntU = (int)(dotU * 100f);
                     print("dotint u: " + dotIntU + " " + ship.name);
-
+                    
                     if (dotIntU > 0)
                     {
                         localPoint.y = validCanvasSizeY;
@@ -141,6 +141,7 @@ public class TargetingHud : NetworkBehaviour
                         localPoint.y = -validCanvasSizeY;
 
                     }
+                    
 
                     /*if (target.gameObject.activeInHierarchy)
                         target.gameObject.SetActive(false);*/
@@ -219,13 +220,18 @@ public class TargetingHud : NetworkBehaviour
 //                if (target._renderer.sprite == target._arrow)
                 {
                     //find canvas center
-                    Vector2 angleMesure = canvas.GetComponent<RectTransform>().rect.center;
+                    Vector2 halfCanvasSize = canvas.GetComponent<RectTransform>().rect.max/2f;
                     //get vector "pointing" towards center
-                    Vector2 arrowDirection =   angleMesure-localPoint;
+                    Vector2 alteredLocalPoint = localPoint;
 
-                    //float angle = Vector2.Angle(angleMesure, arrowDirection);
-                    rotation.z = arrowDirection.x;
-                    Debug.DrawLine(angleMesure, localPoint,Color.green,5f,false);
+                    float angle = Vector2.Angle(Vector2.right, alteredLocalPoint);
+                    if(localPoint.y<0f)
+                    {
+                        angle = -angle;
+                    }
+
+                    rotation.z = angle;
+                    Debug.DrawLine(Vector2.right, alteredLocalPoint, Color.green,5f,false);
                 }
 
                 target.transform.localPosition = localPoint;

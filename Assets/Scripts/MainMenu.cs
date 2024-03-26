@@ -25,7 +25,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     AnimateLogo logo;
 
-    
+    [SerializeField]
+    GameObject quitGameConfirmationPanel;
+
 
 #if UNITY_EDITOR
 
@@ -72,8 +74,16 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
     }
+    public void SetAYSPanelVisible(bool setTo)
+    {
+        quitGameConfirmationPanel.SetActive(setTo);
+    }
 
-    
+    public void QuitGame()
+    {
+        print("APP QUIT");
+        Application.Quit();
+    }
 
     public void ToggleMainMenu()
     {
