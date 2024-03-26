@@ -375,6 +375,6 @@ MonoBehaviour:
   bottomAnchor: {fileID: 0}
   distanceDisplayTransform: {fileID: 0}
   distanceDisplay: {fileID: 0}
-  _renderer: {fileID: 5322903450552615598}
+  _renderer: {fileID: 0}
   _square: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
   _arrow: {fileID: 21300000, guid: 6514dbc12a3f17b44918b460b695b90f, type: 3}

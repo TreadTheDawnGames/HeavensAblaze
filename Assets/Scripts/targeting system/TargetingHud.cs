@@ -104,6 +104,7 @@ public class TargetingHud : NetworkBehaviour
                 localPoint.x = Mathf.Clamp(localPoint.x, -validCanvasSizeX, validCanvasSizeX);
                 localPoint.y = Mathf.Clamp(localPoint.y, -validCanvasSizeY, validCanvasSizeY);
 
+                
 
 
                 //special case 
@@ -145,8 +146,8 @@ public class TargetingHud : NetworkBehaviour
                         target.gameObject.SetActive(false);*/
                 }
 
-                Vector3 rotation = new Vector3();
 
+                
 
                 if (dotInt < 0)
                 {
@@ -166,40 +167,43 @@ public class TargetingHud : NetworkBehaviour
                     localPoint.y = -localPoint.y;
 
                 }
-                if (localPoint.y.Equals(validCanvasSizeY))
-                {
-                    target.distanceDisplayTransform = target.bottomAnchor;
 
-                }
-                else
-                {
-                    target.distanceDisplayTransform = target.topAnchor;
+                
+                
 
-                }
-
-                if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
-                {
-
-                    if (localPoint.x < 0f)
+                    /*if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
                     {
-                        rotation = new Vector3(0f, 0f, -180f);
+
+                        if (localPoint.x < 0f)
+                        {
+                            rotation = new Vector3(0f, 0f, -180f);
+                            target.distanceDisplayTransform.position = target.topAnchor.position;
+
+                        }
+                        else
+                        {
+                            rotation = new Vector3(0f, 0f, 0f);
+                            target.distanceDisplayTransform.position = target.topAnchor.position;
+
+                        }
                     }
                     else
                     {
-                        rotation = new Vector3(0f, 0f, 0f);
-                    }
-                }
-                else
-                {
-                    if (localPoint.y < 0f)
-                    {
-                        rotation = new Vector3(0f, 0f, -90f);
-                    }
-                    else
-                    {
-                        rotation = new Vector3(0f, 0f, 90f);
-                    }
-                }
+                        if (localPoint.y < 0f)
+                        {
+                            rotation = new Vector3(0f, 0f, -90f);
+                            target.distanceDisplayTransform.position = target.topAnchor.position;
+
+                        }
+                        else
+                        {
+                            rotation = new Vector3(0f, 0f, 90f);
+                            target.distanceDisplayTransform.position = target.bottomAnchor.position;
+
+                        }
+                    }*/
+
+
                 if (Mathf.Abs(localPoint.x) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y) >= validCanvasSizeY + target._renderer.GetComponent<RectTransform>().rect.y)
                 {
                     target._renderer.sprite = target._arrow;
@@ -208,6 +212,22 @@ public class TargetingHud : NetworkBehaviour
                 {
                     target._renderer.sprite = target._square;
                 }
+
+                Vector3 rotation = new Vector3();
+
+                
+//                if (target._renderer.sprite == target._arrow)
+                {
+                    //find canvas center
+                    Vector2 angleMesure = canvas.GetComponent<RectTransform>().rect.center;
+                    //get vector "pointing" towards center
+                    Vector2 arrowDirection =   angleMesure-localPoint;
+
+                    //float angle = Vector2.Angle(angleMesure, arrowDirection);
+                    rotation.z = arrowDirection.x;
+                    Debug.DrawLine(angleMesure, localPoint,Color.green,5f,false);
+                }
+
                 target.transform.localPosition = localPoint;
 
                 target.arrow.localRotation = Quaternion.Euler(rotation);
@@ -223,11 +243,15 @@ public class TargetingHud : NetworkBehaviour
             }
 
         }
-        foreach(GameObject removee in toRemove)
+        if (toRemove.Count > 0)
         {
-            targets.Remove(removee);
+            foreach (GameObject removee in toRemove)
+            {
+                targets.Remove(removee);
+                Destroy(removee);
+            }
+            toRemove.Clear();
         }
-        toRemove.Clear();
 
 
 
