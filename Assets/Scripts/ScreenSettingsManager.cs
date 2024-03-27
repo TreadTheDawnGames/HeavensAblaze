@@ -19,10 +19,13 @@ public class ScreenSettingsManager : MonoBehaviour
     private void Start()
     {
         SetupResolutions();
+
         fullScreenTickbox.onClick.AddListener(() => ToggleFullScreen());
         resolutionsDropdown.onValueChanged.AddListener((Int) => SetResolution(Int));
         fullScreen = Screen.fullScreen;
+        fullScreenTickmark.SetActive(fullScreen);
     }
+    
     private void OnDestroy()
     {
         fullScreenTickbox.onClick.RemoveAllListeners();
@@ -53,6 +56,9 @@ public class ScreenSettingsManager : MonoBehaviour
         }
         //resolutionStrings.Reverse();
         resolutionsDropdown.AddOptions(resolutionStrings);
+        resolutionsDropdown.captionText.text = Screen.currentResolution.ToString();
+        resolutionsDropdown.RefreshShownValue();
+
     }
 
     void SetResolution(Int32 index)

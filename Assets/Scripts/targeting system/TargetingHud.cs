@@ -155,12 +155,15 @@ public class TargetingHud : NetworkBehaviour
                     if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
                     {
                         localPoint.x = validCanvasSizeX * (localPoint.x < 0 ? 1 : -1);
-
-
+                        target.distanceDisplayTransform.position = target.topAnchor.position;
 
                     }
                     else
                     {
+                        if(localPoint.y<0)
+                            target.distanceDisplayTransform.position = target.bottomAnchor.position;
+                        else
+                            target.distanceDisplayTransform.position = target.topAnchor.position;
 
                         localPoint.x = -localPoint.x;
                     }
@@ -168,42 +171,6 @@ public class TargetingHud : NetworkBehaviour
                     localPoint.y = -localPoint.y;
 
                 }
-
-                
-                
-
-                    /*if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
-                    {
-
-                        if (localPoint.x < 0f)
-                        {
-                            rotation = new Vector3(0f, 0f, -180f);
-                            target.distanceDisplayTransform.position = target.topAnchor.position;
-
-                        }
-                        else
-                        {
-                            rotation = new Vector3(0f, 0f, 0f);
-                            target.distanceDisplayTransform.position = target.topAnchor.position;
-
-                        }
-                    }
-                    else
-                    {
-                        if (localPoint.y < 0f)
-                        {
-                            rotation = new Vector3(0f, 0f, -90f);
-                            target.distanceDisplayTransform.position = target.topAnchor.position;
-
-                        }
-                        else
-                        {
-                            rotation = new Vector3(0f, 0f, 90f);
-                            target.distanceDisplayTransform.position = target.bottomAnchor.position;
-
-                        }
-                    }*/
-
 
                 if (Mathf.Abs(localPoint.x) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y) >= validCanvasSizeY + target._renderer.GetComponent<RectTransform>().rect.y)
                 {
@@ -217,21 +184,22 @@ public class TargetingHud : NetworkBehaviour
                 Vector3 rotation = new Vector3();
 
                 
-//                if (target._renderer.sprite == target._arrow)
+                if (target._renderer.sprite == target._arrow)
                 {
-                    //find canvas center
-                    Vector2 halfCanvasSize = canvas.GetComponent<RectTransform>().rect.max/2f;
-                    //get vector "pointing" towards center
-                    Vector2 alteredLocalPoint = localPoint;
+                    
+                    float angle = Vector2.Angle(Vector2.right, localPoint);
 
-                    float angle = Vector2.Angle(Vector2.right, alteredLocalPoint);
+
                     if(localPoint.y<0f)
                     {
                         angle = -angle;
                     }
 
+                        //target.distanceDisplayTransform.position = target.bottomAnchor.position;
+
+
                     rotation.z = angle;
-                    Debug.DrawLine(Vector2.right, alteredLocalPoint, Color.green,5f,false);
+                    Debug.DrawLine(Vector2.right, localPoint, Color.green,5f,false);
                 }
 
                 target.transform.localPosition = localPoint;
