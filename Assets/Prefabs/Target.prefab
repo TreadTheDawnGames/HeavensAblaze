@@ -277,7 +277,7 @@ MonoBehaviour:
   distanceDisplayTransform: {fileID: 2185458975514545891}
   distanceDisplay: {fileID: 8031129948873054712}
   _renderer: {fileID: 5322903450552615598}
-  _square: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
+  targetSprite: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
   arrowSprite: {fileID: 21300000, guid: 6514dbc12a3f17b44918b460b695b90f, type: 3}
 --- !u!1 &8693826920334566940
 GameObject:
@@ -376,5 +376,5 @@ MonoBehaviour:
   distanceDisplayTransform: {fileID: 0}
   distanceDisplay: {fileID: 0}
   _renderer: {fileID: 0}
-  _square: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
+  targetSprite: {fileID: 0}
   arrowSprite: {fileID: 0}

@@ -29,6 +29,7 @@ public class TargetingHud : NetworkBehaviour
     public bool hideTargets = false;
 
     public float distanceMultiplier = 0f;
+    float rightLeftDistance = -14f;
 
     private void Start()
     {
@@ -150,9 +151,10 @@ public class TargetingHud : NetworkBehaviour
 
                 
 
+                    float extraSpace = -Mathf.Clamp(distanceMultiplier * (localPoint.x) - (0.5f * localPoint.x), -14f, 14f) ;
+                print(extraSpace);
                 if (dotInt < 0)
                 {
-                        float extraSpace = distanceMultiplier * (localPoint.x) - (0.5f * localPoint.x);
 
                     if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
                     {
@@ -162,8 +164,8 @@ public class TargetingHud : NetworkBehaviour
 
                         //scooch text right
                         //extraSpace = (target.distanceDisplay.rectTransform.rect.width-(target.arrow.rect.width*distanceMultiplier)) * (localPoint.x < 0 ? 1 : -1);
-                        
-                        target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition + new Vector3(extraSpace, 0f);
+
+                        target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition + new Vector3((extraSpace<0?rightLeftDistance:-rightLeftDistance), 0f);
 
                     }
                     else
@@ -177,6 +179,7 @@ public class TargetingHud : NetworkBehaviour
                         localPoint.x = -localPoint.x;
                     }
 
+
                     localPoint.y = -localPoint.y;
 
                 }
@@ -185,6 +188,11 @@ public class TargetingHud : NetworkBehaviour
                     if (target._renderer.sprite == target.targetSprite)
                     {
                         target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition;
+                    }
+                    else
+                    {
+                        target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition + new Vector3(-extraSpace, 0f);
+
                     }
                 }
                 if (Mathf.Abs(localPoint.x) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y) >= validCanvasSizeY + target._renderer.GetComponent<RectTransform>().rect.y)
