@@ -18,9 +18,9 @@ public class Target : MonoBehaviour
     public Image _renderer;
 
     [SerializeField]
-    public Sprite _square;
+    public Sprite targetSprite;
     
     [SerializeField]
-    public Sprite _arrow;
+    public Sprite arrowSprite;
     
 }

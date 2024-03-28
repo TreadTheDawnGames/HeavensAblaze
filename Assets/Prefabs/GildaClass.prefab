@@ -5106,6 +5106,7 @@ MonoBehaviour:
   canvas: {fileID: 818495765072175364}
   shipCam: {fileID: 8212157703595107912}
   hideTargets: 0
+  distanceMultiplier: 0.54
 --- !u!1 &3735630953165478576
 GameObject:
   m_ObjectHideFlags: 0

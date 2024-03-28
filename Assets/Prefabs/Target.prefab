@@ -23,7 +23,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303227917259452560}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,8 +33,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5.49}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 15.56}
+  m_SizeDelta: {x: 43.94, y: 10.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3492882468984706575
 GameObject:
@@ -71,8 +71,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5.49}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: 0, y: 15.62}
+  m_SizeDelta: {x: 43.94, y: 10.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &832012901247548803
 CanvasRenderer:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -12.124023, y: -10.530197, z: -12.3750305, w: 14.949173}
+  m_margin: {x: -0.3, y: -0.08, z: -0.13095093, w: 0.17680359}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -194,7 +194,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607445922408363912}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -204,8 +204,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -29.02}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -15.78}
+  m_SizeDelta: {x: 43.94, y: 10.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7459013866127852561
 GameObject:
@@ -278,7 +278,7 @@ MonoBehaviour:
   distanceDisplay: {fileID: 8031129948873054712}
   _renderer: {fileID: 5322903450552615598}
   _square: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
-  _arrow: {fileID: 21300000, guid: 6514dbc12a3f17b44918b460b695b90f, type: 3}
+  arrowSprite: {fileID: 21300000, guid: 6514dbc12a3f17b44918b460b695b90f, type: 3}
 --- !u!1 &8693826920334566940
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,4 +377,4 @@ MonoBehaviour:
   distanceDisplay: {fileID: 0}
   _renderer: {fileID: 0}
   _square: {fileID: 21300000, guid: bffd1615a39191446a27acb5f22e8bc9, type: 3}
-  _arrow: {fileID: 21300000, guid: 6514dbc12a3f17b44918b460b695b90f, type: 3}
+  arrowSprite: {fileID: 0}

@@ -28,7 +28,7 @@ public class TargetingHud : NetworkBehaviour
 
     public bool hideTargets = false;
 
-
+    public float distanceMultiplier = 0f;
 
     private void Start()
     {
@@ -152,18 +152,27 @@ public class TargetingHud : NetworkBehaviour
 
                 if (dotInt < 0)
                 {
+                        float extraSpace = distanceMultiplier * (localPoint.x) - (0.5f * localPoint.x);
+
                     if (Mathf.Abs(localPoint.y) < validCanvasSizeY)
                     {
                         localPoint.x = validCanvasSizeX * (localPoint.x < 0 ? 1 : -1);
-                        target.distanceDisplayTransform.position = target.topAnchor.position;
+
+
+
+                        //scooch text right
+                        //extraSpace = (target.distanceDisplay.rectTransform.rect.width-(target.arrow.rect.width*distanceMultiplier)) * (localPoint.x < 0 ? 1 : -1);
+                        
+                        target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition + new Vector3(extraSpace, 0f);
 
                     }
                     else
                     {
-                        if(localPoint.y<0)
-                            target.distanceDisplayTransform.position = target.bottomAnchor.position;
+                        //y=mx+b
+                        if (localPoint.y < 0)
+                            target.distanceDisplayTransform.localPosition = target.bottomAnchor.localPosition + new Vector3(extraSpace, 0f); 
                         else
-                            target.distanceDisplayTransform.position = target.topAnchor.position;
+                            target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition + new Vector3(extraSpace, 0f); 
 
                         localPoint.x = -localPoint.x;
                     }
@@ -171,20 +180,26 @@ public class TargetingHud : NetworkBehaviour
                     localPoint.y = -localPoint.y;
 
                 }
-
+                else
+                {
+                    if (target._renderer.sprite == target.targetSprite)
+                    {
+                        target.distanceDisplayTransform.localPosition = target.topAnchor.localPosition;
+                    }
+                }
                 if (Mathf.Abs(localPoint.x) >= validCanvasSizeX + target._renderer.GetComponent<RectTransform>().rect.x || Mathf.Abs(localPoint.y) >= validCanvasSizeY + target._renderer.GetComponent<RectTransform>().rect.y)
                 {
-                    target._renderer.sprite = target._arrow;
+                    target._renderer.sprite = target.arrowSprite;
                 }
                 else
                 {
-                    target._renderer.sprite = target._square;
+                    target._renderer.sprite = target.targetSprite;
                 }
 
                 Vector3 rotation = new Vector3();
 
                 
-                if (target._renderer.sprite == target._arrow)
+                if (target._renderer.sprite == target.arrowSprite)
                 {
                     
                     float angle = Vector2.Angle(Vector2.right, localPoint);
