@@ -13,6 +13,8 @@ public class LaserV3 : NetworkBehaviour
     [SerializeField]
     Transform raycastPoint;
 
+    public AudioSource hitPingSource;
+
     /// <summary>
     /// Direction to travel.
     /// </summary>
@@ -103,20 +105,19 @@ public class LaserV3 : NetworkBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider collision)
     {
-
+        NetworkObject nob;
         if (collision.GetComponentInParent<LaserV3>() != null)
         {
             // Debug.Log("Not continuing: hit laser");
             return;
         }
-        else if (collision.TryGetComponent<NetworkObject>(out NetworkObject nob))
+        else if (collision.TryGetComponent<NetworkObject>(out nob))
         {
             if (nob.Owner == GetComponent<NetworkObject>().Owner)
             {
                 //  Debug.Log("Not continuing: owner of target");
                 return;
             }
-            
         }
 
         /* These projectiles are instantiated locally, as in,
@@ -127,18 +128,18 @@ public class LaserV3 : NetworkBehaviour
         //If client show visual effects, play impact audio.
         if (InstanceFinder.IsClient)
         {
-           
-
-
             if (Physics.Linecast(transform.position, raycastPoint.transform.position, out RaycastHit hit))
             {
-                //collision.transform.root.GetComponentInChildren<DamageHologram>()?.ChangeCounterpartColor(collision.GetComponent<ShipPart>().damageHudCounterpart, collision.GetComponent<ShipPart>());
-
                 Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Vector3 pos = hit.point;
                 Instantiate(hitSparks, pos, rot);
             }
-
+            //play hit ping
+            if (collision.gameObject.TryGetComponent<ShipPart>(out ShipPart ps))
+            {
+                if(hitPingSource != null)
+                  hitPingSource.PlayOneShot(hitPingSource.clip);
+            }
 
         }
 
@@ -149,16 +150,9 @@ public class LaserV3 : NetworkBehaviour
             {
                 ps.hitPoints -= 12;
                 print(ps.name);
-               // ps.DestroyIfDead();
 
             }
         }
-
-        
-
-
-
-        //Destroy projectile (probably pool it instead).
         Destroy(gameObject);
     }
 

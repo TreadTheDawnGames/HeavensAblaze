@@ -25,6 +25,8 @@ public class BlasterV3 : NetworkBehaviour
 
     [SerializeField]
     AudioSource audioSource;
+    [SerializeField]
+    AudioSource hitPingSource;
 
     public void Setup()
     {
@@ -126,6 +128,8 @@ public class BlasterV3 : NetworkBehaviour
         Debug.DrawLine(position, pp.transform.TransformPoint(pp.transform.forward), Color.magenta, 5f, false) ;
 
         pp.GetComponent<NetworkObject>().SetLocalOwnership(LocalConnection);
+        if(IsOwner)
+            pp.hitPingSource = hitPingSource;
 
         pp.Initialize(direction, passedTime, laserColor, connection);
         

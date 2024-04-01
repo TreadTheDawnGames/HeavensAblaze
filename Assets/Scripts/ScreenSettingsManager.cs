@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
+using System.Collections;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class ScreenSettingsManager : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class ScreenSettingsManager : MonoBehaviour
     private void Start()
     {
         SetupResolutions();
+
 
         fullScreenTickbox.onClick.AddListener(() => ToggleFullScreen());
         resolutionsDropdown.onValueChanged.AddListener((Int) => SetResolution(Int));
@@ -56,15 +59,43 @@ public class ScreenSettingsManager : MonoBehaviour
         }
         //resolutionStrings.Reverse();
         resolutionsDropdown.AddOptions(resolutionStrings);
-        resolutionsDropdown.captionText.text = Screen.currentResolution.ToString();
-        resolutionsDropdown.RefreshShownValue();
 
+        Resolution res = new Resolution();
+        res.width = PlayerPrefs.GetInt("ScreenWidth", Screen.width);
+        res.height = PlayerPrefs.GetInt("ScreenHeight", Screen.height);
+        print("width "+PlayerPrefs.GetInt("ScreenWidth", 0));
+        print("height "+PlayerPrefs.GetInt("ScreenHeight", 0));
+        print(resolutions.IndexOf(res));
+
+        foreach (Resolution resolution in resolutions)
+        {
+            if(resolution.width == res.width && resolution.height == res.height)
+            {
+                resolutionsDropdown.SetValueWithoutNotify(resolutions.IndexOf(resolution));
+                break;
+            }
+        }
+
+//            StartCoroutine(ChangeValue(resolutions.IndexOf(res)));
+    }
+
+    IEnumerator ChangeValue(int newValue)
+    {
+        resolutionsDropdown.Select();
+        yield return new WaitForEndOfFrame();
+        //resolutionsDropdown.RefreshShownValue();
     }
 
     void SetResolution(Int32 index)
     {
-        
+
+        print(resolutions[index]);
         Screen.SetResolution(resolutions[index].width, resolutions[index].height, fullScreen);
+        PlayerPrefs.SetInt("ScreenWidth", resolutions[index].width);
+        PlayerPrefs.SetInt("ScreenHeight", resolutions[index].height);
+        print("width " + PlayerPrefs.GetInt("ScreenWidth", 0));
+        print("height " + PlayerPrefs.GetInt("ScreenHeight", 0));
+
     }
 
 }
