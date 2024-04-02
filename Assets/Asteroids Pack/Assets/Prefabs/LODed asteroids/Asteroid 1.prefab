@@ -240,8 +240,7 @@ GameObject:
   - component: {fileID: 5444550}
   - component: {fileID: 11425652}
   - component: {fileID: 8793804517339995616}
-  - component: {fileID: 2811121797142604359}
-  - component: {fileID: 3064830145418142116}
+  - component: {fileID: -5933730295005401492}
   m_Layer: 0
   m_Name: Asteroid 1
   m_TagString: Enemy
@@ -293,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a718c138b20419b499c3d92b17e6ff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tumble: 0.25
+  tumble: 1
 --- !u!135 &8793804517339995616
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -307,7 +306,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.83
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2811121797142604359
+--- !u!114 &-5933730295005401492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,44 +315,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 151664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ae7f6b2b16469c4a84bca00869b5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsNested>k__BackingField: 0
-  <ComponentIndex>k__BackingField: 0
-  <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours: []
-  <ParentNetworkObject>k__BackingField: {fileID: 0}
-  <ChildNetworkObjects>k__BackingField: []
-  SerializedTransformProperties:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    LocalScale: {x: 0, y: 0, z: 0}
-  _isNetworked: 1
-  _isGlobal: 0
-  _initializeOrder: 0
-  _defaultDespawnType: 0
-  NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 31
-  <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 0
-  <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 11973173108597307177
---- !u!114 &3064830145418142116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71fd7f855ec523429999fc4e14a1928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _overrideType: 2
-  _updateHostVisibility: 1
-  _observerConditions: []
+  BufferZoneDiameter: 5
+  RigidbodyToScale: {fileID: 5444550}
+  ShowBufferGizmo: 1
+  BufferZoneColor: {r: 1, g: 0, b: 1, a: 1}
+  DoNotDelete: 0
+  DoNotScale: 0
+  DoNotRotate: 0
+  meshesToHide: []
+  ShowMesh: 1
+  collidersToHide: []
+  ShowColliders: 1
+  HasCollision: 0
 --- !u!1 &176588
 GameObject:
   m_ObjectHideFlags: 0
