@@ -13,7 +13,7 @@ public class TargetingHud : NetworkBehaviour
     GameObject targetPrefab;
 
     [SerializeField]
-    Canvas canvas;
+    public Canvas canvas;
 
     [SerializeField]
     Camera shipCam;
@@ -64,11 +64,7 @@ public class TargetingHud : NetworkBehaviour
             {
                 //fix hud hiding
 
-                /*target.gameObject.SetActive(hideTargets);
-                if (hideTargets)
-                {
-                    return;
-                }*/
+                
 
                 Renderer renderer = target.targetShip.GetComponent<Renderer>();
                 if (renderer == null)

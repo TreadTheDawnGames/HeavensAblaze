@@ -791,7 +791,8 @@ public class PredictionMotor : NetworkBehaviour
     }
     private void UpdateHideTargeting(InputAction.CallbackContext context)
     {
-        targetingHud.hideTargets = !targetingHud.hideTargets;
+        targetingHud.canvas.enabled = !targetingHud.canvas.enabled;
+
         if (targetingHud.hideTargets == true)
         {
             print("Tracking");
