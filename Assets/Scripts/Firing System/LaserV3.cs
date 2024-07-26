@@ -138,7 +138,10 @@ public class LaserV3 : NetworkBehaviour
             if (collision.gameObject.TryGetComponent<ShipPart>(out ShipPart ps))
             {
                 if(hitPingSource != null)
+                {
+                    hitPingSource.pitch = Random.Range(0.75f, 1.25f);
                   hitPingSource.PlayOneShot(hitPingSource.clip);
+                }
             }
 
         }
