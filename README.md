@@ -12,7 +12,7 @@ I have another project in the works (as of 7/26/2024), which will be available o
 
 
 # Installation
-[Download](http://sumrbrandr.github.io) for your OS from sumRbrandR.github.io
+Download for your OS from [sumRbrandR.github.io](http://sumrbrandr.github.io)
 
 ### Windows: 
 Unzip to desired location.
