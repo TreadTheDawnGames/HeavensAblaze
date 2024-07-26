@@ -5,7 +5,7 @@ Heavens Ablaze it a peer to peer multiplayer physics based spaceship simulator. 
 
 ### Personal Note
 
-This was my first release ever. I learned a lot about coding, game design, the importance of project organization, and networking issues. Lots of networking issues. I made this game because there weren't any quality multiplayer spacefighter sims in my price range. The one I did have ([Starfighter Arduxim](https://store.steampowered.com/app/540500/Starfighter_Arduxim/)) didn't keep ship momentum, leading to a clunky experience. I didn't like that so I thought, "Hey, you could make your own. And if you did, you could make it any way you want!" Here's the result!
+This was my first release ever. I learned a lot about coding, game design, the importance of project organization, and networking issues. Lots of networking issues. I made this game because there weren't any quality multiplayer spacefighter sims in my price range. The one I did have ([Starfighter Arduxim](https://store.steampowered.com/app/540500/Starfighter_Arduxim/)) didn't keep ship momentum, leading to a clunky experience. I didn't like that so I thought, "Hey, you could make your own. And if you did, you could make it any way you want!" Here's the result.
 
 I have another project in the works (as of 7/26/2024), which will be available on itch.io when it is completed. The source code, however, can be viewed [here](https://github.com/SumRbrandR/MoonstruckTower). It is much better organized and coded than this. 😅
 
