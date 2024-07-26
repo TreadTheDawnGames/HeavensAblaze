@@ -1,6 +1,7 @@
 # Heavens Ablaze
 
 Climb in your spacefigher and start shooting your friends!*
+
 *Friends not included.
 
 This was my first release ever. I learned a lot about coding, game design, project organization, and networking issues. Lots of networking issues. 
