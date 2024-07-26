@@ -28,7 +28,7 @@ Double click dmg.
 
 Drag and drop Heavens Ablaze app to the Applications folder.
 
-Run. 
+MacOS may block it from opening, thinking it's unsafe to open. If it does, right click the icon and click "open," then the option to run anyway.
 
 
 ## Known Issues
