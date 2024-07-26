@@ -32,7 +32,7 @@ Run.
 
 
 ## Known Issues
-Sometimes the code claims it's invalid when it's not. Just restart the server and use the new code.
+Sometimes the room code claims it's invalid when it's not. Just restart the server and use the new code.
 
 The damage hologram is sometimes inaccurate. Specifically when the supporting wing is destroyed. It displays missing body instead of just destroying that part.
 
