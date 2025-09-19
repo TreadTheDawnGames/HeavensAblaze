@@ -12,7 +12,7 @@ I have another project in the works (as of 7/26/2024), which will be available o
 
 
 # Installation
-Download for your OS from [sumRbrandR.github.io](http://treadthedawngames.github.io)
+Download for your OS from [treadthedawngames.github.io](http://treadthedawngames.github.io)
 
 ### Windows: 
 Unzip to desired location.
